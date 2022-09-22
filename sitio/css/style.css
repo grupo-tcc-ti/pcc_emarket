@@ -184,3 +184,22 @@ i.linkcart {
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
 }
+
+/* Alterações para a vitrine */
+.container-prod{
+    display:flex;
+    flex-direction: column;
+}
+.list-cards{
+    display:flex;
+    flex-direction: row;
+    
+}
+.cards-items{
+    display:flex;
+    margin: 30px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 320px;
+    height: 270px;
+}
