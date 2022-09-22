@@ -185,21 +185,32 @@ i.linkcart {
   background-color: #3e8e41;
 }
 
-/* Alterações para a vitrine */
-.container-prod{
+/* Vitrine */
+
+.container-prod{ /* Modifies all card rows */
     display:flex;
     flex-direction: column;
+    background-color: #f9f9f9;
 }
-.list-cards{
+.list-cards{ /* Modify a card list */
     display:flex;
     flex-direction: row;
     
 }
-.cards-items{
+.cards-items{ /* Modifies cards only and their interior elements */
     display:flex;
+    flex-direction: column;
     margin: 30px;
     border: 1px solid black;
     border-radius: 20px;
     width: 320px;
     height: 270px;
+    position: relative;
+}
+
+/* Rodapé */
+
+footer{
+    border-top: 1px solid black;
+    background-color: #f9f9f9;
 }
