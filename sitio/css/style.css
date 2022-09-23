@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
 
-body>* {
-    font-family: 'Poppins', sans-serif !important;
+body, button{
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 
 .topo p span.left {
@@ -119,7 +120,7 @@ a.linkcarrinho {
 
 i.useraccount,
 i.linkcart {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif; 
     font-size: 14;
     text-align: center;
 
@@ -212,14 +213,54 @@ i.linkcart {
     margin: 30px;
     border: 1px solid black;
     border-radius: 20px;
-    width: 320px;
+    box-sizing: border-box;
+    width: 340px;
     height: 270px;
     position: relative;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+/* Modify cards item when cursor is over them */
+.cards-items:hover{
+        background-color: white;
+        opacity: 0.1;
+        box-shadow: #000000 10px 10px 10px 10px;
+}
+/* Modify the price */
+.cards-price{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+/* Modify the name */
+.products-name{
+    display: inline-block;
+    font-size: 12px;
+}
+/*  Modify products image and element filter */
+.products-imgs , figure{
+    width: 200px;
+    height:200px;
+    margin:0;
 }
 
 /* Rodapé */
 
 footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     border-top: 1px solid black;
-    background-color: #f9f9f9;
+    background-color: #c3c3c3;
+}
+
+.columns-footer{
+    padding: 20px;
+}
+
+.columns-footer > span{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    letter-spacing: 2px;
 }
