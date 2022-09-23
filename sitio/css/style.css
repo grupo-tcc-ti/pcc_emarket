@@ -218,19 +218,32 @@ i.linkcart {
     height: 270px;
     position: relative;
     overflow: hidden;
+    word-wrap: break-word;
 }
-
+/* Modify cards item when cursor is over them */
+.cards-items:hover{
+        background-color: white;
+        opacity: 0.1;
+        box-shadow: #000000 10px 10px 10px 10px;
+}
+/* Modify the price */
 .cards-price{
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
 }
-
-.products-imgs{
+/* Modify the name */
+.products-name{
+    display: inline-block;
+    font-size: 12px;
+}
+/*  Modify products image and element filter */
+.products-imgs , figure{
     width: 200px;
     height:200px;
     margin:0;
 }
+
 /* Rodapé */
 
 footer {
@@ -240,9 +253,11 @@ footer {
     border-top: 1px solid black;
     background-color: #c3c3c3;
 }
+
 .columns-footer{
     padding: 20px;
 }
+
 .columns-footer > span{
     display: flex;
     flex-direction: column;
