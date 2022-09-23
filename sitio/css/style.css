@@ -226,9 +226,26 @@ i.linkcart {
     align-items: flex-end;
 }
 
+.products-imgs{
+    width: 200px;
+    height:200px;
+    margin:0;
+}
 /* Rodapé */
 
 footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     border-top: 1px solid black;
-    background-color: #f9f9f9;
+    background-color: #c3c3c3;
+}
+.columns-footer{
+    padding: 20px;
+}
+.columns-footer > span{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    letter-spacing: 2px;
 }
