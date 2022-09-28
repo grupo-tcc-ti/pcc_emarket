@@ -6,6 +6,9 @@ button {
     scroll-behavior: smooth;
     margin: 0px;
 }
+#all-container{
+    background-color: #F8F8FF;
+}
 
 .topo p span.left {
     text-align: left;
@@ -23,7 +26,7 @@ header#nav-top {
     border: 1px solid #c3c3c3;
     display: flex;
     flex-wrap: wrap;
-    /* align-items: center; */
+    align-items: center;
     padding: 5px;
 
 }
@@ -43,8 +46,8 @@ ul.lista li {
 
 .logo {
     display: inline-flex;
-    height: 2em;
-    width: 4em;
+    height: 3em;
+    width: 5em;
     src: url('../image/logo.png');
 }
 
@@ -198,7 +201,6 @@ i.linkcart {
 .container-prod {
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
 }
 
 /* Modify a card list */
