@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
 
-body, button{
+body,
+button {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
 }
@@ -120,7 +121,7 @@ a.linkcarrinho {
 
 i.useraccount,
 i.linkcart {
-    font-family: 'Poppins', sans-serif; 
+    font-family: 'Poppins', sans-serif;
     font-size: 14;
     text-align: center;
 
@@ -211,56 +212,81 @@ i.linkcart {
     display: flex;
     flex-direction: column;
     margin: 30px;
-    border: 1px solid black;
+    border: 1.8px groove black;
     border-radius: 20px;
     box-sizing: border-box;
     width: 340px;
-    height: 270px;
+    height: 325px;
     position: relative;
     overflow: hidden;
     word-wrap: break-word;
 }
+
 /* Modify cards item when cursor is over them */
-.cards-items:hover{
-        background-color: white;
-        opacity: 0.1;
-        box-shadow: #000000 10px 10px 10px 10px;
+
+.cards-items:hover {
+    box-shadow: lightgray 10px 10px 10px 10px;
 }
+
 /* Modify the price */
-.cards-price{
+.cards-price {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
 }
+
 /* Modify the name */
-.products-name{
+.products-name {
     display: inline-block;
     font-size: 12px;
 }
+
 /*  Modify products image and element filter */
-.products-imgs , figure{
+.products-imgs,
+figure {
     width: 200px;
-    height:200px;
-    margin:0;
+    height: 200px;
+    margin: 0;
 }
+
+/*  Modify button of cards */
+.buy-bttn {
+    background-color: #3e8e41;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+
+}
+
+/* Modify content of the button */
+.buy-bttn a {
+    text-decoration: none;
+    color: #f1f1f1;
+}
+
 
 /* Rodapé */
 
+/* Modify the elements in the footer tag */
 footer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     border-top: 1px solid black;
     background-color: #c3c3c3;
 }
 
-.columns-footer{
-    padding: 20px;
+/* Modify the div(columns-footer) */
+.columns-footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.columns-footer > span{
+/* Modify the content in the div(columns-footer) */
+.columns-footer>span {
     display: flex;
-    flex-direction: column;
     margin-top: 15px;
     letter-spacing: 2px;
 }
