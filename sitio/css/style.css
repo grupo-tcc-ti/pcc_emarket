@@ -34,18 +34,17 @@ header#nav-top {
 
 }
 
-ul.lista {
+.lista {
     display: flex;
+    justify-content: center;
+    flex-direction: row;
     margin: auto;
     padding: 0px;
 }
 
 ul.lista li {
     list-style: none;
-    display: inline-flex;
-    text-align: center;
 }
-
 
 .logo {
     display: inline-flex;
@@ -54,23 +53,9 @@ ul.lista li {
     src: url('../image/logo.png');
 }
 
-.depart {
-    background-color: #000000;
-    border: 1px solid aquamarine;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    margin: 1px 2px;
-    padding: 0 2px;
-    height: 2em;
-    box-sizing: border-box;
-    position: relative;
-}
-
 .backsb {
     display: inline-flex;
-    border: 1px solid aquamarine;
+    border: 1px solid rgb(44, 132, 103);
     background-color: black;
 
 }
@@ -105,8 +90,8 @@ button.searchbtn {
     background-position: center;
     background-size: 1em;
     display: inline-flex;
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     margin: 0 1px;
 }
 
@@ -116,8 +101,8 @@ button.searchbtn {
     background-position: center;
     background-size: 2em;
     display: inline-flex;
-    height: 2em;
-    width: 2em;
+    height: 4em;
+    width: 4em;
     margin: 0 1px;
 }
 
