@@ -213,7 +213,7 @@ i.linkcart {
     flex-direction: column;
     margin: 30px;
     border: 1.8px groove black;
-    border-radius: 20px;
+    border-radius: 4px 4px 10px 10px;
     box-sizing: border-box;
     width: 340px;
     height: 325px;
@@ -244,8 +244,8 @@ i.linkcart {
 /*  Modify products image and element filter */
 .products-imgs,
 figure {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     margin: 0;
 }
 
@@ -264,7 +264,6 @@ figure {
     text-decoration: none;
     color: #f1f1f1;
 }
-
 
 /* Rodapé */
 
