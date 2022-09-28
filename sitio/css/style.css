@@ -4,6 +4,7 @@ body,
 button {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
+    margin: 0px;
 }
 
 .topo p span.left {
