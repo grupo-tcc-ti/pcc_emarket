@@ -17,9 +17,9 @@ window.onclick = function (event) {
 };
 
 var imageSlider = [
-  "../sitio/image/slider/1.jpg",
-  "../sitio/image/slider/2.png",
-  "../sitio/image/slider/3.jpg",
+  "../pcc_emarket/image/slider/1.jpg",
+  "../pcc_emarket/image/slider/2.png",
+  "../pcc_emarket/image/slider/3.jpg",
 ];
 var num = 0;
 function next() {
