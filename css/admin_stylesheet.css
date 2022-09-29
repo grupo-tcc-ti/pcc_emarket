@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+    --main-color: dodgerblue;
+    --red: orangered;
+    --orange: orange;
+    --light-green: limegreen;
+    --black: dimgray;
+    --white: whitesmoke;
+    --light-bg: snow;
+    --light-color: silver;
+    --border: .2rem solid var(--black);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+* {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+}
+
+*::selection {
+    color: var(--white);
+    background-color: var(--main-color);
+
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+    height: .5rem;
+
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+}
+
+html {
+    font-size: 65%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--light-bg);
+
+}
+
+section {
+    max-width: 1200px;
+    /* max-width: 75rem; */
+    margin: 0 auto;
+    padding: 2rem;
+
+}
+
+
+.message {
+    background-color: var(--light-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    max-width: 1200px;
+    /* max-width: 75rem; */
+    margin: 0 auto;
+    padding: 2rem;
+    top: 0;
+    gap: 1rem;
+    border: var(--border);
+    border-radius: .5rem;
+}
+
+.message span {
+    font-size: 2.5rem;
+    color: var(--black);
+}
+
+.message i {
+    font-size: 2.5rem;
+    color: var(--red);
+    cursor: pointer;
+}
+
+.message i:hover {
+    color: var(--black);
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-container form {
+    background-color: var(--white);
+    border-radius: .5rem;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    text-align: center;
+    width: 530px;
+    /* width: 34rem; */
+}
+
+.form-container form h3 {
+    font-size: 1.8rem;
+    color: var(--black);
+    text-transform: uppercase;
+}
+
+.form-container form p {
+    margin: 1rem 0;
+    font-size: 1.8rem;
+    color: var(--light-color);
+}
+
+.form-container form p span {
+    color: var(--orange);
+}
+
+.form-container form .inputbox {
+    background-color: var(--light-bg);
+    color: var(--black);
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    border: var(--border);
+    border-radius: .5rem;
+}
+
+.btn, .delete-btn, .option-btn {
+    display: block;
+    width: 100%;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    font-size: 2.5rem;
+    color: var(--white);
+    padding: 1rem 4.5rem;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.btn {
+    background-color: var(--light-green);
+}
+
+.delete-btn {
+    background-color: var(--red);
+}
+
+.option-btn {
+    background-color: var(--orange);
+}
+
+.btn:hover, .option-btn:hover, .delete-btn:hover {
+    background-color: var(--main-color);
+    transition: .5s;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+}
+
+.header .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.header .flex .logo {
+    display: inline-flex;
+    font-size: 2.5rem;
+    color: var(--black);
+}
+
+.header .flex .logo span {
+    color: var(--main-color);
+}
+
+.header .flex .navbar a {
+    margin: 0 1rem;
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.header .flex .navbar a:hover {
+    color: var(--main-color);
+    text-decoration: underline;
+}
+
+.header .flex .icons {
+    display: inline-flex;
+}
+
+.header .flex .icons div {
+    margin-left: 1.7rem;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--black);
+}
+
+.header .flex .icons div:hover {
+    color: var(--main-color);
+}
+
+.header .flex .profile {
+    position: absolute;
+    top: 120%;
+    right: 2rem;
+    background-color: var(--white);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: 2rem;
+    width: 30rem;
+    padding-top: 1.2rem;
+    /* display: none; */
+    /* animation: fadeIn .2s linear; */
+}
+
+.header .flex .profile.active {
+    display: inline-block;
+}
+
+.header .flex .profile p {
+    text-align: center;
+    color: var(--black);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.spacing {
+    width: 1rem;
+    display: inline-flex;
+}
+
+
+@media (max-width:991px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width:450px) {
+    html {
+        font-size: 50%;
+    }
+
+    .flex-btn {
+        flex-flow: column;
+        gap: 0;
+    }
+}

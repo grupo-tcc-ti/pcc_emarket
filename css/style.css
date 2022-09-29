@@ -1,0 +1,365 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap");
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #ebebeb;
+}
+
+/* ################# Banner ################# */
+.top-banner {
+    background-image: url("../image/banner.png");
+    background-position: center;
+    background-size: cover;
+    background-color: #2d98da;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.titulo {
+    font-family: Arial Narrow, sans-serif;
+    color: black;
+    width: 350px;
+    margin: -14px 0 0 45%;
+    text-align: center;
+}
+
+/* ################# Div Container da Barra de Navegação Topo ################# */
+.header {
+    /* display: flex; */
+    /* position: absolute; */
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: 47px;
+    height: 51px;
+    max-height: 51px;
+    width: 100%;
+    background-color: #000000;
+}
+
+/* ################# Logo Topo Esquerdo ################# */
+.logo-topleft{
+    justify-content: initial;
+    align-content: initial;
+}
+.logo-img {
+    float: left;
+    box-sizing: content-box;
+    justify-content: initial;
+    align-content: initial;
+    max-width: 50px;
+    object-fit: cover;
+    /* background-color: rgb(100, 225, 150); debug */
+
+/* old */
+    /* background-image: url("../image/logo.png"); */
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+    /* background-size:cover; */
+    /* min-width: 300px; */
+    /* max-width: 320px; */
+    /* max-width: 50px; */
+}
+
+/* ################# Estilização do Menu Suspenso - Departamento ################# */
+.dropdown {
+    position: relative;
+    display: block;
+    justify-content: initial;
+    align-items: initial;
+}
+
+.myDropBtn {
+    float: left;
+    background-color: rgb(0, 0, 0.2);
+    color: white;
+    padding: 16px;
+    /* font-size: 16px; */
+    font: 16px Verdana, Arial, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.myDropBtn:hover,
+.myDropBtn:focus {
+    background-color: rgb(100, 225, 150);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: #000000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: aquamarine;
+}
+
+.showMenuSuspenso {
+    display: block;
+}
+
+.caret-down {
+    width: 0;
+    height: 0;
+    /* display: inline-flex; */
+    border: 8px solid transparent;
+    border-top-color: #ffffff;
+}
+
+/* ################# Estilização da Barra de Pesquisa ################# */
+.barrapesquisa{
+    justify-content: initial;
+    align-items: initial;
+}
+
+input#isearch {
+    /* display: flex; */
+    float: left;
+    /* width: 400px; */
+    width: 40%;
+    min-height: 51px;
+    font: 16px Verdana, Arial, Helvetica, sans-serif;
+    border: 3px solid rgba(f, f, f, 0.2);
+}
+
+button.searchbtn {
+    float: left;
+    border: none;
+    background-color: #000000;
+    text-decoration: none;
+    color: white;
+    width: 100px;
+    min-height: 51px;
+    padding: 0 4px 4px 0;
+    /* padding: 1px 2px; */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* ################# Div container Conta e Carrinho ################# */
+.minhaconta,
+.carrinho {
+    float: left;
+    /* justify-content: flex-end; */
+    /* align-content: flex-end; */
+    background-color: #000000;
+    color: whitesmoke;
+}
+
+/* ################# Icones da Barra de Navegação ################# */
+.icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.5em;
+    display: inline-flex;
+    min-height: 1.5em;
+    height: 100%;
+    width: 2em;
+    margin: 5% 0 0 0;
+    padding: 0;
+    filter: invert(100%);
+}
+
+#searchicon {
+    background-image: url("../image/icons/icone-de-lupa.png");
+}
+
+#usericon {
+    background-image: url("../image/icons/profile-icon.png");
+}
+
+#carticon {
+    background-image: url("../image/icons/cart-icon.png");
+}
+
+/* ################# Texto de Links da Barra de Navegação ################# */
+button.link-conta,
+button.link-carrinho {
+    background-color: rgb(0, 0, 0.2);
+    color: white;
+    padding: 16px;
+    font: 16px Verdana, Arial, Helvetica, sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+/* ################# Image Slider ################# */
+.productslider {
+    display: flex;
+    /* position: absolute; */
+    justify-content: center;
+    align-items: center;
+}
+
+button.btnSlider {
+    margin-top: 30px;
+    float: left;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+img#slider {
+    float: left;
+    height: 200px;
+    width: 700px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Vitrine */
+
+
+
+.topo p span.left {
+    text-align: left;
+}
+
+.topo p span.center {
+    text-align: center;
+}
+
+.topo p span.right {
+    text-align: right;
+}
+
+/* ################# Modifies all card rows ################# */
+.container-prod {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+
+    /* #### Code Copy #### */
+    /* justify-content: space-between;
+    align-items: flex-start; */
+
+    color: black;
+    /* opacity: 0.2; */
+
+    margin: 2px;
+    padding: 6px;
+
+    border-radius: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid black;
+}
+
+/* ################# Modify a card list ################# */
+.list-cards {
+    display: flex;
+    flex-direction: row;
+    opacity: 1;
+}
+
+/* ################# Modifies cards only and their interior elements ################# */
+.cards-items {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    box-sizing: border-box;
+    width: 340px;
+    height: 270px;
+    position: relative;
+    overflow: hidden;
+    word-wrap: break-word;
+    filter: grayscale(0.45);
+}
+
+/* ################# Modify cards item when cursor is over them ################# */
+.cards-items:hover {
+    background-color: rgba(255, 255, 255, 0.712);
+    filter: grayscale(0);
+    /* opacity: 0.1; */
+    box-shadow: #0000007e 6px 10px 10px 2px;
+}
+
+/* ################# Modify products image and element filter ################# */
+.products-imgs,
+figure {
+    width: 200px;
+    height: 200px;
+    margin: 0;
+}
+
+/* ################# Modify the name ################# */
+.products-name {
+    display: inline-block;
+    font-size: 12px;
+}
+
+/* ################# Modify the price ################# */
+.cards-price {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+/* ################# Rodapé ################# */
+
+.footer{
+    background-color: #000000;
+    border-radius: 8px;
+    border-top: 2px solid rgb(100, 225, 150);
+}
+
+footer {
+    display: flex;
+    color: white;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.columns-footer {
+    padding: 20px;
+}
+
+.columns-footer>span {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    letter-spacing: 2px;
+}
+
+.columns-footer>span a {
+    text-decoration: none;
+    color: #ffffff;
+    font: 16px Verdana, Arial, Helvetica, sans-serif;
+}
+
+.container-test{
+    display: flexbox;
+    
+    justify-content: space-evenly;
+    align-items: flex-start;
+
+    color: #ffffff;
+    text-align: center;
+
+    opacity: 0.7;
+
+    margin: 2px;
+    padding: 6px;
+
+    border-radius: 20px;
+    background-color: tomato;
+    border: 1px solid black;
+}
