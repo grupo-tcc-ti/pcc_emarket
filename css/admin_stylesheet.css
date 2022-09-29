@@ -54,10 +54,9 @@ body {
 }
 
 section {
-    max-width: 1200px;
-    /* max-width: 75rem; */
-    margin: 0 auto;
     padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 
 }
 
@@ -68,8 +67,8 @@ section {
     justify-content: space-between;
     align-items: center;
     position: sticky;
-    max-width: 1200px;
-    /* max-width: 75rem; */
+    /* max-width: 1200px; */
+    max-width: 75rem;
     margin: 0 auto;
     padding: 2rem;
     top: 0;
@@ -107,8 +106,7 @@ section {
     box-shadow: var(--box-shadow);
     padding: 2rem;
     text-align: center;
-    width: 530px;
-    /* width: 34rem; */
+    width: 50rem;
 }
 
 .form-container form h3 {
@@ -221,6 +219,12 @@ section {
     color: var(--main-color);
 }
 
+@keyframes fadeIn {
+    0% {
+        transform: translateY(7rem);
+    }
+}
+
 .header .flex .profile {
     position: absolute;
     top: 120%;
@@ -233,7 +237,7 @@ section {
     width: 30rem;
     padding-top: 1.2rem;
     display: none;
-    /* animation: fadeIn .2s linear; */
+    animation: fadeIn .2s linear;
 }
 
 .header .flex .profile.active {
