@@ -1,219 +1,226 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
 
-body,
-button {
+/* Modifica todos os conteudo dentro do documento HTML*/
+
+* {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
+    margin: 0px;
 }
 
-.topo p span.left {
-    text-align: left;
+/* Modifica todo o contéudo da tag main */
+
+#all-container {
+    margin-top: 13%;
+    background-color: #F8F8FF;
 }
 
-.topo p span.center {
-    text-align: center;
-}
+/* modifica a logo */
 
-.topo p span.right {
-    text-align: right;
-}
-
-header#nav-top {
-    border: 1px solid #c3c3c3;
+.logo-img {
     display: flex;
-    flex-wrap: wrap;
-    /* align-items: center; */
-    padding: 5px;
-
+    width: 4rem;
+    height: 4rem;
 }
 
-ul.lista {
+/* Modifica os elementos da barra de naavegação */
+
+ul {
     display: flex;
-    margin: auto;
-    padding: 0px;
-}
-
-ul.lista li {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     list-style: none;
-    display: inline-flex;
-    text-align: center;
-}
-
-
-.logo {
-    display: inline-flex;
-    height: 2em;
-    width: 4em;
-    src: url('../image/logo.png');
-}
-
-.depart {
-    background-color: #000000;
-    border: 1px solid aquamarine;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    margin: 1px 2px;
-    padding: 0 2px;
-    height: 2em;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
-    position: relative;
+    background-color: #222224;
+    border-bottom: 5px solid #222222;
 }
 
-.backsb {
-    display: inline-flex;
-    border: 1px solid aquamarine;
-    background-color: black;
+/* Banner */
 
-}
-
-.backsb form {
-    display: inherit;
-}
-
-input#isearch {
-    /* margin: 1px; */
-    width: 400px;
-    display: inline-flex;
-    /* white-space: pre;
-    word-spacing: normal;
-    word-wrap: break-word; */
-}
-
-button.searchbtn {
-    background-color: #000000;
-    display: inline-flex;
-    border: none;
-    text-decoration: none;
-    color: white;
-    width: auto;
-    padding: 1px 2px;
-    white-space: nowrap;
-}
-
-.iconebuscar {
-    background-image: url('../image/icons/icone-de-lupa.png');
-    background-repeat: no-repeat;
+.top-banner {
+    background-image: url("../image/banner.png");
     background-position: center;
-    background-size: 1em;
-    display: inline-flex;
-    height: 2em;
-    width: 2em;
-    margin: 0 1px;
+    background-size: cover;
+    background-color: #2d98da;
+    height: 20em;
+    margin: 0 auto;
+    margin-top: 14px;
 }
 
-.usericon {
-    background-image: url('../image/icons/profile-icon.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 2em;
-    display: inline-flex;
-    height: 2em;
-    width: 2em;
-    margin: 0 1px;
-}
+/* ################# Estilização do Menu Suspenso - Departamento ################# */
 
-a.linkconta,
-a.linkcarrinho {
-    text-decoration: none;
-}
-
-i.useraccount,
-i.linkcart {
-    font-family: 'Poppins', sans-serif;
-    font-size: 14;
-    text-align: center;
-
-    /* text-decoration: none; */
-    margin: 0 1px;
-}
-
-.carticon {
-    background-image: url('../image/icons/cart-icon.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 2em;
-    display: inline-flex;
-    height: 2em;
-    width: 2em;
-    margin: 0 1px;
-}
-
-/* The container <div> - needed to position the dropdown content */
 .dropdown {
     position: relative;
-    display: inline-block;
+    display: block;
+    justify-content: initial;
+    align-items: initial;
 }
 
-/* Style The Dropdown Button */
-.depart-dropbtn {
-    background-color: #4CAF50;
+.myDropBtn {
+    background-color: rgb(0, 0, 0.2);
     color: white;
     padding: 16px;
-    font-size: 16px;
+    font: 16px 'Poppins', sans-serif;
     border: none;
     cursor: pointer;
 }
 
-/* Dropdown Content (Hidden by Default) */
+.myDropBtn:hover,
+.myDropBtn:focus {
+    background-color: rgb(100, 225, 150);
+    transition: background .5s;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    overflow: auto;
 }
 
-/* Links inside the dropdown */
 .dropdown-content a {
-    color: black;
+    display: flex;
+    flex-direction: column;
+    color: #000000;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
 }
 
-/* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #f1f1f1
+    background-color: aquamarine;
+    transition: background .5s;
 }
 
-/* Show the dropdown menu on hover */
-.dropdown:active .dropdown-content {
+.showMenuSuspenso {
     display: block;
 }
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
+/* ################# Estilização da Barra de Pesquisa ################# */
 
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+.pesquisa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
-/* Vitrine */
+input#isearch {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    min-height: 55px;
+    font: 16px;
+    border: 3px solid rgba(f, f, f, 0.2);
+}
 
-/* Modifies all card rows */
+button.searchbtn {
+    border: none;
+    background-color: #000000;
+    text-decoration: none;
+    color: white;
+    width: 75px;
+    min-height: 55px;
+    padding: 0 4px 4px 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* ################# Div container Conta e Carrinho ################# */
+.minhaconta,
+.carrinho {
+    background-color: #000000;
+    color: whitesmoke;
+}
+
+/* ################# Icones da Barra de Navegação ################# */
+
+.icon {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 1.5em;
+    min-height: 1.5em;
+    height: 100%;
+    width: 2em;
+    margin: 10px 10px 10px 10px;
+    padding: 0;
+    filter: invert(100%);
+}
+
+#searchicon {
+    background-image: url("../image/icons/icone-de-lupa.png");
+}
+
+#usericon {
+    background-image: url("../image/icons/profile-icon.png");
+}
+
+#carticon {
+    background-image: url("../image/icons/cart-icon.png");
+}
+
+/*  Texto de Links da Barra de Navegação */
+button.link-conta,
+button.link-carrinho {
+    height: max-content;
+    background-color: rgb(0, 0, 0.2);
+    color: white;
+    padding: 16px;
+    font: 16px 'Poppins', sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+/* ################# Image Slider ################# */
+
+.productslider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.btnSlider {
+    margin-top: 30px;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+img#slider {
+    height: 200px;
+    width: 700px;
+    cursor:pointer;
+}
+
+
+/* ################## Vitrine ######################## */
+
+/* Modifica todos os elementos dos cards */
+
 .container-prod {
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
 }
 
-/* Modify a card list */
+/* Modifica a fila de cards */
 .list-cards {
     display: flex;
     flex-direction: row;
 
 }
 
-/* Modifies cards only and their interior elements */
+/* Modifica os cartões e seu conteudo interior */
 .cards-items {
     display: flex;
     flex-direction: column;
     margin: 30px;
     border: 1.8px groove black;
-    border-radius: 20px;
+    border-radius: 4px 4px 10px 10px;
     box-sizing: border-box;
     width: 340px;
     height: 325px;
@@ -222,34 +229,34 @@ i.linkcart {
     word-wrap: break-word;
 }
 
-/* Modify cards item when cursor is over them */
+/* Modifica o card quando o cursor está sobre ele */
 
 .cards-items:hover {
     box-shadow: lightgray 10px 10px 10px 10px;
 }
 
-/* Modify the price */
+/* Modifica o elemento onde está preço */
 .cards-price {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
 }
 
-/* Modify the name */
+/* Modifica o nome dos produtos */
 .products-name {
     display: inline-block;
     font-size: 12px;
 }
 
-/*  Modify products image and element filter */
+/*  Modifica as imagens do produto e seu filtro */
 .products-imgs,
 figure {
-    width: 200px;
-    height: 200px;
+    width: 320px;
+    height: 230px;
     margin: 0;
 }
 
-/*  Modify button of cards */
+/*  Modifica o botão do adicionar ao carrinho */
 .buy-bttn {
     background-color: #3e8e41;
     color: white;
@@ -259,34 +266,42 @@ figure {
 
 }
 
-/* Modify content of the button */
+/* Modifica o contéudo do botão */
 .buy-bttn a {
     text-decoration: none;
     color: #f1f1f1;
 }
 
-
 /* Rodapé */
 
-/* Modify the elements in the footer tag */
+/* Modifica os elementos da footer tag */
 footer {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     border-top: 1px solid black;
-    background-color: #c3c3c3;
+    background-color: #222224;
+    padding-bottom: 25px;
 }
 
-/* Modify the div(columns-footer) */
+/* Modifica a div(columns-footer) */
 .columns-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-/* Modify the content in the div(columns-footer) */
+/* Modifica o conteudo dentro da div(columns-footer) */
+
 .columns-footer>span {
     display: flex;
     margin-top: 15px;
     letter-spacing: 2px;
+    font-size: 12px;
+    color: whitesmoke;
+}
+/* Muda o conteudo dos span quando o cursor está sobre eles */
+.columns-footer>span:hover{
+    color: aquamarine;
+    text-decoration: underline;
 }
