@@ -9,6 +9,7 @@ body{
 }
 
 /* ################# Banner ################# */
+
 .top-banner {
     background-image: url("../image/banner.png");
     background-position: center;
@@ -42,6 +43,7 @@ body{
 }
 
 /* ################# Logo Topo Esquerdo ################# */
+
 .logo-topleft{
     justify-content: initial;
     align-content: initial;
