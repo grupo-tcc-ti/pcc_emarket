@@ -28,7 +28,7 @@ if (!isset($admin_id)) {
 
 <?php include '../components/admin_header.php';?>
 
-<section class="dashboard">
+<section class="dashboard user-welcome">
     <div class="box">
         <h3>Bem Vindo!</h3>
         <p><?=$fetch_profile['nome'];?></p>
