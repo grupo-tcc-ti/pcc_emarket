@@ -200,8 +200,14 @@ section {
 }
 
 .header .flex .navbar a:hover {
-    color: var(--main-color);
-    text-decoration: underline;
+    background-color: var(--main-color);
+    border: 1rem solid var(--main-color);
+    border-radius: .5rem;
+    color: var(--white);
+    margin: 0rem;
+    padding: 0rem;
+    justify-content: space-between;
+    transition: .1s;
 }
 
 .header .flex .icons {
@@ -221,7 +227,7 @@ section {
 
 @keyframes fadeIn {
     0% {
-        transform: translateY(7rem);
+        transform: translateY(6rem);
     }
 }
 
@@ -237,7 +243,7 @@ section {
     width: 30rem;
     padding-top: 1.2rem;
     display: none;
-    animation: fadeIn .2s linear;
+    animation: fadeIn .3s linear;
 }
 
 .header .flex .profile.active {
