@@ -1,4 +1,4 @@
-<?php
+<?php 
 include '../components/connect.php';
 session_start();
 
@@ -29,6 +29,6 @@ if (!isset($admin_id)){
 
 <?php include '../components/admin_header.php'; ?>
 
-
+<script src="../js/admin_script.js"></script>
 </body>
 </html>

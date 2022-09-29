@@ -232,7 +232,7 @@ section {
     padding: 2rem;
     width: 30rem;
     padding-top: 1.2rem;
-    /* display: none; */
+    display: none;
     /* animation: fadeIn .2s linear; */
 }
 

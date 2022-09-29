@@ -4,9 +4,9 @@ session_start();
 
 if (isset($_POST['submit'])){
     $username = $_POST['username'];
-    $username = filter_var($username, FILTER_SANITIZE_STRING);
+    $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = sha1($_POST['password']);
-    $password = filter_var($password, FILTER_SANITIZE_STRING);
+    $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $qry = "SELECT * FROM `admins` WHERE nome = ? AND senha = ?";
     $select_admin = $conn->prepare($qry);

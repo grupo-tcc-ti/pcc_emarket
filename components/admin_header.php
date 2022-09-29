@@ -33,18 +33,18 @@ if (isset($message)) {
 
     <div class="profile">
         <?php
-$qry = "SELECT * FROM `admins` WHERE codAdmin = ?";
-$select_profile = $conn->prepare($qry);
-$select_profile->execute([$admin_id]);
-$fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
-?>
+            $qry = "SELECT * FROM `admins` WHERE codAdmin = ?";
+            $select_profile = $conn->prepare($qry);
+            $select_profile->execute([$admin_id]);
+            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+        ?>
         <p><?= $fetch_profile['nome'];?></p>
         <a href="update_profile.php" class="btn">Alterar Conta</a>
         <div class="flex-btn">
-            <a href="admin-login.php" class="option-btn">Login</a>
-            <a href="register-admin.php" class="option-btn">Registrar</a>
+            <a href="admin_login.php" class="option-btn">Login</a>
+            <a href="register_admin.php" class="option-btn">Registrar</a>
         </div>
-        <a href="../components/admin-logout.php" class="delete-btn">Logout</a>
+        <a href="../components/admin_logout.php" class="delete-btn">Logout</a>
     </div>
 
 </section>
