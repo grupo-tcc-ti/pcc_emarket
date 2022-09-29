@@ -136,6 +136,13 @@ section {
     border-radius: .5rem;
 }
 
+#menu-btn {
+    display: none;
+}
+#user-btn:hover ~ #menu-btn{
+    display: inline-block;
+}
+
 .btn, .delete-btn, .option-btn {
     display: block;
     width: 100%;
@@ -151,6 +158,7 @@ section {
 
 .btn {
     background-color: var(--light-green);
+    box-shadow: var(--box-shadow);
 }
 
 .delete-btn {
@@ -225,9 +233,13 @@ section {
     color: var(--main-color);
 }
 
+.header .flex .icons div:hover ~ .box-main{
+    opacity: 10%;
+}
+
 @keyframes fadeIn {
     0% {
-        transform: translateY(6rem);
+        transform: translateY(3rem);
     }
 }
 
@@ -243,11 +255,20 @@ section {
     width: 30rem;
     padding-top: 1.2rem;
     display: none;
-    animation: fadeIn .3s linear;
+    animation: fadeIn .2s linear;
 }
 
 .header .flex .profile.active {
     display: inline-block;
+}
+
+
+
+.header .flex .profile:hover + .box-main,
+.header .flex .profile:active + .box-main,
+.header .flex .profile:focus + .box-main{
+    opacity: 10%;
+    display: none;
 }
 
 .header .flex .profile p {
@@ -262,19 +283,34 @@ section {
     display: inline-flex;
 }
 
-section.dashboard {
+.heading-dash {
+    /* position: relative;
+    top: 2rem; right: 40rem;
+    text-align: right; */
+    text-align: center;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    color: var(--black);
+    font-size: 2rem;
+}
+
+.heading-dash span {
+    color: var(--red);
+    text-transform: lowercase;
+}
+
+section.dashboard .box-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
     gap: 1.5rem;
     align-items: stretch;
 }
 
-section.user-welcome {
-    width: 35%;
-    /* margin: 0% auto; */
+.user-welcome {
+    width: 40%;
 }
 
-section.dashboard .box {
+section.dashboard .box-container .box {
     background-color: var(--white);
     text-align: center;
     border: var(--border);
@@ -284,26 +320,65 @@ section.dashboard .box {
     padding: 1.5rem;
 }
 
-section.dashboard .box h3 {
-    font-size: 2.5rem;
+section.dashboard .box-container .box h3 {
+    font-size: 2rem;
     color: var(--black);
 }
+section.dashboard .box-container .box h3 span{
+    font-size: 1.5rem;
+}
 
-section.dashboard .box p {
+section.dashboard .box-container .box p {
     padding: 1.5rem;
     border-radius: .5rem;
     background-color: var(--light-bg);
     /* background-color: transparent; */
-    font-size: 1.5rem;
+    font-size: 2rem;
+    box-shadow: var(--box-shadow);
 }
 
-@media (max-width:991px) {
+@media (max-width:920px) {
     html {
         font-size: 55%;
     }
 }
 
-@media (max-width:450px) {
+@media (max-width:720px) {
+    #menu-btn {
+        display: inline-block;
+    }
+
+    .header .flex .navbar {
+        position: absolute;
+        top: 99%;
+        left: 0;
+        right: 0;
+        border: var(--border);
+        border-radius: .6rem;
+        background-color: var(--white);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: .1s linear;
+        box-shadow: var(--box-shadow);
+    }
+    
+    .header .flex .navbar.active {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+    .header .flex .navbar a {
+        display: block;
+        margin: 2rem;
+    }
+    
+    .header .flex .navbar a:hover {
+        border: .5rem solid var(--main-color);
+        border-radius: .5rem;
+        margin: 2rem;
+        padding-left: 1rem;
+        box-shadow: var(--box-shadow);
+    }
+}
+
+@media (max-width:508px) {
     html {
         font-size: 50%;
     }
@@ -311,5 +386,8 @@ section.dashboard .box p {
     .flex-btn {
         flex-flow: column;
         gap: 0;
+    }
+    .heading-dash {
+        font-size: 1.5rem;
     }
 }
