@@ -19,11 +19,11 @@ USE `emarket` ;
 -- Table `emarket`.`usuarios`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`usuarios` (
-  `codUsuarios` INT(100) NOT NULL AUTO_INCREMENT,
+  `codUsuario` INT(100) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  PRIMARY KEY (`codUsuarios`))
+  PRIMARY KEY (`codUsuario`))
 ENGINE = InnoDB;
 
 
@@ -34,12 +34,12 @@ CREATE TABLE IF NOT EXISTS `emarket`.`admins` (
   `codAdmin` INT(100) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
-  `usuarios_codUsuarios` INT(100) NOT NULL,
-  PRIMARY KEY (`codAdmin`, `usuarios_codUsuarios`),
-  INDEX `fk_admins_usuarios1_idx` (`usuarios_codUsuarios` ASC) ,
+  `usuarios_codUsuario` INT(100) NOT NULL,
+  PRIMARY KEY (`codAdmin`, `usuarios_codUsuario`),
+  INDEX `fk_admins_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
   CONSTRAINT `fk_admins_usuarios1`
-    FOREIGN KEY (`usuarios_codUsuarios`)
-    REFERENCES `emarket`.`usuarios` (`codUsuarios`)
+    FOREIGN KEY (`usuarios_codUsuario`)
+    REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -49,12 +49,12 @@ ENGINE = InnoDB;
 -- Table `emarket`.`produtos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`produtos` (
-  `codProdutos` INT(100) NOT NULL,
+  `codProduto` INT(100) NOT NULL,
   `nome` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `descricao` VARCHAR(500) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `preco` DOUBLE NOT NULL,
   `image` VARCHAR(1000) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  PRIMARY KEY (`codProdutos`))
+  PRIMARY KEY (`codProduto`))
 ENGINE = InnoDB;
 
 
@@ -67,19 +67,19 @@ CREATE TABLE IF NOT EXISTS `emarket`.`carrinho` (
   `preco` DOUBLE NOT NULL,
   `quantidade` INT(10) NOT NULL,
   `image` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `produtos_codProdutos` INT(100) NOT NULL,
-  `usuarios_codUsuarios` INT(100) NOT NULL,
+  `produtos_codProduto` INT(100) NOT NULL,
+  `usuarios_codUsuario` INT(100) NOT NULL,
   PRIMARY KEY (`codCarrinho`),
-  INDEX `fk_carrinho_produtos1_idx` (`produtos_codProdutos` ASC) ,
-  INDEX `fk_carrinho_usuarios1_idx` (`usuarios_codUsuarios` ASC) ,
+  INDEX `fk_carrinho_produtos1_idx` (`produtos_codProduto` ASC) ,
+  INDEX `fk_carrinho_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
   CONSTRAINT `fk_carrinho_produtos1`
-    FOREIGN KEY (`produtos_codProdutos`)
-    REFERENCES `emarket`.`produtos` (`codProdutos`)
+    FOREIGN KEY (`produtos_codProduto`)
+    REFERENCES `emarket`.`produtos` (`codProduto`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_carrinho_usuarios1`
-    FOREIGN KEY (`usuarios_codUsuarios`)
-    REFERENCES `emarket`.`usuarios` (`codUsuarios`)
+    FOREIGN KEY (`usuarios_codUsuario`)
+    REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -89,17 +89,17 @@ ENGINE = InnoDB;
 -- Table `emarket`.`mensagens`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`mensagens` (
-  `codMensagens` INT(100) NOT NULL AUTO_INCREMENT,
+  `codMensagem` INT(100) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `email` VARCHAR(255) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `telefone` VARCHAR(12) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `mensagem` VARCHAR(500) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `usuarios_codUsuarios` INT(100) NOT NULL,
-  PRIMARY KEY (`codMensagens`),
-  INDEX `fk_mensagens_usuarios1_idx` (`usuarios_codUsuarios` ASC) ,
+  `usuarios_codUsuario` INT(100) NOT NULL,
+  PRIMARY KEY (`codMensagem`),
+  INDEX `fk_mensagens_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
   CONSTRAINT `fk_mensagens_usuarios1`
-    FOREIGN KEY (`usuarios_codUsuarios`)
-    REFERENCES `emarket`.`usuarios` (`codUsuarios`)
+    FOREIGN KEY (`usuarios_codUsuario`)
+    REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -113,18 +113,20 @@ CREATE TABLE IF NOT EXISTS `emarket`.`pedidos` (
   `nome` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `email` VARCHAR(255) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `telefone` VARCHAR(12) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `method` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
+  `tipoEntrega` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
+  `cepDestino` INT(12) NOT NULL,
   `endereco` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `total_produto` VARCHAR(1000) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `total_preco` DOUBLE NOT NULL,
-  `placed_on` DATE NOT NULL,
-  `payment_status` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL DEFAULT 'Pendente',
-  `usuarios_codUsuarios` INT(100) NOT NULL,
+  `totalProduto` VARCHAR(1000) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
+  `totalPreco` DOUBLE NOT NULL,
+  `dataEnvio` DATE NOT NULL,
+  `dataEntrega` DATE DEFAULT null,
+  `statusPagamento` VARCHAR(20) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL DEFAULT 'Pendente',
+  `usuarios_codUsuario` INT(100) NOT NULL,
   PRIMARY KEY (`codPedido`),
-  INDEX `fk_pedidos_usuarios1_idx` (`usuarios_codUsuarios` ASC) ,
+  INDEX `fk_pedidos_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
   CONSTRAINT `fk_pedidos_usuarios1`
-    FOREIGN KEY (`usuarios_codUsuarios`)
-    REFERENCES `emarket`.`usuarios` (`codUsuarios`)
+    FOREIGN KEY (`usuarios_codUsuario`)
+    REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -138,12 +140,12 @@ CREATE TABLE IF NOT EXISTS `emarket`.`funcionarios` (
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(255) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `senha` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `usuarios_codUsuarios` INT(100) NOT NULL,
-  PRIMARY KEY (`codFuncionario`, `usuarios_codUsuarios`),
-  INDEX `fk_funcionarios_usuarios1_idx` (`usuarios_codUsuarios` ASC) ,
+  `usuarios_codUsuario` INT(100) NOT NULL,
+  PRIMARY KEY (`codFuncionario`, `usuarios_codUsuario`),
+  INDEX `fk_funcionarios_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
   CONSTRAINT `fk_funcionarios_usuarios1`
-    FOREIGN KEY (`usuarios_codUsuarios`)
-    REFERENCES `emarket`.`usuarios` (`codUsuarios`)
+    FOREIGN KEY (`usuarios_codUsuario`)
+    REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -153,16 +155,16 @@ ENGINE = InnoDB;
 -- Table `emarket`.`listadedesejo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`listadedesejo` (
-  `codListadedesejo` INT(100) NOT NULL,
+  `codItem` INT(100) NOT NULL,
   `nome` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `preco` DOUBLE NOT NULL,
   `image` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `usuarios_codUsuarios` INT(100) NOT NULL,
-  PRIMARY KEY (`codListadedesejo`),
-  INDEX `fk_listadedesejo_usuarios1_idx` (`usuarios_codUsuarios` ASC) ,
+  `usuarios_codUsuario` INT(100) NOT NULL,
+  PRIMARY KEY (`codItem`),
+  INDEX `fk_listadedesejo_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
   CONSTRAINT `fk_listadedesejo_usuarios1`
-    FOREIGN KEY (`usuarios_codUsuarios`)
-    REFERENCES `emarket`.`usuarios` (`codUsuarios`)
+    FOREIGN KEY (`usuarios_codUsuario`)
+    REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -172,16 +174,16 @@ ENGINE = InnoDB;
 -- Table `emarket`.`clientes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`clientes` (
-  `codClientes` INT(100) NOT NULL,
+  `codCliente` INT(100) NOT NULL,
   `nome` VARCHAR(100) NOT NULL,
   `email` VARCHAR(255) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
   `senha` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_general_ci' NOT NULL,
-  `usuarios_codUsuarios` INT(100) NOT NULL,
-  PRIMARY KEY (`codClientes`, `usuarios_codUsuarios`),
-  INDEX `fk_clientes_usuarios1_idx` (`usuarios_codUsuarios` ASC) ,
+  `usuarios_codUsuario` INT(100) NOT NULL,
+  PRIMARY KEY (`codCliente`, `usuarios_codUsuario`),
+  INDEX `fk_clientes_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
   CONSTRAINT `fk_clientes_usuarios1`
-    FOREIGN KEY (`usuarios_codUsuarios`)
-    REFERENCES `emarket`.`usuarios` (`codUsuarios`)
+    FOREIGN KEY (`usuarios_codUsuario`)
+    REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
