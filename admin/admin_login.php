@@ -55,7 +55,7 @@ if (isset($message)){
 <!-- Container do formulário de login do adminisrador -->
 
 <section class="form-container">
-    <form action="" method="post">
+    <form action="dashboard.php" method="post">
         <h3>Credenciais de Login</h3>
         <p>Usuário de administrador predefinido: user = <span>admin</span> e senha <span>1234</span></p>
         <input type="text" name="username" class="inputbox" maxlength="20" required placeholder="Usuário"

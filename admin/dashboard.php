@@ -37,7 +37,7 @@ if (!isset($admin_id)) {
                     <div class="box">
                         <h3>Bem Vindo!</h3>
                         <p><?=$fetch_profile['nome'];?></p>
-                        <a href="admin/alterar_perfil.php" class="btn">Alterar Perfil</a>
+                        <a href="alterar_perfil.php" class="btn">Alterar Perfil</a>
                     </div>
                 </div>
         </section>
@@ -56,7 +56,7 @@ if (!isset($admin_id)) {
                 ?>
             <h3>Total Pendente<span></span></h3>
             <p><?='<span>R$ </span>' . $total_pendente . ' /-';?></p>
-            <a href="admin/pedidos.php" class="btn">Ver Pedidos</a>
+            <a href="pedidos.php" class="btn">Ver Pedidos</a>
             </div>
             <div class="box">
             <?php
@@ -70,7 +70,7 @@ if (!isset($admin_id)) {
                 ?>
             <h3>Total a Pagar<span></span></h3>
             <p><?='<span>R$ </span>' . $total_pago . ' /-';?></p>
-            <a href="admin/pedidos.php" class="btn">Ver Pagamentos</a>
+            <a href="pedidos.php" class="btn">Ver Pagamentos</a>
             </div>
 
             <div class="box">
@@ -83,7 +83,7 @@ if (!isset($admin_id)) {
                 ?>
             <h3>Total de Produtos <span></span></h3>
             <p><?=$num_produtos . ' /-';?></p>
-            <a href="admin/produtos.php" class="btn">Ver Produtos</a>
+            <a href="produtos.php" class="btn">Ver Produtos</a>
             </div>
             <div class="box">
             <?php
@@ -95,7 +95,7 @@ if (!isset($admin_id)) {
                 ?>
             <h3>Total de Usuários <span></span></h3>
             <p><?=$num_usuarios . ' /-';?></p>
-            <a href="admin/users_contas.php" class="btn">Ver Usuários</a>
+            <a href="users_contas.php" class="btn">Ver Usuários</a>
             </div>
             <div class="box">
             <?php
@@ -107,7 +107,7 @@ if (!isset($admin_id)) {
                 ?>
             <h3>Total de Admin<span>'s</span></h3>
             <p><?=$total_admins . ' /-';?></p>
-            <a href="admin/admin_contas.php" class="btn">Ver Admin's</a>
+            <a href="admin_contas.php" class="btn">Ver Admin's</a>
             </div>
 
             <div class="box">
@@ -120,7 +120,7 @@ if (!isset($admin_id)) {
                 ?>
             <h3>Total de Mensagens<span></span></h3>
             <p><?=$total_mensagens . ' /-';?></p>
-            <a href="admin/mensagens.php" class="btn">Ver Mensagens</a>
+            <a href="mensagens.php" class="btn">Ver Mensagens</a>
             </div>
         </div>
     </section>
