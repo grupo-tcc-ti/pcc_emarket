@@ -1,239 +1,268 @@
 <!DOCTYPE html>
-<html lang="pt-BR, en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="./css/style.css">
-        <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
-        <script src="js/script.js"></script>
-        <title>Emarket</title>
-    </head>
+<html lang="pt-br">
 
-    <body>
-        <!-- <div class="topo"><span class="left">Redes Sociais</span>
-            <span class="center">-Space in between-</span>
-            <span class="right">Minha Conta Central de Atendimento</span>
-        </div> -->
-        <!-- _____________________________________________________________________________________________________ -->
-        <div class="top-banner">
-            <br><br><br>
-            <h2 class="titulo">E-Marketplace - Compra e Montagem de Hardware é
-                aqui!</h2>
-        </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="./image/favicon.ico" type="./image/x-icon" />
+    <title>Emarket</title>
+</head>
 
-        <div class="header">
-            <div class="logo-topleft">
-                <img src="image/logo.png" class="logo-img" alt="logo"></img>
-            </div>
-            <div class="dropdown">
-                <button class="myDropBtn" onclick="clickDrop()">DEPARTAMENTO
-                    <!-- <i class="caret-down"></i></button> -->
-
-                <nav id="myDropdown" class="dropdown-content">
-                    <a href="#">Promoções</a>
-                    <a href="#">Kit Upgrade</a>
-                    <a href="#">Cabos e Acessórios</a>
-                    <a href="#">PC Gamer</a>
-                    <a href="#">Hardware</a>
-                    <a href="#">Periféricos</a>
-                    <a href="#">Gabinetes</a>
-                    <a href="#">Refrigeração</a>
-                    <a href="#">Diversos</a>
-                </nav>
-            </div>
-            <div class="barrapesquisa">
-                <!-- <div class="backsb">
-                </div> -->
+<body>
+    <header>
+        <ul>
+            <li><img src="./image/logo.png" class="logo-img" alt="logo"></li>
+            <li>
+                <div class="dropdown">
+                    <button class="myDropBtn" onclick="clickDrop()">DEPARTAMENTO</button>
+                    <nav id="myDropdown" class="dropdown-content">
+                        <a href="#">Promoções</a>
+                        <a href="#">Kit Upgrade</a>
+                        <a href="#">Cabos e Acessórios</a>
+                        <a href="#">PC Gamer</a>
+                        <a href="#">Hardware</a>
+                        <a href="#">Periféricos</a>
+                        <a href="#">Gabinetes</a>
+                        <a href="#">Refrigeração</a>
+                        <a href="#">Diversos</a>
+                    </nav>
+                </div>
+            </li>
+            <li>
                 <form class="pesquisa" action="#" method="get">
-                    <input id="isearch" type="search"
-                        name="str"
-                        required="" class="busca"
-                        autocomplete="off"
-                        aria-label="campo de busca">
-                    <!-- placeholder="Pesquise o seu produto"> -->
-                    <button class="searchbtn"
-                        aria-label="botao buscar">
-                        <div id="searchicon" class="icon"
-                            aria-hidden="true"></div>
+                    <input id="isearch" type="search" name="str" required="" class="busca" autocomplete="off"
+                        aria-label="campo de busca" placeholder="Pesquise o seu produto">
+                    <button class="searchbtn" aria-label="botao buscar">
+                        <div id="searchicon" class="icon" aria-hidden="true"></div>
                     </button>
                 </form>
-            </div>
-            <div class="minhaconta">
-                <div  id="usericon" class="icon"></div>
-                <button class="link-conta">
-                    Minha Conta
-                </button>
-                <!-- <i class="downarrowicon"></i> -->
-            </div>
-            <div class="carrinho">
-                <div id="carticon" class="icon"></div>
-                <button class="link-carrinho">Carrinho</button>
-            </div>
-        </div>
-        <!-- _____________________________________________________________________________________________________ -->
-        <div style="height:15px;"></div>
-        <hr border="1" style="width: 89%;">
-        <div style="height:25px;"></div>
-        <!-- _____________________________________________________________________________________________________ -->
+            </li>
+            <li>
+                <button class="link-conta" onclick="clickDrop1()"></button>
+                <nav id="myDropdownPerfil" class="dropdown-content-perfil">
+                    <a href="#">Minha conta</a>
+                    <a href="#">Registrar</a>
+                </nav>
+            </li>
+            <li><button class="link-carrinho" onclick="clickDrop2()"></button>
+                <nav id="myDropdownCart" class="dropdown-content-cart">
+                    <a href="#">Ver Carrinho</a>
+                    <a href="#">Limpar Carrinho</a>
+                </nav>
+            </li>
+        </ul>
+    </header>
+    <section>
+        <!-- <article class="top-banner"></article> -->
         <div class="productslider">
-            <button class="btnSlider" onclick="prev()"> <</button>
-                <img id="slider" src="image/slider/1.jpg"
-                    width="200px" height="100px"/>
-                <button class="btnSlider" onclick="next()"> > </button>
-            </div><br><br>
-
-            <!-- _____________________________________________________________________________________________________ -->
-            <div style="height:5px;"></div>
-            <hr border="1" style="width: 89%;">
-            <div style="height:5px;"></div>
-            <!-- _____________________________________________________________________________________________________ -->
-
-            <div class="container-test">
-                <h3>Aqui vai um título!</h3>
-                <p><b>Aviso <u>IMPORTANTE!</u></b></p>
-                <p>E aqui vai um parágrafo</p>
+                <a class="prev" onclick="prev()">&#10094;</a>
+                <img id="slider" src="./image/slider/3.jpg" />
+                <a class="next" onclick="next()">&#10095;</a>
+        </div>
+    </section>
+    <main id="all-container">
+        <section class="container-prod">
+            <div class="list-cards">
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/1-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/2-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/n3-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/4-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
             </div>
-
-            <section class="container-prod">
-                <div class="list-cards">
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/1-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/2-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/4-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/5-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
+            <div class="list-cards">
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/5-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
                 </div>
-                <div class="list-cards">
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/6-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/7-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/8u-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/9-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/6-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
                 </div>
-                <div class="list-cards">
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/10-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/11-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/12-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/13-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/7-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
                 </div>
-                <div class="list-cards">
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/15-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/16-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/17-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/18-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/8u-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
                 </div>
-                <div class="list-cards">
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/19-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                    <div class="cards-items">
-                        <figure><img src="image/produtos/20u-min.jpg"
-                                class="products-imgs"></figure>
-                        <p class="products-name">PC Gamer</p>
-                        <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
-                    </div>
-                </div>
-            </section>
-
-            <div class="footer">
-                <footer>
-                    <div class="columns-footer">
-                        <span><a href="#">Formas de Pagamento</a></span>
-                        <span><a href="#">Segurança</a></span>
-                    </div>
-                    <div class="columns-footer">
-                        <span><a href="#">Institucional</a></span>
-                        <span><a href="#">Duvidas</a></span>
-                        <span><a href="#">Cliente</a></span>
-                        <span><a href="#">Ajuda</a></span>
-                    </div>
-                    <div class="columns-footer">
-                        <span><a href="#">Siga (Redes Sociais)</a></span>
-                    </div>
-                </footer>
             </div>
-        </body>
+            <div class="list-cards">
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/9-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/10-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/11-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/12-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+            </div>
+            <div class="list-cards">
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/13-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/n14u-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/15-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/15-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+            </div>
+            <div class="list-cards">
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/16-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/17-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/18-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/19-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+            </div>
+            <!-- Aqui dá ruim o card fica muito grande - Obs.:precisa arrumar -->
+            <!-- <div class="list-cards">
+                <div class="cards-items">
+                    <figure><img src="./image/produtos/20u-min.jpg" class="products-imgs" /></figure>
+                    <p class="products-name">PC Gamer</p>
+                    <figcaption class="cards-price">Preço: R$ 3.000,00</figcaption>
+                    <button class="buy-bttn">
+                        <a href="#">Adicionar ao Carrinho</a>
+                    </button>
+                </div>
+            </div> -->
+        </section>
+    </main>
+    <footer>
+        <div class="columns-footer">
+            <span><a href="#">Formas de Pagamento</a></span>
+            <span><a href="#">Segurança</a></span>
+        </div>
+        <div class="columns-footer">
+            <span><a href="#">Institucional</a></span>
+            <span><a href="#">Duvidas</a></span>
+            <span><a href="#">Cliente</a></span>
+            <span><a href="#">Ajuda</a></span>
+        </div>
+        <div class="columns-footer">
+            <span><a href="#">Siga (Redes Sociais)</a></span>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
 
-    </html>
+</html>

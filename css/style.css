@@ -1,73 +1,58 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
 
-html {
+/* Modifica todos os conteudo dentro do documento HTML*/
+
+* {
+    font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
+    margin: 0px;
 }
 
-body{
-    background-color: #ebebeb;
+/* Modifica todo o contéudo da tag main */
+
+#all-container,
+.productslider,
+section {
+    background-color: #F8F8FF;
 }
 
-/* ################# Banner ################# */
+/* modifica a logo */
+
+.logo-img {
+    display: flex;
+    width: 4rem;
+    height: 4rem;
+}
+
+/* Modifica os elementos da barra de naavegação */
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    background-color: #222224;
+    border-bottom: 5px solid #222222;
+}
+
+/* Banner */
 
 .top-banner {
     background-image: url("../image/banner.png");
     background-position: center;
     background-size: cover;
     background-color: #2d98da;
-    height: 200px;
+    height: 20em;
     margin: 0 auto;
-    border-radius: 8px;
-}
-
-.titulo {
-    font-family: Arial Narrow, sans-serif;
-    color: black;
-    width: 350px;
-    margin: -14px 0 0 45%;
-    text-align: center;
-}
-
-/* ################# Div Container da Barra de Navegação Topo ################# */
-.header {
-    /* display: flex; */
-    /* position: absolute; */
-    border-radius: 8px;
-    justify-content: space-between;
-    align-items: stretch;
-    min-height: 47px;
-    height: 51px;
-    max-height: 51px;
-    width: 100%;
-    background-color: #000000;
-}
-
-/* ################# Logo Topo Esquerdo ################# */
-
-.logo-topleft{
-    justify-content: initial;
-    align-content: initial;
-}
-.logo-img {
-    float: left;
-    box-sizing: content-box;
-    justify-content: initial;
-    align-content: initial;
-    max-width: 50px;
-    object-fit: cover;
-    /* background-color: rgb(100, 225, 150); debug */
-
-/* old */
-    /* background-image: url("../image/logo.png"); */
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
-    /* background-size:cover; */
-    /* min-width: 300px; */
-    /* max-width: 320px; */
-    /* max-width: 50px; */
+    margin-top: 14px;
 }
 
 /* ################# Estilização do Menu Suspenso - Departamento ################# */
+
 .dropdown {
     position: relative;
     display: block;
@@ -76,19 +61,23 @@ body{
 }
 
 .myDropBtn {
-    float: left;
     background-color: rgb(0, 0, 0.2);
     color: white;
     padding: 16px;
-    /* font-size: 16px; */
-    font: 16px Verdana, Arial, Helvetica, sans-serif;
+    font: 16px 'Poppins', sans-serif;
     border: none;
     cursor: pointer;
+    width: 10em;
+    min-height: 3.5rem;
+    border-radius: 20px;
 }
 
 .myDropBtn:hover,
-.myDropBtn:focus {
+button.link-conta:hover,
+button.link-carrinho:hover,
+.searchbtn:hover {
     background-color: rgb(100, 225, 150);
+    transition: background .5s;
 }
 
 .dropdown-content {
@@ -98,270 +87,342 @@ body{
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    border-radius: 15px;
 }
 
 .dropdown-content a {
+    display: flex;
+    flex-direction: column;
     color: #000000;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    border-radius: 15px;
 }
 
 .dropdown-content a:hover {
     background-color: aquamarine;
+    transition: background .5s;
 }
 
 .showMenuSuspenso {
     display: block;
 }
 
-.caret-down {
-    width: 0;
-    height: 0;
-    /* display: inline-flex; */
-    border: 8px solid transparent;
-    border-top-color: #ffffff;
+/* ############### Estilização do Menu Suspenso -  Botão Meu perfil ##################### */
+
+
+.dropdown-content-perfil {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 15px;
+}
+
+.dropdown-content-perfil a {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+    padding: 12px 16px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+.dropdown-content-perfil a:hover {
+    background-color: aquamarine;
+    transition: background .5s;
+}
+
+.showMenuSuspenso1 {
+    display: block;
+}
+
+
+/* ############### Estilização do Menu Suspenso -  Botão Carrinho ##################### */
+
+
+.dropdown-content-cart {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 15px;
+}
+
+.dropdown-content-cart a {
+    display: flex;
+    flex-direction: column;
+    color: #000000;
+    padding: 12px 16px;
+    text-decoration: none;
+    border-radius: 15px;
+}
+
+.dropdown-content-cart a:hover {
+    background-color: aquamarine;
+    transition: background .5s;
+}
+
+.showMenuSuspenso2 {
+    display: block;
 }
 
 /* ################# Estilização da Barra de Pesquisa ################# */
-.barrapesquisa{
-    justify-content: initial;
-    align-items: initial;
+
+.pesquisa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 input#isearch {
-    /* display: flex; */
-    float: left;
-    /* width: 400px; */
-    width: 40%;
-    min-height: 51px;
-    font: 16px Verdana, Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    min-width: 465px;
+    min-height: 55px;
+    font: 16px;
     border: 3px solid rgba(f, f, f, 0.2);
+    border-radius: 20px 0px 0px 20px;
 }
 
 button.searchbtn {
-    float: left;
     border: none;
     background-color: #000000;
     text-decoration: none;
     color: white;
-    width: 100px;
-    min-height: 51px;
+    width: 75px;
+    min-height: 55px;
     padding: 0 4px 4px 0;
-    /* padding: 1px 2px; */
     text-decoration: none;
     cursor: pointer;
+    border-radius: 0px 20px 20px 0px;
 }
+
 
 /* ################# Div container Conta e Carrinho ################# */
 .minhaconta,
 .carrinho {
-    float: left;
-    /* justify-content: flex-end; */
-    /* align-content: flex-end; */
     background-color: #000000;
     color: whitesmoke;
 }
 
 /* ################# Icones da Barra de Navegação ################# */
+
 .icon {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 1.5em;
-    display: inline-flex;
     min-height: 1.5em;
     height: 100%;
     width: 2em;
-    margin: 5% 0 0 0;
+    margin: 10px 10px 10px 10px;
     padding: 0;
     filter: invert(100%);
 }
 
 #searchicon {
-    background-image: url("../image/icons/icone-de-lupa.png");
+    background-image: url("../image/icones/icone-de-lupa.png");
 }
 
-#usericon {
-    background-image: url("../image/icons/profile-icon.png");
+.link-conta {
+    background-image: url("../image/icones/icons8-contatos-32.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: initial;
+    width: 4em;
+    min-height: 3.5rem;
+    padding: 0;
+    border-radius: 50%;
 }
 
-#carticon {
-    background-image: url("../image/icons/cart-icon.png");
+
+.link-carrinho {
+    background-image: url("../image/icones/icons8-carrinho-de-compras-32.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: initial;
+    width: 4em;
+    min-height: 3.5rem;
+    border-radius: 50%;
+
 }
 
-/* ################# Texto de Links da Barra de Navegação ################# */
+/*  Texto de Links da Barra de Navegação */
 button.link-conta,
 button.link-carrinho {
+    height: max-content;
     background-color: rgb(0, 0, 0.2);
     color: white;
-    padding: 16px;
-    font: 16px Verdana, Arial, Helvetica, sans-serif;
     border: none;
     cursor: pointer;
 }
 
 /* ################# Image Slider ################# */
+
 .productslider {
     display: flex;
-    /* position: absolute; */
     justify-content: center;
     align-items: center;
+    position: relative;
+    box-sizing: border-box;
 }
 
-button.btnSlider {
-    margin-top: 30px;
-    float: left;
-    height: 50px;
-    border: none;
-    background-color: transparent;
-    font-size: x-large;
-    font-weight: bolder;
+.prev,
+.next {
+    background-color: #000000;
+    cursor: pointer;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 7px 0px 0px 7px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 0px 7px 7px 0px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 img#slider {
-    float: left;
     height: 200px;
     width: 700px;
-    margin-right: 10px;
-    margin-left: 10px;
+    cursor: pointer;
+    margin: 40px 0px 40px 0px;
 }
 
-/* Vitrine */
 
+/* ################## Vitrine ######################## */
 
+/* Modifica todos os elementos dos cards */
 
-.topo p span.left {
-    text-align: left;
-}
-
-.topo p span.center {
-    text-align: center;
-}
-
-.topo p span.right {
-    text-align: right;
-}
-
-/* ################# Modifies all card rows ################# */
 .container-prod {
     display: flex;
     flex-direction: column;
-    background-color: #f9f9f9;
-
-    /* #### Code Copy #### */
-    /* justify-content: space-between;
-    align-items: flex-start; */
-
-    color: black;
-    /* opacity: 0.2; */
-
-    margin: 2px;
-    padding: 6px;
-
-    border-radius: 20px;
-    background-color: #f1f1f1;
-    border: 1px solid black;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
-/* ################# Modify a card list ################# */
+/* Modifica a fila de cards */
 .list-cards {
     display: flex;
     flex-direction: row;
-    opacity: 1;
+
 }
 
-/* ################# Modifies cards only and their interior elements ################# */
+/* Modifica os cartões e seu conteudo interior */
 .cards-items {
     display: flex;
     flex-direction: column;
-    margin: 30px;
-    border: 1px solid #000000;
-    border-radius: 20px;
+    margin: 10px;
+    border: 1.8px groove black;
+    border-radius: 4px 4px 10px 10px;
     box-sizing: border-box;
-    width: 340px;
-    height: 270px;
+    width: 100%;
+    height: 100%;
     position: relative;
     overflow: hidden;
     word-wrap: break-word;
-    filter: grayscale(0.45);
 }
 
-/* ################# Modify cards item when cursor is over them ################# */
+/* Modifica o card quando o cursor está sobre ele */
+
 .cards-items:hover {
-    background-color: rgba(255, 255, 255, 0.712);
-    filter: grayscale(0);
-    /* opacity: 0.1; */
-    box-shadow: #0000007e 6px 10px 10px 2px;
+    box-shadow: lightgray 10px 10px 10px 10px;
 }
 
-/* ################# Modify products image and element filter ################# */
-.products-imgs,
-figure {
-    width: 200px;
-    height: 200px;
-    margin: 0;
-}
-
-/* ################# Modify the name ################# */
-.products-name {
-    display: inline-block;
-    font-size: 12px;
-}
-
-/* ################# Modify the price ################# */
+/* Modifica o elemento onde está preço */
 .cards-price {
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
 }
 
-/* ################# Rodapé ################# */
-
-.footer{
-    background-color: #000000;
-    border-radius: 8px;
-    border-top: 2px solid rgb(100, 225, 150);
+/* Modifica o nome dos produtos */
+.products-name {
+    display: inline-block;
+    font-size: 12px;
 }
 
-footer {
-    display: flex;
+/*  Modifica as imagens do produto e seu filtro */
+.products-imgs,
+figure {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+/*  Modifica o botão do adicionar ao carrinho */
+.buy-bttn {
+    background-color: #3e8e41;
     color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+
+}
+
+/* Modifica o contéudo do botão */
+.buy-bttn a {
+    text-decoration: none;
+    color: #f1f1f1;
+}
+
+/* Rodapé */
+
+footer {
+    /* padding-bottom: 25px; */
+    margin-top: 15px;
+    color: whitesmoke;
+    display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    border-top: 4px solid black;
+    background-color: #222224;
 }
 
 .columns-footer {
-    padding: 20px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-around; */
+    margin: 45px;
+    padding: auto;
 }
 
-.columns-footer>span {
+.columns-footer>span,
+span>a {
+    /* letter-spacing: 2px; */
+    /* margin-top: 15px; */
+    /* font-size: 12px; */
+    color: whitesmoke;
+    font: 16px Verdana, Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
-    letter-spacing: 2px;
-}
-
-.columns-footer>span a {
     text-decoration: none;
-    color: #ffffff;
-    font: 16px Verdana, Arial, Helvetica, sans-serif;
+    padding: 6px;
 }
 
-.container-test{
-    display: flexbox;
-    
-    justify-content: space-evenly;
-    align-items: flex-start;
-
-    color: #ffffff;
-    text-align: center;
-
-    opacity: 0.7;
-
-    margin: 2px;
-    padding: 6px;
-
-    border-radius: 20px;
-    background-color: tomato;
-    border: 1px solid black;
+.columns-footer>span a:hover {
+    /* text-decoration: underline; */
+    /* color: aquamarine; */
+    background-color: aquamarine;
+    border: 5px solid aquamarine;
+    border-radius: 8px;
+    color: black;
+    justify-content: space-between;
+    transition: .2s linear;
+    margin: 1px;
+    padding: 1px;
 }
