@@ -11,6 +11,7 @@
     --light-color: silver;
     --border: .2rem solid var(--black);
     --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2);
+    --box-light: 0 .5rem 1rem rgba(255, 255, 255, 0.8);
 }
 
 * {
@@ -163,15 +164,23 @@ section {
 
 .delete-btn {
     background-color: var(--red);
+    box-shadow: var(--box-shadow);
 }
 
 .option-btn {
     background-color: var(--orange);
+    box-shadow: var(--box-shadow);
 }
 
 .btn:hover, .option-btn:hover, .delete-btn:hover {
     background-color: var(--main-color);
     transition: .5s;
+    box-shadow: var(--box-light);
+}
+
+.b:active, .option-btn:active, .delete-btn:active {
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
 }
 
 .header {
