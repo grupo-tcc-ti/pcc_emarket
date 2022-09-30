@@ -22,7 +22,7 @@ if (!isset($admin_id)) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <title>Login do Administrador - Intranet</title>
+    <title>Administrador - Intranet</title>
 </head>
 <body>
 

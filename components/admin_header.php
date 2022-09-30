@@ -15,15 +15,15 @@ if (isset($message)) {
 
 <section class="flex">
     
-    <a href="admin/dashboard.php" class="logo">Admin<span>Manager</span></a>
+    <a href="dashboard.php" class="logo">Admin<span>Manager</span></a>
     <div class="spacing"></div>
     <nav class="navbar">
-        <a href="../sindex.html">Home</a>
-        <a href="admin/produtos.php">Produtos</a>
-        <a href="admin/pedidos.php">Pedidos</a>
-        <a href="admin/users_contas.php">Usuários</a>
-        <a href="admin/admin_contas.php">Administradores</a>
-        <a href="admin/mensagens.php">Mensagens</a>
+        <a href="dashboard.php">Home</a>
+        <a href="produtos.php">Produtos</a>
+        <a href="pedidos.php">Pedidos</a>
+        <a href="users_contas.php">Usuários</a>
+        <a href="admin_contas.php">Administradores</a>
+        <a href="mensagens.php">Mensagens</a>
     </nav>
     <div class="spacing"></div>
     <div class="icons">
@@ -42,7 +42,7 @@ if (isset($message)) {
         <a href="update_profile.php" class="btn">Alterar Conta</a>
         <div class="flex-btn">
             <a href="admin_login.php" class="option-btn">Login</a>
-            <a href="register_admin.php" class="option-btn">Registrar</a>
+            <a href="registrar_admin.php" class="option-btn">Registrar</a>
         </div>
         <a href="../components/admin_logout.php" class="delete-btn">Logout</a>
     </div>

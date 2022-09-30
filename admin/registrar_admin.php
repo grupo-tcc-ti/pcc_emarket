@@ -2,24 +2,35 @@
 include '../components/connect.php';
 session_start();
 
+$admin_id = $_SESSION['admin_id'];
+
+if (!isset($admin_id)) {
+    header('location:../components/admin_header.php');
+}
+
 if (isset($_POST['submit'])){
     $username = $_POST['username'];
     $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = sha1($_POST['password']);
     $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $rpassword = sha1($_POST['rpassword']);
+    $rpassword = filter_var($rpassword, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $qry = "SELECT * FROM `admins` WHERE nome = ? AND senha = ?";
+    $qry = "SELECT * FROM `admins` WHERE nome = ?";
     $select_admin = $conn->prepare($qry);
-    $select_admin->execute([$username, $password]);
+    $select_admin->execute([$username]);
     if ($select_admin->rowCount() > 0){
-        $fetch_admin_id = $select_admin->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['admin_id'] = $fetch_admin_id['codAdmin'];
-        header('location:dashboard.php');
-        $message[] = 'Bem Vindo';
-    } else {
+        $message[] = 'Conta já existe!';
+    } else if ($password != $rpassword) {
         $message[] = 'Nome de usuário ou senha incorreto!';
     }
+    else {
+        $insert_admin = $conn->prepare("INSERT INTO `admins` (nome, senha) VALUES (?, ?)");
+        $insert_admin->execute([$username, $rpassword]);
+        $message[] = 'Cadastro de Administrador realizado com Sucesso!';
+    }
 }
+
 
 ?>
 
@@ -35,37 +46,44 @@ if (isset($_POST['submit'])){
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <title>Login do Administrador - Intranet</title>
+    <title>Registrar Conta de Administrador</title>
 </head>
 <body>
 
-
-<?php
-if (isset($message)){
-    foreach ($message as $message) {
-        echo '
-        <div class="message">
-        <span>'.$message.'</span>
-        <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
-        </div>
-        ';
-    }
-}
-?>
-
-<!-- Container do formulário de login do adminisrador -->
+<?php include '../components/admin_header.php';?>
 
 <section class="form-container">
     <form action="" method="post">
-        <h3>Credenciais de Login</h3>
-        <p>Usuário de administrador predefinido: user = <span>admin</span> e senha <span>1234</span></p>
+        <h3>Criar Nova Conta - Administrador</h3><br><br><br>
         <input type="text" name="username" class="inputbox" maxlength="20" required placeholder="Usuário"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
         <input type="password" name="password" class="inputbox" maxlength="20" required placeholder="Senha"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="submit" value="Logar" class="btn" name="submit">
+        <input type="password" name="rpassword" class="inputbox" maxlength="20" required placeholder="Repita a sua senha"
+        oninput = "this.value = this.value.replace(/\s/g, '')" >
+        <input type="submit" value="Cadastrar" class="btn" name="submit">
     </form>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../js/admin_script.js"></script>
 </body>
 </html>
