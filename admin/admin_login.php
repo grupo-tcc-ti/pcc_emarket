@@ -14,7 +14,7 @@ if (isset($_POST['submit'])){
     if ($select_admin->rowCount() > 0){
         $fetch_admin_id = $select_admin->fetch(PDO::FETCH_ASSOC);
         $_SESSION['admin_id'] = $fetch_admin_id['codAdmin'];
-        header('location:dashboard.php');
+        header('location: dashboard.php');
         $message[] = 'Bem Vindo';
     } else {
         $message[] = 'Nome de usuário ou senha incorreto!';
