@@ -348,6 +348,69 @@ section.dashboard .box-container .box p {
     box-shadow: var(--box-shadow);
 }
 
+.add-produtos .required-field::after{
+    content: "*";
+    color: red;
+}
+
+/* .add-produtos .required-field:hover{
+    
+} */
+
+.add-produtos form {
+    margin: 0 auto;
+    max-width: 70rem;
+    background-color: var(--white);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: 2rem;
+
+}
+
+.add-produtos form .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.add-produtos form .flex .inputbox {
+    flex: 1 1 40rem;
+}
+
+.add-produtos form .flex .inputbox span{
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.add-produtos form .flex .inputbox textarea[name=descricao]{
+    resize: none;
+}
+
+
+.add-produtos form .flex .inputbox .box {
+    background-color: var(--light-bg);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width:920px) {
     html {
         font-size: 55%;

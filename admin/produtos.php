@@ -8,6 +8,59 @@ if (!isset($admin_id)) {
     header('location:../components/admin_header.php');
 }
 
+if (isset($_POST['add_produto'])){
+    $nome = $_POST['nome'];
+    $nome = filter_var($nome, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $descricao = $_POST['descricao'];
+    $descricao = filter_var($descricao, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $preco = $_POST['preco'];
+    $preco = filter_var($preco, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    $select_produtos = $conn->prepare("SELECT * FROM `produtos` WHERE nome = ?");
+    $select_produtos->execute([$nome]);
+
+    $name_valid = $path_valid = $size_valid = false;
+
+    //Verifica se produto com mesmo nome
+    if ($select_produtos->rowCount() > 0) {
+        $message[] = 'Um produto com o mesmo nome ja existe!';
+        $name_valid = false;
+    } 
+    else { $name_valid = true; }
+    //continua procedimento
+    $image = array_filter($_FILES['image']['name']); //O nome original do arquivo na máquina do cliente.
+    $image = filter_var($image, FILTER_SANITIZE_FULL_SPECIAL_CHARS); //filtrar processo de arquivos e caracteres especiais
+    $total_imgfiles = count($_FILES['image']['name']); //Contar o numero de arquivos na array
+    //Loop através da array image
+    for( $i=0 ; $i < $total_imgfiles ; $i++ ) {
+        //O caminho temporario do arquivos é armazenado
+        //tmp_name O nome temporário com o qual o arquivo enviado foi armazenado no servidor.
+        $image_tmp = $_FILES['image']['tmp_name'][$i];
+        //Verifica se caminho vazio
+        if ($image_tmp != ""){
+            //Configura novo caminho
+            $image_folder = "../uploaded_imgs/".$_FILES['image']['name'][$i];
+            //O arquivo e enviado ao caminho temporario 
+            if(move_uploaded_file($image_tmp, $image_folder)) { $path_valid = true; }
+        }
+        //Verifica o tamanho do arquivo
+        $image_size = $_FILES['image']['size'][$i]; //O tamanho, em bytes, do arquivo enviado. 
+        if ($image_size > 2000000){
+            $message[] = 'Tamanho do arquivo é maior que o permitido!';
+            $size_valid = false;
+        }else {$size_valid = true;}
+    }
+    //Confirma se imagens validas
+    if ($name_valid && $path_valid && $size_valid){
+    //insere o produto
+    $inserir_produto = $conn->prepare("INSERT INTO `produtos` (nome, descricao, preco, image)
+    VALUES (?,?,?,?)");
+    $inserir_produto->execute([$nome, $descricao, $preco, $image]);
+    $message[] = 'Produto adicionado com sucesso!';
+    }
+    // $image_tmp_folder = '../uploaded_imgs/'.$image; //old
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,30 +80,31 @@ if (!isset($admin_id)) {
 <body>
 <?php include '../components/admin_header.php';?>
 
-<section class="add-produtos"></section>
+<section class="add-produtos">
     <form action="" method="post" enctype="multipart/form-data">
         <div class="flex">
-            <div class="inputBox">
-                <span required-field>Nome do Produto</span>
-                <input type="text" name="nome" required
-                palceholder="Insira o nome do produto" maxlength="100" class="box">
-            </div>
-            <div class="inputBox"></div>
-            <span required-field>Preço do Produto</span>
-            <input type="number" name="preco" class="box" required
-            placeholder="Insira o preço do produto" min="0" max="9999999999" onclick="if(this.value.length == 100) return false;">
+            <div class="inputbox">
+                <span class="prod-title required-field">Nome do Produto</span>
+                <input type="text" name="nome" class="box" required
+                placeholder="Ex.: Placa de Vídeo Nvidia Geforce RTX..." maxlength="100">
+            </div><br>
+            <div class="inputbox">
+                <span class="prod-title required-field">Preço do Produto</span>
+                <input type="number" name="preco" class="box" required
+                placeholder="Ex.: R$ 3,999.00" min="0" max="9999999999" step="any" onclick="if(this.value.length == 100) return false;">
+            </div><br>
+            <div class="inputbox">
+                <span class="prod-title required-field">Imagens</span>
+                <input type="file" name="image[]" class="box" required
+                accept="image/jpg, image/jpeg, image/png, image/webp" multiple>
+            </div><br>
+            <div class="inputbox">
+                <span class="prod-title required-field">Descrição do Produto</span>
+                <textarea name="descricao" class="box" required cols="50" rows="10"
+                placeholder="Descrições do produto (Max.: 1500 char.)" maxlength="1500" ></textarea>
+            </div><br>
+            <input type="submit" value="Adicionar Produto" name="add_produto" class="btn">
         </div>
-        <div class="inputBox">
-            <span required-field>Imagens</span>
-            <input type="file" name="image" class="box" required
-            accept="image/jpg, image/jpeg, image/png, image/webp" multiple>
-        </div>
-        <div class="inputBox">
-            <span required-field>Descrição do Produto</span>
-            <textarea name="descricao" class="box" cols="30" rows="10"required
-            placeholder="Insira as descrições do produto" maxlength="500"></textarea>
-        </div>
-        <input type="submit" value="Adicionar Produto" name="add_produto" class="btn">
     </form>
 </section>
 

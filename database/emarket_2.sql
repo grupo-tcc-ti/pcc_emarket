@@ -49,11 +49,11 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- Table `emarket`.`produtos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`produtos` (
-  `codProduto` INT(100) NOT NULL,
+  `codProduto` INT(100) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
-  `descricao` VARCHAR(500) NOT NULL,
+  `descricao` VARCHAR(1500) NOT NULL,
   `preco` DOUBLE NOT NULL,
-  `image` VARCHAR(1000) NOT NULL,
+  `image` VARCHAR(10000) NOT NULL,
   PRIMARY KEY (`codProduto`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
