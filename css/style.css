@@ -381,3 +381,64 @@ span>a {
     margin: 1px;
     padding: 1px;
 }
+
+.slider {
+    position: relative;
+    background: #000116;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 0px;
+  }
+
+/* Animaçoes aqui: https://css-tricks.com/animating-with-clip-path/ */
+.slider .slide{ 
+    position: absolute;
+    width: 100%;
+    height: 280px;
+    clip-path: circle(0% at 0 10%);
+  }
+
+.slider .slide.active{
+    clip-path: circle(150% at 0 10%);
+    transition: 1s;
+}
+
+.slider .slide img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navigation{
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slider:hover .navigation{
+    opacity: 1;
+}
+  
+.prev-btn, .next-btn{
+    z-index: 999;
+    font-size: 2em;
+    color: #F8F8FF;
+    background: rgba(255, 255, 255, 0.0);
+    padding: 10px;
+    cursor: pointer;
+ }
+  
+.prev-btn{
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+ }
+  
+.next-btn{
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+ }
