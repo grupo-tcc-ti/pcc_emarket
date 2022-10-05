@@ -82,6 +82,7 @@ if (isset($_POST['add_produto'])){
 
 <section class="add-produtos">
     <form action="" method="post" enctype="multipart/form-data">
+        <h1 class="heading">Adicionar Produto</h1>
         <div class="flex">
             <div class="inputbox">
                 <span class="prod-title required-field">Nome do Produto</span>
@@ -95,7 +96,8 @@ if (isset($_POST['add_produto'])){
             </div><br>
             <div class="inputbox">
                 <span class="prod-title required-field">Imagens</span>
-                <input type="file" name="image[]" class="box" required
+                <!-- <label for="input-file" class="btn">Enviar Imagens</label> -->
+                <input type="file" name="image[]" class="box" id="input-file" required
                 accept="image/jpg, image/jpeg, image/png, image/webp" multiple>
             </div><br>
             <div class="inputbox">
@@ -111,3 +113,8 @@ if (isset($_POST['add_produto'])){
 <script src="../js/admin_script.js"></script>
 </body>
 </html>
+<!-- Visor nano 4k de verdade: dê vida aos seus programas favoritos com NanoCell vibrante. Veja a imagem natural e realista com Nano Color aprimorada por um bilhão de cores ricas. Dimensões da TV sem suporte (L x A x P)-96,8 x 56,3 x 5,8 cm
+Processador Quad Core 4K: Nosso processador Quad Core 4K oferece uma experiência de visualização suave e nítida com maior contraste, cor e preto. Fonte de alimentação (tensão, Hz): CA 100~240V 50-60Hz, consumo de energia: 55W
+Experiência em cinema doméstico: veja e sinta que você está em ação com Active HDR. Veja os filmes exatamente como os diretores pretendem com o Modo Filmmaker. E com acesso integrado aos canais Netflix, Prime Video, Apple TV Plus, Disney Plus e LG, seu conteúdo favorito está ao seu alcance.
+Melhor jogo: experimente jogos em NanoCell. O Game Optimizer dá a você acesso mais fácil a todas as suas configurações de jogo e você terá o modo automático de baixa latência mais HGiG para uma imagem detalhada do jogo.
+Auxiliar do Google e Alex embutido: não há necessidade de um dispositivo extra – basta pedir música, clima, notícias, sua lista de compras da Amazon e muito mais. Além disso, controle convenientemente sua casa conectada e dispositivos inteligentes. -->

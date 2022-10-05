@@ -365,7 +365,14 @@ section.dashboard .box-container .box p {
     box-shadow: var(--box-shadow);
     border: var(--border);
     padding: 2rem;
+    
+}
 
+.add-produtos form .heading{
+    font-size: 4rem;
+    color:var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .add-produtos form .flex {
@@ -398,7 +405,19 @@ section.dashboard .box-container .box p {
     border-radius: .5rem;
 }
 
+/* .add-produtos form .flex .inputbox input#input-file[type="file"] {
+    display: none;
+} */
 
+/* .add-produtos form .flex .inputbox input.box[type="file"]::file-selector-button {
+    border: none;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    display: inline-block;
+    margin-right: 6rem;
+    padding: 6px 12px;
+    cursor: pointer;
+} */
 
 
 
