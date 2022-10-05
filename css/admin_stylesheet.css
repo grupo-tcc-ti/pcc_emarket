@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
-
+ 
 :root {
     --main-color: dodgerblue;
     --red: orangered;
@@ -91,6 +91,19 @@ section {
 
 .message i:hover {
     color: var(--black);
+}
+
+.vazio {
+    background-color: var(--white);
+    border-radius: .5rem;
+    border: var(--border);
+    text-align: center;
+    padding: 1.5rem;
+    width: 100%;
+    font-size: 2rem;
+    text-transform: capitalize;
+    color: var(--red);
+    box-shadow: var(--box-shadow);
 }
 
 .form-container {

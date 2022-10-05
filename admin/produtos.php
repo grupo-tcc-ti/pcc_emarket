@@ -28,11 +28,13 @@ if (isset($_POST['add_produto'])){
     } 
     else { $name_valid = true; }
     //continua procedimento
-    $image = array_filter($_FILES['image']['name']); //O nome original do arquivo na máquina do cliente.
-    $image = filter_var($image, FILTER_SANITIZE_FULL_SPECIAL_CHARS); //filtrar processo de arquivos e caracteres especiais
+    $image[] = array();
     $total_imgfiles = count($_FILES['image']['name']); //Contar o numero de arquivos na array
     //Loop através da array image
     for( $i=0 ; $i < $total_imgfiles ; $i++ ) {
+        $image[$i] = $_FILES['image']['name'][$i]; //O nome original do arquivo na máquina do cliente.
+        // $image[$i] = array_filter($image[$i]);
+        $image[$i] = filter_var($image[$i], FILTER_SANITIZE_FULL_SPECIAL_CHARS); //filtrar processo de arquivos e caracteres especiais
         //O caminho temporario do arquivos é armazenado
         //tmp_name O nome temporário com o qual o arquivo enviado foi armazenado no servidor.
         $image_tmp = $_FILES['image']['tmp_name'][$i];
@@ -49,13 +51,13 @@ if (isset($_POST['add_produto'])){
             $message[] = 'Tamanho do arquivo é maior que o permitido!';
             $size_valid = false;
         }else {$size_valid = true;}
+        //Confirma se imagens validas
     }
-    //Confirma se imagens validas
     if ($name_valid && $path_valid && $size_valid){
     //insere o produto
     $inserir_produto = $conn->prepare("INSERT INTO `produtos` (nome, descricao, preco, image)
     VALUES (?,?,?,?)");
-    $inserir_produto->execute([$nome, $descricao, $preco, $image]);
+    $inserir_produto->execute([$nome, $descricao, $preco, join(',',$image)]);
     $message[] = 'Produto adicionado com sucesso!';
     }
     // $image_tmp_folder = '../uploaded_imgs/'.$image; //old
@@ -110,10 +112,39 @@ if (isset($_POST['add_produto'])){
     </form>
 </section>
 
+<section class="mostrar-produtos">
+    <div class="box-container">
+    <?php 
+            $mostrar_produtos = $conn->prepare("SELECT * FROM  `produtos`");
+            $mostrar_produtos->execute();
+            if ($mostrar_produtos->rowCount() > 0) {
+                while ($fetch_produtos = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)){
+                    $fetched_imgs = explode(",", $fetch_produtos['image']);
+                    ?>
+                        <div class="box">
+                        <img src='../uploaded_imgs/<?=$fetched_imgs[0];?>' width=200px height=auto alt="">
+                        </div>
+                    <?php 
+                }
+            } else {
+                echo '<p class="vazio">Nenhum produto adicionado...</p>';
+            }
+        ?>
+    </div>
+</section>
+
+
+<!-- https://www.w3schools.com/PHP/func_string_join.asp -->
+<!-- https://www.educba.com/array-in-sql/ -->
+
+
+
+
 <script src="../js/admin_script.js"></script>
 </body>
 </html>
-<!-- Visor nano 4k de verdade: dê vida aos seus programas favoritos com NanoCell vibrante. Veja a imagem natural e realista com Nano Color aprimorada por um bilhão de cores ricas. Dimensões da TV sem suporte (L x A x P)-96,8 x 56,3 x 5,8 cm
+<!-- https://www.amazon.com/LG-43NANO75UPA-Alexa-Built-NanoCell/dp/B08WHSH4JH/ref=sr_1_1?crid=2HCT7TB38NMWH&keywords=smart+tv&qid=1664969634&qu=eyJxc2MiOiI2Ljk3IiwicXNhIjoiNi42MCIsInFzcCI6IjUuOTUifQ%3D%3D&refinements=p_36%3A8589204011&rnid=8589203011&s=tv&sprefix=smart+t%2Caps%2C253&sr=1-1 
+    Visor nano 4k de verdade: dê vida aos seus programas favoritos com NanoCell vibrante. Veja a imagem natural e realista com Nano Color aprimorada por um bilhão de cores ricas. Dimensões da TV sem suporte (L x A x P)-96,8 x 56,3 x 5,8 cm
 Processador Quad Core 4K: Nosso processador Quad Core 4K oferece uma experiência de visualização suave e nítida com maior contraste, cor e preto. Fonte de alimentação (tensão, Hz): CA 100~240V 50-60Hz, consumo de energia: 55W
 Experiência em cinema doméstico: veja e sinta que você está em ação com Active HDR. Veja os filmes exatamente como os diretores pretendem com o Modo Filmmaker. E com acesso integrado aos canais Netflix, Prime Video, Apple TV Plus, Disney Plus e LG, seu conteúdo favorito está ao seu alcance.
 Melhor jogo: experimente jogos em NanoCell. O Game Optimizer dá a você acesso mais fácil a todas as suas configurações de jogo e você terá o modo automático de baixa latência mais HGiG para uma imagem detalhada do jogo.
