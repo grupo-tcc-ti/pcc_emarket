@@ -118,19 +118,20 @@ if (isset($_POST['add_produto'])) {
     </form>
 </section>
 
+<h3 class="heading">Lista de Produtos</h3>
 <section class="mostrar-produtos">
     <div class="box-container">
-    <?php
+        <?php
     $mostrar_produtos = $conn->prepare("SELECT * FROM  `produtos`");
     $mostrar_produtos->execute();
     if ($mostrar_produtos->rowCount() > 0) {
-    while ($fetch_produto = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)) {
-        $fetched_imgs = explode(",", $fetch_produto['image']);
-        ?>
+        while ($fetch_produto = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)) {
+            $fetched_imgs = explode(",", $fetch_produto['image']);
+            ?>
             <div class="box">
-                <img src='../uploaded_imgs/<?=$fetched_imgs[0];?>' width=200px height=auto alt="">
-                <div class="name"><?=$fetch_produto['nome'];?></div>
-                <div class="preco"><?=$fetch_produto['preco'];?></div>
+                <img src='../uploaded_imgs/<?=$fetched_imgs[0];?>' alt="">
+                <div class="nome"><?=$fetch_produto['nome'];?></div>
+                <div class="preco">R$ <?=$fetch_produto['preco'];?></div>
                 <div class="descricao"><?=$fetch_produto['descricao'];?></div>
                 <div class="flex-btn">
                     <a href='alterar_produto.php?alterar=<?=$fetch_produto['id'];?>' class="option-btn">

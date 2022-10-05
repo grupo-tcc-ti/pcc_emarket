@@ -432,10 +432,56 @@ section.dashboard .box-container .box p {
     cursor: pointer;
 } */
 
+h3.heading{
+    font-size: 4rem;
+    color:var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
+    justify-content: center;
+    margin: 2rem;
+}
 
+.mostrar-produtos .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 50rem);
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+}
 
+.mostrar-produtos .box-container .box {
+    background-color: var(--white);
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: 2rem;
+}
 
+.mostrar-produtos .box-container .box img {
+    width: 100%;
+    height: 20rem;
+    object-fit: contain;
+}
 
+.mostrar-produtos .box-container .box .nome{
+    font-size: 1.5rem;
+    color: var(--black);
+}
+
+.mostrar-produtos .box-container .box .preco{
+    font-size: 2.5rem;
+    color: var(--main-color);
+    margin: 1rem 0;
+}
+
+.mostrar-produtos .box-container .box .descricao{
+    line-height: 2;
+    font-size: 1.5rem;
+    color: var(--black);
+    width: 100%;
+    height: 10rem;
+    overflow: scroll;
+}
 
 
 
