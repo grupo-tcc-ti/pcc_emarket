@@ -61,7 +61,7 @@ ul {
 }
 
 .link-depart {
-    background-color: rgb(0, 0, 0.2);
+    background-color: rgb(0, 0, 0.3);
     color: white;
     padding: 16px 10px;
     font: 16px 'Poppins', sans-serif;
@@ -70,6 +70,7 @@ ul {
     width: 10em;
     min-height: 3.5rem;
     border-radius: 0px;
+    background-color: #222224;
 }
 
 .link-depart:hover,
@@ -86,7 +87,7 @@ button.link-carrinho:hover,
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #222224;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
     z-index: 1;
@@ -99,7 +100,7 @@ button.link-carrinho:hover,
 .dropdown-content a {
     display: flex;
     flex-direction: column;
-    color: #000000;
+    color: white;
     padding: 12px 16px;
     text-decoration: none;
     border-radius: 0px;
@@ -116,7 +117,23 @@ button.link-carrinho:hover,
 .showMenuSuspenso {
     display: block;
     transition: .8s;
+    animation: dropDownAnimation 300ms ease-in-out forwards
 }
+
+@keyframes dropDownAnimation {
+    0% {
+        opacity: 0;
+        transform: rotateX(-90deg);
+    }
+    50% {
+        transform: rotateX(-20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateX(0deg);
+    }
+}
+
 
 /* ################# Estilização da Barra de Pesquisa ################# */
 
@@ -178,39 +195,32 @@ button.searchbtn {
 }
 
 .link-conta {
-    background-image: url("../image/icones/icons8-contatos-32.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: initial;
-    background-color: rgb(0, 0, 0.2);
-    font: 16px 'Poppins', sans-serif;
-    width: 50px;
-    min-height: 50px;
-    padding: 50%;
+    font: 20px 'Poppins', sans-serif;
+    width: 60px;
+    min-height: 60px;
     border-radius:0%;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-
 .link-carrinho {
     background-image: url("../image/icones/icons8-carrinho-de-compras-32.png");
     background-position: center;
     background-repeat: no-repeat;
-    background-size: initial;
-    width: 50px;
-    min-height: 50px;
-    padding: 50%;
+    width: 60px;
+    min-height: 60px;
     border-radius:0%;
-
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
 /*  Texto de Links da Barra de Navegação */
 button.link-conta,
 button.link-carrinho {
     height: max-content;
-    background-color: rgb(0, 0, 0.2);
+    background-color: #222222;
     color: white;
     border: none;
     cursor: pointer;

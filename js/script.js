@@ -39,6 +39,15 @@ function prev() {
   slider.src = imageSlider[num];
 }
 
+/* Funçao do departamento na barra: */
+function changeIconDepartamento(anchor) {
+  anchor.closest('.dropdown').classList.toggle('active');
+
+  // var icon = anchor.querySelector("i");
+  // icon.classList.toggle('fa-solid fa-chevron-down');
+  // icon.classList.toggle('fa-solid fa-xmark');
+  //  anchor.querySelector("span").textContent = icon.classList.contains('fa-solid fa-chevron-down') ? "Departamento" : "Departamento";
+}
 
 /* Functions para o banner: */
 const slider = document.querySelector(".slider"); //var slider dos banner
