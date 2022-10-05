@@ -4,6 +4,14 @@ session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
+// $my_form = $_COOKIE["add_produto_form"];
+// // decode from JSON
+// $my_form = json_decode($my_form);
+// // get single value
+// $name = $my_form->name;
+// print_r($name);
+
+
 if (!isset($admin_id)) {
     header('location:../components/admin_header.php');
 }
@@ -82,8 +90,9 @@ if (isset($_POST['add_produto'])){
 <body>
 <?php include '../components/admin_header.php';?>
 
+
 <section class="add-produtos">
-    <form action="" method="post" enctype="multipart/form-data">
+    <form action="" name="add_produto_form" method="post" enctype="multipart/form-data" > <!-- onsubmit="return clearForm(this)" -->
         <h1 class="heading">Adicionar Produto</h1>
         <div class="flex">
             <div class="inputbox">

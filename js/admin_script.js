@@ -26,3 +26,23 @@ subImages.forEach(images =>{
       mainImage.src = src;
    }
 });
+
+// function clearForm(form) {
+//    // create data object with all form values
+//    var data = {
+//       "name": form.name.value ,
+//       "image": form.image.files
+//    };
+
+//   // convert in JSON
+//    var jsonData = JSON.stringify(data);
+
+//   // save in cookies
+//    document.cookie = "my_form=" + jsonData;
+
+//   // redirect to form's action
+//    window.location.href = form.getAttribute("action");
+
+//   // prevent form from submitting
+//    return false;
+// };
