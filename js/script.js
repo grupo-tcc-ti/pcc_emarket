@@ -16,6 +16,22 @@ window.onclick = function (event) {
   }
 };
 
+function clickDrop1() {
+  document.getElementById("myDropdownPerfil").classList.toggle("showMenuSuspensoPerfil");
+}
+
+window.onclick = function (event) {
+  if (!event.target.matches(".link-conta")) {
+    var dropdowns = document.getElementsByClassName("dropdown-content-perfil");
+    for (let i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("showMenuSuspensoPerfil")) {
+        openDropdown.classList.remove("showMenuSuspensoPerfil");
+      }
+    }
+  }
+};
+
 var imageSlider = [
   "../pcc_emarket/image/slider/1.jpg",
   "../pcc_emarket/image/slider/2.png",
