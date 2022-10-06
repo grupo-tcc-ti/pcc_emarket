@@ -15,31 +15,7 @@ function clickDrop(idname = "") {
 //   }
 // };
 
-var x = document.getElementsByClassName("productslider");
-var imageSlider = [
-  "../pcc_emarket/image/slider/1.jpg",
-  "../pcc_emarket/image/slider/2.png",
-  "../pcc_emarket/image/slider/3.jpg",
-];
-var num = 0;
-function next() {
-  var slider = document.getElementById("slider");
-  num++;
-  if (num >= imageSlider.length) {
-    num = 0;
-  }
-  slider.src = imageSlider[num];
-}
-function prev() {
-  var slider = document.getElementById("slider");
-  num--;
-  if (num < 0) {
-    num = imageSlider.length - 1;
-  }
-  slider.src = imageSlider[num];
-}
-
-/* Funçao do departamento na barra: */
+/* ######################Funçao do departamento na barra: starts###################### */
 function changeIconDepartamento(anchor) {
   anchor.closest('.dropdown').classList.toggle('active');
 
@@ -47,9 +23,10 @@ function changeIconDepartamento(anchor) {
   // icon.classList.toggle('fa-solid fa-chevron-down');
   // icon.classList.toggle('fa-solid fa-xmark');
   //  anchor.querySelector("span").textContent = icon.classList.contains('fa-solid fa-chevron-down') ? "Departamento" : "Departamento";
-}
+};
+/* ######################Funçao do departamento na barra: ends###################### */
 
-/* Functions para o banner: */
+/* ######################Functions for banner: starts ######################*/
 const slider = document.querySelector(".slider"); //var slider dos banner
 const nextBtn = document.querySelector(".next-btn"); //var botao proximo
 const prevBtn = document.querySelector(".prev-btn"); //var botao anterior
@@ -128,4 +105,5 @@ slider.addEventListener("mouseover", () => {
 slider.addEventListener("mouseout", () => {
   autoPlayTransicao();
 });
+/* ######################Functions for banner ends ######################*/
   
