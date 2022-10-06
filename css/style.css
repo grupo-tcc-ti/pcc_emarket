@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
 
+:root {
+    --main-color: darkcyan;
+    --amoled-black: rgba(0, 0, 0, 0.8);
+    --black: #1f1f1f;
+    --white: lavenderBlush;
+    --green: forestgreen;
+    --light-color: snow;
+    --dark-color: black;
+    --light-blue: dodgerBlue;
+    --border: 2px solid #1f1f1f;
+    --footer-border: 5px solid var(--main-color);
+    --card-border: 1.8px groove black;
+    --card-box-shadow: lightgray 10px 10px 10px 10px;
+    --box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+}
+
 /* Modifica todos os conteudo dentro do documento HTML*/
 
 * {
@@ -13,7 +29,7 @@
 #all-container,
 .productslider,
 section {
-    background-color: #F8F8FF;
+    background-color: var(--white);
 }
 
 /* modifica a logo */
@@ -35,8 +51,8 @@ ul {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    background-color: #222224;
-    border-bottom: 5px solid #222222;
+    background-color: var(--black);
+    border-bottom: var(--border);
 }
 
 /* Banner */
@@ -45,7 +61,7 @@ ul {
     background-image: url("../image/banner.png");
     background-position: center;
     background-size: cover;
-    background-color: #2d98da;
+    background-color: var(--light-blue);
     height: 20em;
     margin: 0 auto;
     margin-top: 14px;
@@ -60,43 +76,39 @@ ul {
     align-items: initial;
 }
 
-.link-depart {
-    background-color: rgb(0, 0, 0.3);
-    color: white;
+.link-depart,
+.link-conta,
+.link-carrinho {
+    background-color: var(--black);
+    color: var(--light-color);
     padding: 16px 10px;
     font: 16px 'Poppins', sans-serif;
     border: none;
     cursor: pointer;
-    width: 10em;
+    width: 14em;
     min-height: 3.5rem;
-    border-radius: 0px;
-    background-color: #222224;
+    border-radius: 2px;
+    background-color: var(--black);
 }
 
 .link-depart:hover,
-button.link-conta:hover,
-button.link-carrinho:hover,
+.link-conta:hover,
+.link-carrinho:hover,
 .searchbtn:hover {
-    background-color: darkcyan;
+    background-color: var(--main-color);
     transition: background .5s;
 }
 
-/* .dropdown-content .depart,
-.dropdown-content .conta,
-.dropdown-content .cart */
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #222224;
+    background-color: var(--black);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow);
     z-index: 1;
     border-radius: 0px;
 }
 
-/* .dropdown-content .depart, a,
-.dropdown-content .conta a
-.dropdown-content .cart a  */
 .dropdown-content a {
     display: flex;
     flex-direction: column;
@@ -106,11 +118,8 @@ button.link-carrinho:hover,
     border-radius: 0px;
 }
 
-/* .dropdown-content .depart a:hover,
-.dropdown-content .conta a:hover,
-.dropdown-content .carta a:hover  */
 .dropdown-content a:hover {
-    background-color: aquamarine;
+    background-color: var(--main-color);
     transition: background .5s;
 }
 
@@ -125,9 +134,11 @@ button.link-carrinho:hover,
         opacity: 0;
         transform: rotateX(-90deg);
     }
+
     50% {
         transform: rotateX(-20deg);
     }
+
     100% {
         opacity: 1;
         transform: rotateX(0deg);
@@ -150,28 +161,28 @@ input#isearch {
     min-height: 55px;
     font: 16px;
     border: 3px solid rgba(f, f, f, 0.2);
-    border-radius: 0px 0px 0px 0px;
+    border-radius: 2px;
 }
 
 button.searchbtn {
     border: none;
-    background-color: #000000;
+    background-color: var(--black);
     text-decoration: none;
-    color: white;
+    color: var(--light-color);
     width: 75px;
     min-height: 55px;
     padding: 0 4px 4px 0;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 0px 0px 0px 0px;
+    border-radius: 2px;
 }
 
 
 /* ################# Div container Conta e Carrinho ################# */
 .minhaconta,
 .carrinho {
-    background-color: #000000;
-    color: whitesmoke;
+    background-color: var(--black);
+    color: var(--light-color);
 }
 
 /* ################# Icones da Barra de Navegação ################# */
@@ -194,41 +205,41 @@ button.searchbtn {
     width: 10px;
 }
 
-.link-conta {
+/* .link-conta {
     font: 20px 'Poppins', sans-serif;
     width: 60px;
     min-height: 60px;
     border-radius:0%;
-    color: white;
+    color: var(--light-color);
     border: none;
     cursor: pointer;
-}
+} */
 
 .link-carrinho {
     background-image: url("../image/icones/icons8-carrinho-de-compras-32.png");
     background-position: center;
     background-repeat: no-repeat;
-    width: 60px;
+    /* width: 60px;
     min-height: 60px;
     border-radius:0%;
-    color: white;
+    color: var(--light-color);
     border: none;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
 /*  Texto de Links da Barra de Navegação */
 button.link-conta,
 button.link-carrinho {
     height: max-content;
-    background-color: #222222;
-    color: white;
+    background-color: var(--black);
+    color: var(--light-color);
     border: none;
     cursor: pointer;
 }
 
 /* ################# Image Slider ################# */
 
-.productslider {
+/* .productslider {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -238,10 +249,10 @@ button.link-carrinho {
 
 .prev,
 .next {
-    background-color: #000000;
+    background-color: var(--black);
     cursor: pointer;
     padding: 16px;
-    color: white;
+    color: var(--white);
     font-weight: bold;
     font-size: 20px;
     border-radius: 7px 0px 0px 7px;
@@ -256,14 +267,76 @@ button.link-carrinho {
 
 .prev:hover,
 .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
+    background-color: var(--amoled-black);
+} */
 
 img#slider {
     height: 200px;
     width: 700px;
     cursor: pointer;
     margin: 40px 0px 40px 0px;
+}
+
+.slider {
+    position: relative;
+    background: var(--black);
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 0px;
+}
+
+/* Animaçoes aqui: https://css-tricks.com/animating-with-clip-path/ */
+.slider .slide {
+    position: absolute;
+    width: 100%;
+    height: 280px;
+    clip-path: circle(0% at 0 10%);
+}
+
+.slider .slide.active {
+    clip-path: circle(150% at 0 10%);
+    transition: 1s;
+}
+
+.slider .slide img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.navigation {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slider:hover .navigation {
+    opacity: 1;
+}
+
+.prev-btn,
+.next-btn {
+    z-index: 999;
+    font-size: 2em;
+    color: var(--light-color);
+    background: var(--black);
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev-btn {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.next-btn {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 
@@ -290,7 +363,7 @@ img#slider {
     display: flex;
     flex-direction: column;
     margin: 10px;
-    border: 1.8px groove black;
+    border: var(--card-border);
     border-radius: 0 0 0 0;
     box-sizing: border-box;
     width: 100%;
@@ -303,7 +376,7 @@ img#slider {
 /* Modifica o card quando o cursor está sobre ele */
 
 .cards-items:hover {
-    box-shadow: lightgray 10px 10px 10px 10px;
+    box-shadow: var(--card-box-shadow);
 }
 
 /* Modifica o elemento onde está preço */
@@ -329,8 +402,8 @@ figure {
 
 /*  Modifica o botão do adicionar ao carrinho */
 .buy-bttn {
-    background-color: #3e8e41;
-    color: white;
+    background-color: var(--green);
+    color: var(--light-color);
     padding: 16px;
     font-size: 16px;
     border: none;
@@ -340,22 +413,22 @@ figure {
 /* Modifica o contéudo do botão */
 .buy-bttn a {
     text-decoration: none;
-    color: #f1f1f1;
+    color: var(--light-color);
 }
 
-/* Rodapé */
+/* ########################## Rodapé ########################## */
 
 footer {
     /* padding-bottom: 25px; */
     margin-top: 15px;
-    color: whitesmoke;
+    color: var(--light-color);
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
     position: relative;
-    border-top: 4px solid black;
-    background-color: #222224;
+    border-top: var(--border);
+    background-color: var(--black);
 }
 
 .columns-footer {
@@ -380,75 +453,12 @@ span>a {
 }
 
 .columns-footer>span a:hover {
-    /* text-decoration: underline; */
-    /* color: aquamarine; */
-    background-color: aquamarine;
-    border: 5px solid aquamarine;
+    background-color: var(--main-color);
+    border: var(--footer-border);
     border-radius: 8px;
-    color: black;
+    color: var(--dark-color);
     justify-content: space-between;
-    transition: .2s linear;
-    margin: 1px;
-    padding: 1px;
+    transition: .2s;
+    margin: none;
+    padding: none;
 }
-
-.slider {
-    position: relative;
-    background: #000116;
-    width: 100%;
-    height: 280px;
-    overflow: hidden;
-    border-radius: 0px;
-  }
-
-/* Animaçoes aqui: https://css-tricks.com/animating-with-clip-path/ */
-.slider .slide{ 
-    position: absolute;
-    width: 100%;
-    height: 280px;
-    clip-path: circle(0% at 0 10%);
-  }
-
-.slider .slide.active{
-    clip-path: circle(150% at 0 10%);
-    transition: 1s;
-}
-
-.slider .slide img{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.navigation{
-    height: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.slider:hover .navigation{
-    opacity: 1;
-}
-  
-.prev-btn, .next-btn{
-    z-index: 999;
-    font-size: 2em;
-    color: #F8F8FF;
-    background: rgba(255, 255, 255, 0.0);
-    padding: 10px;
-    cursor: pointer;
- }
-  
-.prev-btn{
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
- }
-  
-.next-btn{
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
- }
