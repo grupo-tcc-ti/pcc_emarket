@@ -287,9 +287,7 @@ section {
 
 
 
-.header .flex .profile:hover+.box-main,
-.header .flex .profile:active+.box-main,
-.header .flex .profile:focus+.box-main {
+.header .flex .profile:active+.box-main {
     opacity: 10%;
     display: none;
 }

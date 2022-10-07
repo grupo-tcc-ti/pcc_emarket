@@ -12,13 +12,13 @@
 </head>
 
 <body>
-    <header>
+    <header class="header">
         <ul>
             <li><img src="./image/logo.png" class="logo-img" alt="logo"></li>
             <li>
                 <div class="dropdown">
-                    <button class="link-depart" onclick='clickDrop("depart")'>
-                        <i id="arrow" class="fa-solid fa-chevron-down"></i> Departamento </button>
+                    <button id="link-depart" onclick='clickDrop("depart")' class="btn">
+                        <i class="fa-solid fa-chevron-down"></i> Departamento </button>
                     <nav id="depart" class="dropdown-content">
                         <a href="#">Promoções</a>
                         <a href="#">Kit Upgrade</a>
@@ -36,14 +36,14 @@
                 <form class="pesquisa" action="#" method="get">
                     <input id="isearch" type="search" name="str" required="" class="busca" autocomplete="off"
                         aria-label="campo de busca" placeholder="Pesquise o seu produto">
-                    <button class="searchbtn" aria-label="botao buscar">
+                    <button id="link-search" class="btn" aria-label="botao buscar">
                         <div id="searchicon" class="icon" aria-hidden="true"></div>
                     </button>
                 </form>
             </li>
             <li>
-                <div class="dropdown-conta">
-                    <button class="link-conta" onclick='clickDrop("conta")'>
+                <div class="dropdown">
+                    <button id="link-conta" onclick='clickDrop("conta")' class="btn">
                         <i class="fa-regular fa-user"></i>
                     </button>
                     <nav id="conta" class="dropdown-content">
@@ -53,9 +53,10 @@
                 </div>
             </li>
             <li>
-                <div class="dropdown-cart">
-                    <button class="link-carrinho" onclick='clickDrop("cart")'></button>
-                    <nav id="cart" class="dropdown-content">
+                <div class="dropdown">
+                    <button id="link-carrinho" onclick='clickDrop("carrinho")' class="btn">
+                    </button>
+                    <nav id="carrinho" class="dropdown-content">
                         <a href="#">Ver Carrinho</a>
                         <a href="#">Limpar Carrinho</a>
                     </nav>

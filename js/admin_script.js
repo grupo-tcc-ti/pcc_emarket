@@ -1,4 +1,3 @@
-
 let navbar = document.querySelector('.header .flex .navbar');
 let profile = document.querySelector('.header .flex .profile');
 

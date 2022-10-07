@@ -1,19 +1,51 @@
 function clickDrop(idname = "") {
-  // "depart"
-  document.getElementById(idname).classList.toggle("showMenuSuspenso");
+  document.getElementById(idname).classList.toggle('active');
+  if (document.querySelector('.dropdown-content').id != idname) {
+    var dropdowns = document.querySelectorAll(`nav:not(#${idname})`);
+    dropdowns.forEach((openDropdown) => {
+      if (openDropdown.classList.contains("active")) {
+        openDropdown.classList.remove("active");
+      }
+    });
+  }
 };
 
-// window.onclick = function (event) {
-//   if (!event.target.matches(".link-depart")) {
-//     var dropdowns = document.getElementsByClassName("dropdown-content");
-//     for (let i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains("showMenuSuspenso")) {
-//         openDropdown.classList.remove("showMenuSuspenso");
-//       }
-//     }
-//   }
-// };
+window.onclick = function (event) {
+  if (!event.target.matches(".btn")) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    for (let i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains("active")) {
+        openDropdown.classList.remove("active");
+      }
+    }
+  }
+};
+
+
+let navdropdown = document.querySelectorAll('.header .dropdown . dropdown-content');
+window.onscroll = () =>{
+  navdropdown.classList.remove('active');
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* ######################Funçao do departamento na barra: starts###################### */
 function changeIconDepartamento(anchor) {
@@ -38,10 +70,10 @@ var slideNumber = 0;
 //next button
 nextBtn.addEventListener("click", () => {
   slides.forEach((slide) => {
-    slide.classList.remove("active");
+    slide.classList.remove('active');
   });
   slideIcons.forEach((slideIcon) => {
-    slideIcon.classList.remove("active");
+    slideIcon.classList.remove('active');
   });
 
   slideNumber++;
@@ -50,17 +82,17 @@ nextBtn.addEventListener("click", () => {
     slideNumber = 0;
   }
 
-  slides[slideNumber].classList.add("active");
-  slideIcons[slideNumber].classList.add("active");
+  slides[slideNumber].classList.add('active');
+  slideIcons[slideNumber].classList.add('active');
 });
 
 //previous button
 prevBtn.addEventListener("click", () => {
   slides.forEach((slide) => {
-    slide.classList.remove("active");
+    slide.classList.remove('active');
   });
   slideIcons.forEach((slideIcon) => {
-    slideIcon.classList.remove("active");
+    slideIcon.classList.remove('active');
   });
 
   slideNumber--;
@@ -69,8 +101,8 @@ prevBtn.addEventListener("click", () => {
     slideNumber = numberOfSlides - 1;
   }
 
-  slides[slideNumber].classList.add("active");
-  slideIcons[slideNumber].classList.add("active");
+  slides[slideNumber].classList.add('active');
+  slideIcons[slideNumber].classList.add('active');
 });
 
 //autoplay
@@ -78,10 +110,10 @@ var playSlider;
 var autoPlayTransicao = () => {
   playSlider = setInterval(function(){
     slides.forEach((slide) => {
-      slide.classList.remove("active");
+      slide.classList.remove('active');
     });
     slideIcons.forEach((slideIcon) => {
-      slideIcon.classList.remove("active");
+      slideIcon.classList.remove('active');
     });
 
     slideNumber++;
@@ -90,8 +122,8 @@ var autoPlayTransicao = () => {
       slideNumber = 0;
     }
 
-    slides[slideNumber].classList.add("active");
-    slideIcons[slideNumber].classList.add("active");
+    slides[slideNumber].classList.add('active');
+    slideIcons[slideNumber].classList.add('active');
   }, 8000); //8 segundos == 8000 ms
 }
 autoPlayTransicao();
