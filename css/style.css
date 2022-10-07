@@ -168,13 +168,14 @@ ul {
     align-items: center;
 }
 
-input#isearch {
+#isearch {
     font-family: 'Poppins', sans-serif;
     width: 100%;
-    min-width: 465px;
-    min-height: 55px;
-    font: 16px;
-    border: 3px solid rgba(f, f, f, 0.2);
+    min-width: 29rem;
+    min-height: 3.6rem;
+    font: 1rem;
+    padding-left: 1.5rem;
+    border: var(--border);
     border-radius: 2px;
 }
 
