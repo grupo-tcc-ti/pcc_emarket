@@ -19,9 +19,6 @@ if (!isset($admin_id)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="../css/admin_stylesheet.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <title>Administrador - Intranet</title>
 </head>
 <body>
@@ -52,7 +49,7 @@ if (!isset($admin_id)) {
                 $select_pendente = $conn->prepare($qry);
                 $select_pendente->execute(['pending']);
                 while ($fetch_pendente = $select_pendente->fetch(PDO::FETCH_ASSOC)) {
-                    $total_pendente += fetch_pendente['total_preco'];
+                    $total_pendente = $fetch_pendente['total_preco'];
                 }
                 ?>
             <h3>Total Pendente<span></span></h3>
@@ -66,7 +63,7 @@ if (!isset($admin_id)) {
                 $select_pago = $conn->prepare($qry);
                 $select_pago->execute(['pago']);
                 while ($fetch_pago = $select_pago->fetch(PDO::FETCH_ASSOC)) {
-                    $total_pago += fetch_pago['total_preco'];
+                    $total_pago += $fetch_pago['total_preco'];
                 }
                 ?>
             <h3>Total a Pagar<span></span></h3>
