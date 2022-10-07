@@ -1,7 +1,7 @@
 function clickDrop(idname = "") {
   document.getElementById(idname).classList.toggle('active');
   if (document.querySelector('.dropdown-content').id != idname) {
-    var dropdowns = document.querySelectorAll(`nav:not(#${idname})`);
+    let dropdowns = document.querySelectorAll(`nav:not(#${idname}.dropdown-content)`);
     dropdowns.forEach((openDropdown) => {
       if (openDropdown.classList.contains("active")) {
         openDropdown.classList.remove("active");
@@ -12,40 +12,24 @@ function clickDrop(idname = "") {
 
 window.onclick = function (event) {
   if (!event.target.matches(".btn")) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    for (let i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
+    let dropdowns = document.querySelectorAll(".dropdown-content");
+    dropdowns.forEach((openDropdown) => {
       if (openDropdown.classList.contains("active")) {
         openDropdown.classList.remove("active");
       }
-    }
+    });
   }
 };
 
 
-let navdropdown = document.querySelectorAll('.header .dropdown . dropdown-content');
-window.onscroll = () =>{
-  navdropdown.classList.remove('active');
+window.onscroll = () => {
+  let dropdowns = document.querySelectorAll(".dropdown-content");
+  dropdowns.forEach((openDropdown) => {
+    if (openDropdown.classList.contains("active")) {
+      openDropdown.classList.remove("active");
+    }
+  });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ######################Funçao do departamento na barra: starts###################### */
 function changeIconDepartamento(anchor) {
@@ -78,7 +62,7 @@ nextBtn.addEventListener("click", () => {
 
   slideNumber++;
 
-  if(slideNumber > (numberOfSlides - 1)){
+  if (slideNumber > (numberOfSlides - 1)) {
     slideNumber = 0;
   }
 
@@ -97,7 +81,7 @@ prevBtn.addEventListener("click", () => {
 
   slideNumber--;
 
-  if(slideNumber < 0){
+  if (slideNumber < 0) {
     slideNumber = numberOfSlides - 1;
   }
 
@@ -108,7 +92,7 @@ prevBtn.addEventListener("click", () => {
 //autoplay
 var playSlider;
 var autoPlayTransicao = () => {
-  playSlider = setInterval(function(){
+  playSlider = setInterval(function () {
     slides.forEach((slide) => {
       slide.classList.remove('active');
     });
@@ -118,7 +102,7 @@ var autoPlayTransicao = () => {
 
     slideNumber++;
 
-    if(slideNumber > (numberOfSlides - 1)){
+    if (slideNumber > (numberOfSlides - 1)) {
       slideNumber = 0;
     }
 
@@ -138,4 +122,3 @@ slider.addEventListener("mouseout", () => {
   autoPlayTransicao();
 });
 /* ######################Functions for banner ends ######################*/
-  
