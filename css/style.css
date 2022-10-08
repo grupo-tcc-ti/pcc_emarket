@@ -41,7 +41,7 @@ section {
 }
 
 .header {
-    border-bottom: 2px solid forestgreen;
+    border-bottom: 3px solid var(--main-color);
 }
 
 /* Modifica os elementos da barra de naavegação */
