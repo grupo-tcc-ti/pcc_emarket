@@ -33,9 +33,10 @@ if (isset($mensagem)) {
 
     <div class="profile">
         <?php
-            $qry = "SELECT * FROM `admins` WHERE codAdmin = ?";
+            $qry = "SELECT * FROM `admins` WHERE codAdmin = :admin_id";
             $selecionar_perfil = $conn->prepare($qry);
-            $selecionar_perfil->execute([$admin_id]);
+            $selecionar_perfil->bindParam(':admin_id', $admin_id);
+            $selecionar_perfil->execute();
             $fetch_perfil = $selecionar_perfil->fetch(PDO::FETCH_ASSOC);
         ?>
         <p><?= $fetch_perfil['nome'];?></p>

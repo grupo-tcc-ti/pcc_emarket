@@ -2,20 +2,48 @@
 include '../components/connect.php';
 session_start();
 
+$admin_id = $_SESSION['admin_id'];
+
+if (isset($admin_id)) {
+    // echo print_r($_SESSION).':loggedin'; //debug
+    $mensagem[] = 'Sua sessão já foi iniciada!';
+    $mensagem[] = 'Voce está sendo redirecionado....';
+    // Pegar hostname
+    $hostname = $_SERVER['HTTP_HOST'];
+    // Pegar o diretorio atual com barra“/”
+    $current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
+    // Define o nome da pagina
+    $page = 'dashboard.php';
+    header('refresh:3, url=http://'.$hostname.$current_directory.'/'.$page);
+}
+
 if (isset($_POST['submit'])){
     $usuario = $_POST['usuario'];
     $usuario = filter_var($usuario, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $senha = sha1($_POST['senha']);
     $senha = filter_var($senha, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $qry = "SELECT * FROM `admins` WHERE nome = ? AND senha = ?";
+    // $qry = "SELECT * FROM `admins` WHERE nome = ? AND senha = ?";
+    $qry = "SELECT * FROM `admins` WHERE nome = :usuario AND senha = :senha";
     $selecionar_admin = $conn->prepare($qry);
-    $selecionar_admin->execute([$usuario, $senha]);
+    $selecionar_admin->bindParam(':usuario', $usuario);
+    $selecionar_admin->bindParam(':senha', $senha);
+    $selecionar_admin->execute();
     if ($selecionar_admin->rowCount() > 0){
         $fetch_admin_id = $selecionar_admin->fetch(PDO::FETCH_ASSOC);
         $_SESSION['admin_id'] = $fetch_admin_id['codAdmin'];
-        header('location: dashboard.php');
         $mensagem[] = 'Bem Vindo';
+        // header('location: dashboard.php');
+
+        // Pegar hostname
+        $hostname = $_SERVER['HTTP_HOST'];
+        // Pegar o diretorio atual com barra“/”
+        $current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
+        // Define o nome da pagina
+        $page = 'dashboard.php';
+
+        header('refresh:2, url=http://'.$hostname.$current_directory.'/'.$page);
+        exit;
     } else {
         $mensagem[] = 'Nome de usuário ou senha incorreto!';
     }
@@ -35,7 +63,11 @@ if (isset($_POST['submit'])){
     <title>Login do Administrador - Intranet</title>
 </head>
 <body>
-
+    
+<!-- <div class="mensagem">
+<span>Sua sessão já foi iniciada!</span>
+<i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
+</div> -->
 
 <?php
 if (isset($mensagem)){

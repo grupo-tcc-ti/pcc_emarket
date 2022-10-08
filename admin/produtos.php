@@ -4,13 +4,6 @@ session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
-// $my_form = $_COOKIE["add_produto_form"];
-// // decode from JSON
-// $my_form = json_decode($my_form);
-// // get single value
-// $name = $my_form->name;
-// print_r($name);
-
 if (!isset($admin_id)) {
     $admin_header = 'admin_header.php';
     header('location:../components/'.$admin_header);
@@ -29,16 +22,20 @@ if (isset($_POST['add_produto'])) {
     $selecionar_prods->bindParam(':nome', $nome);
     $selecionar_prods->execute();
 
-    
+    $name_valid = false;
     //Verifica se produto com mesmo nome
     if ($selecionar_prods->rowCount() > 0) {
         $mensagem[] = 'Um produto com o mesmo nome ja existe!';
         $name_valid = false;
-    } else { $name_valid = true;}
+        // echo ':name_invalid:'; //debug
+    } else {
+        $name_valid = true;
+        // echo ':name_valid:'; //debug
+    }
     
     
     //Image handling procedure starts --------->
-    $name_valid = $path_valid = $size_valid = $upload_valid = false;
+    $path_valid = $size_valid = $upload_valid = false;
     $fetched_imgs = $image = array();
     $prod_path = "../image/produtos_teste/";
     if (isset($_FILES['image'])){
@@ -46,11 +43,11 @@ if (isset($_POST['add_produto'])) {
         foreach ($image_error as $image_error){
             if ($image_error != 0) {
             $upload_valid = false;
-            // echo 'upload_invalid:';
+            // echo 'upload_invalid:'; //debug
             }
             else {
                 $upload_valid = true;
-                // echo 'upload_valid:';
+                // echo 'upload_valid:'; //debug
             }
         }
         
