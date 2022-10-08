@@ -12,7 +12,8 @@ $admin_id = $_SESSION['admin_id'];
 // print_r($name);
 
 if (!isset($admin_id)) {
-    header('location:../components/admin_header.php');
+    $admin_header = 'admin_header.php';
+    header('location:../components/'.$admin_header);
 }
 
 // Adicionar produto starts ###################################################################
@@ -24,20 +25,20 @@ if (isset($_POST['add_produto'])) {
     $preco = $_POST['preco'];
     $preco = filter_var($preco, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $select_produtos = $conn->prepare("SELECT * FROM `produtos` WHERE nome = :nome");
-    $select_produtos->bindParam(':nome', $nome);
-    $select_produtos->execute();
+    $selecionar_prods = $conn->prepare("SELECT * FROM `produtos` WHERE nome = :nome");
+    $selecionar_prods->bindParam(':nome', $nome);
+    $selecionar_prods->execute();
 
-    $name_valid = $path_valid = $size_valid = $upload_valid = false;
-
+    
     //Verifica se produto com mesmo nome
-    if ($select_produtos->rowCount() > 0) {
-        $message[] = 'Um produto com o mesmo nome ja existe!';
+    if ($selecionar_prods->rowCount() > 0) {
+        $mensagem[] = 'Um produto com o mesmo nome ja existe!';
         $name_valid = false;
     } else { $name_valid = true;}
-
-
+    
+    
     //Image handling procedure starts --------->
+    $name_valid = $path_valid = $size_valid = $upload_valid = false;
     $fetched_imgs = $image = array();
     $prod_path = "../image/produtos_teste/";
     if (isset($_FILES['image'])){
@@ -78,7 +79,7 @@ if (isset($_POST['add_produto'])) {
                 //Verifica o tamanho do arquivo
                 $image_size = $files_img['size'][$i]; //O tamanho, em bytes, do arquivo enviado.
                 if ($image_size > 2000000) {
-                    $message[] = 'Tamanho do arquivo é maior que o permitido!';
+                    $mensagem[] = 'Tamanho do arquivo é maior que o permitido!';
                     $size_valid = false;
                 } else { $size_valid = true; 
                     // echo $size_valid.':arrayimg_size'."\n"; //debug
@@ -101,7 +102,7 @@ if (isset($_POST['add_produto'])) {
             //Verifica o tamanho do arquivo
             $image_size = $files_img['size']; //O tamanho, em bytes, do arquivo enviado.
             if ($image_size > 2000000) {
-                $message[] = 'Tamanho do arquivo é maior que o permitido!';
+                $mensagem[] = 'Tamanho do arquivo é maior que o permitido!';
                 $size_valid = false;
             } else { $size_valid = true;
                 // echo $size_valid.':singleimg_size'."\n"; //debug
@@ -118,22 +119,41 @@ if (isset($_POST['add_produto'])) {
     //Confirma se imagens validas
     if ($name_valid && $path_valid && $size_valid && $upload_valid) {
         //Insere o produto
-        $inserir_produto = $conn->prepare("INSERT INTO `produtos` (nome, descricao, preco, image)
+        $inserir_prod = $conn->prepare("INSERT INTO `produtos` (nome, descricao, preco, image)
         VALUES (:nome, :descricao, :preco, :image)");
-        $inserir_produto->bindParam(":nome", $nome);
-        $inserir_produto->bindParam(":descricao", $descricao);
-        $inserir_produto->bindParam(":preco", $preco);
-        $inserir_produto->bindValue(":image", is_array($image)?implode(',', $image):$image);
-        $inserir_produto->execute();
-        $message[] = 'Produto adicionado com sucesso!';
+        $inserir_prod->bindParam(":nome", $nome);
+        $inserir_prod->bindParam(":descricao", $descricao);
+        $inserir_prod->bindParam(":preco", $preco);
+        $inserir_prod->bindValue(":image", is_array($image)?implode(',', $image):$image);
+        $inserir_prod->execute();
+        $mensagem[] = 'Produto adicionado com sucesso!';
     }
 }
 // Adicionar produto ends ###################################################################
 
+// Alterar produto starts ###################################################################
+if(isset($_POST['alterar_prod'])){
+    // Pegar hostname
+    $hostname = $_SERVER['HTTP_HOST'];
+    // Pegar o diretorio atual com barra“/”
+    $current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
+    // Define o nome da pagina
+    $page = 'alterar_produto.php';
+    // using the PHP header location with an absolute URL to redirect
+    // to the contact.php page
+    $value = $_POST['alterar_prod'];
+
+    // echo 'http://'.$hostname.$current_directory.'/'.$page.'?id='.$value; //debug
+    header('location: http://'.$hostname.$current_directory.'/'.$page);
+    exit;
+
+}
+// Alterar produto ends ###################################################################
+
 // Deletar produto starts ###################################################################
-if(isset($_GET['delete_prod'])){
+if(isset($_POST['delete_prod'])){
     
-    $delete_id = $_GET['delete_prod'];
+    $delete_id = $_POST['delete_prod'];
     $del_prod_img = $conn->prepare("SELECT * FROM `produtos` WHERE codProduto = :id"); //_img
     $del_prod_img->bindParam(':id', $delete_id);
     $del_prod_img->execute();
@@ -211,11 +231,11 @@ function debugImgArr($img_name = ''){
 class UploadException extends Exception
 {
     public function __construct($code) {
-        $msg = $this->codeToMessage($code);
+        $msg = $this->codeTomensagem($code);
         parent::__construct($msg, $code);
     }
 
-    private function codeToMessage($code)
+    private function codeTomensagem($code)
     {
         switch ($code) {
             case UPLOAD_ERR_INI_SIZE:
@@ -300,30 +320,30 @@ class UploadException extends Exception
 <section class="mostrar-produtos">
     <div class="box-container">
         <?php
-    $mostrar_produtos = $conn->prepare("SELECT * FROM  `produtos`");
-    $mostrar_produtos->execute();
-    if ($mostrar_produtos->rowCount() > 0) {
-        while ($fetch_produto = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)) {
-            $fetched_imgs = explode(",", $fetch_produto['image']);
+    $mostrar_prods = $conn->prepare("SELECT * FROM  `produtos`");
+    $mostrar_prods->execute();
+    if ($mostrar_prods->rowCount() > 0) {
+        while ($fetch_prod = $mostrar_prods->fetch(PDO::FETCH_ASSOC)) {
+            $fetched_imgs = explode(",", $fetch_prod['image']);
             ?>
             <div class="box">
                 <img src='<?=$fetched_imgs[0];?>' alt="">
-                <div class="nome"><?=$fetch_produto['nome'];?></div>
-                <div class="preco">R$ <?=$fetch_produto['preco'];?></div>
-                <div class="descricao"><?=$fetch_produto['descricao'];?></div>
-                <form action="" method="get" name="prod_mgmt" class="prod_mgmt">
+                <div class="nome"><?=$fetch_prod['nome'];?></div>
+                <div class="preco">R$ <?=$fetch_prod['preco'];?></div>
+                <div class="descricao"><?=$fetch_prod['descricao'];?></div>
+                <form action="" method="POST" name="prod_mgmt" class="prod_mgmt">
                 <div class="flex-btn">
-                    <button type="submit" name="update_prod" value="<?=$fetch_produto['codProduto'];?>" class="option-btn"
+                    <button type="submit" name="alterar_prod" value="<?=$fetch_prod['codProduto'];?>" class="option-btn"
                     onclick="return confirm('Você confirma as alterações?');"
                     >Alterar</button>
                 </div>
                 <div class="flex-btn">
                     <!-- Aproach #1 -->
-                    <!-- <a href='produtos.php?delete_prod=<?=$fetch_produto['codProduto'];?>' class="delete-btn"
+                    <!-- <a href='produtos.php?delete_prod=<?=$fetch_prod['codProduto'];?>' class="delete-btn"
                     onclick="return confirm('Deseja mesmo excluir o produto?');">
                     Deletar</a> -->
                     <!-- Aproach #2 -->
-                    <button type="submit" name="delete_prod" value="<?=$fetch_produto['codProduto'];?>" class="delete-btn"
+                    <button type="submit" name="delete_prod" value="<?=$fetch_prod['codProduto'];?>" class="delete-btn"
                     onclick="return confirm('Deseja mesmo excluir o produto?');"
                     >Deletar</button>
                 </div>

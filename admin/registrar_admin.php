@@ -20,14 +20,14 @@ if (isset($_POST['submit'])){
     $select_admin = $conn->prepare($qry);
     $select_admin->execute([$username]);
     if ($select_admin->rowCount() > 0){
-        $message[] = 'Conta já existe!';
+        $mensagem[] = 'Conta já existe!';
     } else if ($password != $rpassword) {
-        $message[] = 'Nome de usuário ou senha incorreto!';
+        $mensagem[] = 'Nome de usuário ou senha incorreto!';
     }
     else {
         $insert_admin = $conn->prepare("INSERT INTO `admins` (nome, senha) VALUES (?, ?)");
         $insert_admin->execute([$username, $rpassword]);
-        $message[] = 'Cadastro de Administrador realizado com Sucesso!';
+        $mensagem[] = 'Cadastro de Administrador realizado com Sucesso!';
     }
 }
 

@@ -3,21 +3,21 @@ include '../components/connect.php';
 session_start();
 
 if (isset($_POST['submit'])){
-    $username = $_POST['username'];
-    $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $password = sha1($_POST['password']);
-    $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $usuario = $_POST['usuario'];
+    $usuario = filter_var($usuario, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $senha = sha1($_POST['senha']);
+    $senha = filter_var($senha, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $qry = "SELECT * FROM `admins` WHERE nome = ? AND senha = ?";
-    $select_admin = $conn->prepare($qry);
-    $select_admin->execute([$username, $password]);
-    if ($select_admin->rowCount() > 0){
-        $fetch_admin_id = $select_admin->fetch(PDO::FETCH_ASSOC);
+    $selecionar_admin = $conn->prepare($qry);
+    $selecionar_admin->execute([$usuario, $senha]);
+    if ($selecionar_admin->rowCount() > 0){
+        $fetch_admin_id = $selecionar_admin->fetch(PDO::FETCH_ASSOC);
         $_SESSION['admin_id'] = $fetch_admin_id['codAdmin'];
         header('location: dashboard.php');
-        $message[] = 'Bem Vindo';
+        $mensagem[] = 'Bem Vindo';
     } else {
-        $message[] = 'Nome de usuário ou senha incorreto!';
+        $mensagem[] = 'Nome de usuário ou senha incorreto!';
     }
 }
 
@@ -38,11 +38,11 @@ if (isset($_POST['submit'])){
 
 
 <?php
-if (isset($message)){
-    foreach ($message as $message) {
+if (isset($mensagem)){
+    foreach ($mensagem as $mensagem) {
         echo '
-        <div class="message">
-        <span>'.$message.'</span>
+        <div class="mensagem">
+        <span>'.$mensagem.'</span>
         <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
         </div>
         ';
@@ -56,9 +56,9 @@ if (isset($message)){
     <form action="" method="post">
         <h3>Credenciais de Login</h3>
         <p>Usuário de administrador predefinido: user = <span>admin</span> e senha <span>1234</span></p>
-        <input type="text" name="username" class="inputbox" maxlength="20" required placeholder="Usuário"
+        <input type="text" name="usuario" class="inputbox" maxlength="20" required placeholder="Usuário"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="password" name="password" class="inputbox" maxlength="20" required placeholder="Senha"
+        <input type="senha" name="senha" class="inputbox" maxlength="20" required placeholder="Senha"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
         <input type="submit" value="Logar" class="btn" name="submit">
     </form>

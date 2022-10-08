@@ -1,9 +1,9 @@
 <?php
-if (isset($message)) {
-    foreach ($message as $message) {
+if (isset($mensagem)) {
+    foreach ($mensagem as $mensagem) {
         echo '
-        <div class="message">
-        <span>' . $message . '</span>
+        <div class="mensagem">
+        <span>' . $mensagem . '</span>
         <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
         </div>
         ';
@@ -34,11 +34,11 @@ if (isset($message)) {
     <div class="profile">
         <?php
             $qry = "SELECT * FROM `admins` WHERE codAdmin = ?";
-            $select_profile = $conn->prepare($qry);
-            $select_profile->execute([$admin_id]);
-            $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+            $selecionar_perfil = $conn->prepare($qry);
+            $selecionar_perfil->execute([$admin_id]);
+            $fetch_perfil = $selecionar_perfil->fetch(PDO::FETCH_ASSOC);
         ?>
-        <p><?= $fetch_profile['nome'];?></p>
+        <p><?= $fetch_perfil['nome'];?></p>
         <a href="../admin/alterar_perfil.php" class="btn">Alterar Conta</a>
         <div class="flex-btn">
             <a href="../components/admin_logout.php" onclick="return confirm('Você deseja sair?');" class="option-btn">Login</a>

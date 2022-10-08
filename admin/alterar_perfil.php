@@ -9,45 +9,46 @@ if (!isset($admin_id)) {
 }
 
 if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $usuario = $_POST['usuario'];
+    $usuario = filter_var($usuario, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $updt_username = $conn->prepare("UPDATE `admins` SET nome = ? WHERE codAdmin = ?");
-    $updt_username->execute([$username, $admin_id]);
+    $alterar_usuario = $conn->prepare("UPDATE `admins` SET nome = ? WHERE codAdmin = ?");
+    $alterar_usuario->execute([$usuario, $admin_id]);
 
-    $select_old_password = $conn->prepare("SELECT senha FROM `admins` WHERE codAdmin = ?");
-    $select_old_password->execute([$admin_id]);
-    $fetch_old_password = $select_old_password->fetch(PDO::FETCH_ASSOC);
-    echo $prev_password = $fetch_old_password['senha'];
-    $old_password = sha1($_POST['old_password']);
-    $old_password = filter_var($old_password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $select_senha_antiga = $conn->prepare("SELECT senha FROM `admins` WHERE codAdmin = ?");
+    $select_senha_antiga->execute([$admin_id]);
+    $fetch_senha_antiga = $select_senha_antiga->fetch(PDO::FETCH_ASSOC);
+    $senha_anterior = $fetch_senha_antiga['senha']; //debug echo
     
-    $new_password = sha1($_POST['new_password']);
-    $new_password = filter_var($new_password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $senha_antiga = sha1($_POST['senha_antiga']); //input do usuario com a senha antiga
+    $senha_antiga = filter_var($senha_antiga, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
-    $rnew_password = sha1($_POST['rnew_password']);
-    $rnew_password = filter_var($rnew_password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $nova_senha = sha1($_POST['nova_senha']);
+    $nova_senha = filter_var($nova_senha, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     
-    $empty_field = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
-    if (empty($old_password) ||
-        $old_password == $empty_field) {
-        $message[] = "Por favor insira a senha antiga!";
-    }else if($old_password != $prev_password){
-        $message[] = "A senha antiga está incorreta!";
-    }else if($prev_password == $new_password){
-        $message[] = "A senha antiga é a mesma da atual!";
-    }else if($new_password != $rnew_password){
-        $message[] = "As novas senhas não coincidem!";
+    $rnova_senha = sha1($_POST['rnova_senha']);
+    $rnova_senha = filter_var($rnova_senha, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+    $campo_vazio = 'da39a3ee5e6b4b0d3255bfef95601890afd80709';
+    if (empty($senha_antiga) ||
+        $senha_antiga == $campo_vazio) {
+        $mensagem[] = "Por favor insira a senha antiga!";
+    }else if($senha_antiga != $senha_anterior){
+        $mensagem[] = "A senha antiga está incorreta!";
+    }else if($senha_anterior == $nova_senha){
+        $mensagem[] = "A senha antiga é a mesma da atual!";
+    }else if($nova_senha != $rnova_senha){
+        $mensagem[] = "As novas senhas não coincidem!";
     }else{
-        if (empty($new_password) && empty($rnew_password) ||
-        $new_password == $empty_field && $rnew_password == $empty_field){
+        if (empty($nova_senha) && empty($rnova_senha) ||
+        $nova_senha == $campo_vazio && $rnova_senha == $campo_vazio){
             sleep(1);
-            $message[] = 'Por favor insira uma nova senha!';
+            $mensagem[] = 'Por favor insira uma nova senha!';
         } else {
             $alterar_senha = $conn->prepare("UPDATE `admins` SET senha = ? WHERE codAdmin = ?");
-            $alterar_senha->execute([$rnew_password, $admin_id]);
-            $message[] = 'A senha foi alterada com sucesso!';
-            $message[] = 'Você será redirecionado ao dashboard!';
+            $alterar_senha->execute([$rnova_senha, $admin_id]);
+            $mensagem[] = 'A senha foi alterada com sucesso!';
+            $mensagem[] = 'Você será redirecionado ao dashboard!';
             sleep(1);
             header('location:../admin/dashboard.php');
             exit(); 
@@ -75,13 +76,13 @@ if (isset($_POST['submit'])) {
 <section class="form-container">
     <form action="" method="post">
         <h3>Alterar Perfil - Administrador</h3><br><br><br>
-        <input type="text" name="username" class="inputbox" maxlength="20" placeholder="Usuário" required
-        oninput = "this.value = this.value.replace(/\s/g, '')" value="<?= $fetch_profile['nome']; ?>">
-        <input type="password" name="old_password" class="inputbox" maxlength="20" placeholder="Digite a Senha Anterior" 
+        <input type="text" name="usuario" class="inputbox" maxlength="20" placeholder="Usuário" required
+        oninput = "this.value = this.value.replace(/\s/g, '')" value="<?= $fetch_perfil['nome']; ?>">
+        <input type="password" name="senha_antiga" class="inputbox" maxlength="20" placeholder="Digite a Senha Anterior" 
         oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="password" name="new_password" class="inputbox" maxlength="20" placeholder="Digite a Nova Senha" 
+        <input type="password" name="nova_senha" class="inputbox" maxlength="20" placeholder="Digite a Nova Senha" 
         oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="password" name="rnew_password" class="inputbox" maxlength="20" placeholder="Repita a sua Nova Senha" 
+        <input type="password" name="rnova_senha" class="inputbox" maxlength="20" placeholder="Repita a sua Nova Senha" 
         oninput = "this.value = this.value.replace(/\s/g, '')" >
         <input type="submit" value="Alterar" class="btn" name="submit">
     </form>
