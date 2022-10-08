@@ -135,7 +135,7 @@ if (isset($_POST['alterar'])){
         while ($fetch_produto = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)) {
             $fetched_imgs = explode(",", $fetch_produto['image']); ?>
     
-    <form action="" method="get" enctype="multipart/form-data">
+    <form action="" method="get" enctype="multipart/form-data" class="alterar_form" name="alterar_form">
         <input type="hidden" name="codProduto" value='<?=$fetch_produto['codProduto']; //....::PHP::..... ends .. ?>'>
         <input type="hidden" name="image[]" value='<?=$fetched_imgs;
             //....::PHP::..... ends .. ?>'>
