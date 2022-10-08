@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap');
- 
+
 :root {
     --main-color: dodgerblue;
     --red: orangered;
@@ -62,7 +62,7 @@ section {
 }
 
 
-.message {
+.mensagem {
     background-color: var(--light-bg);
     display: flex;
     justify-content: space-between;
@@ -78,18 +78,18 @@ section {
     border-radius: .5rem;
 }
 
-.message span {
+.mensagem span {
     font-size: 2.5rem;
     color: var(--black);
 }
 
-.message i {
+.mensagem i {
     font-size: 2.5rem;
     color: var(--red);
     cursor: pointer;
 }
 
-.message i:hover {
+.mensagem i:hover {
     color: var(--black);
 }
 
@@ -359,7 +359,7 @@ section.dashboard .box-container .box p {
     box-shadow: var(--box-shadow);
 }
 
-.add-produtos .required-field::after{
+.add-produtos .required-field::after {
     content: "*";
     color: red;
 }
@@ -376,12 +376,12 @@ section.dashboard .box-container .box p {
     box-shadow: var(--box-shadow);
     border: var(--border);
     padding: 2rem;
-    
+
 }
 
-.add-produtos form .heading{
+.add-produtos form .heading {
     font-size: 4rem;
-    color:var(--black);
+    color: var(--black);
     margin-bottom: 2rem;
     text-align: center;
 }
@@ -396,12 +396,12 @@ section.dashboard .box-container .box p {
     flex: 1 1 40rem;
 }
 
-.add-produtos form .flex .inputbox span{
+.add-produtos form .flex .inputbox span {
     font-size: 2rem;
     color: var(--black);
 }
 
-.add-produtos form .flex .inputbox textarea[name=descricao]{
+.add-produtos form .flex .inputbox textarea[name=descricao] {
     resize: none;
 }
 
@@ -430,9 +430,9 @@ section.dashboard .box-container .box p {
     cursor: pointer;
 } */
 
-h3.heading{
+h3.heading {
     font-size: 4rem;
-    color:var(--black);
+    color: var(--black);
     margin-bottom: 2rem;
     text-align: center;
     justify-content: center;
@@ -461,18 +461,18 @@ h3.heading{
     object-fit: contain;
 }
 
-.mostrar-produtos .box-container .box .nome{
+.mostrar-produtos .box-container .box .nome {
     font-size: 1.5rem;
     color: var(--black);
 }
 
-.mostrar-produtos .box-container .box .preco{
+.mostrar-produtos .box-container .box .preco {
     font-size: 2.5rem;
     color: var(--main-color);
     margin: 1rem 0;
 }
 
-.mostrar-produtos .box-container .box .descricao{
+.mostrar-produtos .box-container .box .descricao {
     line-height: 2;
     font-size: 1.5rem;
     color: var(--black);
@@ -481,8 +481,15 @@ h3.heading{
     overflow: scroll;
 }
 
-
-
+.alterar-produto .alterar_form {
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: .4rem;
+    border: var(--border);
+    padding: 2rem;
+    max-width: 50rem;
+    margin: 0 auto;
+}
 
 
 
@@ -542,6 +549,7 @@ h3.heading{
     .heading-dash {
         font-size: 1.5rem;
     }
+
     .mostrar-produtos .box-container {
         grid-template-columns: 1fr;
     }
