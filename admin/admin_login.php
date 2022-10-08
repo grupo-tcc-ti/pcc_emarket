@@ -2,7 +2,8 @@
 include '../components/connect.php';
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+(empty($_SESSION['admin_id']))?:$admin_id = $_SESSION['admin_id'];
+
 
 if (isset($admin_id)) {
     // echo print_r($_SESSION).':loggedin'; //debug
