@@ -40,6 +40,10 @@ section {
     height: 4rem;
 }
 
+.header {
+    border-bottom: 3px solid var(--main-color);
+}
+
 /* Modifica os elementos da barra de naavegação */
 
 ul {
@@ -116,7 +120,7 @@ ul {
     display: none;
     position: absolute;
     background-color: var(--black);
-    min-width: 160px;
+    min-width: 225px;
     box-shadow: var(--box-shadow);
     z-index: 1;
     border-radius: 0px;
@@ -126,7 +130,7 @@ ul {
     display: flex;
     flex-direction: column;
     color: white;
-    padding: 12px 16px;
+    padding: 12px 10px;
     text-decoration: none;
     border-radius: 0px;
 }
@@ -172,11 +176,11 @@ ul {
     font-family: 'Poppins', sans-serif;
     width: 100%;
     min-width: 29rem;
-    min-height: 3.6rem;
+    min-height: 58px;
     font: 1rem;
     padding-left: 1.5rem;
     border: var(--border);
-    border-radius: 2px;
+    border-radius: 0px;
 }
 
 /* ################# Div container Conta e Carrinho ################# */
