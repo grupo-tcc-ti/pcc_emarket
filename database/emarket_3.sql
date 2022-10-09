@@ -12,7 +12,7 @@ USE `emarket` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`admins` (
   `codAdmin` INT(100) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`codAdmin`))
 ENGINE = InnoDB
@@ -24,7 +24,7 @@ AUTO_INCREMENT = 4;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`usuarios` (
   `codUsuario` INT(100) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`codUsuario`))
@@ -37,10 +37,10 @@ AUTO_INCREMENT = 2;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`produtos` (
   `codProduto` INT(100) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `descricao` VARCHAR(1500) NOT NULL,
   `preco` DOUBLE NOT NULL,
-  `image` VARCHAR(10000) NOT NULL,
+  `image` VARCHAR(1500) NOT NULL,
   PRIMARY KEY (`codProduto`))
 ENGINE = InnoDB;
 
@@ -50,10 +50,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`carrinho` (
   `codCarrinho` INT(100) NOT NULL,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `preco` DOUBLE NOT NULL,
-  `quantidade` INT(10) NOT NULL,
-  `image` VARCHAR(10000) NOT NULL,
+  `quantidade` INT(12) NOT NULL,
+  `image` VARCHAR(1500) NOT NULL,
   `usuarios_codUsuario` INT(100) NOT NULL,
   `produtos_codProduto` INT(100) NOT NULL,
   PRIMARY KEY (`codCarrinho`),
@@ -77,7 +77,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`clientes` (
   `codCliente` INT(100) NOT NULL,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`codCliente`))
@@ -90,7 +90,7 @@ ENGINE = InnoDB
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`funcionarios` (
   `codFuncionario` INT(100) NOT NULL,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`codFuncionario`))
@@ -102,9 +102,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`listadedesejo` (
   `codItem` INT(100) NOT NULL,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `preco` DOUBLE NOT NULL,
-  `image` VARCHAR(10000) NOT NULL,
+  `image` VARCHAR(1500) NOT NULL,
   `usuarios_codUsuario` INT(100) NOT NULL,
   `produtos_codProduto` INT(100) NOT NULL,
   PRIMARY KEY (`codItem`),
@@ -128,7 +128,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`mensagens` (
   `codMensagem` INT(100) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `telefone` VARCHAR(12) NOT NULL,
   `mensagem` VARCHAR(500) NOT NULL,
@@ -148,17 +148,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `emarket`.`pedidos` (
   `codPedido` INT(100) NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(200) NOT NULL,
+  `nome` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `telefone` VARCHAR(12) NOT NULL,
-  `tipoEntrega` VARCHAR(45) NOT NULL,
+  `tipoEntrega` VARCHAR(255) NOT NULL,
   `cepDestino` INT(12) NOT NULL,
-  `endereco` VARCHAR(50) NOT NULL,
-  `totalProduto` VARCHAR(1000) NOT NULL,
+  `endereco` VARCHAR(255) NOT NULL,
+  `totalProduto` VARCHAR(1500) NOT NULL,
   `totalPreco` DOUBLE NOT NULL,
   `dataEnvio` DATE NOT NULL,
   `dataEntrega` DATE NULL DEFAULT NULL,
-  `statusPagamento` VARCHAR(20) NOT NULL DEFAULT 'Pendente',
+  `statusPagamento` VARCHAR(50) NOT NULL DEFAULT 'Pendente',
   `usuarios_codUsuario` INT(100) NOT NULL,
   PRIMARY KEY (`codPedido`),
   INDEX `fk_pedidos_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
