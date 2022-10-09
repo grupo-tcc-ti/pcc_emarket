@@ -9,6 +9,8 @@ if (!isset($admin_id)) {
     header('location:../components/'.$admin_header);
 }
 
+// var_dump($_SESSION['codProduto']); //debug
+
 // Adicionar produto starts ###################################################################
 if (isset($_POST['add_produto'])) {
     $nome = $_POST['nome'];
@@ -124,6 +126,16 @@ if (isset($_POST['add_produto'])) {
         $inserir_prod->bindValue(":image", is_array($image)?implode(',', $image):$image);
         $inserir_prod->execute();
         $mensagem[] = 'Produto adicionado com sucesso!';
+
+
+        $hostname = $_SERVER['HTTP_HOST'];
+        $current_directory = rtrim(dirname($_SERVER['PHP_SELF']),'/');
+        $page = 'produtos.php';
+        $_GET = $_POST = array();
+        unset($_POST);
+        unset($_GET);
+        // header('refresh: 2, url=http://'.$hostname.$current_directory.'/'.$page);
+        // exit;
     }
 }
 // Adicionar produto ends ###################################################################
@@ -139,7 +151,8 @@ if(isset($_POST['alterar_prod'])){
     // using the PHP header location with an absolute URL to redirect
     // to the contact.php page
     $value = $_POST['alterar_prod'];
-
+    // var_dump($value); //debug
+    $_SESSION['codProduto'] = $_POST['alterar_prod'];
     // echo 'http://'.$hostname.$current_directory.'/'.$page.'?id='.$value; //debug
     header('location: http://'.$hostname.$current_directory.'/'.$page);
     exit;
@@ -162,7 +175,8 @@ if(isset($_POST['delete_prod'])){
             // echo($prod_img);
             // unlink($prod_img);
             if(file_exists($prod_img)){
-                echo($prod_img.':image_unlinked');
+                // echo($prod_img.':image_unlinked');
+                echo(':image_unlinked'."\n");
                 // unlink($prod_img);
             }else{echo($prod_img.':no');}
         }
@@ -178,7 +192,17 @@ if(isset($_POST['delete_prod'])){
     $del_prod_cart_wlist->bindParam(':id', $delete_id);
     $del_prod_cart_wlist->bindValue(':fk_id', 'produtos_codProduto');
     $del_prod_cart_wlist->execute();
-    header('location: produtos.php');
+    $mensagem[] = 'Produto deletado com sucesso!';
+
+
+    $hostname = $_SERVER['HTTP_HOST'];
+    $current_directory = rtrim(dirname($_SERVER['PHP_SELF']),'/');
+    $page = 'produtos.php';
+    $_GET = $_POST = array();
+    unset($_POST);
+    unset($_GET);
+    // header('refresh: 2, url=http://'.$hostname.$current_directory.'/'.$page);
+    // exit;
 }
 // Deletar produto ends ###################################################################
 
@@ -284,7 +308,7 @@ class UploadException extends Exception
 
 
 <section class="add-produtos">
-    <form action="" name="add_produto_form" method="post" enctype="multipart/form-data" > <!-- onsubmit="return clearForm(this)" -->
+    <form action="" name="add_produto_form" method="POST" enctype="multipart/form-data" > <!-- onsubmit="return clearForm(this)" -->
         <h1 class="heading">Adicionar Produto</h1>
         <div class="flex">
             <div class="inputbox">
@@ -305,7 +329,7 @@ class UploadException extends Exception
             </div><br>
             <div class="inputbox">
                 <span class="prod-title required-field">Descrição do Produto</span>
-                <textarea name="descricao" class="box" required cols="50" rows="10"
+                <textarea name="descricao" class="box" cols="50" rows="10" required
                 placeholder="Descrições do produto (Max.: 1500 char.)" maxlength="1500" ></textarea>
             </div><br>
             <input type="submit" value="Adicionar Produto" name="add_produto" class="btn">
@@ -331,7 +355,7 @@ class UploadException extends Exception
                 <form action="" method="POST" name="prod_mgmt" class="prod_mgmt">
                 <div class="flex-btn">
                     <button type="submit" name="alterar_prod" value="<?=$fetch_prod['codProduto'];?>" class="option-btn"
-                    onclick="return confirm('Você confirma as alterações?');"
+                    onclick="return confirm('Fazer alterações neste produto?');"
                     >Alterar</button>
                 </div>
                 <div class="flex-btn">
