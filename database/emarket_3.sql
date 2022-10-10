@@ -57,14 +57,14 @@ CREATE TABLE IF NOT EXISTS `emarket`.`carrinho` (
   `usuarios_codUsuario` INT(100) NOT NULL,
   `produtos_codProduto` INT(100) NOT NULL,
   PRIMARY KEY (`codCarrinho`),
-  INDEX `fk_carrinho_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
-  INDEX `fk_carrinho_produtos1_idx` (`produtos_codProduto` ASC) ,
-  CONSTRAINT `fk_carrinho_usuarios1`
+  INDEX `fk_carrinho_usuarios_idx` (`usuarios_codUsuario` ASC) ,
+  INDEX `fk_carrinho_produtos_idx` (`produtos_codProduto` ASC) ,
+  CONSTRAINT `fk_carrinho_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_carrinho_produtos1`
+  CONSTRAINT `fk_carrinho_produtos`
     FOREIGN KEY (`produtos_codProduto`)
     REFERENCES `emarket`.`produtos` (`codProduto`)
     ON DELETE NO ACTION
@@ -108,14 +108,14 @@ CREATE TABLE IF NOT EXISTS `emarket`.`listadedesejo` (
   `usuarios_codUsuario` INT(100) NOT NULL,
   `produtos_codProduto` INT(100) NOT NULL,
   PRIMARY KEY (`codItem`),
-  INDEX `fk_listadedesejo_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
-  INDEX `fk_listadedesejo_produtos1_idx` (`produtos_codProduto` ASC) ,
-  CONSTRAINT `fk_listadedesejo_usuarios1`
+  INDEX `fk_listadedesejo_usuarios_idx` (`usuarios_codUsuario` ASC) ,
+  INDEX `fk_listadedesejo_produtos_idx` (`produtos_codProduto` ASC) ,
+  CONSTRAINT `fk_listadedesejo_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_listadedesejo_produtos1`
+  CONSTRAINT `fk_listadedesejo_produtos`
     FOREIGN KEY (`produtos_codProduto`)
     REFERENCES `emarket`.`produtos` (`codProduto`)
     ON DELETE NO ACTION
@@ -134,8 +134,8 @@ CREATE TABLE IF NOT EXISTS `emarket`.`mensagens` (
   `mensagem` VARCHAR(500) NOT NULL,
   `usuarios_codUsuario` INT(100) NOT NULL,
   PRIMARY KEY (`codMensagem`),
-  INDEX `fk_mensagens_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
-  CONSTRAINT `fk_mensagens_usuarios1`
+  INDEX `fk_mensagens_usuarios_idx` (`usuarios_codUsuario` ASC) ,
+  CONSTRAINT `fk_mensagens_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
@@ -161,8 +161,8 @@ CREATE TABLE IF NOT EXISTS `emarket`.`pedidos` (
   `statusPagamento` VARCHAR(50) NOT NULL DEFAULT 'Pendente',
   `usuarios_codUsuario` INT(100) NOT NULL,
   PRIMARY KEY (`codPedido`),
-  INDEX `fk_pedidos_usuarios1_idx` (`usuarios_codUsuario` ASC) ,
-  CONSTRAINT `fk_pedidos_usuarios1`
+  INDEX `fk_pedidos_usuarios_idx` (`usuarios_codUsuario` ASC) ,
+  CONSTRAINT `fk_pedidos_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
     ON DELETE NO ACTION
