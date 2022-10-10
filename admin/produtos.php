@@ -161,9 +161,9 @@ if(isset($_POST['alterar_prod'])){
 // Alterar produto ends ###################################################################
 
 // Deletar produto starts ###################################################################
-if(isset($_POST['delete_prod'])){
+if(isset($_POST['deletar_prod'])){
     
-    $delete_id = $_POST['delete_prod'];
+    $delete_id = $_POST['deletar_prod'];
     $del_prod_img = $conn->prepare("SELECT * FROM `produtos` WHERE codProduto = :id"); //_img
     $del_prod_img->bindParam(':id', $delete_id);
     $del_prod_img->execute();
@@ -360,11 +360,11 @@ class UploadException extends Exception
                 </div>
                 <div class="flex-btn">
                     <!-- Aproach #1 -->
-                    <!-- <a href='produtos.php?delete_prod=<?=$fetch_prod['codProduto'];?>' class="delete-btn"
+                    <!-- <a href='produtos.php?deletar_prod=<?=$fetch_prod['codProduto'];?>' class="delete-btn"
                     onclick="return confirm('Deseja mesmo excluir o produto?');">
                     Deletar</a> -->
                     <!-- Aproach #2 -->
-                    <button type="submit" name="delete_prod" value="<?=$fetch_prod['codProduto'];?>" class="delete-btn"
+                    <button type="submit" name="deletar_prod" value="<?=$fetch_prod['codProduto'];?>" class="delete-btn"
                     onclick="return confirm('Deseja mesmo excluir o produto?');"
                     >Deletar</button>
                 </div>
