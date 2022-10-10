@@ -99,11 +99,12 @@ section {
     border: var(--border);
     text-align: center;
     padding: 1.5rem;
-    width: 100%;
+    width: 64%;
     font-size: 2rem;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     color: var(--red);
     box-shadow: var(--box-shadow);
+    margin: 1rem auto;
 }
 
 .form-container {
