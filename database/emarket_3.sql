@@ -75,26 +75,26 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `emarket`.`clientes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `emarket`.`clientes` (
-  `codCliente` INT(100) NOT NULL,
-  `nome` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `senha` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`codCliente`))
-ENGINE = InnoDB
-;
+-- CREATE TABLE IF NOT EXISTS `emarket`.`clientes` (
+--   `codCliente` INT(100) NOT NULL,
+--   `nome` VARCHAR(255) NOT NULL,
+--   `email` VARCHAR(255) NOT NULL,
+--   `senha` VARCHAR(50) NOT NULL,
+--   PRIMARY KEY (`codCliente`))
+-- ENGINE = InnoDB
+-- ;
 
 
 -- -----------------------------------------------------
 -- Table `emarket`.`funcionarios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `emarket`.`funcionarios` (
-  `codFuncionario` INT(100) NOT NULL,
-  `nome` VARCHAR(255) NOT NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `senha` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`codFuncionario`))
-ENGINE = InnoDB;
+-- CREATE TABLE IF NOT EXISTS `emarket`.`funcionarios` (
+--   `codFuncionario` INT(100) NOT NULL,
+--   `nome` VARCHAR(255) NOT NULL,
+--   `email` VARCHAR(255) NOT NULL,
+--   `senha` VARCHAR(50) NOT NULL,
+--   PRIMARY KEY (`codFuncionario`))
+-- ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
