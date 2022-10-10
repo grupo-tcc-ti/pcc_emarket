@@ -1,7 +1,30 @@
+const qryS = selector => (
+  document.querySelector(selector)
+  || {
+    classList: {
+        toggle: () => void 0
+  },
+  classList: {
+    remove: () => void 0
+  }
+}
+);
+const qrySA = selector => (
+document.querySelectorAll(selector)
+|| {
+  classList: {
+    toggle: () => void 0
+  },
+  classList: {
+    remove: () => void 0
+  }
+}
+);
+
 function clickDrop(idname = "") {
-  document.getElementById(idname).classList.toggle('active');
-  if (document.querySelector('.dropdown-content').id != idname) {
-    let dropdowns = document.querySelectorAll(`nav:not(#${idname}.dropdown-content)`);
+  qryS(`#${idname}`).classList.toggle('active');
+  if (qryS('.dropdown-content').id != `#${idname}`) {
+    let dropdowns = qrySA(`nav:not(#${idname}).dropdown-content`);
     dropdowns.forEach((openDropdown) => {
       if (openDropdown.classList.contains("active")) {
         openDropdown.classList.remove("active");
@@ -12,7 +35,7 @@ function clickDrop(idname = "") {
 
 window.onclick = function (event) {
   if (!event.target.matches(".btn")) {
-    let dropdowns = document.querySelectorAll(".dropdown-content");
+    let dropdowns = qrySA(".dropdown-content");
     dropdowns.forEach((openDropdown) => {
       if (openDropdown.classList.contains("active")) {
         openDropdown.classList.remove("active");
@@ -23,7 +46,7 @@ window.onclick = function (event) {
 
 
 window.onscroll = () => {
-  let dropdowns = document.querySelectorAll(".dropdown-content");
+  let dropdowns = qrySA(".dropdown-content");
   dropdowns.forEach((openDropdown) => {
     if (openDropdown.classList.contains("active")) {
       openDropdown.classList.remove("active");
