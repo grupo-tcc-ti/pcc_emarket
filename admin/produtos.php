@@ -339,7 +339,7 @@ class UploadException extends Exception
     </form>
 </section>
 
-<h3 class="heading">Lista de Produtos</h3>
+<h3 class="head-list">Lista de Produtos</h3>
 <section class="mostrar-produtos">
     <?php
     $mostrar_prods = $conn->prepare("SELECT * FROM  `produtos`");
