@@ -76,16 +76,34 @@ if (isset($_POST['submit'])) {
 
 <section class="form-container">
     <form action="" method="post">
-        <h3>Alterar Perfil - Administrador</h3><br><br><br>
-        <input type="text" name="usuario" class="inputbox" maxlength="20" placeholder="Usuário" required
-        oninput = "this.value = this.value.replace(/\s/g, '')" value="<?= $fetch_perfil['nome']; ?>">
-        <input type="password" name="senha_antiga" class="inputbox" maxlength="20" placeholder="Digite a Senha Anterior" 
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="password" name="nova_senha" class="inputbox" maxlength="20" placeholder="Digite a Nova Senha" 
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="password" name="rnova_senha" class="inputbox" maxlength="20" placeholder="Repita a sua Nova Senha" 
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="submit" value="Alterar" class="btn" name="submit">
+        <h3 class="heading">Alterar Perfil - Administrador</h3><br><br><br>
+        <div class="flex">
+            <div class="inputbox">
+            <span class="title required-field">Usuario</span>
+            <!-- <input type="text" name="usuario" class="inputbox" maxlength="20" placeholder="Usuário" required -->
+            <input type="text" name="usuario" class="box" maxlength="20" placeholder="Usuário" required
+            oninput = "this.value = this.value.replace(/\s/g, '')" value="<?= $fetch_perfil['nome']; ?>">
+            </div>
+            <div class="inputbox">
+            <span class="title required-field">Senha Anterior</span>
+            <!-- <input type="password" name="senha_antiga" class="inputbox" maxlength="20" placeholder="Digite a Senha Anterior"  -->
+            <input type="password" name="senha_antiga" class="box" maxlength="20" placeholder="Digite a Senha Anterior"
+            oninput = "this.value = this.value.replace(/\s/g, '')" >
+            </div>
+            <div class="inputbox">
+            <span class="title required-field">Nova Senha</span>
+            <!-- <input type="password" name="nova_senha" class="inputbox" maxlength="20" placeholder="Digite a Nova Senha"  -->
+            <input type="password" name="nova_senha" class="box" maxlength="20" placeholder="Digite a Nova Senha"
+            oninput = "this.value = this.value.replace(/\s/g, '')" >
+            </div>
+            <div class="inputbox">
+            <span class="title required-field">Repita a Nova Senha</span>
+            <!-- <input type="password" name="rnova_senha" class="inputbox" maxlength="20" placeholder="Repita a sua Nova Senha"  -->
+            <input type="password" name="rnova_senha" class="box" maxlength="20" placeholder="Repita a sua Nova Senha"
+            oninput = "this.value = this.value.replace(/\s/g, '')" >
+            </div>
+            <input type="submit" value="Alterar" class="btn" name="submit">
+        </div>
     </form>
 </section>
 

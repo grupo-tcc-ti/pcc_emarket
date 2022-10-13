@@ -90,16 +90,17 @@ if(isset($_POST['deletar_pedido'])){
             <p>Data de Entrega</p>
             <span><?=$fetch_pedido['dataEntrega'];?></span>
             <p>Status do Pagamento</p>
-            <span><?=$fetch_pedido['statusPagamento'];?></span>
+            <span><?=ucfirst($fetch_pedido['statusPagamento']);?></span>
             <!-- <p>Usuarios_Codusuario</p> -->
             <form action="" method="post" name="pedido_form" enctype="multipart/form-data">
                 <input type="hidden" name="codPedido" value="<?=$fetch_pedido['codPedido'];?>">
                 <select name="status_pagamento" class="">
                     <option selected disabled value="">
-                        <?=$fetch_pedido['statusPagamento'];?>
+                        <?=ucfirst($fetch_pedido['statusPagamento']);?>
                     </option>
                     <option value="pendente">Pendente</option>
-                    <option value="finalizado">Finalizado</option>
+                    <option value="pago">Pago</option>
+                    <option value="cancelado">Cancelado</option>
                 </select>
                 <div class="flex-btn">
                     <button type="submit" name="alterar_pgmt" value="" class="option-btn"

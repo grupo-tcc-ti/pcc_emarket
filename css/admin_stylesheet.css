@@ -62,6 +62,7 @@ section {
 }
 
 
+/* ############################ De uso generico starts ############################ */
 .mensagem {
     background-color: var(--light-bg);
     display: flex;
@@ -91,64 +92,6 @@ section {
 
 .mensagem i:hover {
     color: var(--black);
-}
-
-.vazio {
-    background-color: var(--white);
-    border-radius: .5rem;
-    border: var(--border);
-    text-align: center;
-    padding: 1.5rem;
-    width: 64%;
-    font-size: 2rem;
-    /* text-transform: capitalize; */
-    color: var(--red);
-    box-shadow: var(--box-shadow);
-    margin: 1rem auto;
-}
-
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.form-container form {
-    background-color: var(--white);
-    border-radius: .5rem;
-    border: var(--border);
-    box-shadow: var(--box-shadow);
-    padding: 2rem;
-    text-align: center;
-    width: 50rem;
-}
-
-.form-container form h3 {
-    font-size: 1.8rem;
-    color: var(--black);
-    text-transform: uppercase;
-}
-
-.form-container form p {
-    margin: 1rem 0;
-    font-size: 1.8rem;
-    color: var(--light-color);
-}
-
-.form-container form p span {
-    color: var(--orange);
-}
-
-.form-container form .inputbox {
-    background-color: var(--light-bg);
-    color: var(--black);
-    width: 100%;
-    margin: 1rem 0;
-    padding: 1.4rem;
-    font-size: 1.8rem;
-    border: var(--border);
-    border-radius: .5rem;
 }
 
 #menu-btn {
@@ -198,11 +141,125 @@ section {
     box-shadow: var(--box-shadow);
 }
 
+/* Mudar botao enviar imagens */
+/* .add-produtos form .flex .inputbox input#input-file[type="file"] {
+    display: none;
+} */
+
+/* .add-produtos form .flex .inputbox input.box[type="file"]::file-selector-button {
+    border: none;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    display: inline-block;
+    margin-right: 6rem;
+    padding: 6px 12px;
+    cursor: pointer;
+} */
+
 .required-field::after {
     content: "*";
     color: red;
 }
 
+.spacing {
+    width: 1rem;
+    display: inline-flex;
+}
+
+.vazio {
+    background-color: var(--white);
+    border-radius: .5rem;
+    border: var(--border);
+    text-align: center;
+    padding: 1.5rem;
+    width: 64%;
+    font-size: 2rem;
+    /* text-transform: capitalize; */
+    color: var(--red);
+    box-shadow: var(--box-shadow);
+    margin: 1rem auto;
+}
+
+/* Formulário com campos de inserção */
+/* .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+} */
+
+.form-container form {
+    background-color: var(--white);
+    border-radius: .5rem;
+    border: var(--border);
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    width: 50rem;
+    margin: 4rem auto;
+    /* text-align: center; */
+}
+
+.form-container form .heading {
+    font-size: 1.8rem;
+    /* font-size: 4rem; */
+    color: var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.form-container form p {
+    margin: 1rem 0;
+    font-size: 1.8rem;
+    color: var(--light-color);
+}
+
+.form-container form p span {
+    color: var(--orange);
+}
+
+.form-container form .flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.form-container form .flex .inputbox {
+    margin: 1rem 0;
+    flex: 1 1 40rem;
+}
+
+.form-container form .flex .inputbox .title {
+    font-size: 2rem;
+    color: var(--black);
+}
+
+.form-container form .flex .inputbox textarea[name=descricao] {
+    resize: none;
+}
+
+.form-container form .flex .inputbox .box {
+    background-color: var(--light-bg);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+}
+/* Formulário com campos de inserção */
+
+h3.heading {
+    font-size: 4rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
+    justify-content: center;
+    margin: 2rem;
+}
+/* ############################ De uso generico ends ############################ */
+
+/* ############################ Admin_header.php starts ############################ */
 .header {
     position: sticky;
     top: 0;
@@ -262,10 +319,6 @@ section {
     color: var(--main-color);
 }
 
-.header .flex .icons div:hover~.box-main {
-    opacity: 10%;
-}
-
 @keyframes fadeIn {
     0% {
         transform: translateY(3rem);
@@ -291,25 +344,16 @@ section {
     display: inline-block;
 }
 
-
-
-.header .flex .profile:active+.box-main {
-    opacity: 10%;
-    display: none;
-}
-
 .header .flex .profile p {
     text-align: center;
     color: var(--black);
     font-size: 2rem;
     margin-bottom: 1rem;
 }
+/* ############################ Admin_header.php ends ############################ */
 
-.spacing {
-    width: 1rem;
-    display: inline-flex;
-}
 
+/* ############################ Dashboard.php starts ############################ */
 .heading-dash {
     /* position: relative;
     top: 2rem; right: 40rem;
@@ -326,7 +370,7 @@ section {
     text-transform: lowercase;
 }
 
-section.dashboard .box-container {
+section.dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
     gap: 1.5rem;
@@ -337,7 +381,7 @@ section.dashboard .box-container {
     width: 40%;
 }
 
-section.dashboard .box-container .box {
+section.dashboard .box {
     background-color: var(--white);
     text-align: center;
     border: var(--border);
@@ -347,16 +391,16 @@ section.dashboard .box-container .box {
     padding: 1.5rem;
 }
 
-section.dashboard .box-container .box h3 {
+section.dashboard .box h3 {
     font-size: 2rem;
     color: var(--black);
 }
 
-section.dashboard .box-container .box h3 span {
+section.dashboard .box h3 span {
     font-size: 1.5rem;
 }
 
-section.dashboard .box-container .box p {
+section.dashboard .box p {
     padding: 1.5rem;
     border-radius: .5rem;
     background-color: var(--light-bg);
@@ -364,80 +408,16 @@ section.dashboard .box-container .box p {
     font-size: 2rem;
     box-shadow: var(--box-shadow);
 }
+/* ############################ Dashboard.php ends ############################ */
 
-.add-produtos form {
-    margin: 0 auto;
-    max-width: 70rem;
-    background-color: var(--white);
-    border-radius: .5rem;
-    box-shadow: var(--box-shadow);
-    border: var(--border);
-    padding: 2rem;
-
+/* ############################ Produtos.php starts ############################ */
+.form-container .add-produto {
+    width: 70rem;
 }
+/* ############################ Produtos.php ends ############################ */
 
-.add-produtos form .heading {
-    font-size: 4rem;
-    color: var(--black);
-    margin-bottom: 2rem;
-    text-align: center;
-}
-
-.add-produtos form .flex {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.add-produtos form .flex .inputbox {
-    flex: 1 1 40rem;
-}
-
-.add-produtos form .flex .inputbox span {
-    font-size: 2rem;
-    color: var(--black);
-}
-
-.add-produtos form .flex .inputbox textarea[name=descricao] {
-    resize: none;
-}
-
-
-.add-produtos form .flex .inputbox .box {
-    background-color: var(--light-bg);
-    box-shadow: var(--box-shadow);
-    width: 100%;
-    padding: 1.4rem;
-    font-size: 1.8rem;
-    color: var(--black);
-    border-radius: .5rem;
-}
-
-/* Mudar botao enviar imagens */
-/* .add-produtos form .flex .inputbox input#input-file[type="file"] {
-    display: none;
-} */
-
-/* .add-produtos form .flex .inputbox input.box[type="file"]::file-selector-button {
-    border: none;
-    border-radius: 5px;
-    box-shadow: var(--box-shadow);
-    display: inline-block;
-    margin-right: 6rem;
-    padding: 6px 12px;
-    cursor: pointer;
-} */
-
-h3.heading {
-    font-size: 4rem;
-    color: var(--black);
-    margin-bottom: 2rem;
-    text-align: center;
-    justify-content: center;
-    margin: 2rem;
-}
-
-.mostrar-produtos .box-container {
+/* ############################ Mostrar lista de Produtos.php starts ############################ */
+.mostrar-produtos {
     display: grid;
     grid-template-columns: repeat(auto-fit, 50rem);
     gap: 1.5rem;
@@ -445,7 +425,7 @@ h3.heading {
     align-items: flex-start;
 }
 
-.mostrar-produtos .box-container .box {
+.mostrar-produtos .box {
     background-color: var(--white);
     border-radius: .5rem;
     box-shadow: var(--box-shadow);
@@ -453,24 +433,24 @@ h3.heading {
     padding: 2rem;
 }
 
-.mostrar-produtos .box-container .box img {
+.mostrar-produtos .box img {
     width: 100%;
     height: 20rem;
     object-fit: contain;
 }
 
-.mostrar-produtos .box-container .box .nome {
+.mostrar-produtos .box .nome {
     font-size: 1.5rem;
     color: var(--black);
 }
 
-.mostrar-produtos .box-container .box .preco {
+.mostrar-produtos .box .preco {
     font-size: 2.5rem;
     color: var(--main-color);
     margin: 1rem 0;
 }
 
-.mostrar-produtos .box-container .box .descricao {
+.mostrar-produtos .box .descricao {
     line-height: 2;
     font-size: 1.5rem;
     color: var(--black);
@@ -478,7 +458,9 @@ h3.heading {
     height: 10rem;
     overflow: scroll;
 }
+/* ############################ Mostrar lista de Produtos.php ends ############################ */
 
+/* ############################ Alterar_produto.php starts ############################ */
 .alterar-produto .heading {
     font-size: 3rem;
     color: var(--black);
@@ -555,7 +537,7 @@ h3.heading {
     border-radius: .7rem;
     resize: none;
 }
-
+/* ############################ Alterar_produto.php ends ############################ */
 
 
 @media (max-width:920px) {

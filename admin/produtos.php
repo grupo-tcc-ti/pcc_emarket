@@ -307,28 +307,30 @@ class UploadException extends Exception
 <?php include '../components/admin_header.php';?>
 
 
-<section class="add-produtos">
-    <form action="" name="add_produto_form" method="POST" enctype="multipart/form-data" > <!-- onsubmit="return clearForm(this)" -->
+<!-- <section class="add-produtos"> -->
+<section class="form-container">
+    <form class="add-produto" action="" name="add_produto_form" method="POST" enctype="multipart/form-data" > <!-- onsubmit="return clearForm(this)" -->
         <h1 class="heading">Adicionar Produto</h1>
+        <!-- <h3>Adicionar Produto</h3> -->
         <div class="flex">
             <div class="inputbox">
-                <span class="prod-title required-field">Nome do Produto</span>
+                <span class="title required-field">Nome do Produto</span>
                 <input type="text" name="nome" class="box" required
                 placeholder="Ex.: Placa de Vídeo Nvidia Geforce RTX..." maxlength="200">
             </div><br>
             <div class="inputbox">
-                <span class="prod-title required-field">Preço do Produto</span>
+                <span class="title required-field">Preço do Produto</span>
                 <input type="number" name="preco" class="box" required
                 placeholder="Ex.: R$ 3,999.00" min="0" max="9999999999" step="any" onclick="if(this.value.length == 100) return false;">
             </div><br>
             <div class="inputbox">
-                <span class="prod-title required-field">Imagens</span>
+                <span class="title required-field">Imagens</span>
                 <!-- <label for="input-file" class="btn">Enviar Imagens</label> Implementar mais coisas depois-->
                 <input type="file" name="image[]" class="box" id="input-file" required
                 accept="image/jpg, image/jpeg, image/png, image/webp" multiple>
             </div><br>
             <div class="inputbox">
-                <span class="prod-title required-field">Descrição do Produto</span>
+                <span class="title required-field">Descrição do Produto</span>
                 <textarea name="descricao" class="box" cols="50" rows="10" required
                 placeholder="Descrições do produto (Max.: 1500 char.)" maxlength="1500" ></textarea>
             </div><br>
@@ -339,8 +341,7 @@ class UploadException extends Exception
 
 <h3 class="heading">Lista de Produtos</h3>
 <section class="mostrar-produtos">
-    <div class="box-container">
-        <?php
+    <?php
     $mostrar_prods = $conn->prepare("SELECT * FROM  `produtos`");
     $mostrar_prods->execute();
     if ($mostrar_prods->rowCount() > 0) {
@@ -376,7 +377,6 @@ class UploadException extends Exception
     echo '<p class="vazio">Nenhum produto adicionado...</p>';
     }
     ?>
-    </div>
 </section>
 
 

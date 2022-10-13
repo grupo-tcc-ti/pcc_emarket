@@ -43,7 +43,7 @@ if (isset($_POST['submit'])){
         // Define o nome da pagina
         $page = 'dashboard.php';
 
-        header('refresh:2, url=http://'.$hostname.$current_directory.'/'.$page);
+        header('refresh:1, url=http://'.$hostname.$current_directory.'/'.$page);
         exit;
     } else {
         $mensagem[] = 'Nome de usuário ou senha incorreto!';
@@ -87,13 +87,21 @@ if (isset($mensagem)){
 
 <section class="form-container">
     <form action="" method="post">
-        <h3>Credenciais de Login</h3>
+        <h3 class="heading">Credenciais de Login</h3>
         <p>Usuário de administrador predefinido: user = <span>admin</span> e senha <span>1234</span></p>
-        <input type="text" name="usuario" class="inputbox" maxlength="20" required placeholder="Usuário"
+        <div class="flex">
+        <div class="inputbox">
+        <span class="title required-field">Usuario</span>
+        <input type="text" name="usuario" class="box" maxlength="20" required placeholder="Usuário"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="senha" name="senha" class="inputbox" maxlength="20" required placeholder="Senha"
+    </div>
+        <div class="inputbox">
+        <span class="title required-field">Senha</span>
+        <input type="senha" name="senha" class="box" maxlength="20" required placeholder="Senha"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
+        </div>
         <input type="submit" value="Logar" class="btn" name="submit">
+    </div>
     </form>
 </section>
 
