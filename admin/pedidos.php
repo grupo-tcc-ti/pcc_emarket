@@ -57,44 +57,69 @@ if(isset($_POST['deletar_pedido'])){
 
 <?php include '../components/admin_header.php'; ?>
 
-<section class="pedidos"></section>
-    <h1 class="heading">Lista de Pedidos</h1>
-    <div class="box-container">
+<h1 class="head-list">Lista de Pedidos</h1>
+<section class="pedidos">
+    <!-- <div class="box-container"> -->
         <?php 
             $qry = "SELECT * FROM `pedidos`";
             $selecionar_pedidos = $conn->prepare($qry);
-            // $selecionar_pedidos->bindParam('');
             $selecionar_pedidos->execute();
             if ($selecionar_pedidos->rowCount() > 0){
                 while ($fetch_pedido = $selecionar_pedidos->fetch(PDO::FETCH_ASSOC)){
         ?>
-        <div class="box">
-            <p>Nome</p>
-            <span><?=$fetch_pedido['nome'];?></span>
-            <p>Email</p>
-            <span><?=$fetch_pedido['email'];?></span>
-            <p>Telefone</p>
-            <span><?=$fetch_pedido['telefone'];?></span>
-            <p>Tipo de Entrega</p>
-            <span><?=$fetch_pedido['tipoEntrega'];?></span>
-            <p>Cep do Destinatário</p>
-            <span><?=$fetch_pedido['cepDestino'];?></span>
-            <p>Endereco</p>
-            <span><?=$fetch_pedido['endereco'];?></span>
-            <p>Produtos</p>
-            <span><?=$fetch_pedido['totalProduto'];?></span>
-            <p>Preco Total</p>
-            <span><?=$fetch_pedido['totalPreco'];?></span>
-            <p>Data de Envio</p>
-            <span><?=$fetch_pedido['dataEnvio'];?></span>
-            <p>Data de Entrega</p>
-            <span><?=$fetch_pedido['dataEntrega'];?></span>
-            <p>Status do Pagamento</p>
-            <span><?=ucfirst($fetch_pedido['statusPagamento']);?></span>
-            <!-- <p>Usuarios_Codusuario</p> -->
+        <div class="gridbox">
+            <div class="itemfield">
+                <span class="title">Nome</span>
+                <p class="box"><?=$fetch_pedido['nome'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Email</span>
+                <p class="box"><?=$fetch_pedido['email'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Telefone</span>
+                <p class="box"><?=$fetch_pedido['telefone'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Tipo de Entrega</span>
+                <p class="box"><?=$fetch_pedido['tipoEntrega'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Cep do Destinatário</span>
+                <p class="box"><?=$fetch_pedido['cepDestino'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Endereco</span>
+                <p class="box"><?=$fetch_pedido['endereco'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Produtos</span>
+                <p class="box"><?=$fetch_pedido['totalProduto'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Preco Total</span>
+                <p class="box"><?=$fetch_pedido['totalPreco'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Data de Envio</span>
+                <p class="box">
+                    <?=$fetch_pedido['dataEnvio'];?>
+                </p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Data de Entrega</span>
+                <p class="box">
+                    <?=empty($fetch_pedido['dataEntrega'])?
+                    'Sem Previsão':
+                    $fetch_pedido['dataEntrega'];?></p>
+            </div>
+            <div class="itemfield">
+                <span class="title">Status do Pagamento</span>
+                <!-- <p class="box"><?=ucfirst($fetch_pedido['statusPagamento']);?></p> -->
+            </div>
             <form action="" method="post" name="pedido_form" enctype="multipart/form-data">
                 <input type="hidden" name="codPedido" value="<?=$fetch_pedido['codPedido'];?>">
-                <select name="status_pagamento" class="">
+                <select name="status_pagamento">
                     <option selected disabled value="">
                         <?=ucfirst($fetch_pedido['statusPagamento']);?>
                     </option>
@@ -114,10 +139,10 @@ if(isset($_POST['deletar_pedido'])){
         <?php
             }
         } else {
-            echo '<p class="vazio">Nenhum pedido feito!</p>';
+            echo '<p class="vazio">Nenhum pedido feito!</span>';
         }
         ?>
-    </div>
+    <!-- </div> -->
 </section>
 
 <script src="../js/admin_script.js"></script>
