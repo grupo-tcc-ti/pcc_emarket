@@ -52,14 +52,25 @@ if (isset($_POST['submit'])){
 
 <section class="form-container">
     <form action="" method="post">
-        <h3>Criar Nova Conta - Administrador</h3><br><br><br>
-        <input type="text" name="username" class="inputbox" maxlength="20" required placeholder="Usuário"
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="password" name="password" class="inputbox" maxlength="20" required placeholder="Senha"
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
-        <input type="password" name="rpassword" class="inputbox" maxlength="20" required placeholder="Repita a sua senha"
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
+        <h3 class="heading">Criar Nova Conta - Administrador</h3><br><br><br>
+        <div class="flex">
+            <div class="inputbox">
+                <span class="title required-field">Usuário</span>
+                <input type="text" name="username" class="box" maxlength="20" required placeholder="Digite o nome do Usuário"
+                oninput = "this.value = this.value.replace(/\s/g, '')" >
+            </div>
+            <div class="inputbox">
+                <span class="title required-field">Senha</span>
+                <input type="password" name="password" class="box" maxlength="20" required placeholder="Digite a Senha"
+                oninput = "this.value = this.value.replace(/\s/g, '')" >
+            </div>
+            <div class="inputbox">
+                <span class="title required-field">Confirme a Senha</span>
+                <input type="password" name="rpassword" class="box" maxlength="20" required placeholder="Confirme a senha"
+                oninput = "this.value = this.value.replace(/\s/g, '')" >
+            </div>
         <input type="submit" value="Cadastrar" class="btn" name="submit">
+        </div>
     </form>
 </section>
 
