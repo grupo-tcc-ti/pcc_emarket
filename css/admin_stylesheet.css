@@ -247,6 +247,7 @@ section {
     color: var(--black);
     border-radius: .5rem;
 }
+
 /* Formulário com campos de inserção */
 
 .head-list {
@@ -257,6 +258,7 @@ section {
     justify-content: center;
     margin: 2rem;
 }
+
 /* ############################ De uso generico ends ############################ */
 
 /* ############################ Admin_header.php starts ############################ */
@@ -350,6 +352,7 @@ section {
     font-size: 2rem;
     margin-bottom: 1rem;
 }
+
 /* ############################ Admin_header.php ends ############################ */
 
 
@@ -370,7 +373,7 @@ section {
     text-transform: lowercase;
 }
 
-section.dashboard {
+.dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
     gap: 1.5rem;
@@ -381,26 +384,25 @@ section.dashboard {
     width: 40%;
 }
 
-section.dashboard .box {
+.dashboard .box {
     background-color: var(--white);
-    text-align: center;
-    border: var(--border);
     box-shadow: var(--box-shadow);
+    border: var(--border);
+    padding: 1.5rem;
     border-radius: .5rem;
     text-align: center;
-    padding: 1.5rem;
 }
 
-section.dashboard .box h3 {
+.dashboard .box h3 {
     font-size: 2rem;
     color: var(--black);
 }
 
-section.dashboard .box h3 span {
+.dashboard .box h3 span {
     font-size: 1.5rem;
 }
 
-section.dashboard .box p {
+.dashboard .box p {
     padding: 1.5rem;
     border-radius: .5rem;
     background-color: var(--light-bg);
@@ -408,12 +410,14 @@ section.dashboard .box p {
     font-size: 2rem;
     box-shadow: var(--box-shadow);
 }
+
 /* ############################ Dashboard.php ends ############################ */
 
 /* ############################ Produtos.php starts ############################ */
 .form-container .add-produto {
     width: 70rem;
 }
+
 /* ############################ Produtos.php ends ############################ */
 
 /* ############################ Mostrar lista de Produtos.php starts ############################ */
@@ -458,6 +462,7 @@ section.dashboard .box p {
     height: 10rem;
     overflow: scroll;
 }
+
 /* ############################ Mostrar lista de Produtos.php ends ############################ */
 
 /* ############################ Alterar_produto.php starts ############################ */
@@ -537,6 +542,7 @@ section.dashboard .box p {
     border-radius: .7rem;
     resize: none;
 }
+
 /* ############################ Alterar_produto.php ends ############################ */
 
 /* ############################ Pedidos.php starts ############################ */
@@ -551,10 +557,10 @@ section.dashboard .box p {
 .pedidos .gridbox {
     background-color: var(--white);
     box-shadow: var(--box-shadow);
-    padding:2rem;
+    padding: 2rem;
     padding-top: 1rem;
     border-radius: .5rem;
-    border:var(--border);
+    border: var(--border);
 }
 
 .pedidos .gridbox .itemfield span {
@@ -562,17 +568,17 @@ section.dashboard .box p {
     color: var(--black);
 }
 
-.pedidos .gridbox .itemfield p{
+.pedidos .gridbox .itemfield p {
     margin: 1rem 0;
     font-size: 1.8rem;
     color: var(--light-color);
 }
 
-.pedidos .gridbox .itemfield p span{
-    color:var(--main-color);
+.pedidos .gridbox .itemfield p span {
+    color: var(--main-color);
 }
 
-.pedidos .gridbox .box{
+.pedidos .gridbox .box {
     background-color: var(--light-bg);
     box-shadow: var(--box-shadow);
     width: 100%;
@@ -582,7 +588,7 @@ section.dashboard .box p {
     border-radius: .5rem;
 }
 
-.pedidos .gridbox select{
+.pedidos .gridbox select {
     background-color: var(--light-bg);
     box-shadow: var(--box-shadow);
     width: 100%;
@@ -591,7 +597,63 @@ section.dashboard .box p {
     color: var(--black);
     border-radius: .5rem;
 }
+
 /* ############################ Pedidos.php ends ############################ */
+
+/* ############################ Admin_contas.php starts ############################ */
+
+.admin-contas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(36rem, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    /* align-items: flex-start; */
+}
+
+.register-admin {
+    padding-top: 4rem;
+    width: 30%;
+}
+
+.admin-contas .gridbox {
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    /* border:var(--border); */
+    padding: 4rem 2rem 2rem;
+    border-radius: .5rem;
+}
+
+.admin-contas .gridbox .itemfield .title {
+    font-size: 1.5rem;
+    color: var(--black);
+}
+
+.admin-contas .gridbox .itemfield .box {
+    background-color: var(--light-bg);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+    margin: 1rem 0;
+}
+
+.admin-contas .gridbox .itemfield .box span {
+    color: var(--main-color);
+}
+
+.admin-contas .gridbox select {
+    background-color: var(--light-bg);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+}
+
+/* ############################ Admin_contas.php ends ############################ */
 
 @media (max-width:920px) {
     html {
@@ -653,7 +715,7 @@ section.dashboard .box p {
         grid-template-columns: 1fr;
     }
 
-    .pedidos .gridbox{
+    .pedidos .gridbox {
         grid-template-columns: 1fr;
     }
 }
