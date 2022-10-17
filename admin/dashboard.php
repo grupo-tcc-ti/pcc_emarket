@@ -51,7 +51,7 @@ if (!isset($admin_id)) {
             $select_pendente->execute();
             $total_pendente = 0;
             while ($fetch_pendente = $select_pendente->fetch(PDO::FETCH_ASSOC)) {
-                $total_pendente = $fetch_pendente['totalPreco'];
+                $total_pendente += $fetch_pendente['totalPreco'];
             }
         ?>
         <h3>Total Pendente<span></span></h3>
