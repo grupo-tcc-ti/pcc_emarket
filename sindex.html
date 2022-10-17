@@ -8,64 +8,21 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="shortcut icon" href="./image/favicon.ico" type="./image/x-icon" />
     <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"> </script>
     <title>Emarket</title>
+
+  <script>
+    $(function() {
+        $('#header').load('screens/header.html')
+    });
+</script>
 </head>
 
 <body>
-    <div class="header">
-        <ul>
-            <li><img src="./image/logo.png" class="logo-img" alt="logo"></li>
-            <li>
-                <div class="dropdown">
-                    <button id="link-depart" onclick='clickDrop("depart")' class="btn">
-                        <i class="fa-solid fa-chevron-down"></i> Departamento </button>
-                    <nav id="depart" class="dropdown-content">
-                        <a href="#">Promoções</a>
-                        <a href="#">Kit Upgrade</a>
-                        <a href="#">Cabos e Acessórios</a>
-                        <a href="#">PC Gamer</a>
-                        <a href="#">Hardware</a>
-                        <a href="#">Periféricos</a>
-                        <a href="#">Gabinetes</a>
-                        <a href="#">Refrigeração</a>
-                        <a href="#">Diversos</a>
-                    </nav>
-                </div>
-            </li>
-            <li>
-                <form class="pesquisa" action="#" method="get">
-                    <input id="isearch" type="search" name="str" required="" class="busca" autocomplete="off"
-                        aria-label="campo de busca" placeholder="Pesquise o seu produto">
-                    <button id="link-search" class="btn" aria-label="botao buscar">
-                        <div id="searchicon" class="icon" aria-hidden="true"></div>
-                    </button>
-                </form>
-            </li>
-            <li>
-                <div class="dropdown">
-                    <button id="link-conta" onclick='clickDrop("conta")' class="btn">
-                        <i class="fa-regular fa-user"></i>
-                    </button>
-                    <nav id="conta" class="dropdown-content">
-                        <a href="#">Minha conta</a>
-                        <a href="#">Registrar</a>
-                    </nav>
-                </div>
-            </li>
-            <li>
-                <div class="dropdown">
-                    <button id="link-carrinho" onclick='clickDrop("carrinho")' class="btn">
-                    </button>
-                    <nav id="carrinho" class="dropdown-content">
-                        <a href="#">Ver Carrinho</a>
-                        <a href="#">Limpar Carrinho</a>
-                    </nav>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <section>
+    <!-- com JQuery nos podemos puxar um html code de outro arqui aqui, assim nos pode usar a mesma barra em todas as telas -->
+    <div id="header"></div>
 
+    <section>
         <div class="slider">
             <div class="slide active">
                 <img src="image/slider/1.jpg" alt="">
