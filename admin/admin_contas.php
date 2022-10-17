@@ -49,7 +49,7 @@ if (isset($_GET['deletar'])){
             $selecionar_contas = $conn->prepare($qry);
             $selecionar_contas->execute();
             if($selecionar_contas->rowCount() > 0) {
-                while ($fetch_contas = $selecionar_contas->fetch(PDO::FETCH_ASSOC)) {
+                while ($fetch_contas += $selecionar_contas->fetch(PDO::FETCH_ASSOC)) {
         ?>
         <div class="gridbox">
         <div class="itemfield">
