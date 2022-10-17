@@ -133,7 +133,7 @@ if (!isset($admin_id)) {
         <a href="admin_contas.php" class="btn">Ver Admin's</a>
         </div>
 
-        <div class="box">
+        <!-- <div class="box">
         <?php
             $qry = ("SELECT * FROM `mensagens`");
             $select_mensagens = $conn->prepare($qry);
@@ -143,7 +143,7 @@ if (!isset($admin_id)) {
         <h3>Total de Mensagens<span></span></h3>
         <p><?=$num_mensagens . ' /-';?></p>
         <a href="mensagens.php" class="btn">Ver Mensagens</a>
-        </div>
+        </div> -->
     </section>
 
 
