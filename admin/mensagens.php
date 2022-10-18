@@ -5,9 +5,17 @@ session_start();
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
-    $admin_header = 'admin_header.php';
+    $admin_header = 'admin_login.php';
     header('location:../components/'.$admin_header);
 }
+
+if(isset($_GET['deletar'])){
+    $deletar_id = $_GET['deletar'];
+    $deletar_mensagem = $conn->prepare("deletar FROM `mensagens` WHERE codMensagem = :mid");
+    $deletar_mensagem->bindParam(':mid', $deletar_id);
+    $deletar_mensagem->execute();
+    header('location:mensagens.php');
+ }
 
 ?>
 
@@ -24,7 +32,43 @@ if (!isset($admin_id)) {
 </head>
 <body>
 
+<?php include '../components/admin_header.php'; ?>
 
+<section class="mensagens">
+
+<h1 class="head-list">Mensagens</h1>
+
+    <?php
+        $selecionar_mensagens = $conn->prepare("SELECT * FROM `mensagens`");
+        $selecionar_mensagens->execute();
+        if($selecionar_mensagens->rowCount() > 0){
+            while($fetch_mensagens = $selecionar_mensagens->fetch(PDO::FETCH_ASSOC)){
+    ?>
+    <div class="listbox">
+    <div class="itemfield">
+        <p class="box"><?=$fetch_mensagens['usuarios_codUsuario']?></p>
+    </div>
+    <div class="itemfield">
+        <p class="box"><?=$fetch_mensagens['nome']?></p>
+    </div>
+    <div class="itemfield">
+        <p class="box"><?=$fetch_mensagens['email']?></p>
+    </div>
+    <div class="itemfield">
+        <p class="box"><?=$fetch_mensagens['telefone']?></p>
+    </div>
+    <div class="itemfield">
+        <p class="box"><?=$fetch_mensagens['mesagem']?></p>
+    </div>
+    <a href="<?=$_SERVER['PHP_SELF'].'?deletar='.$fetch_mensagem['codMensagem']; ?>" onclick="return confirm('deletar this mensagem?');" class="deletar-btn">deletar</a>
+    </div>
+    <?php
+            }
+        }else{
+            echo '<p class="vazio">Sem mensagens...</p>';
+        }
+    ?>
+</section>
 
 <script src="../js/admin_script.js"></script>
 </body>
