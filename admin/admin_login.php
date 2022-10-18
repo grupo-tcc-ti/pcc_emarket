@@ -91,13 +91,13 @@ if (isset($mensagem)){
         <p>Usuário de administrador predefinido: user = <span>admin</span> e senha <span>1234</span></p>
         <div class="flex">
         <div class="inputbox">
-        <span class="title required-field">Usuario</span>
-        <input type="text" name="usuario" class="box" maxlength="20" required placeholder="Usuário"
+        <!-- <span class="title required-field">Usuario</span> -->
+        <input type="text" name="usuario" class="box required-field" maxlength="20" required placeholder="Usuário*"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
     </div>
         <div class="inputbox">
-        <span class="title required-field">Senha</span>
-        <input type="senha" name="senha" class="box" maxlength="20" required placeholder="Senha"
+        <!-- <span class="title required-field">Senha</span> -->
+        <input type="senha" name="senha" class="box required-field" maxlength="20" required placeholder="Senha*"
         oninput = "this.value = this.value.replace(/\s/g, '')" >
         </div>
         <input type="submit" value="Logar" class="btn" name="submit">
