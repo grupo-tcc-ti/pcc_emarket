@@ -156,9 +156,14 @@ section {
     cursor: pointer;
 } */
 
-.required-field::after {
+.required-field::after,
+.required-field::placeholder {
     content: "*";
-    color: red;
+    color: var(--red);
+}
+
+.required-field:hover::placeholder {
+    color: var(--main-color);
 }
 
 .spacing {
@@ -180,7 +185,7 @@ section {
     margin: 1rem auto;
 }
 
-/* Formulário com campos de inserção */
+/* Formulário com campos de inserção starts */
 /* .form-container {
     display: flex;
     justify-content: center;
@@ -248,7 +253,7 @@ section {
     border-radius: .5rem;
 }
 
-/* Formulário com campos de inserção */
+/* Formulário com campos de inserção ends */
 
 .head-list {
     font-size: 4rem;
@@ -602,7 +607,7 @@ section {
 
 /* ############################ Admin_contas.php starts ############################ */
 
-.admin-contas {
+.contas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(36rem, 1fr));
     gap: 1.5rem;
@@ -615,20 +620,21 @@ section {
     width: 30%;
 }
 
-.admin-contas .gridbox {
+.contas .gridbox {
     background-color: var(--white);
     box-shadow: var(--box-shadow);
     /* border:var(--border); */
     padding: 2rem 2rem;
     border-radius: .5rem;
+
 }
 
-.admin-contas .gridbox .itemfield .title {
+.contas .gridbox .itemfield .title {
     font-size: 1.5rem;
     color: var(--black);
 }
 
-.admin-contas .gridbox .itemfield .box {
+.contas .gridbox .itemfield .box {
     background-color: var(--light-bg);
     box-shadow: var(--box-shadow);
     width: 100%;
@@ -639,11 +645,11 @@ section {
     margin: 1rem 0;
 }
 
-.admin-contas .gridbox .itemfield .box span {
+.contas .gridbox .itemfield .box span {
     color: var(--main-color);
 }
 
-.admin-contas .gridbox select {
+.contas .gridbox select {
     background-color: var(--light-bg);
     box-shadow: var(--box-shadow);
     width: 100%;
