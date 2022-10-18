@@ -34,7 +34,7 @@ if (isset($_GET['deletar'])){
 <body>
     <?php include '../components/admin_header.php'; ?>
 
-    <section class="admin-contas register-admin">
+    <section class="contas register-admin">
         <div class="gridbox">
             <div class="itemfield">
                 <span class="title">Adicionar novo Administador</span>
@@ -43,7 +43,7 @@ if (isset($_GET['deletar'])){
         </div>
     </section>
 
-    <section class="admin-contas ">
+    <section class="contas">
         <?php
             $qry = "SELECT * FROM `admins`";
             $selecionar_contas = $conn->prepare($qry);
