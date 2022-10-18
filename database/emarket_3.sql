@@ -62,13 +62,11 @@ CREATE TABLE IF NOT EXISTS `emarket`.`carrinho` (
   CONSTRAINT `fk_carrinho_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ,
   CONSTRAINT `fk_carrinho_produtos`
     FOREIGN KEY (`produtos_codProduto`)
     REFERENCES `emarket`.`produtos` (`codProduto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    )
 ENGINE = InnoDB;
 
 
@@ -113,13 +111,11 @@ CREATE TABLE IF NOT EXISTS `emarket`.`listadedesejo` (
   CONSTRAINT `fk_listadedesejo_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ,
   CONSTRAINT `fk_listadedesejo_produtos`
     FOREIGN KEY (`produtos_codProduto`)
     REFERENCES `emarket`.`produtos` (`codProduto`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    )
 ENGINE = InnoDB;
 
 
@@ -138,8 +134,7 @@ CREATE TABLE IF NOT EXISTS `emarket`.`mensagens` (
   CONSTRAINT `fk_mensagens_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    )
 ENGINE = InnoDB;
 
 
@@ -165,6 +160,5 @@ CREATE TABLE IF NOT EXISTS `emarket`.`pedidos` (
   CONSTRAINT `fk_pedidos_usuarios`
     FOREIGN KEY (`usuarios_codUsuario`)
     REFERENCES `emarket`.`usuarios` (`codUsuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    )
 ENGINE = InnoDB;
