@@ -50,8 +50,7 @@
 /* Modifica todo o contéudo da tag main */
 
 #all-container,
-.productslider,
-section {
+.productslider {
     background-color: var(--white);
 }
 
