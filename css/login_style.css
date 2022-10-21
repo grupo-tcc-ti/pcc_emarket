@@ -27,7 +27,7 @@
   font-size: 14px;
 }
 .form button {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
   outline: 0;
   background: darkcyan;
@@ -91,10 +91,10 @@
   color: #EF3B3A;
 }
 body {
-  background: darkcyan; /* fallback for old browsers */
-  background: darkcyan;
-  background: linear-gradient(90deg, darkcyan 0%, darkcyan 50%);
+  background: lavenderBlush; /* fallback for old browsers */
+  background: lavenderBlush;
+  /* background: linear-gradient(90deg, darkcyan 0%, darkcyan 50%); */
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;      
+  -moz-osx-font-smoothing: grayscale;
 }

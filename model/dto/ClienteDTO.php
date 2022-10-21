@@ -7,6 +7,10 @@ class ClienteDTO {
         return $this->id;
     }
 
+    public function setId( $x ) {
+        $this->id = $x;
+    }
+
     public function getNome() {
         return $this->nome;
     }

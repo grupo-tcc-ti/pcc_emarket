@@ -11,20 +11,23 @@ class ClienteDAO {
 
     public function login( ClienteDTO $Cliente ) {
         try {
-            $sql  = "Select * from usuarios where email =? AND senha=?";
+            $sql  = "SELECT * FROM usuarios WHERE email =? AND senha=?";
             $stmt = $this->con->prepare( $sql );
             $stmt->bindValue( 1, $Cliente->getEmail() );
-            $stmt->bindValue( 2, MD5( $Cliente->getSenha() ) );
+            $stmt->bindValue( 2, MD5($Cliente->getSenha()) );
             $stmt->execute();
-            $usuarioFetch = $stmt->fetch( PDO::FETCH_ASSOC );
+            $fetchUser = $stmt->fetch( PDO::FETCH_ASSOC );
 
-            if ( $usuarioFetch != NULL ) {
+          
+            if ( $fetchUser != NULL ) {
                 $usuario = new ClienteDTO();
-                $usuario->setEmail( $usuarioFetch["codUsuario"] );
-                $usuario->setNome( $usuarioFetch["nome"] );
-
+                $usuario->setEmail( $fetchUser["email"] );
+                $usuario->setNome( $fetchUser["nome"] );
+                $usuario->setId($fetchUser["codUsuario"]);
                 return $usuario;
             }
+                
+        
 
         } catch ( PDOException $e ) {
             echo $e->getMessage();
@@ -39,7 +42,7 @@ class ClienteDAO {
             $stmt = $this->con->prepare( $sql );
             $stmt->bindValue( 1, $usuarioDTO->getNome() );
             $stmt->bindValue( 2, $usuarioDTO->getEmail() );
-            $stmt->bindValue( 3, $usuarioDTO->getSenha() );
+            $stmt->bindValue( 3, MD5($usuarioDTO->getSenha()) );
 
             return $stmt->execute();
 

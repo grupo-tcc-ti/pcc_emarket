@@ -14,6 +14,10 @@
       $(function() {
           $('#header').load('header.html')
       });
+
+      $(function() {
+          $('#footer').load('footer.html')
+      });
     </script>
 </head>
 
@@ -35,15 +39,18 @@
         <input type="text" placeholder="email" name="email" id="email" class="email"/>
         <button type="submit">Registrar</button>
         <p class="message">Já possuí um registro? <a href="#">Logar-se</a></p>
-    </form>
+      </form>
     </div>
   </div>
+
+  <div id="footer"></div>
 
   <script>
     $('.message a').click(function(){
     $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
    });
   </script>
+  <script src="../js/script.js"></script>
 
 </body>
 </html>

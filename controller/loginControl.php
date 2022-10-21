@@ -14,8 +14,7 @@ $usuarioLogado = $ClienteDAO->login( $ClienteDTO );
 
 if ( $usuarioLogado != null ) {
     session_start();
-    $_SESSION["email"] = $usuarioLogado->getEmail();
-    //$_SESSION["tipo"]=$usuarioLogado->getTipo();
+    $_SESSION["login"]=$usuarioLogado->getId();
 
     header( "location:../sindex.html" );
 //    echo "<script>";
