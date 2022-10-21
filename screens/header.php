@@ -1,6 +1,6 @@
 <div class="header">
     <ul>
-        <li><img src="./image/logo.png" class="logo-img" alt="logo"></li>
+        <li><img src="../image/logo.png" class="logo-img" alt="logo"></li>
         <li>
             <div class="dropdown">
                 <button id="link-depart" onclick='clickDrop("depart")' class="btn">
@@ -33,8 +33,8 @@
                     <i class="fa-regular fa-user"></i>
                 </button>
                 <nav id="conta" class="dropdown-content">
-                    <a href="screens/login_page.html">Minha conta</a>
-                    <a href="screens/login_page.html">Registrar</a>
+                    <a href="login_page.php">Minha conta</a>
+                    <a href="login_page.php">Registrar</a>
                 </nav>
             </div>
         </li>

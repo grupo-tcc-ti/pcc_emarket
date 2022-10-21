@@ -9,20 +9,15 @@
     <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"> </script>
     <title>Login</title>
-
-    <script>
-      $(function() {
-          $('#header').load('header.html')
-      });
-
-      $(function() {
-          $('#footer').load('footer.html')
-      });
-    </script>
 </head>
 
 <body>
-  <div id="header"></div>
+  
+<div id="header">
+  <?php
+    include "header.php";
+  ?>
+</div>
 
   <div class="login-page">
     <div class="form">
@@ -43,7 +38,11 @@
     </div>
   </div>
 
-  <div id="footer"></div>
+  <div id="footer">
+    <?php
+        include "footer.php";
+    ?>
+  </div>
 
   <script>
     $('.message a').click(function(){
