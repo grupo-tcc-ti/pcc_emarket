@@ -21,7 +21,12 @@
 * {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
 }
 
 ::-webkit-scrollbar {
@@ -46,39 +51,19 @@
     border-radius: .6rem;
 }
 
-
-/* Modifica todo o contéudo da tag main */
-
-#all-container,
-.productslider {
-    background-color: var(--white);
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
 }
 
-/* modifica a logo */
-
-.logo-img {
-    display: flex;
-    width: 4rem;
-    height: 4rem;
+body {
+    background-color: var(--light-bg);
 }
 
-.header {
-    border-bottom: 3px solid var(--main-color);
-}
-
-/* Modifica os elementos da barra de naavegação */
-
-ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    background-color: var(--black);
-    border-bottom: var(--border);
+section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
 }
 
 /* Banner */
@@ -95,28 +80,24 @@ ul {
 
 /* ################# Estilização do Menu Suspenso - Departamento ################# */
 
-
 .btn {
-    background-color: var(--black);
-    color: var(--light-color);
-    padding: 16px 10px;
     font: 16px 'Poppins', sans-serif;
-    border: none;
-    cursor: pointer;
-    /* width: 14rem; */
+    color: var(--light-color);
+    background-color: var(--black);
+    padding: 16px 10px;
+    padding: 1.6rem;
     width: 14rem;
     min-height: 3.5rem;
     border-radius: .1rem;
-    transition: .5s ease;
+    transition: .2s ease;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    cursor: pointer;
+    border: none;
 }
 
 .btn:hover {
     background-color: var(--main-color);
-}
-
-#link-search{
-    padding: 0 4px 4px 0;
-    width: 5rem;
 }
 
 .dropdown {
@@ -125,6 +106,7 @@ ul {
     justify-content: initial;
     align-items: initial;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -141,19 +123,13 @@ ul {
     color: white;
     padding: 12px 10px;
     text-decoration: none;
-    border-radius: 0px;
+    border-radius: 0rem;
+    font-size: 1.4rem;
 }
 
 .dropdown-content a:hover {
     background-color: var(--main-color);
     /* transition: background-color .5s; */
-}
-
-.showMenuSuspenso,
-.dropdown-content.active {
-    display: block;
-    transition: .8s;
-    animation: dropDownAnimation 300ms ease-in-out forwards
 }
 
 @keyframes dropDownAnimation {
@@ -172,18 +148,81 @@ ul {
     }
 }
 
+.showMenuSuspenso,
+.dropdown-content.active {
+    display: block;
+    transition: .8s;
+    animation: dropDownAnimation 300ms ease-in-out forwards
+}
 
-/* ################# Estilização da Barra de Pesquisa ################# */
+/* ################# Estilização da Header ################# */
 
-.pesquisa {
+.header {
+    border-bottom: 3px solid var(--main-color);
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    z-index: 1000;
+}
+
+.header .flex {
+    /* display: inline-flex; */
+    /* align-items: center; */
+    /* position: relative; */
+    width: 100%;
+}
+
+.header .flex ul {
+    display: flex;
+    background-color: var(--black);
+    border-bottom: var(--border);
+    list-style: none;
+    align-items: center;
+    justify-content: space-evenly;
+    /* width: 120%; */
+}
+
+.header .flex ul li {
+    display: inherit;
+    padding: 8px 14px;
+    align-items: center;
+}
+
+.header .flex ul li span {
+    display: inline-flex;
+    flex: 1;
+    float: left;
+}
+
+.header .flex ul li .fa-chevron-down {
+    display: flex;
+    flex: 2;
+    float: right;
+}
+
+.header .flex ul li .fa-bars {
+    display: none;
+}
+
+.header .flex .logo-img {
+    /* flex: 1; */
+    width: 4rem;
+    height: 4rem;
+}
+
+.header .flex .pesquisa {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-#isearch {
+.header .flex .pesquisa #isearch {
     font-family: 'Poppins', sans-serif;
     width: 100%;
+    min-width: 4rem;
     min-width: 29rem;
     min-height: 58px;
     font: 1rem;
@@ -192,71 +231,9 @@ ul {
     border-radius: 0px;
 }
 
-/* ################# Div container Conta e Carrinho ################# */
-.minhaconta,
-.carrinho {
-    background-color: var(--black);
-    color: var(--light-color);
-}
+/* ################## Slider ######################## */
 
-/* ################# Icones da Barra de Navegação ################# */
-
-.icon {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 1.5em;
-    min-height: 1.5em;
-    height: 100%;
-    width: 2em;
-    margin: 10px 10px 10px 10px;
-    padding: 0;
-    filter: invert(100%);
-}
-
-#searchicon {
-    background-image: url("../image/icones/icone-de-lupa.png");
-    padding: 0 35px 0px 0px;
-    width: 10px;
-}
-
-#link-carrinho {
-    background-image: url("../image/icones/icons8-carrinho-de-compras-32.png");
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* ################# Image Slider ################# */
-
-/* .productslider {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    box-sizing: border-box;
-}
-
-.prev,
-.next {
-    background-color: var(--black);
-    cursor: pointer;
-    padding: 16px;
-    color: var(--white);
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 7px 0px 0px 7px;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-.next {
-    right: 0;
-    border-radius: 0px 7px 7px 0px;
-}
-
-.prev:hover,
-.next:hover {
-    background-color: var(--amoled-black);
-} */
+/* Animaçoes aqui: https://css-tricks.com/animating-with-clip-path/ */
 
 img#slider {
     height: 200px;
@@ -272,9 +249,9 @@ img#slider {
     height: 280px;
     overflow: hidden;
     border-radius: 0px;
+    margin-top: 1rem;
 }
 
-/* Animaçoes aqui: https://css-tricks.com/animating-with-clip-path/ */
 .slider .slide {
     position: absolute;
     width: 100%;
@@ -330,76 +307,148 @@ img#slider {
 
 /* ################## Vitrine ######################## */
 
-/* Modifica todos os elementos dos cards */
-
-.container-prod {
-    display: flex;
-    flex-direction: column;
-    margin-left: 15%;
-    margin-right: 15%;
-}
-
-/* Modifica a fila de cards */
 .list-cards {
-    display: flex;
-    flex-direction: row;
-
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(26rem, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
 }
 
-/* Modifica os cartões e seu conteudo interior */
-.cards-items {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    border: var(--card-border);
-    border-radius: 0 0 0 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
+.list-cards .cards-items {
+    background-color: var(--white);
     position: relative;
+    box-sizing: border-box;
+    border: var(--card-bocards-itemsrder);
+    border-radius: .5rem;
+    padding: 2rem;
+    margin-bottom: 5rem;
     overflow: hidden;
-    word-wrap: break-word;
+    user-select: none;
 }
 
-/* Modifica o card quando o cursor está sobre ele */
-
+.list-cards .cards-items:hover,
 .cards-items:hover {
     box-shadow: var(--card-box-shadow);
 }
 
-/* Modifica o elemento onde está preço */
-.cards-price {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-}
 
-/* Modifica o nome dos produtos */
-.products-name {
-    display: inline-block;
-    font-size: 12px;
-}
-
-/*  Modifica as imagens do produto e seu filtro */
-.products-imgs,
-figure {
+.list-cards .cards-items .products-imgs,
+.products-imgs {
     width: 100%;
-    height: 100%;
-    margin: 0;
+    height: 20rem;
+    object-fit: contain;
+    margin-bottom: 2rem;
 }
 
-/*  Modifica o botão do adicionar ao carrinho */
-.buy-bttn {
+.list-cards .cards-items .products-name,
+.products-name {
+    font-size: 1.6rem;
+    color: var(--black);
+}
+
+.list-cards .cards-items .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.list-cards .cards-items .flex .qty {
+    width: 7rem;
+    padding: 1rem;
+    border: var(--border);
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+}
+
+.list-cards .cards-items .flex .cards-price,
+.cards-price {
+    margin: 1rem 0;
+    font-size: 2rem;
+    color: var(--red);
+}
+
+.list-cards .cards-items .fa-heart,
+.list-cards .cards-items .fa-eye {
+    position: absolute;
+    top: 1rem;
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.2rem;
+    font-size: 2rem;
+    background-color: var(--white);
+    border: var(--border);
+    border-radius: .5rem;
+    text-align: center;
+    color: var(--black);
+    cursor: pointer;
+    transition: .2s linear;
+}
+
+.list-cards .cards-items .fa-heart {
+    right: -6rem;
+}
+
+.list-cards .cards-items .fa-eye {
+    left: -6rem;
+}
+
+.list-cards .cards-items .fa-heart:hover,
+.list-cards .cards-items .fa-eye:hover {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.list-cards .cards-items:hover .fa-heart {
+    right: 1rem;
+}
+
+.list-cards .cards-items:hover .fa-eye {
+    left: 1rem;
+}
+
+.list-cards .cards-items .flex .box {
+    background-color: var(--light-bg);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+    margin: 1rem 0;
+}
+
+.list-cards .cards-items .flex .box span {
+    color: var(--main-color);
+}
+
+.list-cards .cards-items select {
+    background-color: var(--light-bg);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    padding: 1.4rem;
+    font-size: 1.8rem;
+    color: var(--black);
+    border-radius: .5rem;
+}
+
+.buy-btn {
+    display: block;
     background-color: var(--green);
     color: var(--light-color);
-    padding: 16px;
-    font-size: 16px;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem 3rem;
+    font-size: 1.4rem;
+    border-radius: .5rem;
     border: none;
-
+    text-transform: capitalize;
+    text-align: center;
+    cursor: pointer;
 }
 
-/* Modifica o contéudo do botão */
-.buy-bttn a {
+.buy-btn a {
     text-decoration: none;
     color: var(--light-color);
 }
@@ -408,13 +457,13 @@ figure {
 
 footer {
     /* padding-bottom: 25px; */
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    /* flex-direction: row; */
+    /* align-items: flex-start; */
+    position: relative;
     color: var(--light-color);
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
     justify-content: space-between;
-    position: relative;
     border-top: var(--border);
     background-color: var(--black);
 }
@@ -441,12 +490,88 @@ span>a {
 }
 
 .columns-footer>span a:hover {
-    background-color: var(--main-color);
-    border: var(--footer-border);
-    border-radius: 8px;
+    /* background-color: var(--main-color); */
+    /* border: var(--footer-border); */
+    /* border-radius: 8px; */
+    padding-left: 1rem;
     color: var(--light-color);
     justify-content: space-between;
     transition: .2s;
     margin: none;
     padding: none;
+}
+
+@media (max-width:980px) {
+    html {
+        font-size: 90%;
+    }
+
+    .btn {
+        width: 8rem;
+        padding: .8rem;
+    }
+
+    .slider {
+        width: 96%;
+        height: 22rem;
+        margin: 1rem;
+    }
+
+    .list-cards {
+        gap: 1rem;
+    }
+
+    .list-cards .cards-items {
+        margin: 0 1rem 3rem;
+    }
+
+    .header .flex ul {
+        width: 100%;
+    }
+
+    .header .flex ul li {
+        width: 22%;
+    }
+
+    .header .flex ul li #isearch {
+        display: none;
+    }
+
+    .header .flex ul li .fa-chevron-down {
+        display: none;
+    }
+
+    .header .flex ul li .fa-bars {
+        display: block;
+    }
+
+    .header .flex ul li button span {
+        display:none;
+        /* font-size: 1.2rem; */
+
+    }
+}
+
+@media (max-width:600px) {
+    html {
+        font-size: 50%;
+    }
+
+    .btn {
+        width: 7rem;
+        padding: 1rem;
+    }
+
+    .list-cards {
+        gap: 0rem;
+    }
+
+    .list-cards .cards-items {
+        width: 90%;
+        margin: 0 1rem 3rem;
+    }
+
+    .header .flex .logo-img {
+        height: 5rem;
+    }
 }
