@@ -17,17 +17,23 @@ if (isset($_GET['deletar'])) {
     -- msg, ldd, crt,
     
     -- FROM  `mensagens` as msg
+    -- WHERE msg.usuarios_codUsuario = :uid AND EXISTS 
+    -- (SELECT * FROM `listadedesejo` WHERE codUsuario = :uid)
+
     -- JOIN
     -- `listadedesejo` AS ldd
     -- ON ldd.usuarios_codUsuario = msg.usuarios_codUsuario
+
+    -- WHERE pd.usuarios_codUsuario = :uid AND EXISTS 
+    -- (SELECT * FROM `listadedesejo` WHERE codUsuario = :uid)
 
     -- JOIN
     -- `carrinho` AS crt
     -- ON crt.usuarios_codUsuario = ldd.usuarios_codUsuario
 
-    -- JOIN
-    -- `pedidos` AS pd
-    -- ON pd.usuarios_codUsuario = crt.usuarios_codUsuario
+    JOIN
+    `pedidos` AS pd
+    ON pd.usuarios_codUsuario = crt.usuarios_codUsuario
 
     from `pedidos` AS pd
     JOIN
@@ -35,6 +41,8 @@ if (isset($_GET['deletar'])) {
     ON  usr.codUsuario = pd.usuarios_codUsuario
     WHERE pd.usuarios_codUsuario = :uid
     ";
+
+
 
     $deletar_usuario = $conn->prepare($qry);
     $deletar_usuario->bindParam(':uid', $deletar_id);
