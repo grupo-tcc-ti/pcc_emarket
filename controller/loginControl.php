@@ -14,7 +14,7 @@ $usuarioLogado = $ClienteDAO->login( $ClienteDTO );
 
 if ( $usuarioLogado != null ) {
     session_start();
-    $_SESSION["login"]=$usuarioLogado->getId();
+    $_SESSION["login"] = $usuarioLogado->getId();
 
     header( "location:../screens/home.php" );
 //    echo "<script>";

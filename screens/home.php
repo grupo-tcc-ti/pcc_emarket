@@ -1,13 +1,13 @@
-  <?php
-  include '../components/connect.php';
-  session_start();
-  if (isset($_SESSION['user_id'])) {
-    $user_id= $_SESSION['user_id'];
-  } else {
-    $user_id= '';
-  }
-  // include '../components/wishlist_card.php';
-  ?>
+<?php
+    include '../components/connect.php';
+    session_start();
+    if ( isset( $_SESSION['user_id'] ) ) {
+        $user_id = $_SESSION['user_id'];
+    } else {
+        $user_id = '';
+    }
+    // include '../components/wishlist_card.php';
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br, en">
@@ -27,8 +27,8 @@
       crossorigin="anonymous"> </script>
     <title>Emarket</title>
   </head>
-  <!-- com JQuery nos podemos puxar um html code de outro arqui aqui, assim nos pode usar a mesma barra em todas as telas -->
-  <?php include '../screens/header.php'; ?>
+
+  <?php include '../screens/header.php';?>
     <body>
       <section>
         <div class="slider">
@@ -68,17 +68,17 @@
   <section class="container-prod">
     <div class="list-cards">
       <?php
-        $pdo= Connect::getInstance();
-        // $qry="SELECT * FROM `produtos` LIMIT 4";
-        $qry="SELECT * FROM `produtos`";
-        // $produtos= $conn->query($qry);
-        $produtos = $pdo->prepare($qry);
-        $produtos->execute();
-        if ($produtos->rowCount() > 0) {
-        while ($fetch_produto = $produtos->fetch(PDO::FETCH_ASSOC)) {
-          // $fetch_prodimg = explode(",", trim($fetch_produto['image'], "./"));
-          $fetch_prodimg = explode(",", $fetch_produto['image']);
-      ?>
+          $pdo = Connect::getInstance();
+          // $qry="SELECT * FROM `produtos` LIMIT 4";
+          $qry = "SELECT * FROM `produtos`";
+          // $produtos= $conn->query($qry);
+          $produtos = $pdo->prepare( $qry );
+          $produtos->execute();
+          if ( $produtos->rowCount() > 0 ) {
+              while ( $fetch_produto = $produtos->fetch( PDO::FETCH_ASSOC ) ) {
+                  // $fetch_prodimg = explode(",", trim($fetch_produto['image'], "./"));
+                  $fetch_prodimg = explode( ",", $fetch_produto['image'] );
+              ?>
         <div class="cards-items">
           <button type="submit" class="fas fa-heart"
             name="addListadesejo"></button>
@@ -105,10 +105,10 @@
                 </form>
         </div>
       <?php
-        }
-        } else {
-        echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
-      }
+          }
+          } else {
+              echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
+          }
       ?>
   </div>
   <!-- <div class="swiper-pagination"></div>

@@ -1,19 +1,19 @@
-    <?php 
-        if (isset($mensagem)){
-            foreach($mensagem as $mensagem){
-                echo
+<?php
+    if ( isset( $mensagem ) ) {
+        foreach ( $mensagem as $mensagem ) {
+            echo
                 '<div class="mensagem">
-                    <span>'.$mensagem.'</span>
+                    <span>' . $mensagem . '</span>
                     <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
                 </div>';
-            }
         }
-    ?>
+    }
+?>
     <header class="header">
         <div class="flex">
             <ul>
                 <li>
-                    <img src="../image/logo.png" class="logo-img" alt="logo">
+                    <a href="home.php"><img src="../image/logo.png" class="logo-img" alt="logo"></a>
                 </li>
                 <li>
                     <div class="dropdown">
@@ -54,8 +54,8 @@
                         <i class="fa-regular fa-user"></i>
                         </button>
                         <nav id="conta" class="dropdown-content">
-                            <a href="screens/login_page.html">Minha conta</a>
-                            <a href="screens/login_page.html">Registrar</a>
+                            <a href="login_page.php">Minha conta</a>
+                            <a href="login_page.php">Registrar</a>
                         </nav>
                     </div>
                 </li>

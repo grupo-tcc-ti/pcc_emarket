@@ -15,6 +15,6 @@ $ClienteDAO = new ClienteDAO();
 $status     = $ClienteDAO->register( $ClienteDTO );
 
 if ( $status != null ) {
-    header( "location:../screens/login_page.html" );
+    header( "location:../screens/login_page.php" );
 }
 ?>
