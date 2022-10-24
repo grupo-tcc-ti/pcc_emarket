@@ -1,54 +1,67 @@
 <?php
-include '../components/connect.php';
-session_start();
+    include '../components/connect.php';
+    require_once '../model/dto/adminDTO.php';
+    require_once '../model/dao/adminDAO.php';
+    session_start();
 
-(empty($_SESSION['admin_id']))?:$admin_id = $_SESSION['admin_id'];
+    $AdminDTO = new AdminDTO();
 
+    if ( isset( $_SESSION["nomeAdmin"] ) && isset( $_SESSION["senhaAdmin"] ) ) {
+        $mensagem[] = 'Sua sessão já foi iniciada!';
+        $mensagem[] = 'Voce está sendo redirecionado....';
 
-if (isset($admin_id)) {
-    // echo print_r($_SESSION).':loggedin'; //debug
-    $mensagem[] = 'Sua sessão já foi iniciada!';
-    $mensagem[] = 'Voce está sendo redirecionado....';
-    // Pegar hostname
-    $hostname = $_SERVER['HTTP_HOST'];
-    // Pegar o diretorio atual com barra“/”
-    $current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
-    // Define o nome da pagina
-    $page = 'dashboard.php';
-    header('refresh:3, url=http://'.$hostname.$current_directory.'/'.$page);
-}
+        $usuario = $_SESSION["nomeAdmin"];
+        $senha   = $_SESSION['senhaAdmin'];
 
-if (isset($_POST['submit'])){
-    $usuario = $_POST['usuario'];
-    $usuario = filter_var($usuario, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $senha = sha1($_POST['senha']);
-    $senha = filter_var($senha, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $AdminDTO->setAdminNome( $_SESSION["nomeAdmin"] );
+        $AdminDTO->setAdminSenha( $_SESSION["senhaAdmin"] );
 
-    // $qry = "SELECT * FROM `admins` WHERE nome = ? AND senha = ?";
-    $qry = "SELECT * FROM `admins` WHERE nome = :usuario AND senha = :senha";
-    $selecionar_admin = $conn->prepare($qry);
-    $selecionar_admin->bindParam(':usuario', $usuario);
-    $selecionar_admin->bindParam(':senha', $senha);
-    $selecionar_admin->execute();
-    if ($selecionar_admin->rowCount() > 0){
-        $fetch_admin_id = $selecionar_admin->fetch(PDO::FETCH_ASSOC);
-        $_SESSION['admin_id'] = $fetch_admin_id['codAdmin'];
-        $mensagem[] = 'Bem Vindo';
-        // header('location: dashboard.php');
+        // var_dump( $_SESSION );
+        // var_dump( $AdminDTO );
 
-        // Pegar hostname
-        $hostname = $_SERVER['HTTP_HOST'];
-        // Pegar o diretorio atual com barra“/”
-        $current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
-        // Define o nome da pagina
-        $page = 'dashboard.php';
+        $AdminDAO      = new AdminDAO();
+        $usuarioLogado = $AdminDAO->login( $AdminDTO );
 
-        header('refresh:1, url=http://'.$hostname.$current_directory.'/'.$page);
-        exit;
-    } else {
-        $mensagem[] = 'Nome de usuário ou senha incorreto!';
+        if ( $usuarioLogado != null ) {
+            $_SESSION['admin_id'] = $usuarioLogado->getAdminID();
+            $hostname             = $_SERVER['HTTP_HOST'];
+            $current_directory    = rtrim( dirname( $_SERVER['PHP_SELF'] ), '/' );
+            $page                 = 'dashboard.php';
+
+            header( 'refresh:1, url=http://' . $hostname . $current_directory . '/' . $page );
+        } else {
+            $mensagem[] = 'Nome de usuário ou senha incorreto!';
+        }
     }
-}
+
+    if ( isset( $_POST['submit'] ) ) {
+
+        $AdminDTO->setAdminNome( $_POST['usuario'] );
+        $AdminDTO->setAdminSenha( sha1( $_POST['senha'] ) );
+
+        // var_dump( $_SESSION );
+        // var_dump( $AdminDTO );
+
+        $AdminDAO      = new AdminDAO();
+        $usuarioLogado = $AdminDAO->login( $AdminDTO );
+
+        if ( $usuarioLogado != null ) {
+            $_SESSION['admin_id'] = $usuarioLogado->getAdminID();
+            $mensagem[]           = 'Bem Vindo';
+            $hostname             = $_SERVER['HTTP_HOST'];
+            $current_directory    = rtrim( dirname( $_SERVER['PHP_SELF'] ), '/' );
+            $page                 = 'dashboard.php';
+
+            if ( !isset( $_SESSION["nomeAdmin"] ) && !isset( $_SESSION["senhaAdmin"] ) ) {
+                $_SESSION["nomeAdmin"]  = $AdminDTO->getAdminNome();
+                $_SESSION["senhaAdmin"] = $AdminDTO->getAdminSenha();
+            }
+
+            header( 'refresh:1, url=http://' . $hostname . $current_directory . '/' . $page );
+        } else {
+            $mensagem[] = 'Nome de usuário ou senha incorreto!';
+        }
+    }
 
 ?>
 
@@ -64,23 +77,23 @@ if (isset($_POST['submit'])){
     <title>Login do Administrador - Intranet</title>
 </head>
 <body>
-    
+
 <!-- <div class="mensagem">
 <span>Sua sessão já foi iniciada!</span>
 <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
 </div> -->
 
 <?php
-if (isset($mensagem)){
-    foreach ($mensagem as $mensagem) {
-        echo '
+    if ( isset( $mensagem ) ) {
+        foreach ( $mensagem as $mensagem ) {
+            echo '
         <div class="mensagem">
-        <span>'.$mensagem.'</span>
+        <span>' . $mensagem . '</span>
         <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
         </div>
         ';
+        }
     }
-}
 ?>
 
 <!-- Container do formulário de login do adminisrador -->

@@ -1,26 +1,25 @@
 <?php
 require_once __DIR__ . '/../connection.php';
-require_once __DIR__ . '/../dto/ClienteDTO.php';
+require_once __DIR__ . '/../dto/UsuarioDTO.php';
 
-class ClienteDAO {
+class UsuarioDAO {
     private $con;
 
     public function __construct() {
         $this->con = Conexao::getInstance(); //connect on function call
     }
 
-    public function login( ClienteDTO $Cliente ) {
+    public function login( UsuarioDTO $Cliente ) {
         try {
             $sql  = "SELECT * FROM usuarios WHERE email =? AND senha=?";
             $stmt = $this->con->prepare( $sql );
             $stmt->bindValue( 1, $Cliente->getEmail() );
-            $stmt->bindValue( 2, MD5($Cliente->getSenha()) );
+            $stmt->bindValue( 2, sha1( $Cliente->getSenha() ) );
             $stmt->execute();
             $fetchUser = $stmt->fetch( PDO::FETCH_ASSOC );
 
-          
             if ( $fetchUser ) {
-                $usuario = new ClienteDTO();
+                $usuario = new UsuarioDTO();
                 $usuario->setEmail( $fetchUser["email"] );
                 $usuario->setNome( $fetchUser["nome"] );
                 $usuario->setId( $fetchUser["codUsuario"] );
@@ -35,14 +34,14 @@ class ClienteDAO {
         }
     }
 
-    public function register( ClienteDTO $usuarioDTO ) {
+    public function register( UsuarioDTO $usuarioDTO ) {
         try {
             $sql = "INSERT INTO usuarios (nome, email, senha) ";
             $sql .= " VALUES(?, ?, ?)";
             $stmt = $this->con->prepare( $sql );
             $stmt->bindValue( 1, $usuarioDTO->getNome() );
             $stmt->bindValue( 2, $usuarioDTO->getEmail() );
-            $stmt->bindValue( 3, MD5($usuarioDTO->getSenha()) );
+            $stmt->bindValue( 3, sha1( $usuarioDTO->getSenha() ) );
 
             return $stmt->execute();
 

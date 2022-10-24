@@ -1,6 +1,6 @@
 <?php
 
-class ClienteDTO {
+class UsuarioDTO {
     private $id, $nome, $email, $senha, $telefone, $cpf, $datanascimento, $tipo;
 
     public function getId() {

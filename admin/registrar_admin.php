@@ -1,37 +1,47 @@
 <?php
-include '../components/connect.php';
-session_start();
+    include '../components/connect.php';
+    require_once '../model/dto/adminDTO.php';
+    require_once '../model/dao/adminDAO.php';
+    session_start();
 
-$admin_id = $_SESSION['admin_id'];
+    $admin_id = $_SESSION['admin_id'];
 
-if (!isset($admin_id)) {
-    $admin_header = 'admin_header.php';
-    header('location:../components/'.$admin_header);
-}
-
-if (isset($_POST['submit'])){
-    $username = $_POST['username'];
-    $username = filter_var($username, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $password = sha1($_POST['password']);
-    $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $rpassword = sha1($_POST['rpassword']);
-    $rpassword = filter_var($rpassword, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-    $qry = "SELECT * FROM `admins` WHERE nome = ?";
-    $select_admin = $conn->prepare($qry);
-    $select_admin->execute([$username]);
-    if ($select_admin->rowCount() > 0){
-        $mensagem[] = 'Conta já existe!';
-    } else if ($password != $rpassword) {
-        $mensagem[] = 'Nome de usuário ou senha incorreto!';
+    if ( !isset( $admin_id ) ) {
+        $admin_header = 'admin_header.php';
+        header( 'location:../components/' . $admin_header );
     }
-    else {
-        $insert_admin = $conn->prepare("INSERT INTO `admins` (nome, senha) VALUES (?, ?)");
-        $insert_admin->execute([$username, $rpassword]);
-        $mensagem[] = 'Cadastro de Administrador realizado com Sucesso!';
-    }
-}
 
+    if ( isset( $_POST['submit'] ) ) {
+        $username  = $_POST['username'];
+        $username  = filter_var( $username, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+        $password  = sha1( $_POST['password'] );
+        $password  = filter_var( $password, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+        $rpassword = sha1( $_POST['rpassword'] );
+        $rpassword = filter_var( $rpassword, FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+
+        $AdminDTO = new AdminDTO();
+        $AdminDTO->setAdminNome( $username );
+        $AdminDTO->setAdminSenha( $password );
+
+        $qry          = "SELECT * FROM admins WHERE nome = ?";
+        $select_admin = $conn->prepare( $qry );
+        $select_admin->execute( [$username] );
+        if ( $select_admin->rowCount() > 0 ) {
+            $mensagem[] = 'Conta já existe!';
+        } else if ( $password != $rpassword ) {
+            $mensagem[] = 'Nome de usuário ou senha incorreto!';
+        } else {
+
+            $AdminDAO = new AdminDAO();
+            $status   = $AdminDAO->register( $AdminDTO );
+
+            if ( $status != null ) {
+                $mensagem[] = 'Cadastro de Administrador realizado com Sucesso!';
+            } else {
+                $mensagem[] = 'Falha ao cadastrar administrador';
+            }
+        }
+    }
 
 ?>
 

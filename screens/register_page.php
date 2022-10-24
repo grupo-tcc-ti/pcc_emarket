@@ -11,20 +11,20 @@
 </head>
 
 <body>
-  
+
 <div id="header">
   <?php
-    include "header.php";
+      include "header.php";
   ?>
 </div>
 
   <div class="login-page">
     <div class="form">
       <form action="../controller/registerControl.php" method="POST" class="register-form" id="R">
-        <input type="text" placeholder="nome" name="nome" id="nome" class="nome"/>
+        <input type="text" placeholder="usuario" name="nome" id="nome" class="nome"/>
         <input type="password" placeholder="senha" name="senha" id="senha" class="senha"/>
         <input type="text" placeholder="email" name="email" id="email" class="email"/>
-        <button type="submit">Registrar</button>
+        <input type="submit" class="submitButton" value="Registrar">
         <p class="message">Já possuí um registro? <a href="login_page.php">Logar-se</a></p>
       </form>
     </div>

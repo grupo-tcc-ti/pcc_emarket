@@ -1,21 +1,34 @@
 <?php
-require_once '../model/dto/ClienteDTO.php';
-require_once '../model/dao/ClienteDAO.php';
+require_once '../model/dto/UsuarioDTO.php';
+require_once '../model/dao/UsuarioDAO.php';
 
 $email = $_POST["email"];
 $senha = $_POST["senha"];
 
-$ClienteDTO = new ClienteDTO();
-$ClienteDTO->setEmail( $email );
-$ClienteDTO->setSenha( $senha );
+$UsuarioDTO = new UsuarioDTO();
+$UsuarioDTO->setEmail( $email );
+$UsuarioDTO->setSenha( $senha );
 
-$ClienteDAO    = new ClienteDAO();
-$usuarioLogado = $ClienteDAO->login( $ClienteDTO );
+$UsuarioDAO    = new UsuarioDAO();
+$usuarioLogado = $UsuarioDAO->login( $UsuarioDTO );
 
 if ( $usuarioLogado != null ) {
     session_start();
     $_SESSION["login"] = $usuarioLogado->getId();
-    $_SESSION["tipo"] = "a"; //teste
+    $nome              = $usuarioLogado->getNome();
+    $sql               = Conexao::getInstance();
+    $sql_code          = "SELECT * FROM admins WHERE nome = '$nome'";
+    $sql_query         = $sql->prepare( $sql_code );
+    $sql_query->execute();
+    $total = $sql_query->rowCount();
+
+    if ( $total > 0 ) {
+        $_SESSION["isAdmin"]    = "true";
+        $_SESSION["nomeAdmin"]  = $nome;
+        $_SESSION["senhaAdmin"] = sha1( $UsuarioDTO->getSenha() );
+    } else {
+        $_SESSION["isAdmin"] = "false";
+    }
 
     header( "location:../screens/home.php" );
 } else {
