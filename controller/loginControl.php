@@ -15,11 +15,10 @@ $usuarioLogado = $ClienteDAO->login( $ClienteDTO );
 if ( $usuarioLogado != null ) {
     session_start();
     $_SESSION["login"] = $usuarioLogado->getId();
+    $_SESSION["tipo"] = "a"; //teste
 
     header( "location:../screens/home.php" );
-//    echo "<script>";
-//    echo "window.location.href = '../view/login.php'";
-//    echo "</script>";
 } else {
+    session_destroy();
     header( "location:../screens/login_page.php?msg=usuário e/ou senha inválidos" );
 }

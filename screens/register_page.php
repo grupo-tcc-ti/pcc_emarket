@@ -20,12 +20,12 @@
 
   <div class="login-page">
     <div class="form">
-      <form action="../controller/loginControl.php" method="POST" class="login-form" id="L">
-        <input type="text" placeholder="email" name="email" id="email" class="email"/>
+      <form action="../controller/registerControl.php" method="POST" class="register-form" id="R">
+        <input type="text" placeholder="nome" name="nome" id="nome" class="nome"/>
         <input type="password" placeholder="senha" name="senha" id="senha" class="senha"/>
-        <button>Login</button>
-        <p class="message"><a href="register_page.php">Esquecer a senha?</a></p>
-        <p class="message">Não possuí registro? <a href="register_page.php">Registrar-se</a></p>
+        <input type="text" placeholder="email" name="email" id="email" class="email"/>
+        <button type="submit">Registrar</button>
+        <p class="message">Já possuí um registro? <a href="login_page.php">Logar-se</a></p>
       </form>
     </div>
   </div>
@@ -35,7 +35,6 @@
         include "footer.php";
     ?>
   </div>
-
 
   <script src="../js/script.js"></script>
 

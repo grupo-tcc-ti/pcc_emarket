@@ -19,15 +19,15 @@ class ClienteDAO {
             $fetchUser = $stmt->fetch( PDO::FETCH_ASSOC );
 
           
-            if ( $fetchUser != NULL ) {
+            if ( $fetchUser ) {
                 $usuario = new ClienteDTO();
                 $usuario->setEmail( $fetchUser["email"] );
                 $usuario->setNome( $fetchUser["nome"] );
-                $usuario->setId($fetchUser["codUsuario"]);
+                $usuario->setId( $fetchUser["codUsuario"] );
                 return $usuario;
             }
-                
-        
+
+            return null;
 
         } catch ( PDOException $e ) {
             echo $e->getMessage();

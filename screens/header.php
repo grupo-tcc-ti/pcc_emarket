@@ -55,7 +55,15 @@
                         </button>
                         <nav id="conta" class="dropdown-content">
                             <a href="login_page.php">Minha conta</a>
-                            <a href="login_page.php">Registrar</a>
+                            <a href="register_page.php">Registrar</a>
+                            <?php 
+                                if(isset($_SESSION["tipo"]) && strtolower($_SESSION["tipo"])=="a")
+                                {
+                            ?>
+                             <a href="../admin/dashboard.php">Admin Panel</a>
+                            <?php
+                                }
+                            ?>   
                         </nav>
                     </div>
                 </li>
