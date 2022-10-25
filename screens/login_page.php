@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if ( isset( $_SESSION["loginID"] ) ) { //check se ja ta logado
+        header( "location:../screens/home.php" );
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

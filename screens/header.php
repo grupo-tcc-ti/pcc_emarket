@@ -54,11 +54,22 @@
                         <i class="fa-regular fa-user"></i>
                         </button>
                         <nav id="conta" class="dropdown-content">
-                            <a href="login_page.php">Minha conta</a>
-                            <a href="register_page.php">Registrar</a>
                             <?php
-                                if ( isset( $_SESSION["isAdmin"] ) && strtolower( $_SESSION["isAdmin"] ) == "true" ) {
+                                if ( !isset( $_SESSION["loginID"] ) ) {
                                 ?>
+                                <a href="login_page.php">Login</a>
+                                <a href="register_page.php">Registrar</a>
+                            <?php
+                                } else {
+                                ?>
+                                <a href="minha_conta.php">Minha conta</a>
+                                <a href="../controller/logoutControl.php" onclick="return confirm('Você deseja sair?');">Logout</a>
+                            <?php
+                                }
+                            ?>
+<?php
+    if ( isset( $_SESSION["isAdmin"] ) && strtolower( $_SESSION["isAdmin"] ) == "true" ) {
+    ?>
                              <a href="../admin/admin_login.php">Admin Panel</a>
                             <?php
                                 }

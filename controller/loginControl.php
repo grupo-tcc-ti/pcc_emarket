@@ -1,6 +1,7 @@
 <?php
 require_once '../model/dto/UsuarioDTO.php';
 require_once '../model/dao/UsuarioDAO.php';
+session_start();
 
 $email = $_POST["email"];
 $senha = $_POST["senha"];
@@ -13,12 +14,11 @@ $UsuarioDAO    = new UsuarioDAO();
 $usuarioLogado = $UsuarioDAO->login( $UsuarioDTO );
 
 if ( $usuarioLogado != null ) {
-    session_start();
-    $_SESSION["login"] = $usuarioLogado->getId();
-    $nome              = $usuarioLogado->getNome();
-    $sql               = Conexao::getInstance();
-    $sql_code          = "SELECT * FROM admins WHERE nome = '$nome'";
-    $sql_query         = $sql->prepare( $sql_code );
+    $_SESSION["loginID"] = $usuarioLogado->getId();
+    $nome                = $usuarioLogado->getNome();
+    $sql                 = Conexao::getInstance();
+    $sql_code            = "SELECT * FROM admins WHERE nome = '$nome'";
+    $sql_query           = $sql->prepare( $sql_code );
     $sql_query->execute();
     $total = $sql_query->rowCount();
 
