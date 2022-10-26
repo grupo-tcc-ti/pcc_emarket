@@ -96,6 +96,10 @@ section {
     border: none;
 }
 
+#link-depart {
+    width: 18rem;
+}
+
 .btn:hover {
     background-color: var(--main-color);
 }
@@ -208,9 +212,10 @@ section {
 }
 
 .header .flex .logo-img {
-    /* flex: 1; */
-    width: 4rem;
-    height: 4rem;
+    /* width: 4rem; */
+    /* height: 4rem; */
+    width: 12rem;
+    height: 6rem;
 }
 
 .header .flex .pesquisa {
@@ -511,6 +516,11 @@ span>a {
         padding: .8rem;
     }
 
+    #link-depart {
+        width: 8rem;
+        padding: 1.6rem 2rem;
+    }
+
     .slider {
         width: 96%;
         height: 22rem;
@@ -546,7 +556,7 @@ span>a {
     }
 
     .header .flex ul li button span {
-        display:none;
+        display: none;
         /* font-size: 1.2rem; */
 
     }
