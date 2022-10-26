@@ -90,7 +90,7 @@
             <div class="products-name"><?=$fetch_produto['nome'];?></div>
             </a>
             <div class="flex">
-              <div class="cards-price"><span>$</span><?=$fetch_produto['preco'];?></div>
+              <div class="cards-price"><span>R$ </span><?=$fetch_produto['preco'];?></div>
                 <form action="" method="post">
                   <input type="hidden" name="id" value="<?=$fetch_produto['codProduto'];?>"></input>
                   <input type="hidden" name="nome" value="<?=$fetch_produto['nome'];?>"></input>
