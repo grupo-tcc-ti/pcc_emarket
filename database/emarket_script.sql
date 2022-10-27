@@ -1,5 +1,4 @@
 use emarket;
-INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`) VALUES ('cliente', 'cliente@gmail.com', SHA1('1234'));
 INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`) VALUES ('admin', 'admin@gmail.com', SHA1('1234'));
 INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`) VALUES ('admin_teste', 'admin_teste@gmail.com', SHA1('12345678Abcd@'));
 INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`) VALUES ('gabs', 'gabs@gmail.com', SHA1('12345678Abcd@'));

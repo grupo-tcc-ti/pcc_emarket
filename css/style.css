@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
 
 :root {
-    --main-color: darkcyan;
+    --main-color: #f75a09; /*darkcyan é a cor anterior, eu coloquei essa atual para combinar com a logo, tambem pode ser azul #2b79d6 */
     --amoled-black: rgba(0, 0, 0, 0.8);
     --black: #1f1f1f;
-    --white: lavenderBlush;
+    --white: #ffffff; /* lavenderBlush */
     --green: forestgreen;
     --light-color: snow;
     --dark-color: black;
@@ -57,7 +57,7 @@ html {
 }
 
 body {
-    background-color: var(--light-bg);
+    background-color: #ebebeb;
 }
 
 section {

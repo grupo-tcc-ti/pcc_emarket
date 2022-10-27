@@ -30,6 +30,10 @@ if ( $usuarioLogado != null ) {
         $_SESSION["isAdmin"] = "false";
     }
 
+    $_SESSION["nomeUsuario"]  = $usuarioLogado->getNome();
+    $_SESSION["emailUsuario"] = $usuarioLogado->getEmail();
+    $_SESSION["senhaUsuario"] = $usuarioLogado->getSenha();
+
     header( "location:../screens/home.php" );
 } else {
     session_destroy();

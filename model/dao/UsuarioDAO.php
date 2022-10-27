@@ -23,6 +23,7 @@ class UsuarioDAO {
                 $usuario->setEmail( $fetchUser["email"] );
                 $usuario->setNome( $fetchUser["nome"] );
                 $usuario->setId( $fetchUser["codUsuario"] );
+                $usuario->setSenha( sha1( $Cliente->getSenha() ) );
                 return $usuario;
             }
 

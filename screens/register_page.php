@@ -22,7 +22,7 @@
   ?>
 </div>
 
-  <div class="login-page">
+  <div class="register-page">
     <div class="form">
       <form action="../controller/registerControl.php" method="POST" class="register-form" id="R">
         <input type="text" placeholder="usuario" name="nome" id="nome" class="nome"/>

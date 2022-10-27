@@ -31,7 +31,7 @@
     --breakpoint-md: 768px;
     --breakpoint-lg: 992px;
     --breakpoint-xl: 1200px;
-    --font-family-sans-serif: Open Sans, sans-serif;
+    --font-family-sans-serif: 'Roboto', sans-serif;
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   }
   
@@ -54,14 +54,13 @@
   }
   
   body {
-    font-family: Open Sans, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
     margin: 0;
     text-align: left;
     color: #525f7f;
-    background-color: #f8f9fe;
   }
   
   [tabindex='-1']:focus {
@@ -128,7 +127,7 @@
   }
   
   code {
-    font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-family: 'Roboto', sans-serif;
     font-size: 1em;
   }
   
@@ -501,6 +500,13 @@
   .card-body {
     padding: 2em;
     flex: 1 1 auto;
+    background-color: #eff3f5;
+  }
+
+  .card-body2 {
+    padding: 6em;
+    flex: 1 1 auto;
+    background-color: #eff3f5;
   }
   
   .card-header {
@@ -805,6 +811,40 @@
     letter-spacing: .04em;
     text-transform: uppercase;
   }
-  
 
+
+.submitButton {
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  width: 20%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  background-color: forestgreen;
+}
+.submitButton:hover{
+  background: rgb(43, 177, 43);
+}
   
+.mensagem {
+  position: relative;
+  right: 0px;
+  top: 10px;
+}
+
+.mensagem span {
+  font-size: 1.5rem;
+  color: forestgreen;
+}
+
+.mensagem i {
+  font-size: 2.5rem;
+  color: var(--red);
+  cursor: pointer;
+}
+
+.mensagem i:hover {
+  color: var(--black);
+}
