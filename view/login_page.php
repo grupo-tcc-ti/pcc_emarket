@@ -2,7 +2,7 @@
     session_start();
 
     if ( isset( $_SESSION["loginID"] ) ) { //check se ja ta logado
-        header( "location:../screens/home.php" );
+        header( "location:../view/home.php" );
     }
 
 ?>

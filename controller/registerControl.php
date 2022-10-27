@@ -1,6 +1,6 @@
 <?php
-require_once '../model/dto/UsuarioDTO.php';
-require_once '../model/dao/UsuarioDAO.php';
+require_once '../model/dto/_UsuarioDTO.php';
+require_once '../model/dao/_UsuarioDAO.php';
 
 $nome  = $_POST["nome"];
 $email = $_POST["email"];
@@ -15,6 +15,6 @@ $UsuarioDAO = new UsuarioDAO();
 $status     = $UsuarioDAO->register( $UsuarioDTO );
 
 if ( $status != null ) {
-    header( "location:../screens/login_page.php" );
+    header( "location:../view/login_page.php" );
 }
 ?>

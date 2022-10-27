@@ -13,19 +13,23 @@ $UsuarioDTO->setSenha( $senha );
 $UsuarioDAO    = new UsuarioDAO();
 $usuarioLogado = $UsuarioDAO->login( $UsuarioDTO );
 
+var_dump( $usuarioLogado );
+
 if ( $usuarioLogado != null ) {
     $_SESSION["loginID"] = $usuarioLogado->getId();
     $nome                = $usuarioLogado->getNome();
     $sql                 = Conexao::getInstance();
-    $sql_code            = "SELECT * FROM admins WHERE nome = '$nome'";
+    $sql_code            = "SELECT * FROM usuarios WHERE nome = '$nome'";
     $sql_query           = $sql->prepare( $sql_code );
     $sql_query->execute();
-    $total = $sql_query->rowCount();
+    $fetchUser = $sql_query->fetch( PDO::FETCH_ASSOC );
 
-    if ( $total > 0 ) {
+    $type = $fetchUser["user_type"];
+
+    if ( $type == "admin" ) {
         $_SESSION["isAdmin"]    = "true";
         $_SESSION["nomeAdmin"]  = $nome;
-        $_SESSION["senhaAdmin"] = sha1( $UsuarioDTO->getSenha() );
+        $_SESSION["senhaAdmin"] = MD5( $UsuarioDTO->getSenha() );
     } else {
         $_SESSION["isAdmin"] = "false";
     }
@@ -34,8 +38,8 @@ if ( $usuarioLogado != null ) {
     $_SESSION["emailUsuario"] = $usuarioLogado->getEmail();
     $_SESSION["senhaUsuario"] = $usuarioLogado->getSenha();
 
-    header( "location:../screens/home.php" );
+    header( "location:../view/home.php" );
 } else {
     session_destroy();
-    header( "location:../screens/login_page.php?msg=usuário e/ou senha inválidos" );
+    header( "location:../view/login_page.php?msg=usuário e/ou senha inválidos" );
 }
