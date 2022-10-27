@@ -1,6 +1,6 @@
 <?php
-require_once '../model/dto/UsuarioDTO.php';
-require_once '../model/dao/UsuarioDAO.php';
+require_once '../model/dto/_UsuarioDTO.php';
+require_once '../model/dao/_UsuarioDAO.php';
 session_start();
 
 $email = $_POST["email"];

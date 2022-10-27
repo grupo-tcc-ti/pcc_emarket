@@ -1,12 +1,12 @@
 <?php
-include '../components/connect.php';
+include '../model/connect.php';
 session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
     $admin_header = 'admin_login.php';
-    header('location:../components/'.$admin_header);
+    header('location:../admin/'.$admin_header);
 }
 
 $user_id = 'codUsuario';
@@ -44,7 +44,7 @@ if (isset($_GET['deletar'])) {
 
 
 
-    $deletar_usuario = $conn->prepare($qry);
+    $deletar_usuario = $pdo->prepare($qry);
     $deletar_usuario->bindParam(':uid', $deletar_id);
     $deletar_usuario->execute();
 
@@ -67,13 +67,13 @@ if (isset($_GET['deletar'])) {
 </head>
 <body>
 
-<?php include '../components/admin_header.php'; ?>
+<?php include Admin_Header::component(); ?>
 
 <h1 class="head-list">Contas de Usuários</h1>
 <section class="contas">
     <?php
-        $qry = ("SELECT * FROM `usuarios`");
-        $selecionar_usuarios = $conn->prepare($qry);
+        $qry = ("SELECT * FROM `usuarios` WHERE codAdmin = 0 AND codCliente > 0");
+        $selecionar_usuarios = $pdo->prepare($qry);
         // $selecionar_usuarios->bindParam(':', $codUsuarios);
         $selecionar_usuarios->execute();
         if ($selecionar_usuarios->rowCount() > 0){

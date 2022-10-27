@@ -1,15 +1,12 @@
 <?php
-$db_name = 'mysql:host=localhost; dbname=emarket';
-$user_name = 'root';
-$user_password = '';
-
-$conn = new PDO($db_name, $user_name, $user_password);
-
+include 'redirect.php';
+include 'admin_header.php';
 class Connect {
     private static $instance;
-    private $pdo;
+    // private static $pdo;
 
-    private static $db_name = 'mysql:host=localhost; dbname=emarket';
+    // private static $db_name = 'mysql:host=localhost; dbname=emarket';
+    private static $db_name = 'mysql:host=localhost; dbname=emarket_prot';
     private static $username = 'root';
     private static $password = '';
 
@@ -17,8 +14,7 @@ class Connect {
     private function __construct(
         // PDO $driver
     ){
-        // $this->pdo = $driver;
-        
+        // Connect::$pdo = $driver;
     }
 
     public static function getInstance() {
@@ -39,9 +35,9 @@ class Connect {
      *
      * @return  self
      */ 
-    public function setDb_name($db_name)
+    public function setDb_name($db_name = 'emarket')
     {
-        $this->db_name = $db_name;
+        $this->db_name = 'mysql:host=localhost; dbname='.$db_name;
 
         return $this;
     }
@@ -51,7 +47,7 @@ class Connect {
      *
      * @return  self
      */ 
-    public function setUsername($username)
+    public function setUsername($username = 'root')
     {
         $this->username = $username;
 
@@ -63,7 +59,7 @@ class Connect {
      *
      * @return  self
      */ 
-    public function setPassword($password)
+    public function setPassword($password = '')
     {
         $this->password = $password;
 
@@ -71,4 +67,5 @@ class Connect {
     }
 }
 
+$pdo = Connect::getInstance();
 ?>

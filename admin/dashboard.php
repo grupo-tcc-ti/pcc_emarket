@@ -1,12 +1,15 @@
 <?php
-include '../components/connect.php';
+include '../model/connect.php';
+include '../model/dao/PedidosDAO.php';
+include '../model/dao/ProdutosDAO.php';
+include '../model/dao/UsuariosDAO.php';
 session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
-    $admin_header = 'admin_header.php';
-    header('location:../components/'.$admin_header);
+    $admin_header = 'admin_login.php';
+    header('location:../admin/'.$admin_header);
 }
 
 ?>
@@ -24,7 +27,7 @@ if (!isset($admin_id)) {
 </head>
 <body>
 
-<?php include '../components/admin_header.php';?>
+<?php include Admin_Header::component();?>
 
     <div class="heading-dash">
         <h1><span>i</span>DASH</h1><div class="hd-img"></div>
@@ -42,16 +45,9 @@ if (!isset($admin_id)) {
     <section class="dashboard">
         <div class="box">
         <?php
-            // $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = ?");
-            // $select_pendente = $conn->prepare($qry);
-            // $select_pendente->execute(['pendente']);
-            $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = :status");
-            $select_pendente = $conn->prepare($qry);
-            $select_pendente->bindValue(':status', 'pendente');
-            $select_pendente->execute();
             $total_pendente = 0;
-            while ($fetch_pendente = $select_pendente->fetch(PDO::FETCH_ASSOC)) {
-                $total_pendente += $fetch_pendente['totalPreco'];
+            foreach (PedidosDAO::ListarPedidos('pendente') as $pedido){
+                $total_pendente += $pedido['totalPreco'];
             }
         ?>
         <h3>Total Pendente<span></span></h3>
@@ -61,16 +57,9 @@ if (!isset($admin_id)) {
 
         <div class="box">
         <?php
-            // $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = ?");
-            // $select_pago = $conn->prepare($qry);
-            // $select_pago->execute(['pago']);
-            $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = :status");
-            $select_pago = $conn->prepare($qry);
-            $select_pago->bindValue(':status', 'pago');
-            $select_pago->execute();
             $total_pago = 0;
-            while ($fetch_pago = $select_pago->fetch(PDO::FETCH_ASSOC)) {
-                $total_pago += $fetch_pago['totalPreco'];
+            foreach (PedidosDAO::ListarPedidos('pago') as $pedido){
+                $total_pago += $pedido['totalPreco'];
             }
         ?>
         <h3>Total a Pagar<span></span></h3>
@@ -80,16 +69,9 @@ if (!isset($admin_id)) {
 
         <div class="box">
         <?php
-            // $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = ?");
-            // $select_pago = $conn->prepare($qry);
-            // $select_pago->execute(['pago']);
-            $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = :status");
-            $select_cancelado = $conn->prepare($qry);
-            $select_cancelado->bindValue(':status', 'cancelado');
-            $select_cancelado->execute();
             $total_cancelado = 0;
-            while ($fetch_cancelado = $select_cancelado->fetch(PDO::FETCH_ASSOC)) {
-                $total_cancelado += $fetch_cancelado['totalPreco'];
+            foreach (PedidosDAO::ListarPedidos('cancelado') as $pedido){
+                $total_cancelado += $pedido['totalPreco'];
             }
         ?>
         <h3>Total Cancelado<span></span></h3>
@@ -98,45 +80,27 @@ if (!isset($admin_id)) {
         </div>
 
         <div class="box">
-        <?php
-            $qry = ("SELECT * FROM `produtos`");
-            $select_produtos = $conn->prepare($qry);
-            $select_produtos->execute();
-            $num_produtos = $select_produtos->rowCount();
-        ?>
         <h3>Total de Produtos <span></span></h3>
-        <p><?=$num_produtos . ' /-';?></p>
+        <p><?= ProdutosDAO::QtyProdutos(). ' /-';?></p>
         <a href="produtos.php" class="btn">Ver Produtos</a>
         </div>
 
         <div class="box">
-        <?php
-            $qry = ("SELECT * FROM `usuarios`");
-            $select_usuarios = $conn->prepare($qry);
-            $select_usuarios->execute();
-            $num_usuarios = $select_usuarios->rowCount();
-        ?>
-        <h3>Total de Usuários <span></span></h3>
-        <p><?=$num_usuarios . ' /-';?></p>
-        <a href="users_contas.php" class="btn">Ver Usuários</a>
+        <h3>Total de Clientes <span></span></h3>
+        <p><?= UsuariosDAO::QtyUsuarios('cliente') . ' /-';?></p>
+        <a href="users_contas.php" class="btn">Ver Clientes</a>
         </div>
 
         <div class="box">
-        <?php
-            $qry = ("SELECT * FROM `admins`");
-            $select_admins = $conn->prepare($qry);
-            $select_admins->execute();
-            $num_admins = $select_admins->rowCount();
-        ?>
         <h3>Total de Admin<span>'s</span></h3>
-        <p><?=$num_admins . ' /-';?></p>
+        <p><?= UsuariosDAO::QtyUsuarios('admin') . ' /-';?></p>
         <a href="admin_contas.php" class="btn">Ver Admin's</a>
         </div>
 
         <!-- <div class="box">
         <?php
             $qry = ("SELECT * FROM `mensagens`");
-            $select_mensagens = $conn->prepare($qry);
+            $select_mensagens = $pdo->prepare($qry);
             $select_mensagens->execute();
             $num_mensagens = $select_mensagens->rowCount();
         ?>

@@ -1,12 +1,13 @@
 <?php
-    include '../components/connect.php';
-    session_start();
-    if ( isset( $_SESSION['user_id'] ) ) {
-        $user_id = $_SESSION['user_id'];
-    } else {
-        $user_id = '';
-    }
-    // include '../components/wishlist_card.php';
+include '../model/connect.php';
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    $user_id = '';
+}
+// include '../components/wishlist_card.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
     <title>Emarket</title>
   </head>
 
-  <?php include '../screens/header.php';?>
+  <?php include '../view/header.php';?>
     <body>
       <section>
         <div class="slider">
@@ -58,7 +59,7 @@
       </section>
 
       <section>
-        <?php //include '../screens/vitrine_teste.html'; ?>
+        <?php //include '../view/vitrine_teste.html'; ?>
       </section>
 
   <div id="overlay">
@@ -118,7 +119,7 @@
   </main>
   </div>
 
-      <?php include '../screens/footer.php';?>
+      <?php include '../view/footer.php';?>
 
   <script src="../js/script.js"></script>
 
