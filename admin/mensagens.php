@@ -1,21 +1,21 @@
 <?php
-include '../components/connect.php';
+include '../model/connect.php';
 session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
     $admin_header = 'admin_login.php';
-    header('location:../components/'.$admin_header);
+    header('location:../admin/'.$admin_header);
 }
 
 if(isset($_GET['deletar'])){
     $deletar_id = $_GET['deletar'];
-    $deletar_mensagem = $conn->prepare("deletar FROM `mensagens` WHERE codMensagem = :mid");
+    $deletar_mensagem = $pdo->prepare("DELETE FROM `mensagens` WHERE codMensagem = :mid");
     $deletar_mensagem->bindParam(':mid', $deletar_id);
     $deletar_mensagem->execute();
     header('location:mensagens.php');
- }
+}
 
 ?>
 
@@ -32,14 +32,14 @@ if(isset($_GET['deletar'])){
 </head>
 <body>
 
-<?php include '../components/admin_header.php'; ?>
+<?php include Admin_Header::component(); ?>
 
 <section class="mensagens">
 
 <h1 class="head-list">Mensagens</h1>
 
     <?php
-        $selecionar_mensagens = $conn->prepare("SELECT * FROM `mensagens`");
+        $selecionar_mensagens = $pdo->prepare("SELECT * FROM `mensagens`");
         $selecionar_mensagens->execute();
         if($selecionar_mensagens->rowCount() > 0){
             while($fetch_mensagens = $selecionar_mensagens->fetch(PDO::FETCH_ASSOC)){

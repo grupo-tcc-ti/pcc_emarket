@@ -33,8 +33,8 @@ if (isset($mensagem)) {
 
     <div class="profile">
         <?php
-            $qry = "SELECT * FROM `admins` WHERE codAdmin = :admin_id";
-            $selecionar_perfil = $conn->prepare($qry);
+            $qry = "SELECT * FROM `usuarios` WHERE codAdmin = :admin_id";
+            $selecionar_perfil = $pdo->prepare($qry);
             $selecionar_perfil->bindParam(':admin_id', $admin_id);
             $selecionar_perfil->execute();
             $fetch_perfil = $selecionar_perfil->fetch(PDO::FETCH_ASSOC);
@@ -42,10 +42,10 @@ if (isset($mensagem)) {
         <p><?= $fetch_perfil['nome'];?></p>
         <a href="../admin/alterar_perfil.php" class="btn">Alterar Conta</a>
         <div class="flex-btn">
-            <a href="../components/admin_logout.php" onclick="return confirm('Você deseja sair?');" class="option-btn">Login</a>
+            <a href="../controller/admin_logoutControl.php" onclick="return confirm('Você deseja sair?');" class="option-btn">Login</a>
             <a href="../admin/registrar_admin.php" class="option-btn">Registrar</a>
         </div>
-        <a href="../components/admin_logout.php" onclick="return confirm('Você realmente deseja sair?');" class="delete-btn">Logout</a>
+        <a href="../controller/admin_logoutControl.php" onclick="return confirm('Você realmente deseja sair?');" class="delete-btn">Logout</a>
     </div>
 
 </section>

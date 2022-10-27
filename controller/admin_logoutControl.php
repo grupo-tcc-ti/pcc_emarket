@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '../model/connect.php';
 session_start();
 session_unset();
 session_destroy();

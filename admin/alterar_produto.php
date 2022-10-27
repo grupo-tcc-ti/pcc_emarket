@@ -1,133 +1,25 @@
 <?php
-include '../components/connect.php';
+include '../model/connect.php';
+include '../model/dao/ProdutosDAO.php';
 session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
     $admin_header = 'admin_login.php';
-    header('location:../components/'.$admin_header);
+    header('location:../admin/'.$admin_header);
 }
 
 //####### Alterar produto starts ###########################
 if (isset($_POST['alterar'])){
-    $codProduto = $_POST['codProduto'];
-    $codProduto = filter_var($codProduto, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $nome = $_POST['nome'];
-    $nome = filter_var($nome, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $nome_anterior = $_POST['nome_anterior'];
-    $nome_anterior = filter_var($nome_anterior, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $descricao = $_POST['descricao'];
-    $descricao = filter_var($descricao, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $preco = $_POST['preco'];
-    $preco = filter_var($preco, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    //Image handling procedure starts --------->
-    $name_valid = $path_valid = $size_valid = $upload_valid = false;
-    $fetched_imgs = $image = array();
-    $prod_path = "../image/produtos_teste/";
-
-    
-    //Verifica se produto com mesmo nome
-    if ($nome == $nome_anterior) {
-        $mensagem[] = 'O nome do produto é o mesmo que o anterior!';
-        $name_valid = false;
-        // echo ':name_invalid:'; //debug
-    } else {
-        $name_valid = true;
-        // echo ':name_valid:'; //debug
-    }
-
-    if (isset($_FILES['image'])){
-        $image_error = $_FILES['image']['error'];
-        foreach ($image_error as $image_error){
-            if ($image_error != 0) {
-            $upload_valid = false;
-            // echo 'upload_invalid:';
-            }
-            else {
-                $upload_valid = true;
-                // echo 'upload_valid:';
-            }
-        }
-        
-        if (is_array($_FILES['image']['name']) && $upload_valid){
-            // echo ':isarray'."\n"; //debug
-            $files_img = array_filter($_FILES['image']);
-            // print_r($prod_path.$files_img['name'][1].':ispath'."\n"); //debug
-            //Loop através da array image
-            for ($i = 0; $i < count($files_img['name']); $i++) {
-                // echo ':isforeach        '."\n"; //debug
-                $image[$i] = $prod_path.$files_img['name'][$i]; //O nome original do arquivo na máquina do cliente.
-                $image[$i] = filter_var($image[$i], FILTER_SANITIZE_FULL_SPECIAL_CHARS); //filtrar processo de arquivos e caracteres especiais
-                //O caminho temporario do arquivos é armazenado
-                //tmp_name O nome temporário com o qual o arquivo enviado foi armazenado no servidor.
-                $image_tmp = $files_img['tmp_name'][$i];
-                //Verifica se caminho vazio
-                if ($image_tmp != "") {
-                    //Configura novo caminho
-                    $image_folder = $prod_path . $files_img['name'][$i];
-                    //O arquivo e enviado ao caminho temporario
-                    if (move_uploaded_file($image_tmp, $image_folder)) {
-                        $path_valid = true;
-                        // echo $size_valid.':arrayimg_path'."\n"; //debug
-                    }
-                }
-                //Verifica o tamanho do arquivo
-                $image_size = $files_img['size'][$i]; //O tamanho, em bytes, do arquivo enviado.
-                if ($image_size > 2000000) {
-                    $mensagem[] = 'Tamanho do arquivo é maior que o permitido!';
-                    $size_valid = false;
-                } else { $size_valid = true; 
-                    // echo $size_valid.':arrayimg_size'."\n"; //debug
-                }
-            }
-        } else if (!is_array($files_img['name']) && $upload_valid){
-            // echo ':isstring'."\n"; //debug
-            $image = $prod_path.$files_img['name'];
-            $image = filter_var($image, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $image_tmp = $files_img['tmp_name'];
-            if ($image_tmp != "") {
-                //Configura novo caminho
-                $image_folder = $prod_path . $files_img['name'];
-                //O arquivo e enviado ao caminho temporario
-                if (move_uploaded_file($image_tmp, $image_folder)) {
-                    $path_valid = true;
-                    // echo $size_valid.':singleimg_path'."\n"; //debug
-                }
-            }
-            //Verifica o tamanho do arquivo
-            $image_size = $files_img['size']; //O tamanho, em bytes, do arquivo enviado.
-            if ($image_size > 2000000) {
-                $mensagem[] = 'Tamanho do arquivo é maior que o permitido!';
-                $size_valid = false;
-            } else { $size_valid = true;
-                // echo $size_valid.':singleimg_size'."\n"; //debug
-            }
-        }
-    }
-    //Image handling procedure ends--------->
-    
-    // var_dump($codProduto); //debug
-    // echo $name_valid.':last_name   '; //debug
-    // echo $path_valid.':last_path   '; //debug
-    // echo $size_valid.':last_size   '; //debug
-    if ($name_valid && $path_valid && $size_valid && $upload_valid) {
-    $alterar_prod = $conn->prepare("UPDATE `produtos` 
-    SET nome = :nome, descricao = :descricao, preco = :preco, image = :image
-    WHERE codProduto = :cpid");
-    $alterar_prod->bindParam(':nome', $nome);
-    $alterar_prod->bindParam(':descricao', $descricao);
-    $alterar_prod->bindParam(':preco', $preco);
-    $alterar_prod->bindValue(":image", is_array($image)?implode(',', $image):$image);
-    $alterar_prod->bindParam(':cpid', $codProduto);
-    $alterar_prod->execute();
-    $hostname = $_SERVER['HTTP_HOST'];
-    $current_directory = rtrim(dirname($_SERVER['PHP_SELF']),'/');
-    $page = 'alterar_produto.php';
-    $mensagem[] = 'Produto alterado com sucesso!';
-    // header('refresh: 1, url=http://'.$hostname.$current_directory.'/'.$page);
-    // exit;
-    }
+    ProdutosDAO::Alterar_Produto(
+        $_POST['codProduto'],
+        $_POST['nome'],
+        $_POST['nome_anterior'],
+        $_POST['descricao'],
+        $_POST['preco'],
+        $_FILES['image']
+    );
 }
 //####### Alterar produto ends ###########################
 
@@ -162,19 +54,21 @@ if (isset($_POST['voltar'])) {
     <h1 class="heading">Alterar Produto</h1>
     <?php //....::PHP::..... starts ..
     $alterar_id = $_SESSION['codProduto'];
-    $mostrar_produtos = $conn->prepare("SELECT * FROM  `produtos` WHERE codProduto = :cpid");
+    $mostrar_produtos = $pdo->prepare("SELECT * FROM  `produtos` WHERE codProduto = :cpid");
     $mostrar_produtos->bindParam(':cpid', $alterar_id);
     $mostrar_produtos->execute();
     // var_dump($_SESSION['codProduto']); //debug
     if ($mostrar_produtos->rowCount() > 0) {
         while ($fetch_produto = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)) {
-            $fetched_imgs = explode(",", $fetch_produto['image']); ?>
+            !is_array($fetch_produto['image'])?
+            $fetched_imgs = explode(",", $fetch_produto['image'])
+            :$fetched_imgs = implode($fetch_produto['image']); ?>
             <!-- print_r($fetched_imgs); -->
     <form action="" method="post" enctype="multipart/form-data"
     class="" name="alterar_form">
         <input type="hidden" name="codProduto" value='<?=$fetch_produto['codProduto'];?>'>
         <input type="hidden" name="nome_anterior" value='<?=$fetch_produto['nome'];?>'>
-        <input type="hidden" name="image[]" value='<?=$fetched_imgs;?>'>
+        <input type="hidden" name="image" value='<?=$fetched_imgs;?>'>
         <div class="image-container">
             <!-- Fazer script que rode as outras imagens -->
             <div class="main-image">
@@ -196,7 +90,8 @@ if (isset($_POST['voltar'])) {
         </div>
         <span>Nome</span>
         <input type="text" name="nome" id="" class="box required-field" required
-        maxlength="200" placeholder="Insira o nome a ser alterado"><br>
+        maxlength="200" placeholder="Insira o nome a ser alterado"
+        value="<?=$fetch_produto['nome']?>"><br>
 
         <span>Novo Preço</span>
         <input type="number" name="preco" id="" class="box required-field" required 
@@ -212,13 +107,12 @@ if (isset($_POST['voltar'])) {
         </textarea><br>
 
         <span>Alterar Imagem(s)</span>
-        <input type="file" name="image[]" id="" class="box required-field" multiple required 
+        <input type="file" name="image[]" id="" class="box required-field" multiple
         accept="image/jpg, image/jpeg, image/png, image/webp" ><br>
 
         <div class="flex-btn">
             <button type="submit" name="alterar" class="btn"
             >Alterar</button>
-            <!-- <a href="produtos.php" class="option-btn">Voltar</a> -->
         </div><br>
     </form>
     <form action="" method="post">

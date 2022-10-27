@@ -1,22 +1,17 @@
 <?php
-include '../components/connect.php';
+include '../model/connect.php';
+include '../model/dao/UsuariosDAO.php';
 session_start();
 
 $admin_id = $_SESSION['admin_id'];
 
 if (!isset($admin_id)) {
     $admin_header = 'admin_login.php';
-    header('location:../components/'.$admin_header);
+    header('location:../admin/'.$admin_header);
 } 
 
 if (isset($_GET['deletar'])){
-    // echo ':yes-yeeted-and-deleted!'; //debug
-    $cod_admin = $_GET['deletar'];
-    $qry = "DELETE FROM `admins` WHERE codAdmin = :id";
-    $deletar_admin = $conn->prepare($qry) or die ("Não foi possivel achar a Conta Admin!");
-    $deletar_admin->bindParam(':id', $cod_admin);
-    $deletar_admin->execute();
-    header('location: admin_contas.php');
+    UsuariosDAO::Deletar_Usuario($_GET['deletar']);
 }
 
 ?>
@@ -32,7 +27,7 @@ if (isset($_GET['deletar'])){
     <title>Contas de Administradores</title>
 </head>
 <body>
-    <?php include '../components/admin_header.php'; ?>
+    <?php include Admin_Header::component(); ?>
 
     <section class="contas register-admin">
         <div class="gridbox">
@@ -45,8 +40,8 @@ if (isset($_GET['deletar'])){
 
     <section class="contas">
         <?php
-            $qry = "SELECT * FROM `admins`";
-            $selecionar_contas = $conn->prepare($qry);
+            $qry = "SELECT * FROM `usuarios` WHERE codAdmin > 0 AND codCliente = 0";
+            $selecionar_contas = $pdo->prepare($qry);
             $selecionar_contas->execute();
             if($selecionar_contas->rowCount() > 0) {
                 while ($fetch_contas = $selecionar_contas->fetch(PDO::FETCH_ASSOC)) {

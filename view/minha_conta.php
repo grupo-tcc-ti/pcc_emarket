@@ -1,12 +1,12 @@
 <?php
-    include '../components/connect.php';
+    include '../model/connect.php';
     session_start();
     //var_dump( $_SESSION );
 
     $user_id = $_SESSION["loginID"];
 
     if ( !isset( $user_id ) ) {
-        header( "location:../screens/home.php" );
+        header( "location:../view/home.php" );
     }
 
     $getUsuarioDados = $conn->prepare( "SELECT * FROM usuarios WHERE codUsuario = ?" );
@@ -20,9 +20,9 @@
         $novoUsuario = $_POST['input-nome'];
         $novoEmail   = $_POST['input-email'];
 
-        $senhaAtualDigitada = sha1( $_POST['input-senha-atual'] );
-        $senhaNova          = sha1( $_POST['input-senha-nova'] );
-        $senhaNovaConfirma  = sha1( $_POST['input-senha-confirma'] );
+        $senhaAtualDigitada = MD5( $_POST['input-senha-atual'] );
+        $senhaNova          = MD5( $_POST['input-senha-nova'] );
+        $senhaNovaConfirma  = MD5( $_POST['input-senha-confirma'] );
 
         // var_dump( $senhaAtual );
         // var_dump( $senhaAtualDigitada );

@@ -6,7 +6,7 @@
     </head>
     <body>
         <?php
-            header("location:screens/home.php");
+            header("location:view/home.php");
         ?>
     </body>
 </html>

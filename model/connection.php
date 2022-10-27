@@ -8,7 +8,7 @@ class Conexao {
         if ( !isset( self::$conexao ) ) {
             try {
                 self::$conexao = new PDO(
-                    'mysql:host=localhost;dbname=emarket;charset=utf8',
+                    'mysql:host=localhost;dbname=emarket_prot;charset=utf8',
                     'root', ''
                 );
                 self::$conexao->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );

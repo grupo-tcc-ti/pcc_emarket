@@ -1,67 +1,18 @@
 <?php
-    include '../components/connect.php';
-    require_once '../model/dto/adminDTO.php';
-    require_once '../model/dao/adminDAO.php';
-    session_start();
+include '../model/connect.php';
+session_start();
 
-    $AdminDTO = new AdminDTO();
+(empty($_SESSION['admin_id']))?:$admin_id = $_SESSION['admin_id'];
 
-    if ( isset( $_SESSION["nomeAdmin"] ) && isset( $_SESSION["senhaAdmin"] ) ) {
-        $mensagem[] = 'Sua sessão já foi iniciada!';
-        $mensagem[] = 'Voce está sendo redirecionado....';
+if (isset($admin_id)) {
+    // echo print_r($_SESSION).':loggedin'; //debug
+    $mensagem[] = 'Sua sessão já foi iniciada!';
+    $mensagem[] = 'Voce está sendo redirecionado....';
+    
+    Redirect::page('dashboard.php');
+}
 
-        $usuario = $_SESSION["nomeAdmin"];
-        $senha   = $_SESSION['senhaAdmin'];
-
-        $AdminDTO->setAdminNome( $_SESSION["nomeAdmin"] );
-        $AdminDTO->setAdminSenha( $_SESSION["senhaAdmin"] );
-
-        // var_dump( $_SESSION );
-        // var_dump( $AdminDTO );
-
-        $AdminDAO      = new AdminDAO();
-        $usuarioLogado = $AdminDAO->login( $AdminDTO );
-
-        if ( $usuarioLogado != null ) {
-            $_SESSION['admin_id'] = $usuarioLogado->getAdminID();
-            $hostname             = $_SERVER['HTTP_HOST'];
-            $current_directory    = rtrim( dirname( $_SERVER['PHP_SELF'] ), '/' );
-            $page                 = 'dashboard.php';
-
-            header( 'refresh:1, url=http://' . $hostname . $current_directory . '/' . $page );
-        } else {
-            $mensagem[] = 'Nome de usuário ou senha incorreto!';
-        }
-    }
-
-    if ( isset( $_POST['submit'] ) ) {
-
-        $AdminDTO->setAdminNome( $_POST['usuario'] );
-        $AdminDTO->setAdminSenha( sha1( $_POST['senha'] ) );
-
-        // var_dump( $_SESSION );
-        // var_dump( $AdminDTO );
-
-        $AdminDAO      = new AdminDAO();
-        $usuarioLogado = $AdminDAO->login( $AdminDTO );
-
-        if ( $usuarioLogado != null ) {
-            $_SESSION['admin_id'] = $usuarioLogado->getAdminID();
-            $mensagem[]           = 'Bem Vindo';
-            $hostname             = $_SERVER['HTTP_HOST'];
-            $current_directory    = rtrim( dirname( $_SERVER['PHP_SELF'] ), '/' );
-            $page                 = 'dashboard.php';
-
-            if ( !isset( $_SESSION["nomeAdmin"] ) && !isset( $_SESSION["senhaAdmin"] ) ) {
-                $_SESSION["nomeAdmin"]  = $AdminDTO->getAdminNome();
-                $_SESSION["senhaAdmin"] = $AdminDTO->getAdminSenha();
-            }
-
-            header( 'refresh:1, url=http://' . $hostname . $current_directory . '/' . $page );
-        } else {
-            $mensagem[] = 'Nome de usuário ou senha incorreto!';
-        }
-    }
+include '../controller/admin_loginControl.php';
 
 ?>
 
@@ -78,24 +29,19 @@
 </head>
 <body>
 
-<!-- <div class="mensagem">
-<span>Sua sessão já foi iniciada!</span>
-<i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
-</div> -->
 
 <?php
-    if ( isset( $mensagem ) ) {
-        foreach ( $mensagem as $mensagem ) {
-            echo '
+if (isset($mensagem)){
+    foreach ($mensagem as $mensagem) {
+        echo '
         <div class="mensagem">
-        <span>' . $mensagem . '</span>
+        <span>'.$mensagem.'</span>
         <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
         </div>
         ';
-        }
     }
+}
 ?>
-
 <!-- Container do formulário de login do adminisrador -->
 
 <section class="form-container">

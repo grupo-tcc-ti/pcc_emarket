@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../connection.php';
-require_once __DIR__ . '/../dto/UsuarioDTO.php';
+require_once __DIR__ . '/../dto/_UsuarioDTO.php';
 
 class UsuarioDAO {
     private $con;
@@ -14,7 +14,7 @@ class UsuarioDAO {
             $sql  = "SELECT * FROM usuarios WHERE email =? AND senha=?";
             $stmt = $this->con->prepare( $sql );
             $stmt->bindValue( 1, $Cliente->getEmail() );
-            $stmt->bindValue( 2, sha1( $Cliente->getSenha() ) );
+            $stmt->bindValue( 2, MD5( $Cliente->getSenha() ) );
             $stmt->execute();
             $fetchUser = $stmt->fetch( PDO::FETCH_ASSOC );
 
@@ -23,7 +23,7 @@ class UsuarioDAO {
                 $usuario->setEmail( $fetchUser["email"] );
                 $usuario->setNome( $fetchUser["nome"] );
                 $usuario->setId( $fetchUser["codUsuario"] );
-                $usuario->setSenha( sha1( $Cliente->getSenha() ) );
+                $usuario->setSenha( MD5( $Cliente->getSenha() ) );
                 return $usuario;
             }
 
@@ -42,7 +42,7 @@ class UsuarioDAO {
             $stmt = $this->con->prepare( $sql );
             $stmt->bindValue( 1, $usuarioDTO->getNome() );
             $stmt->bindValue( 2, $usuarioDTO->getEmail() );
-            $stmt->bindValue( 3, sha1( $usuarioDTO->getSenha() ) );
+            $stmt->bindValue( 3, MD5( $usuarioDTO->getSenha() ) );
 
             return $stmt->execute();
 
