@@ -1,15 +1,18 @@
 <?php
-require_once __DIR__ . '/../connection.php';
-require_once __DIR__ . '/../dto/AdminDTO.php';
+require_once __DIR__ . '/../_connection.php';
+require_once __DIR__ . '/../dto/_AdminDTO.php';
 
-class AdminDAO {
+class _AdminDAO
+{
     private $con;
 
-    public function __construct() {
-        $this->con = Conexao::getInstance(); //connect on function call
+    public function __construct()
+    {
+        $this->con = _Conexao::getInstance(); //connect on function call
     }
 
-    public function login( AdminDTO $Admin ) {
+    public function login( _AdminDTO $Admin )
+    {
         try {
             // $sql  = "SELECT * FROM usuarios WHERE email =? AND senha=?";
             // $stmt = $this->con->prepare( $sql );
@@ -21,15 +24,15 @@ class AdminDAO {
             $senha   = $Admin->getAdminSenha();
 
             $sql       = "SELECT * FROM admins WHERE nome =? AND senha =?";
-            $sql_query = $this->con->prepare( $sql );
-            $sql_query->bindParam( 1, $usuario );
-            $sql_query->bindParam( 2, $senha );
+            $sql_query = $this->con->prepare($sql);
+            $sql_query->bindParam(1, $usuario);
+            $sql_query->bindParam(2, $senha);
             $sql_query->execute();
-            $sql_fetch = $sql_query->fetch( PDO::FETCH_ASSOC );
+            $sql_fetch = $sql_query->fetch(PDO::FETCH_ASSOC);
 
-            if ( $sql_fetch != null ) {
-                $admin = new AdminDTO();
-                $admin->setAdminID( $sql_fetch["codAdmin"] );
+            if ($sql_fetch != null ) {
+                $admin = new _AdminDTO();
+                $admin->setAdminID($sql_fetch["codAdmin"]);
                 $_SESSION['admin_id'] = $sql_fetch['codAdmin'];
                 return $admin;
             } else {
@@ -45,13 +48,14 @@ class AdminDAO {
         }
     }
 
-    public function register( AdminDTO $adminDTO ) {
+    public function register( _AdminDTO $adminDTO )
+    {
         try {
             $sql = "INSERT INTO admins (nome, senha) ";
             $sql .= " VALUES(?, ?)";
-            $sql_query = $this->con->prepare( $sql );
-            $sql_query->bindValue( 1, $adminDTO->getAdminNome() );
-            $sql_query->bindValue( 2, $adminDTO->getAdminSenha() );
+            $sql_query = $this->con->prepare($sql);
+            $sql_query->bindValue(1, $adminDTO->getAdminNome());
+            $sql_query->bindValue(2, $adminDTO->getAdminSenha());
 
             return $sql_query->execute();
 

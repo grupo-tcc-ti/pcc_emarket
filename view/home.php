@@ -1,12 +1,16 @@
 <?php
-include '../model/connect.php';
+require_once '../model/connect.php';
 session_start();
 
-if (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-} else {
-    $user_id = '';
-}
+// var_dump($_SESSION['client_id']);
+// if (isset($_SESSION['client_id'])) {
+//     $user_id = $_SESSION['client_id'];
+// } else {
+//     $user_id = '';
+// }
+(isset($_SESSION['client_id']))?
+$user_id = $_SESSION['client_id']
+:'';
 // include '../components/wishlist_card.php';
 ?>
 
@@ -29,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
     <title>Emarket</title>
   </head>
 
-  <?php include '../view/header.php';?>
+  <?php require_once '../view/header.php';?>
     <body>
       <section>
         <div class="slider">
@@ -73,30 +77,30 @@ if (isset($_SESSION['user_id'])) {
           // $qry="SELECT * FROM `produtos` LIMIT 4";
           $qry = "SELECT * FROM `produtos`";
           // $produtos= $conn->query($qry);
-          $produtos = $pdo->prepare( $qry );
+          $produtos = $pdo->prepare($qry);
           $produtos->execute();
-          if ( $produtos->rowCount() > 0 ) {
-              while ( $fetch_produto = $produtos->fetch( PDO::FETCH_ASSOC ) ) {
-                  // $fetch_prodimg = explode(",", trim($fetch_produto['image'], "./"));
-                  $fetch_prodimg = explode( ",", $fetch_produto['image'] );
-              ?>
+        if ($produtos->rowCount() > 0 ) {
+            while ( $fetch_produto = $produtos->fetch(PDO::FETCH_ASSOC) ) {
+                // $fetch_prodimg = explode(",", trim($fetch_produto['image'], "./"));
+                $fetch_prodimg = explode(",", $fetch_produto['image']);
+                ?>
         <div class="cards-items">
           <button type="submit" class="fas fa-heart"
             name="addListadesejo"></button>
-          <a href="espiar_produto.php?id=<?=$fetch_produto['codProduto'];?>"
+          <a href="espiar_produto.php?id=<?php echo $fetch_produto['codProduto'];?>"
             class="fas fa-eye"></a>
           <a href="gotoproductpage.php">
-            <img src="<?=$fetch_prodimg[0];?>" alt=""
+            <img src="<?php echo $fetch_prodimg[0];?>" alt=""
             class="products-imgs">
-            <div class="products-name"><?=$fetch_produto['nome'];?></div>
+            <div class="products-name"><?php echo $fetch_produto['nome'];?></div>
             </a>
             <div class="flex">
-              <div class="cards-price"><span>R$ </span><?=$fetch_produto['preco'];?></div>
+              <div class="cards-price"><span>R$ </span><?php echo $fetch_produto['preco'];?></div>
                 <form action="" method="post">
-                  <input type="hidden" name="id" value="<?=$fetch_produto['codProduto'];?>"></input>
-                  <input type="hidden" name="nome" value="<?=$fetch_produto['nome'];?>"></input>
-                  <input type="hidden" name="preco" value="<?=$fetch_produto['preco'];?>"></input>
-                  <input type="hidden" name="image" value="<?=$fetch_prodimg[0];?>"></input>
+                  <input type="hidden" name="id" value="<?php echo $fetch_produto['codProduto'];?>"></input>
+                  <input type="hidden" name="nome" value="<?php echo $fetch_produto['nome'];?>"></input>
+                  <input type="hidden" name="preco" value="<?php echo $fetch_produto['preco'];?>"></input>
+                  <input type="hidden" name="image" value="<?php echo $fetch_prodimg[0];?>"></input>
                   <input type="number" name="qty" id="" class="qty"
                   min="1" max="99"
                   onkeypress="if(this.value> 2) return false;" value="1">
@@ -105,12 +109,12 @@ if (isset($_SESSION['user_id'])) {
                   name="add_carrinho" class="buy-btn">
                 </form>
         </div>
-      <?php
-          }
-          } else {
-              echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
-          }
-      ?>
+                <?php
+            }
+        } else {
+            echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
+        }
+        ?>
   </div>
   <!-- <div class="swiper-pagination"></div>
   </div>
@@ -119,7 +123,7 @@ if (isset($_SESSION['user_id'])) {
   </main>
   </div>
 
-      <?php include '../view/footer.php';?>
+      <?php require_once '../view/footer.php';?>
 
   <script src="../js/script.js"></script>
 

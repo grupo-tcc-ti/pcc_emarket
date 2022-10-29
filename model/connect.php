@@ -1,27 +1,21 @@
 <?php
-include 'redirect.php';
-include 'admin_header.php';
-class Connect {
+require_once 'redirect.php';
+require_once 'admhdr_path.php';
+require 'popup_msg.php';
+class Connect
+{
     private static $instance;
-    // private static $pdo;
 
-    // private static $db_name = 'mysql:host=localhost; dbname=emarket';
-    private static $db_name  = 'mysql:host=localhost; dbname=emarket_prot';
+    private static $db_name  = 'mysql:host=localhost; dbname=emarket';
     private static $username = 'root';
     private static $password = '';
 
-    private function __construct(
-        // PDO $driver
-    ) {
-        // Connect::$pdo = $driver;
-    }
-
-    public static function getInstance() {
+    public static function getInstance()
+    {
         try {
-            if ( !isset( self::$instance ) ) {
-                // self::$instance = new PDO('mysql:host=localhost; dbname=emarket', 'root', '');
-                self::$instance = new PDO( self::$db_name, self::$username, self::$password );
-                self::$instance->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+            if (!isset(self::$instance) ) {
+                self::$instance = new PDO(self::$db_name, self::$username, self::$password);
+                self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         } catch ( PDOException $msg ) {
             echo "Erro ao conectar :: " . $msg->getMessage();
@@ -32,9 +26,10 @@ class Connect {
     /**
      * Set the value of db_name
      *
-     * @return  self
+     * @return self
      */
-    public function setDb_name( $db_name = 'emarket' ) {
+    public function setDb_name( $db_name = 'emarket' )
+    {
         $this->db_name = 'mysql:host=localhost; dbname=' . $db_name;
 
         return $this;
@@ -43,9 +38,10 @@ class Connect {
     /**
      * Set the value of username
      *
-     * @return  self
+     * @return self
      */
-    public function setUsername( $username = 'root' ) {
+    public function setUsername( $username = 'root' )
+    {
         $this->username = $username;
 
         return $this;
@@ -54,9 +50,10 @@ class Connect {
     /**
      * Set the value of password
      *
-     * @return  self
+     * @return self
      */
-    public function setPassword( $password = '' ) {
+    public function setPassword( $password = '' )
+    {
         $this->password = $password;
 
         return $this;
@@ -64,5 +61,5 @@ class Connect {
 }
 
 $pdo  = Connect::getInstance();
-$conn = Connect::getInstance();
+// $conn = Connect::getInstance();
 ?>

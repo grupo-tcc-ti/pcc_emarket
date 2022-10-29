@@ -1,5 +1,9 @@
 <?php
-    session_start();
+require_once '../model/connect.php';
+session_start();
+(isset($_SESSION['client_id']))?
+$user_id = $_SESSION['client_id']
+:'';
 ?>
 
 <!DOCTYPE html>
@@ -15,20 +19,31 @@
 </head>
 
 <body>
+<?php
+require_once '../controller/registerControl.php';
 
+if (isset($user_id)) {
+    Message::pop('Sua sessão já foi iniciada!');
+    Message::pop('Voce está sendo redirecionado....');
+    Redirect::page('home.php', 2);
+}
+?>
 <div id="header">
   <?php
-      include "header.php";
-  ?>
+      require "header.php";
+    ?>
 </div>
 
   <div class="register-page">
     <div class="form">
-      <form action="../controller/registerControl.php" method="POST" class="register-form" id="R">
+      <!-- <form action="../controller/registerControl.php" method="POST" class="register-form" id="R"> -->
+      <form method="POST" class="register-form" id="R">
+        <input type="hidden" name="usertype" value="cliente">
         <input type="text" placeholder="usuario" name="nome" id="nome" class="nome"/>
         <input type="password" placeholder="senha" name="senha" id="senha" class="senha"/>
+        <input type="password" placeholder="confirme a senha" name="rsenha" id="senha" class="senha"/>
         <input type="text" placeholder="email" name="email" id="email" class="email"/>
-        <input type="submit" class="submitButton" value="Registrar">
+        <input type="submit" class="submitButton" value="Registrar" name="submit">
         <p class="message">Já possuí um registro? <a href="login_page.php">Logar-se</a></p>
       </form>
     </div>
@@ -36,7 +51,7 @@
 
   <div id="footer">
     <?php
-        include "footer.php";
+        require "footer.php";
     ?>
   </div>
 

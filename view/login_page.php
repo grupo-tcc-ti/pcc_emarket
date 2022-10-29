@@ -1,10 +1,9 @@
 <?php
-    session_start();
-
-    if ( isset( $_SESSION["loginID"] ) ) { //check se ja ta logado
-        header( "location:../view/home.php" );
-    }
-
+require_once '../model/connect.php';
+session_start();
+(isset($_SESSION['client_id']))?
+$user_id = $_SESSION['client_id']
+:'';
 ?>
 
 <!DOCTYPE html>
@@ -33,19 +32,25 @@
 
 <body>
 
-<div id="header">
-  <?php
-      include "header.php";
-  ?>
-</div>
-
+<?php
+if (isset($user_id)) {
+    Message::pop('Sua sessão já foi iniciada!');
+    Message::pop('Voce está sendo redirecionado....');
+    Redirect::page('home.php', 2);
+}
+require_once '../controller/loginControl.php';
+require_once "header.php";
+?>
   <div class="login-page">
     <div class="form">
-      <form action="../controller/loginControl.php" method="POST" class="login-form" id="L">
-        <input type="text" placeholder="email" name="email" id="email" class="email" onsubmit="required()"/>
-        <input type="password" placeholder="senha" name="senha" id="senha" class="senha" onsubmit="required()"/>
-        <input type="submit" class="submitButton" value="Login">
-        <p class="message"><a href="register_page.php">Esquecer a senha?</a></p>
+      <!-- <form action="../controller/loginControl.php" method="POST" class="login-form" id="L"> -->
+      <form method="POST" class="login-form" id="L">
+        <!-- <input type="text" placeholder="email" name="email" id="email" class="email" onsubmit="required()"/> -->
+        <input type="text" placeholder="email" name="email" id="email" class="email" required/>
+        <!-- <input type="password" placeholder="senha" name="senha" id="senha" class="senha" onsubmit="required()"/> -->
+        <input type="password" placeholder="senha" name="senha" id="senha" class="senha" required value="1234"/> <!-- Tirar value 1234 -->
+        <input type="submit" class="submitButton" value="Login" name="submit">
+        <p class="message"><a href="register_page.php">Recuperar senha</a></p>
         <p class="message">Não possuí registro? <a href="register_page.php">Registrar-se</a></p>
       </form>
     </div>
@@ -53,7 +58,7 @@
 
   <div id="footer">
     <?php
-        include "footer.php";
+        require_once "footer.php";
     ?>
   </div>
 

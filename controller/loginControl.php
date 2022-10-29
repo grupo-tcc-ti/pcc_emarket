@@ -1,45 +1,28 @@
 <?php
-require_once '../model/dto/_UsuarioDTO.php';
-require_once '../model/dao/_UsuarioDAO.php';
-session_start();
+require_once '../model/connect.php';
+require_once '../model/dao/UsuariosDAO.php';
+require_once '../model/dto/UsuariosDTO.php';
 
-$email = $_POST["email"];
-$senha = $_POST["senha"];
+if (isset($_POST['submit'])) {
 
-$UsuarioDTO = new UsuarioDTO();
-$UsuarioDTO->setEmail( $email );
-$UsuarioDTO->setSenha( $senha );
-
-$UsuarioDAO    = new UsuarioDAO();
-$usuarioLogado = $UsuarioDAO->login( $UsuarioDTO );
-
-var_dump( $usuarioLogado );
-
-if ( $usuarioLogado != null ) {
-    $_SESSION["loginID"] = $usuarioLogado->getId();
-    $nome                = $usuarioLogado->getNome();
-    $sql                 = Conexao::getInstance();
-    $sql_code            = "SELECT * FROM usuarios WHERE nome = '$nome'";
-    $sql_query           = $sql->prepare( $sql_code );
-    $sql_query->execute();
-    $fetchUser = $sql_query->fetch( PDO::FETCH_ASSOC );
-
-    $type = $fetchUser["user_type"];
-
-    if ( $type == "admin" ) {
-        $_SESSION["isAdmin"]    = "true";
-        $_SESSION["nomeAdmin"]  = $nome;
-        $_SESSION["senhaAdmin"] = MD5( $UsuarioDTO->getSenha() );
+    $usuarioDTO = new UsuariosDTO;
+    (isset($_POST["usuario"]))?$usuarioDTO->setNome( $_POST["usuario"] ):'';
+    // $usuarioDTO->setEmail($_POST["email"]);
+    (isset($_POST["email"]))?$usuarioDTO->setEmail( $_POST["email"] ):'';
+    $usuarioDTO->setSenha($_POST["senha"]);
+    $usr = UsuariosDAO::login($usuarioDTO);
+    if ($usr != null) {
+    $_SESSION[$usr['session']] = array(
+        'type' => $usr['type'], 
+        'id' => $usr['id']);
+        // var_dump($_SESSION[$usr['session']]);
+        Message::pop('Bem vindo!');
+        if ($usr['type']=='cliente')
+            Redirect::page('../view/home.php', 1);
+        else 
+            Redirect::page('dashboard.php', 1);
     } else {
-        $_SESSION["isAdmin"] = "false";
+        Message::pop('Usuário e/ou Senha incorretos!');
     }
-
-    $_SESSION["nomeUsuario"]  = $usuarioLogado->getNome();
-    $_SESSION["emailUsuario"] = $usuarioLogado->getEmail();
-    $_SESSION["senhaUsuario"] = $usuarioLogado->getSenha();
-
-    header( "location:../view/home.php" );
-} else {
-    session_destroy();
-    header( "location:../view/login_page.php?msg=usuário e/ou senha inválidos" );
 }
+?>

@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS `emarket_prot` ;
-CREATE SCHEMA IF NOT EXISTS `emarket_prot` DEFAULT CHARACTER SET utf8 COLLATE = utf8_general_ci;
-USE `emarket_prot` ;
+DROP SCHEMA IF EXISTS `emarket` ;
+CREATE SCHEMA IF NOT EXISTS `emarket` DEFAULT CHARACTER SET utf8 COLLATE = utf8_general_ci;
+USE `emarket` ;
 
 /* Lógico_1: */
 

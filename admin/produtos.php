@@ -1,12 +1,12 @@
 <?php
-include '../model/connect.php';
-include '../model/dao/ProdutosDAO.php';
+require_once '../model/connect.php';
+require_once '../model/dao/ProdutosDAO.php';
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$user_id = $_SESSION['admin_id'];
 
-if (!isset($admin_id)) {
-    $admin_header = 'admin_header.php';
+if (!isset($user_id)) {
+    $admin_header = 'admin_login.php';
     header('location:../admin/'.$admin_header);
 }
 
@@ -14,20 +14,20 @@ if (!isset($admin_id)) {
 
 // Adicionar produto starts ###################################################################
 if (isset($_POST['add_produto'])) {
-    ProdutosDAO::Cadastrar_Produto($_POST['nome'], $_POST['descricao'], $_POST['preco'], $_FILES['image']);
+    ProdutosDAO::cadastrarProduto($_POST['nome'], $_POST['descricao'], $_POST['preco'], $_FILES['image']);
 }
 // Adicionar produto ends ###################################################################
 
 // Alterar produto starts ###################################################################
-if(isset($_POST['alterar_prod'])){
+if(isset($_POST['alterar_prod'])) {
     $_SESSION['codProduto'] = $_POST['alterar_prod'];
     Redirect::page('alterar_produto.php', 0);
 }
 // Alterar produto ends ###################################################################
 
 // Deletar produto starts ###################################################################
-if(isset($_POST['deletar_prod'])){
-    ProdutosDAO::Deletar_Produto($_POST['deletar_prod']);
+if(isset($_POST['deletar_prod'])) {
+    ProdutosDAO::deletarProduto($_POST['deletar_prod']);
 }
 // Deletar produto ends ###################################################################
 ?>
@@ -44,7 +44,7 @@ if(isset($_POST['deletar_prod'])){
     <title>Cadastro de Produtos</title>
 </head>
 <body>
-<?php include Admin_Header::component();?>
+<?php require_once Admin_Header::component();?>
 
 
 <!-- <section class="add-produtos"> -->
@@ -89,32 +89,32 @@ if(isset($_POST['deletar_prod'])){
             $fetched_imgs = explode(",", $fetch_prod['image']);
             ?>
             <div class="box">
-                <img src='<?=$fetched_imgs[0];?>' alt="">
-                <div class="nome"><?=$fetch_prod['nome'];?></div>
-                <div class="preco">R$ <?=$fetch_prod['preco'];?></div>
-                <div class="descricao"><?=$fetch_prod['descricao'];?></div>
+                <img src='<?php echo $fetched_imgs[0];?>' alt="">
+                <div class="nome"><?php echo $fetch_prod['nome'];?></div>
+                <div class="preco">R$ <?php echo $fetch_prod['preco'];?></div>
+                <div class="descricao"><?php echo $fetch_prod['descricao'];?></div>
                 <form action="" method="POST" name="prod_mgmt" class="prod_mgmt">
                 <div class="flex-btn">
-                    <button type="submit" name="alterar_prod" value="<?=$fetch_prod['codProduto'];?>" class="option-btn"
+                    <button type="submit" name="alterar_prod" value="<?php echo $fetch_prod['codProduto'];?>" class="option-btn"
                     onclick="return confirm('Fazer alterações neste produto?');"
                     >Alterar</button>
                 </div>
                 <div class="flex-btn">
                     <!-- Aproach #1 -->
-                    <!-- <a href='produtos.php?deletar_prod=<?=$fetch_prod['codProduto'];?>' class="delete-btn"
+                    <!-- <a href='produtos.php?deletar_prod=<?php echo $fetch_prod['codProduto'];?>' class="delete-btn"
                     onclick="return confirm('Deseja mesmo excluir o produto?');">
                     Deletar</a> -->
                     <!-- Aproach #2 -->
-                    <button type="submit" name="deletar_prod" value="<?=$fetch_prod['codProduto'];?>" class="delete-btn"
+                    <button type="submit" name="deletar_prod" value="<?php echo $fetch_prod['codProduto'];?>" class="delete-btn"
                     onclick="return confirm('Deseja mesmo excluir o produto?');"
                     >Deletar</button>
                 </div>
                 </form>
             </div>
-        <?php
+            <?php
         }
     } else {
-    echo '<p class="vazio">Nenhum produto adicionado...</p>';
+        echo '<p class="vazio">Nenhum produto adicionado...</p>';
     }
     ?>
 </section>

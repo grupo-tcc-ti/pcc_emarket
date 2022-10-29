@@ -1,40 +1,14 @@
 <?php
-include '../model/connect.php';
-include '../model/dao/ProdutosDAO.php';
+require_once '../model/connect.php';
+require_once '../model/dao/ProdutosDAO.php';
 session_start();
 
-$admin_id = $_SESSION['admin_id'];
+$user_id = $_SESSION['admin_id'];
 
-if (!isset($admin_id)) {
+if (!isset($user_id)) {
     $admin_header = 'admin_login.php';
     header('location:../admin/'.$admin_header);
 }
-
-//####### Alterar produto starts ###########################
-if (isset($_POST['alterar'])){
-    ProdutosDAO::Alterar_Produto(
-        $_POST['codProduto'],
-        $_POST['nome'],
-        $_POST['nome_anterior'],
-        $_POST['descricao'],
-        $_POST['preco'],
-        $_FILES['image']
-    );
-}
-//####### Alterar produto ends ###########################
-
-//#######Voltar###########################
-if (isset($_POST['voltar'])) {
-    $hostname = $_SERVER['HTTP_HOST'];
-    $current_directory = rtrim(dirname($_SERVER['PHP_SELF']),'/');
-    $page = 'produtos.php';
-    unset($_SESSION['codProduto']);
-    $mensagem[] = 'Ate mais!';
-    header('refresh: 1, url=http://'.$hostname.$current_directory.'/'.$page);
-    exit;
-}
-//#######Voltar###########################
-
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +23,35 @@ if (isset($_POST['voltar'])) {
     <title>Alterar Cadastro de Produtos</title>
 </head>
 <body>
+<?php
+
+//####### Alterar produto starts ###########################
+if (isset($_POST['alterar'])) {
+    ProdutosDAO::alterarProduto(
+        $_POST['codProduto'],
+        $_POST['nome'],
+        $_POST['nome_anterior'],
+        $_POST['descricao'],
+        $_POST['preco'],
+        $_FILES['image']
+    );
+}
+//####### Alterar produto ends ###########################
+
+//#######Voltar###########################
+if (isset($_POST['voltar'])) {
+    
+    unset($_SESSION['codProduto']);
+    Message::pop('Ate mais!');
+    Redirect::page('produtos.php', 1);
+    exit;
+}
+//#######Voltar###########################
+?>
 
 <section class="alterar-produto">
     <h1 class="heading">Alterar Produto</h1>
+
     <?php //....::PHP::..... starts ..
     $alterar_id = $_SESSION['codProduto'];
     $mostrar_produtos = $pdo->prepare("SELECT * FROM  `produtos` WHERE codProduto = :cpid");
@@ -61,48 +61,49 @@ if (isset($_POST['voltar'])) {
     if ($mostrar_produtos->rowCount() > 0) {
         while ($fetch_produto = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)) {
             !is_array($fetch_produto['image'])?
-            $fetched_imgs = explode(",", $fetch_produto['image'])
-            :$fetched_imgs = implode($fetch_produto['image']); ?>
-            <!-- print_r($fetched_imgs); -->
+            $fetched_imgs = explode(",", $fetch_produto['image']) :
+            $fetched_imgs = implode($fetch_produto['image']); ?>
+
+    
     <form action="" method="post" enctype="multipart/form-data"
     class="" name="alterar_form">
-        <input type="hidden" name="codProduto" value='<?=$fetch_produto['codProduto'];?>'>
-        <input type="hidden" name="nome_anterior" value='<?=$fetch_produto['nome'];?>'>
-        <input type="hidden" name="image" value='<?=$fetched_imgs;?>'>
+        <input type="hidden" name="codProduto" value='<?php echo $fetch_produto['codProduto'];?>'>
+        <input type="hidden" name="nome_anterior" value='<?php echo $fetch_produto['nome'];?>'>
+        <input type="hidden" name="image" value='<?php echo $fetched_imgs;?>'>
         <div class="image-container">
             <!-- Fazer script que rode as outras imagens -->
             <div class="main-image">
                 <!-- Colocar imagem principal aqui -->
-                <img src='<?=$fetched_imgs[0];?>' alt="">
+                <img src='<?php echo $fetched_imgs[0];?>' alt="">
                 <!-- width="200px" height="200px" -->
             </div>
 
             <?php //....::PHP::..... starts ..
             foreach (array_slice($fetched_imgs, 0) as $img) {
-            //....::PHP::..... ends .. ?>
+                //....::PHP::..... ends .. ?>
             <div class="sub-image">
                 <!-- Colocar um image array aqui -->
                 <img src='<?php echo $img;?>' alt="">
             </div>
-            <?php //....::PHP::..... starts ..
+                <?php //....::PHP::..... starts ..
             } 
             //....::PHP::..... ends .. ?>
         </div>
         <span>Nome</span>
         <input type="text" name="nome" id="" class="box required-field" required
         maxlength="200" placeholder="Insira o nome a ser alterado"
-        value="<?=$fetch_produto['nome']?>"><br>
+        value="<?php echo $fetch_produto['nome']?>"><br>
 
         <span>Novo Preço</span>
         <input type="number" name="preco" id="" class="box required-field" required 
         min="0" max="9999999999" step="any" placeholder="Insira um novo preço para o produto" 
         onkeypress="if(this.value.length == 10) return false;"
-        value="<?=$fetch_produto['preco']?>"><br><br>
+        value="<?php echo $fetch_produto['preco']?>"><br><br>
             
         <span>Alterar Descrição</span>
         <textarea name="descricao" id="" cols="30" rows="10"  required
         placeholder="Descrições do produto (Max.: 1500 char.)" maxlength="1500">
-            <?=$fetch_produto['descricao'];
+            <?php echo $fetch_produto['descricao'];
             //....::PHP::..... ends .. ?>
         </textarea><br>
 
@@ -120,14 +121,15 @@ if (isset($_POST['voltar'])) {
         >Voltar</button>
     </form>
     
-    <?php //....::PHP::..... starts ..
-        // var_dump($alterar_id); //debug
-        // unset($_SESSION['codProduto']);
+            <?php //....::PHP::..... starts ..
+            // var_dump($alterar_id); //debug
+            // unset($_SESSION['codProduto']);
         }
     } else {
         echo '<p class="vazio">Nenhum produto adicionado...</p>';
     }
-    //....::PHP::..... ends .. ?>
+    //....::PHP::..... ends ..
+    ?>
 </section>
 
 <script src="../js/admin_script.js"></script>
