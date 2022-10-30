@@ -1,6 +1,6 @@
 <?php
-require_once '../model/connect.php';
 session_start();
+require_once '../model/connect.php';
 
 // (empty($_SESSION['admin_id']))?
 // ''

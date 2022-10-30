@@ -1,6 +1,6 @@
 <?php
-require_once '../model/connect.php';
 session_start();
+require_once '../model/connect.php';
 
 // var_dump($_SESSION['client_id']);
 // if (isset($_SESSION['client_id'])) {

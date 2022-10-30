@@ -1,8 +1,8 @@
 <?php
+    session_start();
     require_once '../model/connect.php';
     require_once '../model/dao/UsuariosDAO.php';
     require_once '../model/dto/UsuariosDTO.php';
-    session_start();
 if (!isset($_SESSION['client_id']) ) {
     $client_header = 'login_page.php';
     header('location:../view/'.$client_header);

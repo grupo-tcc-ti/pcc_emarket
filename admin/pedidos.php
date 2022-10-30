@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once '../model/connect.php';
 require_once '../model/dao/PedidosDAO.php';
-session_start();
 
 $user_id = $_SESSION['admin_id'];
 

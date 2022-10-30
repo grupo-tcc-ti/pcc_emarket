@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once '../model/connect.php';
 require_once '../model/dao/UsuariosDAO.php';
-session_start();
 
 $user_id = $_SESSION['admin_id'];
 
@@ -28,7 +28,7 @@ if (isset($_GET['deletar'])) {
     <title>Contas de Administradores</title>
 </head>
 <body>
-    <?php require Admin_Header::component(); ?>
+    <?php require_once Admin_Header::component(); ?>
 
     <section class="contas register-admin">
         <div class="gridbox">

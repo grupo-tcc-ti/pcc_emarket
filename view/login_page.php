@@ -1,6 +1,6 @@
 <?php
-require_once '../model/connect.php';
 session_start();
+require_once '../model/connect.php';
 (isset($_SESSION['client_id']))?
 $user_id = $_SESSION['client_id']
 :'';
