@@ -32,7 +32,7 @@ if(isset($_GET['deletar'])) {
 </head>
 <body>
 
-<?php require_once Admin_Header::component(); ?>
+<?php require_once Path_Locale::admin_header(); ?>
 
 <section class="mensagens">
 

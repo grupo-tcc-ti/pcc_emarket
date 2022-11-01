@@ -35,7 +35,7 @@ if(isset($_POST['deletar_pedido'])) {
 </head>
 <body>
 
-<?php require_once Admin_Header::component(); ?>
+<?php require_once Path_Locale::admin_header(); ?>
 
 <h1 class="head-list">Lista de Pedidos</h1>
 <section class="pedidos">

@@ -25,7 +25,8 @@ $user_id = $_SESSION['admin_id']:'';
 
 
 <?php
-require_once '../controller/admin_loginControl.php';
+// require_once '../controller/admin_loginControl.php';
+require_once '../controller/loginControl.php';
 
 if (isset($user_id)) {
     // echo print_r($_SESSION).':loggedin'; //debug
@@ -54,7 +55,7 @@ if (isset($user_id)) {
         <input type="password" name="senha" class="box required-field" maxlength="20" required placeholder="Senha*"
         oninput = "this.value = this.value.replace(/\s/g, '')" value="1234"><!-- Tirar value 1234 -->
         </div>
-        <input type="submit" value="Logar" class="btn" name="submit">
+        <input type="submit" value="Logar" class="btn" name="login">
     </div>
     </form>
 </section>

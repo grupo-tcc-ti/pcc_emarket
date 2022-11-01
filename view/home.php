@@ -33,7 +33,7 @@ $user_id = $_SESSION['client_id']
     <title>Emarket</title>
   </head>
 
-  <?php require_once '../view/header.php';?>
+  <?php require_once Path_Locale::user_header(); ?>
     <body>
       <section>
         <div class="slider">

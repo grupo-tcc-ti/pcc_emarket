@@ -1,6 +1,6 @@
 <?php
 require_once 'redirect.php';
-require_once 'admhdr_path.php';
+require_once 'path_locale.php';
 require 'popup_msg.php';
 class Connect
 {

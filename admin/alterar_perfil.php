@@ -29,7 +29,7 @@ if (!isset($_SESSION['admin_id']) ) {
 <body>
 
 <?php
-require_once Admin_Header::component();
+require_once Path_Locale::admin_header();
 require_once '../controller/updateUserControl.php';
 ?>
 

@@ -28,7 +28,7 @@ if (isset($_GET['deletar'])) {
 </head>
 <body>
 
-<?php require_once Admin_Header::component(); ?>
+<?php require_once Path_Locale::admin_header(); ?>
 
 <h1 class="head-list">Contas de Usuários</h1>
 <section class="contas">

@@ -247,9 +247,8 @@ class UsuariosDAO
             $qry = "DELETE FROM `usuarios` WHERE codAdmin = :cod_admin";
             $deletar_admin = self::connect()->prepare($qry) or die("Não foi possivel achar a Conta Admin!");
             $deletar_admin->bindParam(':cod_admin', $cod_admin);
-            Message::pop('Deletado com sucesso!');
             // header('location: admin_contas.php');
-            Redirect::page('admin_contas.php', 0);
+            Message::pop('Deletado com sucesso!');
             return $deletar_admin->execute();
         } catch (PDOException $msg) {
             echo $msg->getMessage();

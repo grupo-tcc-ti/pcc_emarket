@@ -3,7 +3,7 @@ require_once '../model/connect.php';
 require_once '../model/dao/UsuariosDAO.php';
 require_once '../model/dto/UsuariosDTO.php';
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['login'])) {
 
     $usuarioDTO = new UsuariosDTO;
     (isset($_POST["usuario"]))?$usuarioDTO->setNome( $_POST["usuario"] ):'';
@@ -16,13 +16,13 @@ if (isset($_POST['submit'])) {
         'type' => $usr['type'], 
         'id' => $usr['id']);
         // var_dump($_SESSION[$usr['session']]);
-        Message::pop('Bem vindo!');
         if ($usr['type']=='cliente')
             Redirect::page('../view/home.php', 1);
         else 
-            Redirect::page('dashboard.php', 1);
+            Redirect::page('dashboard.php', 2);
     } else {
         Message::pop('Usuário e/ou Senha incorretos!');
     }
+    Message::pop('Bem vindo!');
 }
 ?>

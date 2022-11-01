@@ -66,11 +66,16 @@ function changeIconDepartamento(anchor) {
 /* ######################Funçao do departamento na barra: ends###################### */
 
 /* ######################Functions for banner: starts ######################*/
-const slider = document.querySelector(".slider"); //var slider dos banner
-const nextBtn = document.querySelector(".next-btn"); //var botao proximo
-const prevBtn = document.querySelector(".prev-btn"); //var botao anterior
-const slides = document.querySelectorAll(".slide"); //var cada imagem
-const slideIcons = document.querySelectorAll(".slide-icon"); //var icone dos botoes
+// const slider = document.querySelector(".slider"); //var slider dos banner
+const slider = qryS(".slider"); //var slider dos banner
+// const nextBtn = document.querySelector(".next-btn"); //var botao proximo
+const nextBtn = qryS(".next-btn"); //var botao proximo
+// const prevBtn = document.querySelector(".prev-btn"); //var botao anterior
+const prevBtn = qryS(".prev-btn"); //var botao anterior
+// const slides = document.querySelectorAll(".slide"); //var cada imagem
+const slides = qrySA(".slide"); //var cada imagem
+// const slideIcons = document.querySelectorAll(".slide-icon"); //var icone dos botoes
+const slideIcons = qrySA(".slide-icon"); //var icone dos botoes
 const numberOfSlides = slides.length;
 var slideNumber = 0;
 

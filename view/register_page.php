@@ -43,7 +43,7 @@ if (isset($user_id)) {
         <input type="password" placeholder="senha" name="senha" id="senha" class="senha"/>
         <input type="password" placeholder="confirme a senha" name="rsenha" id="senha" class="senha"/>
         <input type="text" placeholder="email" name="email" id="email" class="email"/>
-        <input type="submit" class="submitButton" value="Registrar" name="submit">
+        <input type="submit" class="submitButton" value="Registrar" name="register">
         <p class="message">Já possuí um registro? <a href="login_page.php">Logar-se</a></p>
       </form>
     </div>

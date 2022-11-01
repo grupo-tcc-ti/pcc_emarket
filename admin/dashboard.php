@@ -27,7 +27,7 @@ if (!isset($user_id)) {
 </head>
 <body>
 
-<?php require_once Admin_Header::component();?>
+<?php require_once Path_Locale::admin_header();?>
 
     <div class="heading-dash">
         <h1><span>i</span>DASH</h1><div class="hd-img"></div>

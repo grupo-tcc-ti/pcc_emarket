@@ -12,6 +12,7 @@ if (!isset($user_id)) {
 
 if (isset($_GET['deletar'])) {
     UsuariosDAO::deletarAdmin($_GET['deletar']);
+    Redirect::page('admin_contas.php', 0);
 }
 
 ?>
@@ -28,7 +29,7 @@ if (isset($_GET['deletar'])) {
     <title>Contas de Administradores</title>
 </head>
 <body>
-    <?php require_once Admin_Header::component(); ?>
+    <?php require_once Path_Locale::admin_header(); ?>
 
     <section class="contas register-admin">
         <div class="gridbox">

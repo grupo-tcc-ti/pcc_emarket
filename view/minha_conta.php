@@ -31,7 +31,7 @@ if (!isset($_SESSION['client_id']) ) {
 <body>
 <?php
 require_once '../controller/updateUserControl.php';
-require_once "header.php";
+require_once Path_Locale::user_header();
 ?>
 </div>
   <div class="main-content">

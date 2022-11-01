@@ -37,7 +37,8 @@ if (!isset($user_id)) {
 <body>
 
 <?php
-require_once Admin_Header::component();
+require_once Path_Locale::admin_header();
+// require_once '../controller/admin_registerControl.php';
 require_once '../controller/registerControl.php';
 ?>
 
@@ -67,7 +68,7 @@ require_once '../controller/registerControl.php';
                 <input type="password" name="rsenha" class="box" maxlength="50" required placeholder="Confirme a senha"
                 oninput = "this.value = this.value.replace(/\s/g, '')" >
             </div>
-        <input type="submit" value="Cadastrar" class="btn" name="submit">
+        <input type="submit" value="Cadastrar" class="btn" name="register">
         </div>
     </form>
 </section>

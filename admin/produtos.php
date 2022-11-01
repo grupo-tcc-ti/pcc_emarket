@@ -44,7 +44,7 @@ if(isset($_POST['deletar_prod'])) {
     <title>Cadastro de Produtos</title>
 </head>
 <body>
-<?php require_once Admin_Header::component();?>
+<?php require_once Path_Locale::admin_header();?>
 
 
 <!-- <section class="add-produtos"> -->
