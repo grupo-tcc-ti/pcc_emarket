@@ -1,3 +1,5 @@
+// script praticamente inutilizado, presente somente para comparação!
+
 const qryS = (selector) =>
   document.querySelector(selector) || {
     classList: {
@@ -51,9 +53,27 @@ togglePwd.forEach((eyeIcon) => {
 
 signup.addEventListener('click', () => {
   container.classList.add('active');
-//   console.log('signup'); //debug
+  //   console.log('signup'); //debug
 });
+
+var sPath = window.location.pathname;
+var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+var register = false;
+
+testSignUp(() => {
+  console.log('signup');
+  register = true;
+});
+
+if (register) {
+  console.log('true or not');
+}
+if (sPage == 'conta.php' && register) {
+  console.log('signup');
+  container.classList.add('active');
+}
+
 login.addEventListener('click', () => {
   container.classList.remove('active');
-//   console.log('login'); //debug
+  //   console.log('login'); //debug
 });

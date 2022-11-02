@@ -12,6 +12,7 @@ if (isset($_POST['login'])) {
     $usuarioDTO->setSenha($_POST["senha"]);
     $usr = UsuariosDAO::login($usuarioDTO);
     if ($usr != null) {
+    Message::pop('Bem vindo!');
     $_SESSION[$usr['session']] = array(
         'type' => $usr['type'], 
         'id' => $usr['id']);
@@ -23,6 +24,5 @@ if (isset($_POST['login'])) {
     } else {
         Message::pop('Usuário e/ou Senha incorretos!');
     }
-    Message::pop('Bem vindo!');
 }
 ?>

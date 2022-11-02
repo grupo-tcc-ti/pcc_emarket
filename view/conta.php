@@ -56,13 +56,13 @@ require_once Path_Locale::user_header();
             <form action="#" method="post">
               <input type="hidden" name="usertype" value="cliente">
               <div class="input-field">
-                <input type="text" placeholder="Insira seu email" name="email" id="" required value="usuario@email.com"/>
+                <input type="text" placeholder="Insira seu email" name="email" required value="usuario@email.com"/>
                 <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
                 <i class="far fa-envelope icon"></i>
               </div>
               <div class="input-field">
-                <!-- <input type="password" class="loginPwd" placeholder="Insira sua senha" name="" id="" required/> -->
-                <input type="password" class="password" placeholder="Insira sua senha" name="senha" id="" required value="1234"/>
+                <!-- <input type="password" class="loginPwd" placeholder="Insira sua senha" name="" required/> -->
+                <input type="password" class="password" placeholder="Insira sua senha" name="senha" required value="1234"/>
                 <!--pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" -->
                 <i class="fas fa-lock icon"></i>
@@ -91,22 +91,22 @@ require_once Path_Locale::user_header();
             <form action="#" method="post">
             <input type="hidden" name="usertype" value="cliente">
               <div class="input-field">
-                <input type="text" placeholder="Insira seu nome" name="usuario" id="" required/>
+                <input type="text" placeholder="Insira seu nome" name="usuario" required/>
                 <i class="fa-regular fa-user icon"></i>
               </div>
               <div class="input-field">
-                <input type="text" placeholder="Insira seu email" name="email" id="" required/>
+                <input type="text" placeholder="Insira seu email" name="email" required/>
                 <i class="far fa-envelope icon"></i>
               </div>
               <div class="input-field">
-                <!-- <input type="password" class="registerPwd" placeholder="Insira sua senha" name="" id="" required/> -->
-                <input type="password" class="password" placeholder="Crie uma senha" name="senha" id="" required/>
+                <!-- <input type="password" class="registerPwd" placeholder="Insira sua senha" name="" required/> -->
+                <input type="password" class="password" placeholder="Crie uma senha" name="senha" required/>
                 <i class="fas fa-lock icon"></i>
                 <i class="far fa-eye-slash togglePwd"></i>
               </div>
               <div class="input-field">
-                <!-- <input type="password" class="cRegisterPwd" placeholder="Confirme sua senha" name="" id="" required/> -->
-                <input type="password" class="password" placeholder="Confirme a senha" name="rsenha" id="" required/>
+                <!-- <input type="password" class="cRegisterPwd" placeholder="Confirme sua senha" name="" required/> -->
+                <input type="password" class="password" placeholder="Confirme a senha" name="rsenha" required/>
                 <i class="fas fa-lock icon"></i>
                 <i class="far fa-eye-slash togglePwd"></i>
               </div>
@@ -130,7 +130,7 @@ require_once Path_Locale::user_header();
   </div>
 
 
-  <script src="../js/login_script.js"></script>
+  <!-- <script src="../js/login_script.js"></script> -->
   <script src="../js/script.js"></script>
 
 </body>

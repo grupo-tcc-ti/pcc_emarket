@@ -60,8 +60,9 @@ if(isset($_GET['logout'])) {
                                 <?php
                                 if (!isset($_SESSION["client_id"]) ) {
                                     ?>
-                                    <a href="login_page.php">Login</a>
-                                    <a href="register_page.php">Registrar</a>
+                                    <a href="conta.php">Login</a>
+                                    <a href="conta.php?register">Registrar</a>
+                                    <!-- <a href="#" onclick="testSignUp();">Registrar</a> -->
                                     <?php
                                 } else {
                                     ?>
@@ -97,3 +98,4 @@ if(isset($_GET['logout'])) {
             </div>
         </header>
 </div>
+
