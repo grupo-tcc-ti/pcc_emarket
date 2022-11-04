@@ -1,15 +1,14 @@
 <?php
-// var_dump($_SERVER['HTTP_HOST'].''.$_SERVER['PHP_SELF']);
-if (!isset($pdo)) {
-    include_once '../model/connect.php';
-}
-require_once '../model/dao/UsuariosDAO.php';
-require_once '../model/dto/UsuariosDTO.php';
-if(isset($_GET['logout'])) {
-    include_once '../controller/admin_logoutControl.php';
-    Redirect::page('home.php', 1);
-    exit();
-}
+    if (!isset($pdo)) {
+        include_once '../model/connect.php';
+    }
+    require_once '../model/dao/UsuariosDAO.php';
+    require_once '../model/dto/UsuariosDTO.php';
+    if(isset($_GET['logout'])) {
+        include_once '../controller/admin_logoutControl.php';
+        Redirect::page('home.php', 1);
+        exit();
+    }
 ?>
 <div id="header">
     <header class="header">

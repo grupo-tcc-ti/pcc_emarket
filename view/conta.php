@@ -1,9 +1,9 @@
 <?php
-session_start();
-require_once '../model/connect.php';
-(isset($_SESSION['client_id']))?
-$user_id = $_SESSION['client_id']
-:'';
+  session_start();
+  require_once '../model/connect.php';
+  (isset($_SESSION['client_id']))?
+  $user_id = $_SESSION['client_id']
+  :'';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $user_id = $_SESSION['client_id']
     <!-- <link rel="stylesheet" href="../css/login_style.css"> -->
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <!-- <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
-    <?php require_once 'head.html'; ?>
+    <?php require_once Path_Locale::head(); ?>
     <link rel="stylesheet" href="../css/login.css" />
     <title>Login</title>
 

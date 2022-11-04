@@ -1,30 +1,31 @@
 <?php
-    session_start();
-    require_once '../model/connect.php';
-    require_once '../model/dao/UsuariosDAO.php';
-    require_once '../model/dto/UsuariosDTO.php';
-if (!isset($_SESSION['client_id']['id']) ) {
-    $client_header = 'conta.php';
-    header('location:../view/'.$client_header);
-} else {
-    $user_id = $_SESSION['client_id'];
-}
-    $usuario = UsuariosDAO::getUserByID(
-        $_SESSION['client_id']['type'],
-        $_SESSION['client_id']['id']
-    );
+  session_start();
+  require_once '../model/connect.php';
+  require_once '../model/dao/UsuariosDAO.php';
+  require_once '../model/dto/UsuariosDTO.php';
+  if (!isset($_SESSION['client_id']['id']) ) {
+      $client_header = 'conta.php';
+      header('location:../view/'.$client_header);
+  } else {
+      $user_id = $_SESSION['client_id'];
+  }
+  $usuario = UsuariosDAO::getUserByID(
+      $_SESSION['client_id']['type'],
+      $_SESSION['client_id']['id']
+  );
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <!-- <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="../css/myacc_style.css">
     <link rel="stylesheet" href="../css/style.css">
-    <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" href="../css/myacc_style.css">
+    <?php require_once Path_Locale::head(); ?>
     <title>Minha Conta</title>
 </head>
 

@@ -64,14 +64,11 @@ div.conta {
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 4px;
-
-  /* width: 80px; */
-  /* margin-bottom: -6px; */
-
-  width: 32px;
-  border-radius: 32px;
+  transform: translateY(100%);
   background-color: var(--main-color);
+  border-radius: 32px;
+  height: 4px;
+  width: 100%;
 }
 
 .form .input-field {

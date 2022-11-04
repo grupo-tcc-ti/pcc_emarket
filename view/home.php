@@ -1,27 +1,21 @@
 <?php
-session_start();
-require_once '../model/connect.php';
-
-// var_dump($_SESSION['client_id']);
-// if (isset($_SESSION['client_id'])) {
-//     $user_id = $_SESSION['client_id'];
-// } else {
-//     $user_id = '';
-// }
-(isset($_SESSION['client_id']))?
-$user_id = $_SESSION['client_id']
-:'';
-// include '../components/wishlist_card.php';
+  session_start();
+  require_once '../model/connect.php';
+  (isset($_SESSION['client_id']))?
+  $user_id = $_SESSION['client_id']
+  :'';
+  // include '../components/wishlist_card.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br, en">
 
   <head>
-    <meta charset="UTF-8" />
+    <!-- <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="../image/favicon.ico"
       type="../image/x-icon"/>
@@ -29,7 +23,11 @@ $user_id = $_SESSION['client_id']
       crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"> </script>
+      crossorigin="anonymous"> </script> -->
+    <?php 
+    //isso é só um teste,
+    //também pode servir para usar uma css de svg caso não tenha conectividade com o site fontawesome
+    require_once Path_Locale::head(); ?>
     <title>Emarket</title>
   </head>
 
