@@ -3,8 +3,8 @@
     require_once '../model/connect.php';
     require_once '../model/dao/UsuariosDAO.php';
     require_once '../model/dto/UsuariosDTO.php';
-if (!isset($_SESSION['client_id']) ) {
-    $client_header = 'login_page.php';
+if (!isset($_SESSION['client_id']['id']) ) {
+    $client_header = 'conta.php';
     header('location:../view/'.$client_header);
 } else {
     $user_id = $_SESSION['client_id'];
@@ -13,6 +13,8 @@ if (!isset($_SESSION['client_id']) ) {
         $_SESSION['client_id']['type'],
         $_SESSION['client_id']['id']
     );
+
+    var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

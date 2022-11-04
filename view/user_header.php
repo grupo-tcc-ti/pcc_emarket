@@ -17,7 +17,7 @@ if(isset($_GET['logout'])) {
                 <ul>
                     <li>
                         <a href="home.php"><img src="../image/logo.png" class="logo-img" alt="logo"></a>
-                    </li>
+                    </li>   
                     <li>
                         <div class="dropdown">
                             <button id="link-depart" onclick='clickDrop("depart")' class="btn">
@@ -50,19 +50,16 @@ if(isset($_GET['logout'])) {
                     </li>
                     <li>
                         <div class="dropdown">
-                            <!-- <a id="link-conta" onclick='clickDrop("conta")' class="btn"> -->
                             <button id="link-conta" onclick='clickDrop("conta")' class="btn">
                             <span>conta</span>
-                            <!-- <div class="icons"><i class="fa-regular fa-user"></i></div> -->
                             <i class="fa-regular fa-user"></i>
                             </button>
                             <nav id="conta" class="dropdown-content">
                                 <?php
-                                if (!isset($_SESSION["client_id"]) ) {
+                                if (!isset($_SESSION['client_id']['id']) ) {
                                     ?>
                                     <a href="conta.php">Login</a>
                                     <a href="conta.php?register">Registrar</a>
-                                    <!-- <a href="#" onclick="testSignUp();">Registrar</a> -->
                                     <?php
                                 } else {
                                     ?>
@@ -71,7 +68,7 @@ if(isset($_GET['logout'])) {
                                     <a href="<?php echo '?logout';?>" onclick="return confirm('Você deseja sair?');">Logout</a>
                                     <?php
                                 }
-                                if (isset($_SESSION["admin_id"]) ) {// && strtolower( $_SESSION["admin_id"] ) == "true" ) {
+                                if (isset( $_SESSION["isAdmin"] ) && strtolower( $_SESSION["isAdmin"] == "true") ) {
                                     ?>
                                 <a href="../admin/admin_login.php">Admin Panel</a>
                                     <?php
@@ -82,10 +79,8 @@ if(isset($_GET['logout'])) {
                     </li>
                     <li>
                         <div class="dropdown">
-                            <!-- <a id="link-carrinho" onclick='clickDrop("carrinho")' class="btn"> -->
                             <button id="link-carrinho" onclick='clickDrop("carrinho")' class="btn">
                                 <span>carrinho</span>
-                                <!-- <div class="icons"><i class="fas fa-shopping-cart"></i></div> -->
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
                             <nav id="carrinho" class="dropdown-content">

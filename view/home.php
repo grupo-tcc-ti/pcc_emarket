@@ -95,16 +95,18 @@ $user_id = $_SESSION['client_id']
             <div class="products-name"><?php echo $fetch_produto['nome'];?></div>
             </a>
             <div class="flex">
-              <div class="cards-price"><span>R$ </span><?php echo $fetch_produto['preco'];?></div>
+              
+              <div class="cards-price">
+              R$ <?php echo $fetch_produto['preco'];?> 
+              </div>
+
                 <form action="" method="post">
                   <input type="hidden" name="id" value="<?php echo $fetch_produto['codProduto'];?>"></input>
                   <input type="hidden" name="nome" value="<?php echo $fetch_produto['nome'];?>"></input>
-                  <input type="hidden" name="preco" value="<?php echo $fetch_produto['preco'];?>"></input>
                   <input type="hidden" name="image" value="<?php echo $fetch_prodimg[0];?>"></input>
-                  <input type="number" name="qty" id="" class="qty"
-                  min="1" max="99"
-                  onkeypress="if(this.value> 2) return false;" value="1">
-              </div>
+                  <!-- <input type="number" name="qty" id="" class="qty"
+                  min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1"> EDITAR A QUNATIDAD NO CARRINHO--> 
+            </div>
                   <input type="submit" value="Adicionar ao Carrinho"
                   name="add_carrinho" class="buy-btn">
                 </form>

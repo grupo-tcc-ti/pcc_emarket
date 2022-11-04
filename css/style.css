@@ -4,7 +4,7 @@
   --main-color: #f75a09; /*darkcyan é a cor anterior, eu coloquei essa atual para combinar com a logo, tambem pode ser azul #2b79d6 */
   --black: #1f1f1f;
   --amoled-black: rgba(0, 0, 0, 0.8);
-  --white: lavenderBlush;
+  --white: #fff;
   --light-green: mediumseagreen;
   --green: forestgreen;
   --light-color: snow;
@@ -14,6 +14,7 @@
   --light-red: indianred;
   --red: crimson;
   --input-shadow: slategrey;
+  --background-color: #ebebeb;
   --border: 2px solid #1f1f1f;
   --footer-border: 5px solid var(--main-color);
   --card-border: 1.8px groove black;
@@ -63,7 +64,7 @@ html {
 }
 
 body {
-  background-color: #ebebeb;
+  background-color: var(--background-color);
 }
 
 section {

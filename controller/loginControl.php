@@ -13,14 +13,24 @@ if (isset($_POST['login'])) {
     $usr = UsuariosDAO::login($usuarioDTO);
     if ($usr != null) {
     Message::pop('Bem vindo!');
+
     $_SESSION[$usr['session']] = array(
         'type' => $usr['type'], 
         'id' => $usr['id']);
-        // var_dump($_SESSION[$usr['session']]);
-        if ($usr['type']=='cliente')
+
+    // $_SESSION["currentUser"] = array(
+    //     'type' => $usr['type'], 
+    //     'id' => $usr['id']);
+
+        if ($usr['type']=='cliente') {
             Redirect::page('../view/home.php', 1);
-        else 
-            Redirect::page('dashboard.php', 2);
+            $_SESSION["isAdmin"] = false;
+        }
+        else {
+            Redirect::page('../admin/dashboard.php', 2);
+            $_SESSION["isAdmin"] = true;
+        }
+        //var_dump($_SESSION);
     } else {
         Message::pop('Usuário e/ou Senha incorretos!');
     }
