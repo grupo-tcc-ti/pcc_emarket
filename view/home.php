@@ -102,10 +102,10 @@ $user_id = $_SESSION['client_id']
 
                 <form action="" method="post">
                   <input type="hidden" name="id" value="<?php echo $fetch_produto['codProduto'];?>"></input>
-                  <input type="hidden" name="nome" value="<?php echo $fetch_produto['nome'];?>"></input>
-                  <input type="hidden" name="image" value="<?php echo $fetch_prodimg[0];?>"></input>
-                  <!-- <input type="number" name="qty" id="" class="qty"
-                  min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1"> EDITAR A QUNATIDAD NO CARRINHO--> 
+                  <input type="number" name="qty" id="" class="qty"
+                  min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
+                  <!-- Onkeypress faz com que o número "vire" de 99 para 1, 
+                  somente estético nada que atrapalhe no formulário, já que é limitado -->
             </div>
                   <input type="submit" value="Adicionar ao Carrinho"
                   name="add_carrinho" class="buy-btn">

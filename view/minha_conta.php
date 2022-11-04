@@ -13,8 +13,6 @@ if (!isset($_SESSION['client_id']['id']) ) {
         $_SESSION['client_id']['type'],
         $_SESSION['client_id']['id']
     );
-
-    var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

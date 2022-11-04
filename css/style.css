@@ -3,16 +3,21 @@
 :root {
   --main-color: #f75a09; /*darkcyan é a cor anterior, eu coloquei essa atual para combinar com a logo, tambem pode ser azul #2b79d6 */
   --black: #1f1f1f;
-  --amoled-black: rgba(0, 0, 0, 0.8);
   --white: #fff;
+  --debug-white: lavenderblush;
+  --light-red: tomato;
+  --red: crimson;
+  --light-orange: orange;
+  --orange: darkorange;
+  --light-yellow: khaki;
+  --yellow: gold;
   --light-green: mediumseagreen;
   --green: forestgreen;
-  --light-color: snow;
-  --dark-color: black;
   --light-blue: dodgerBlue;
   --blue: navy;
-  --light-red: indianred;
-  --red: crimson;
+  --light-purple: blueviolet;
+  --purple: indigo;
+  --font-color: snow;
   --input-shadow: slategrey;
   --background-color: #ebebeb;
   --border: 2px solid #1f1f1f;
@@ -89,7 +94,7 @@ section {
 
 .btn {
   font: 16px 'Poppins', sans-serif;
-  color: var(--light-color);
+  color: var(--font-color);
   background-color: var(--black);
   padding: 16px 10px;
   padding: 1.6rem;
@@ -300,7 +305,7 @@ img#slider {
 .next-btn {
   z-index: 999;
   font-size: 2em;
-  color: var(--light-color);
+  color: var(--font-color);
   background: var(--black);
   padding: 10px;
   cursor: pointer;
@@ -445,7 +450,7 @@ img#slider {
 .buy-btn {
   display: block;
   background-color: var(--green);
-  color: var(--light-color);
+  color: var(--font-color);
   width: 100%;
   margin-top: 1rem;
   padding: 1rem 3rem;
@@ -459,7 +464,7 @@ img#slider {
 
 .buy-btn a {
   text-decoration: none;
-  color: var(--light-color);
+  color: var(--font-color);
 }
 
 /* ########################## Rodapé ########################## */
@@ -470,7 +475,7 @@ footer {
   /* flex-direction: row; */
   /* align-items: flex-start; */
   position: relative;
-  color: var(--light-color);
+  color: var(--font-color);
   display: flex;
   justify-content: space-between;
   border-top: var(--border);
@@ -503,7 +508,7 @@ span > a {
   /* border: var(--footer-border); */
   /* border-radius: 8px; */
   padding-left: 1rem;
-  color: var(--light-color);
+  color: var(--font-color);
   justify-content: space-between;
   transition: 0.2s;
   margin: none;
