@@ -48,7 +48,8 @@ if(isset($_POST['deletar_prod'])) {
 
 
 <!-- <section class="add-produtos"> -->
-<section class="form-container">
+<section class="form-container"> 
+    <!-- style="display: none;"> -->
     <form class="add-produto" action="" name="add_produto_form" method="POST" enctype="multipart/form-data" > <!-- onsubmit="return clearForm(this)" -->
         <h1 class="heading">Adicionar Produto</h1>
         <!-- <h3>Adicionar Produto</h3> -->

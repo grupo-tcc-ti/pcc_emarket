@@ -37,7 +37,7 @@ if (!isset($user_id)) {
         <div class="box">
             <h3>Bem Vindo!</h3>
             <p><?php echo $fetch_perfil['nome'];?></p>
-            <p><?php echo $fetch_perfil['senha'];?></p>
+            <!-- <p><?php echo $fetch_perfil['senha'];?></p> -->
             <a href="alterar_perfil.php" class="btn">Alterar Perfil</a>
         </div>
     </section>
