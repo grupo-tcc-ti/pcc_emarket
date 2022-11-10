@@ -1,19 +1,13 @@
 <?php
-include '../model/connect.php';
 session_start();
+require_once '../model/connect.php';
 
-(empty($_SESSION['admin_id']))?:$admin_id = $_SESSION['admin_id'];
+// (empty($_SESSION['admin_id']))?
+// ''
+// :$user_id = $_SESSION['admin_id'];
 
-if (isset($admin_id)) {
-    // echo print_r($_SESSION).':loggedin'; //debug
-    $mensagem[] = 'Sua sessão já foi iniciada!';
-    $mensagem[] = 'Voce está sendo redirecionado....';
-    
-    Redirect::page('dashboard.php');
-}
-
-include '../controller/admin_loginControl.php';
-
+(isset($_SESSION['admin_id']))?
+$user_id = $_SESSION['admin_id']:'';
 ?>
 
 <!DOCTYPE html>
@@ -31,35 +25,37 @@ include '../controller/admin_loginControl.php';
 
 
 <?php
-if (isset($mensagem)){
-    foreach ($mensagem as $mensagem) {
-        echo '
-        <div class="mensagem">
-        <span>'.$mensagem.'</span>
-        <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
-        </div>
-        ';
-    }
+// require_once '../controller/admin_loginControl.php';
+require_once '../controller/loginControl.php';
+
+if (isset($user_id)) {
+    // echo print_r($_SESSION).':loggedin'; //debug
+    Message::pop('Sua sessão já foi iniciada!');
+    Message::pop('Voce está sendo redirecionado....');
+    Redirect::page('dashboard.php', 2);
 }
 ?>
 <!-- Container do formulário de login do adminisrador -->
 
 <section class="form-container">
-    <form action="" method="post">
+    <!-- <form action='../controller/admin_loginControl.php' method="POST"> -->
+    <form method="POST">
         <h3 class="heading">Credenciais de Login</h3>
-        <p>Usuário de administrador predefinido: user = <span>admin</span> e senha <span>1234</span></p>
+        <!-- <p>Usuário de administrador predefinido: </p>
+            <p>user = <span>admin</span> e</p>
+            <p>senha <span>1234</span></p> -->
         <div class="flex">
         <div class="inputbox">
         <!-- <span class="title required-field">Usuario</span> -->
         <input type="text" name="usuario" class="box required-field" maxlength="20" required placeholder="Usuário*"
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
+        oninput = "this.value = this.value.replace(/\s/g, '')" value="admin">
     </div>
         <div class="inputbox">
         <!-- <span class="title required-field">Senha</span> -->
-        <input type="senha" name="senha" class="box required-field" maxlength="20" required placeholder="Senha*"
-        oninput = "this.value = this.value.replace(/\s/g, '')" >
+        <input type="password" name="senha" class="box required-field" maxlength="20" required placeholder="Senha*"
+        oninput = "this.value = this.value.replace(/\s/g, '')" value="1234"><!-- Tirar value 1234 -->
         </div>
-        <input type="submit" value="Logar" class="btn" name="submit">
+        <input type="submit" value="Logar" class="btn" name="login">
     </div>
     </form>
 </section>

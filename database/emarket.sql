@@ -1,6 +1,6 @@
-DROP SCHEMA IF EXISTS `emarket_prot` ;
-CREATE SCHEMA IF NOT EXISTS `emarket_prot` DEFAULT CHARACTER SET utf8 COLLATE = utf8_general_ci;
-USE `emarket_prot` ;
+DROP SCHEMA IF EXISTS `emarket` ;
+CREATE SCHEMA IF NOT EXISTS `emarket` DEFAULT CHARACTER SET utf8 COLLATE = utf8_general_ci;
+USE `emarket` ;
 
 /* Lógico_1: */
 
@@ -9,18 +9,12 @@ CREATE TABLE usuarios (
     nome varchar(255) not null,
     email varchar(255) not null,
     senha varchar(50) not null,
-    
-    
     user_type enum('cliente', 'funcionario', 'admin') not null default 'cliente',
     codCliente int not null,
-    
     codAdmin int not null,
     salario double,
     admissao date,
     demissao date,
-    
-    
-    
     telefone bigint(12),
     cpf int(12),
     rg int(12),
@@ -33,8 +27,6 @@ CREATE TABLE usuarios (
     numero int(12),
     complemento varchar(255),
     PRIMARY KEY (codUsuario, codCliente, codAdmin)
-    -- constraint user_type primary key (codUsuario, codCliente, codAdmin)
-    -- UNIQUE user_type (codCliente, codAdmin)
 );
 
 CREATE TABLE produtos (
@@ -44,11 +36,10 @@ CREATE TABLE produtos (
     detalhes varchar(1500),
     preco double,
     image varchar(1500)
-    -- fk_carrinho_codCarrinho int
 );
 
 CREATE TABLE pedidos (
-    codPedido int PRIMARY KEY auto_increment,
+    codPedido int PRIMARY KEY not null auto_increment,
     tipoEntrega varchar(255),
     totalProduto varchar(1500),
     totalPreco double,
@@ -64,7 +55,7 @@ CREATE TABLE pedidos (
 );
 
 CREATE TABLE mensagens (
-    codMensagem int PRIMARY KEY auto_increment,
+    codMensagem int PRIMARY KEY not null auto_increment,
     nome varchar(255),
     email varchar(255),
     telefone varchar(12),
@@ -79,7 +70,7 @@ CREATE TABLE mensagens (
 );
 
 CREATE TABLE carrinho (
-    codCarrinho int PRIMARY KEY auto_increment,
+    codCarrinho int PRIMARY KEY not null auto_increment,
     quantidade int(12),
     fk_usuarios_codUsuario int not null,
     fk_usuarios_codCliente int not null,
@@ -92,7 +83,6 @@ CREATE TABLE carrinho (
     FOREIGN KEY (fk_produtos_codProduto)
     REFERENCES produtos (codProduto)
 );
- 
 -- ALTER TABLE produtos ADD CONSTRAINT FK_produtos
 --     FOREIGN KEY (fk_carrinho_codCarrinho)
 --     REFERENCES carrinho (codCarrinho)

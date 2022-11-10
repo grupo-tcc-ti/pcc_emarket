@@ -1,25 +1,18 @@
 <?php
-include '../model/connect.php';
-include '../model/dao/UsuariosDAO.php';
-session_start();
-
-$admin_id = $_SESSION['admin_id'];
-
-if (!isset($admin_id)) {
+    session_start();
+    require_once '../model/connect.php';
+    require_once '../model/dao/UsuariosDAO.php';
+    require_once '../model/dto/UsuariosDTO.php';
+if (!isset($_SESSION['admin_id']) ) {
     $admin_header = 'admin_login.php';
     header('location:../admin/'.$admin_header);
+} else {
+    $user_id = $_SESSION['admin_id'];
 }
-
-if (isset($_POST['submit'])) {
-    UsuariosDAO::Alterar_Usuario(
-        $admin_id,
-        $_POST['usuario'],
-        $_POST['senha_antiga'],
-        $_POST['nova_senha'],
-        $_POST['rnova_senha']
-    );
-}   
-
+    // $usuario = UsuariosDAO::getUserByID(
+    //     $user_id['type'],
+    //     $user_id['id']
+    // );
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +28,10 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 
-<?php include Admin_Header::component();?>
+<?php
+require_once Path_Locale::admin_header();
+require_once '../controller/updateUserControl.php';
+?>
 
 <section class="form-container">
     <form action="" method="post">
@@ -45,25 +41,25 @@ if (isset($_POST['submit'])) {
             <span class="title required-field">Usuario</span>
             <!-- <input type="text" name="usuario" class="inputbox" maxlength="20" placeholder="Usuário" required -->
             <input type="text" name="usuario" class="box" maxlength="20" placeholder="Usuário" required
-            oninput = "this.value = this.value.replace(/\s/g, '')" value="<?= $fetch_perfil['nome']; ?>">
+            oninput = "this.value = this.value.replace(/\s/g, '')" value="<?php echo $fetch_perfil['nome']; ?>">
             </div>
             <div class="inputbox">
             <span class="title required-field">Senha Anterior</span>
             <!-- <input type="password" name="senha_antiga" class="inputbox" maxlength="20" placeholder="Digite a Senha Anterior"  -->
-            <input type="password" name="senha_antiga" class="box" maxlength="20" placeholder="Digite a Senha Anterior"
-            oninput = "this.value = this.value.replace(/\s/g, '')" >
+            <input type="password" name="senha_atual" class="box" maxlength="20" placeholder="Digite a Senha Anterior"
+            oninput = "this.value = this.value.replace(/\s/g, '' )" value="1234">
             </div>
             <div class="inputbox">
             <span class="title required-field">Nova Senha</span>
             <!-- <input type="password" name="nova_senha" class="inputbox" maxlength="20" placeholder="Digite a Nova Senha"  -->
-            <input type="password" name="nova_senha" class="box" maxlength="20" placeholder="Digite a Nova Senha"
-            oninput = "this.value = this.value.replace(/\s/g, '')" >
+            <input type="password" name="senha_nova" class="box" maxlength="20" placeholder="Digite a Nova Senha"
+            oninput = "this.value = this.value.replace(/\s/g, '' )" value="4321">
             </div>
             <div class="inputbox">
             <span class="title required-field">Repita a Nova Senha</span>
             <!-- <input type="password" name="rnova_senha" class="inputbox" maxlength="20" placeholder="Repita a sua Nova Senha"  -->
-            <input type="password" name="rnova_senha" class="box" maxlength="20" placeholder="Repita a sua Nova Senha"
-            oninput = "this.value = this.value.replace(/\s/g, '')" >
+            <input type="password" name="senha_confirma" class="box" maxlength="20" placeholder="Repita a sua Nova Senha"
+            oninput = "this.value = this.value.replace(/\s/g, '' )" value="4321">
             </div>
             <input type="submit" value="Alterar" class="btn" name="submit">
         </div>

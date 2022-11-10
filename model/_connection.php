@@ -1,17 +1,20 @@
 <?php
-class Conexao {
+class _Conexao
+{
     private static $conexao;
-    private function __construct() {
+    private function __construct()
+    {
     }
 
-    public static function getInstance() {
-        if ( !isset( self::$conexao ) ) {
+    public static function getInstance()
+    {
+        if (!isset(self::$conexao) ) {
             try {
                 self::$conexao = new PDO(
                     'mysql:host=localhost;dbname=emarket_prot;charset=utf8',
                     'root', ''
                 );
-                self::$conexao->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+                self::$conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             } catch ( PDOException $ex ) {
                 echo "Erro ao conectar ao banco de dados " . $ex->getMessage();
             }

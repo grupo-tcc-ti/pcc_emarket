@@ -1,11 +1,13 @@
 <?php
-require_once __DIR__.'/../connection.php';
-require_once __DIR__.'/../DTO/produtoDTO.php';
-class ProdutoDAO {
+require_once __DIR__.'/../_connection.php';
+require_once __DIR__.'/../DTO/_produtoDTO.php';
+class _ProdutoDAO
+{
     
-    public function cadastrarProduto(ProdutoDTO $produtoDTO){
+    public function cadastrarProduto(_ProdutoDTO $produtoDTO)
+    {
         try{
-            $con = Conexao::getInstance();
+            $con = _Conexao::getInstance();
             $sql = "INSERT INTO produto (descricao, valor_unitario, codigo, imagem) ";
             $sql .=" VALUES(?, ?, ?, ? )";
             $stmt = $con->prepare($sql);
@@ -23,9 +25,10 @@ class ProdutoDAO {
         }
     }
     
-    public function listarTodos(){
+    public function listarTodos()
+    {
         try{
-            $con = Conexao::getInstance();
+            $con = _Conexao::getInstance();
             $sql = "SELECT * from produto ORDER BY codigo";
             $stmt = $con->prepare($sql);
             $stmt->execute();
@@ -37,9 +40,10 @@ class ProdutoDAO {
         
     }
 
-    public function excluirProdutoById($idproduto){
+    public function excluirProdutoById($idproduto)
+    {
         try{
-            $con = Conexao::getInstance();
+            $con = _Conexao::getInstance();
             $sql = "DELETE  from produto WHERE idproduto=?";
             $stmt = $con->prepare($sql);
             $stmt->bindValue(1, $idproduto);

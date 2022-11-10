@@ -1,15 +1,15 @@
 <?php
-include '../model/connect.php';
 session_start();
+require_once '../model/connect.php';
 
-$admin_id = $_SESSION['admin_id'];
+$user_id = $_SESSION['admin_id'];
 
-if (!isset($admin_id)) {
+if (!isset($user_id)) {
     $admin_header = 'admin_login.php';
     header('location:../admin/'.$admin_header);
 }
 
-if(isset($_GET['deletar'])){
+if(isset($_GET['deletar'])) {
     $deletar_id = $_GET['deletar'];
     $deletar_mensagem = $pdo->prepare("DELETE FROM `mensagens` WHERE codMensagem = :mid");
     $deletar_mensagem->bindParam(':mid', $deletar_id);
@@ -32,7 +32,7 @@ if(isset($_GET['deletar'])){
 </head>
 <body>
 
-<?php include Admin_Header::component(); ?>
+<?php require_once Path_Locale::admin_header(); ?>
 
 <section class="mensagens">
 
@@ -41,32 +41,32 @@ if(isset($_GET['deletar'])){
     <?php
         $selecionar_mensagens = $pdo->prepare("SELECT * FROM `mensagens`");
         $selecionar_mensagens->execute();
-        if($selecionar_mensagens->rowCount() > 0){
-            while($fetch_mensagens = $selecionar_mensagens->fetch(PDO::FETCH_ASSOC)){
-    ?>
+    if($selecionar_mensagens->rowCount() > 0) {
+        while($fetch_mensagens = $selecionar_mensagens->fetch(PDO::FETCH_ASSOC)){
+            ?>
     <div class="listbox">
     <div class="itemfield">
-        <p class="box"><?=$fetch_mensagens['usuarios_codUsuario']?></p>
+        <p class="box"><?php echo $fetch_mensagens['usuarios_codUsuario']?></p>
     </div>
     <div class="itemfield">
-        <p class="box"><?=$fetch_mensagens['nome']?></p>
+        <p class="box"><?php echo $fetch_mensagens['nome']?></p>
     </div>
     <div class="itemfield">
-        <p class="box"><?=$fetch_mensagens['email']?></p>
+        <p class="box"><?php echo $fetch_mensagens['email']?></p>
     </div>
     <div class="itemfield">
-        <p class="box"><?=$fetch_mensagens['telefone']?></p>
+        <p class="box"><?php echo $fetch_mensagens['telefone']?></p>
     </div>
     <div class="itemfield">
-        <p class="box"><?=$fetch_mensagens['mesagem']?></p>
+        <p class="box"><?php echo $fetch_mensagens['mesagem']?></p>
     </div>
-    <a href="<?=$_SERVER['PHP_SELF'].'?deletar='.$fetch_mensagem['codMensagem']; ?>" onclick="return confirm('deletar this mensagem?');" class="deletar-btn">deletar</a>
+    <a href="<?php echo $_SERVER['PHP_SELF'].'?deletar='.$fetch_mensagem['codMensagem']; ?>" onclick="return confirm('deletar this mensagem?');" class="deletar-btn">deletar</a>
     </div>
-    <?php
-            }
-        }else{
-            echo '<p class="vazio">Sem mensagens...</p>';
+            <?php
         }
+    }else{
+        echo '<p class="vazio">Sem mensagens...</p>';
+    }
     ?>
 </section>
 

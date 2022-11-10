@@ -66,56 +66,43 @@ function changeIconDepartamento(anchor) {
 /* ######################Funçao do departamento na barra: ends###################### */
 
 /* ######################Functions for banner: starts ######################*/
-const slider = document.querySelector(".slider"); //var slider dos banner
-const nextBtn = document.querySelector(".next-btn"); //var botao proximo
-const prevBtn = document.querySelector(".prev-btn"); //var botao anterior
-const slides = document.querySelectorAll(".slide"); //var cada imagem
-const slideIcons = document.querySelectorAll(".slide-icon"); //var icone dos botoes
+const slider = qryS(".slider"); //var slider dos banner
+const nextBtn = qryS(".next-btn"); //var botao proximo
+const prevBtn = qryS(".prev-btn"); //var botao anterior
+const slides = qrySA(".slide"); //var cada imagem
+const slideIcons = qrySA(".slide-icon"); //var icone dos botoes
 const numberOfSlides = slides.length;
 var slideNumber = 0;
 
 //next button
-nextBtn.addEventListener("click", () => {
-  slides.forEach((slide) => {
-    slide.classList.remove('active');
+if ("className" in nextBtn) {
+  // console.log(nextBtn); //debug
+  // console.log(typeof nextBtn); //debug
+  // console.log(nextBtn.length); //debug
+  nextBtn.addEventListener("click", () => {
+    slides.forEach((slide) => {
+      slide.classList.remove('active');
+    });
+    slideIcons.forEach((slideIcon) => {
+      slideIcon.classList.remove('active');
+    });
+  
+    slideNumber++;
+  
+    if (slideNumber > (numberOfSlides - 1)) {
+      slideNumber = 0;
+    }
+  
+    slides[slideNumber].classList.add('active');
+    slideIcons[slideNumber].classList.add('active');
   });
-  slideIcons.forEach((slideIcon) => {
-    slideIcon.classList.remove('active');
-  });
+}
 
-  slideNumber++;
-
-  if (slideNumber > (numberOfSlides - 1)) {
-    slideNumber = 0;
-  }
-
-  slides[slideNumber].classList.add('active');
-  slideIcons[slideNumber].classList.add('active');
-});
 
 //previous button
-prevBtn.addEventListener("click", () => {
-  slides.forEach((slide) => {
-    slide.classList.remove('active');
-  });
-  slideIcons.forEach((slideIcon) => {
-    slideIcon.classList.remove('active');
-  });
-
-  slideNumber--;
-
-  if (slideNumber < 0) {
-    slideNumber = numberOfSlides - 1;
-  }
-
-  slides[slideNumber].classList.add('active');
-  slideIcons[slideNumber].classList.add('active');
-});
-
-//autoplay
-var playSlider;
-var autoPlayTransicao = () => {
-  playSlider = setInterval(function () {
+if ("className" in nextBtn) {
+  // console.log(prevBtn); //debug
+  prevBtn.addEventListener("click", () => {
     slides.forEach((slide) => {
       slide.classList.remove('active');
     });
@@ -123,25 +110,97 @@ var autoPlayTransicao = () => {
       slideIcon.classList.remove('active');
     });
 
-    slideNumber++;
+    slideNumber--;
 
-    if (slideNumber > (numberOfSlides - 1)) {
-      slideNumber = 0;
+    if (slideNumber < 0) {
+      slideNumber = numberOfSlides - 1;
     }
 
     slides[slideNumber].classList.add('active');
     slideIcons[slideNumber].classList.add('active');
+  });
+}
+
+//autoplay
+var playSlider;
+var autoPlayTransicao = () => {
+  playSlider = setInterval(function () {
+    if ("className" in slides) {
+      slides.forEach((slide) => {
+          slide.classList.remove('active');
+        });
+      slideIcons.forEach((slideIcon) => {
+        slideIcon.classList.remove('active');
+      });
+      
+      slideNumber++;
+      
+      if (slideNumber > (numberOfSlides - 1)) {
+        slideNumber = 0;
+      }
+      
+      slides[slideNumber].classList.add('active');
+      slideIcons[slideNumber].classList.add('active');
+    }
   }, 8000); //8 segundos == 8000 ms
 }
 autoPlayTransicao();
 
-//mouse em cima do banner, para o autoplay
-slider.addEventListener("mouseover", () => {
-  clearInterval(playSlider);
+if ("className" in nextBtn) {
+  //mouse em cima do banner, para o autoplay
+  slider.addEventListener("mouseover", () => {
+    clearInterval(playSlider);
+  });
+  //mouse fora do banner, volta o autoplay
+  slider.addEventListener("mouseout", () => {
+    autoPlayTransicao();
+  });
+}
+
+
+/* ######################Functions for banner ends ######################*/
+
+const container = qryS('.container'),
+  togglePwd = qrySA('.togglePwd'),
+  loginPwd = qrySA('.password'),
+  signup = qryS('.signup-link'),
+  login = qryS('.login-link');
+
+togglePwd.forEach((eyeIcon) => {
+  eyeIcon.addEventListener('click', () => {
+    loginPwd.forEach((pwd) => {
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        togglePwd.forEach((icon) => {
+          icon.classList.replace('fa-eye-slash', 'fa-eye');
+        });
+      } else {
+        pwd.type = 'password';
+        togglePwd.forEach((icon) => {
+          icon.classList.replace('fa-eye', 'fa-eye-slash');
+        });
+      }
+    });
+  });
 });
 
-//mouse fora do banner, volta o autoplay
-slider.addEventListener("mouseout", () => {
-  autoPlayTransicao();
-});
-/* ######################Functions for banner ends ######################*/
+if ("className" in signup) {
+  signup.addEventListener('click', () => {
+    container.classList.add('active');
+    //   console.log('signup'); //debug
+  });
+}
+if ("className" in login) {
+  login.addEventListener('click', () => {
+    container.classList.remove('active');
+    //   console.log('login'); //debug
+  });
+}
+
+var sPath = window.location.pathname;
+var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+if (document.URL.includes("?register")) {
+  // window.location = "http://google.com";
+  // console.log('signup'); //debug
+  container.classList.add('active');
+}

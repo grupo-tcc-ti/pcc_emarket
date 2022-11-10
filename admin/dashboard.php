@@ -1,13 +1,13 @@
 <?php
-include '../model/connect.php';
-include '../model/dao/PedidosDAO.php';
-include '../model/dao/ProdutosDAO.php';
-include '../model/dao/UsuariosDAO.php';
 session_start();
+require_once '../model/connect.php';
+require_once '../model/dao/PedidosDAO.php';
+require_once '../model/dao/ProdutosDAO.php';
+require_once '../model/dao/UsuariosDAO.php';
 
-$admin_id = $_SESSION['admin_id'];
+$user_id = $_SESSION['admin_id'];
 
-if (!isset($admin_id)) {
+if (!isset($user_id)) {
     $admin_header = 'admin_login.php';
     header('location:../admin/'.$admin_header);
 }
@@ -27,7 +27,7 @@ if (!isset($admin_id)) {
 </head>
 <body>
 
-<?php include Admin_Header::component();?>
+<?php require_once Path_Locale::admin_header();?>
 
     <div class="heading-dash">
         <h1><span>i</span>DASH</h1><div class="hd-img"></div>
@@ -36,8 +36,8 @@ if (!isset($admin_id)) {
     <section class="dashboard user-welcome">
         <div class="box">
             <h3>Bem Vindo!</h3>
-            <p><?=$fetch_perfil['nome'];?></p>
-            <!-- <p><?=$fetch_perfil['senha'];?></p> -->
+            <p><?php echo $fetch_perfil['nome'];?></p>
+            <!-- <p><?php echo $fetch_perfil['senha'];?></p> -->
             <a href="alterar_perfil.php" class="btn">Alterar Perfil</a>
         </div>
     </section>
@@ -46,54 +46,54 @@ if (!isset($admin_id)) {
         <div class="box">
         <?php
             $total_pendente = 0;
-            foreach (PedidosDAO::ListarPedidos('pendente') as $pedido){
-                $total_pendente += $pedido['totalPreco'];
-            }
+        foreach (PedidosDAO::listarPedidos('pendente') as $pedido){
+            $total_pendente += $pedido['totalPreco'];
+        }
         ?>
         <h3>Total Pendente<span></span></h3>
-        <p><?='<span>R$ </span>' . $total_pendente . ' /-';?></p>
+        <p><?php echo '<span>R$ </span>' . $total_pendente . ' /-';?></p>
         <a href="pedidos.php" class="btn">Ver Pedidos</a>
         </div>
 
         <div class="box">
         <?php
             $total_pago = 0;
-            foreach (PedidosDAO::ListarPedidos('pago') as $pedido){
-                $total_pago += $pedido['totalPreco'];
-            }
+        foreach (PedidosDAO::listarPedidos('pago') as $pedido){
+            $total_pago += $pedido['totalPreco'];
+        }
         ?>
         <h3>Total a Pagar<span></span></h3>
-        <p><?='<span>R$ </span>' . $total_pago . ' /-';?></p>
+        <p><?php echo '<span>R$ </span>' . $total_pago . ' /-';?></p>
         <a href="pedidos.php" class="btn">Ver Pagamentos</a>
         </div>
 
         <div class="box">
         <?php
             $total_cancelado = 0;
-            foreach (PedidosDAO::ListarPedidos('cancelado') as $pedido){
-                $total_cancelado += $pedido['totalPreco'];
-            }
+        foreach (PedidosDAO::listarPedidos('cancelado') as $pedido){
+            $total_cancelado += $pedido['totalPreco'];
+        }
         ?>
         <h3>Total Cancelado<span></span></h3>
-        <p><?='<span>R$ </span>' . $total_cancelado . ' /-';?></p>
+        <p><?php echo '<span>R$ </span>' . $total_cancelado . ' /-';?></p>
         <a href="pedidos.php" class="btn">Ver Pagamentos</a>
         </div>
 
         <div class="box">
         <h3>Total de Produtos <span></span></h3>
-        <p><?= ProdutosDAO::QtyProdutos(). ' /-';?></p>
+        <p><?php echo ProdutosDAO::qtyProdutos(). ' /-';?></p>
         <a href="produtos.php" class="btn">Ver Produtos</a>
         </div>
 
         <div class="box">
         <h3>Total de Clientes <span></span></h3>
-        <p><?= UsuariosDAO::QtyUsuarios('cliente') . ' /-';?></p>
+        <p><?php echo UsuariosDAO::qtyUsuarios('cliente') . ' /-';?></p>
         <a href="users_contas.php" class="btn">Ver Clientes</a>
         </div>
 
         <div class="box">
         <h3>Total de Admin<span>'s</span></h3>
-        <p><?= UsuariosDAO::QtyUsuarios('admin') . ' /-';?></p>
+        <p><?php echo UsuariosDAO::qtyUsuarios('admin') . ' /-';?></p>
         <a href="admin_contas.php" class="btn">Ver Admin's</a>
         </div>
 
@@ -105,7 +105,7 @@ if (!isset($admin_id)) {
             $num_mensagens = $select_mensagens->rowCount();
         ?>
         <h3>Total de Mensagens<span></span></h3>
-        <p><?=$num_mensagens . ' /-';?></p>
+        <p><?php echo $num_mensagens . ' /-';?></p>
         <a href="mensagens.php" class="btn">Ver Mensagens</a>
         </div> -->
     </section>
