@@ -1,4 +1,4 @@
-div.conta {
+.conta {
   max-height: 120vh;
   height: 90vh;
   display: flex;
@@ -7,7 +7,7 @@ div.conta {
   background-color: var(--light-color);
 }
 
-.container {
+.conta .container {
   position: relative;
   max-width: 460px;
   width: 100%;
@@ -59,7 +59,7 @@ div.conta {
   font-weight: 600;
 }
 
-.form .title::before {
+.container .form .title::before {
   content: '';
   position: absolute;
   left: 0;
@@ -71,14 +71,14 @@ div.conta {
   width: 100%;
 }
 
-.form .input-field {
+.container .form .input-field {
   position: relative;
   height: 54px;
   width: 100%;
   margin-top: 32px;
 }
 
-.input-field input {
+.form .input-field input {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -90,22 +90,22 @@ div.conta {
   transition: all 0.1s ease;
 }
 
-.input-field input:is(:focus) ~ i.icon::before {
+.form .input-field input:is(:focus) ~ i.icon::before {
   padding-bottom: 2px;
   border-bottom: 2px solid var(--main-color);
   border-radius: 2px;
   transition: border-bottom 0.1s linear;
 }
 
-.input-field input:valid {
+.form .input-field input:valid {
   border-bottom: var(--brdr-bttm-size) var(--light-green);
 }
 
-.input-field input:invalid {
+.form .input-field input:invalid {
   border-bottom: var(--brdr-bttm-size) var(--light-red);
 }
 
-.input-field i {
+.form .input-field i {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -114,12 +114,12 @@ div.conta {
   transition: all 0.2s ease;
 }
 
-.input-field i.icon {
+.form .input-field i.icon {
   left: 0;
   padding-left: 16px;
 }
 
-.input-field i.togglePwd {
+.form .input-field i.togglePwd {
   right: 0%;
   cursor: pointer;
   padding: 10px;
@@ -133,12 +133,12 @@ div.conta {
   font-size: 140%;
 }
 
-.checkbox-text .checkbox-content {
+.form .checkbox-text .checkbox-content {
   display: flex;
   align-items: center;
 }
 
-.checkbox-content input {
+.form .checkbox-text .checkbox-content input {
   margin: 0 8px 4px 4px;
   accent-color: var(--green);
 }
@@ -170,17 +170,17 @@ div.conta {
   }
 }
 
-.form a:hover::before {
+.conta .container .form a:hover::before {
   animation-name: linkSlide;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 
-.form .button {
+.conta .container .form .button {
   margin-top: 32px;
 }
 
-.form .button input {
+.conta .container .form .button input {
   border: none;
   color: var(--light-color);
   font-size: 16px;
@@ -192,7 +192,7 @@ div.conta {
   transition: all 0.3s ease;
 }
 
-.form .login-signup {
+.conta .container .form .login-signup {
   margin-top: 32px;
   text-align: center;
   font-size: 140%;

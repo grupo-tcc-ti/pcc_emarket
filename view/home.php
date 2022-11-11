@@ -5,7 +5,7 @@
   (isset($_SESSION['client_id']))?
   $user_id = $_SESSION['client_id']
   :'';
-  // include '../components/wishlist_card.php';
+  // require_once '../components/wishlist_card.php';
 ?>
 
 <!DOCTYPE html>
@@ -66,32 +66,31 @@
         <?php //include '../view/vitrine_teste.html'; ?>
       </section>
 
-  <div id="overlay">
-  <main id="all-container">
-  <!-- <div class="swiper products-slider">
+      <div id="overlay">
+    <main id="all-container">
+      <!-- <div class="swiper products-slider">
   <div class="swiper-wrapper"> -->
-  <section class="container-prod">
-    <div class="list-cards">
-      <?php
+      <section class="container-prod">
+        <div class="list-cards">
+          <?php
         $fetch_produto = ProdutosDAO::listarProdutos();
         if (is_array($fetch_produto)) {
         foreach ($fetch_produto as $prod) {
           $prodimg = explode(",", $prod['image']);
       ?>
-        <div class="cards-items">
-          <a type="submit" class="fas fa-heart"
-            name="addListadesejo"></a>
-          <a href="espiar_produto.php?id=<?php echo $prod['codProduto'];?>"
-            class="fas fa-eye"></a>
-          <a href="gotoproductpage.php">
-            <img src="<?php echo $prodimg[0];?>" alt=""
-            class="products-imgs">
-            <div class="products-name"><?php echo $prod['nome'];?></div>
+          <div class="cards-items">
+            <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
+            <a href="espiar_produto.php?id=<?php echo $prod['codProduto'];?>" class="fas fa-eye"></a>
+            <a href="gotoproductpage.php">
+              <img src="<?php echo $prodimg[0];?>" alt="" class="products-imgs">
+              <div class="products-name">
+                <?php echo $prod['nome'];?>
+              </div>
             </a>
             <div class="cards-price">
               R$ <?php echo $prod['preco'];?> 
             </div>
-          <!-- <form action="" method="post">
+            <!-- <form action="" method="post">
               <input type="hidden" name="id" value="<?php echo $prod['codProduto'];?>"></input>
               <input type="number" name="qty" id="" class="qty"
               min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
@@ -99,22 +98,21 @@
               name="add_carrinho" class="buy-btn">
             </form> -->
             <div class="buy-btn">
-              <a value="Comprar"
-              name="add_carrinho">Adicionar ao Carrinho</a>
+              <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
             </div>
-        </div>
-                <?php
+          </div>
+          <?php
             }
         } else {
             echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
         }
         ?>
-  </div>
-  <!-- <div class="swiper-pagination"></div>
+        </div>
+        <!-- <div class="swiper-pagination"></div>
   </div>
   </div> -->
-  </section>
-  </main>
+      </section>
+    </main>
   </div>
 
   <?php 
@@ -126,7 +124,7 @@
 
 <script src="../js/script.js"></script>
 
-  <script>
+  <!-- <script>
     var swiper = new Swiper(".home-slider", {
       loop:true,
       spaceBetween: 20,
@@ -178,6 +176,72 @@
         },
       },
     });
-  </script>
+  </script> -->
+
+  <!-- <div class="home-bg">
+
+    <section class="home">
+
+      <div class="swiper home-slider">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide slide active">
+            <div class="image">
+              <img src="../image/produtos/home-img-1.png" alt="">
+            </div>
+            <div class="content">
+              <span>upto 50% off</span>
+              <h3>latest smartphones</h3>
+              <a href="shop.php" class="btn">shop now</a>
+            </div>
+          </div>
+
+          <div class="swiper-slide slide">
+            <div class="image">
+              <img src="../image/produtos/home-img-2.png" alt="">
+            </div>
+            <div class="content">
+              <span>upto 50% off</span>
+              <h3>latest watches</h3>
+              <a href="shop.php" class="btn">shop now</a>
+            </div>
+          </div>
+
+          <div class="swiper-slide slide">
+            <div class="image">
+              <img src="../image/produtos/home-img-3.png" alt="">
+            </div>
+            <div class="content">
+              <span>upto 50% off</span>
+              <h3>latest headsets</h3>
+              <a href="shop.php" class="btn">shop now</a>
+            </div>
+          </div>
+
+          <div class="swiper-slide slide">
+            <div class="image fill">
+              <img src="../image/slider/1.jpg" alt="">
+            </div>
+          </div>
+          <div class="swiper-slide slide">
+            <div class="image fill">
+              <img src="../image/slider/2.jpg" alt="">
+            </div>
+          </div>
+          <div class="swiper-slide slide">
+            <div class="image fill">
+              <img src="../image/slider/3.jpg" alt="">
+            </div>
+          </div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+    <div class="navigation">
+      <i class="fas fa-chevron-left prev-btn"></i>
+      <i class="fas fa-chevron-right next-btn"></i>
+    </div>
+  </div> -->
   </body>
 </html>
