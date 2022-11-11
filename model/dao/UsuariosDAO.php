@@ -147,7 +147,6 @@ class UsuariosDAO
                 $insert_->bindParam(':email', $email);
                 $insert_->bindParam(':rpassword', $rpassword);
                 $insert_->bindValue(':usertype', $usertype);
-                // Redirect::page('admin_contas.php', 1);
                 Message::pop('Cadastro realizado com Sucesso!');
                 return $insert_->execute();
             }

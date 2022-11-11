@@ -12,6 +12,7 @@ if (!isset($user_id)) {
 
 if (isset($_GET['deletar'])) {
     UsuariosDAO::deletarCliente($_GET['deletar']);
+    Redirect::page('../admin/users_contas.php', 0);
 }
 ?>
 
@@ -33,28 +34,31 @@ if (isset($_GET['deletar'])) {
 <h1 class="head-list">Contas de Usuários</h1>
 <section class="contas">
     <?php
-        $qry = ("SELECT * FROM `usuarios` WHERE codAdmin = 0 AND codCliente > 0");
-        $selecionar_usuarios = $pdo->prepare($qry);
-        // $selecionar_usuarios->bindParam(':', $codUsuarios);
-        $selecionar_usuarios->execute();
-    if ($selecionar_usuarios->rowCount() > 0) {
-        while ($fetch_contas = $selecionar_usuarios->fetch(PDO::FETCH_ASSOC)){
+        // $qry = ("SELECT * FROM `usuarios` WHERE codAdmin = 0 AND codCliente > 0");
+        // $selecionar_usuarios = $pdo->prepare($qry);
+        // // $selecionar_usuarios->bindParam(':', $codUsuarios);
+        // $selecionar_usuarios->execute();
+        // if ($selecionar_usuarios->rowCount() > 0) {
+        // while ($fetch_contas = $selecionar_usuarios->fetch(PDO::FETCH_ASSOC)){
+            $fetch_contas = UsuariosDAO::listarUsuariosTipo('cliente');
+            if (count($fetch_contas) > 0) {
+                foreach ($fetch_contas as $conta) {
             ?>
             <div class="gridbox">
                 <div class="itemfield">
                     <span class="title">Usuário - ID</span>
-                    <p class="box"><?php echo $fetch_contas['codUsuario']?></p>
+                    <p class="box"><?php echo $conta['codUsuario']?></p>
                 </div>
                 <div class="itemfield">
                     <span class="title">Nome</span>
-                    <p class="box"><?php echo $fetch_contas['nome']?></p>
+                    <p class="box"><?php echo $conta['nome']?></p>
                 </div>
                 <div class="itemfield">
                     <span class="title">Email</span>
-                    <p class="box"><?php echo $fetch_contas['email']?></p>
+                    <p class="box"><?php echo $conta['email']?></p>
                 </div>
                 <div class="flex-btn">
-                    <a href="<?php echo $_SERVER['PHP_SELF'].'?deletar='.$fetch_contas['codCliente'];?>"
+                    <a href="<?php echo $_SERVER['PHP_SELF'].'?deletar='.$conta['codCliente'];?>"
                     class="delete-btn" onclick="return confirm('Deseja excluir esta conta de Usuário?');"
                     >Deletar</a>
                     <!-- <a href="<php echo $_SERVER['PHP_SELF'].'?deletar='.$fetch_contas['codUsuario'];?>"

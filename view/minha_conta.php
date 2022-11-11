@@ -167,7 +167,8 @@ require_once Path_Locale::user_header();
 
   <div id="footer">
     <?php
-        require "footer.php";
+      // require_once '../view/footer.php';
+        require_once '../view/footer.html';
     ?>
   </div>
 

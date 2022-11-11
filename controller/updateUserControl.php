@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     // UsuariosDAO::alterarUsuario($usuarioDAO, $updateData);
     $user = UsuariosDAO::alterarUsuario($usuarioDAO, $updateData);
     if (isset($user)) {
-        if ($user_id['type'] == 'admin') {
+        if ($updateData->getUser_type() == 'admin') {
             Redirect::page('admin_contas.php', 2);
         } else {
             Redirect::page('../view/minha_conta.php', 2);

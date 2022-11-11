@@ -1,6 +1,7 @@
 <?php
   session_start();
   require_once '../model/connect.php';
+  require_once '../model/dao/ProdutosDAO.php';
   (isset($_SESSION['client_id']))?
   $user_id = $_SESSION['client_id']
   :'';
@@ -33,7 +34,8 @@
 
   <?php require_once Path_Locale::user_header(); ?>
     <body>
-      <section>
+
+    <section>
         <div class="slider">
           <div class="slide active">
             <img src="../image/slider/1.jpg" alt="">
@@ -71,43 +73,35 @@
   <section class="container-prod">
     <div class="list-cards">
       <?php
-          $pdo = Connect::getInstance();
-          // $qry="SELECT * FROM `produtos` LIMIT 4";
-          $qry = "SELECT * FROM `produtos`";
-          // $produtos= $conn->query($qry);
-          $produtos = $pdo->prepare($qry);
-          $produtos->execute();
-        if ($produtos->rowCount() > 0 ) {
-            while ( $fetch_produto = $produtos->fetch(PDO::FETCH_ASSOC) ) {
-                // $fetch_prodimg = explode(",", trim($fetch_produto['image'], "./"));
-                $fetch_prodimg = explode(",", $fetch_produto['image']);
-                ?>
+        $fetch_produto = ProdutosDAO::listarProdutos();
+        if (is_array($fetch_produto)) {
+        foreach ($fetch_produto as $prod) {
+          $prodimg = explode(",", $prod['image']);
+      ?>
         <div class="cards-items">
-          <button type="submit" class="fas fa-heart"
-            name="addListadesejo"></button>
-          <a href="espiar_produto.php?id=<?php echo $fetch_produto['codProduto'];?>"
+          <a type="submit" class="fas fa-heart"
+            name="addListadesejo"></a>
+          <a href="espiar_produto.php?id=<?php echo $prod['codProduto'];?>"
             class="fas fa-eye"></a>
           <a href="gotoproductpage.php">
-            <img src="<?php echo $fetch_prodimg[0];?>" alt=""
+            <img src="<?php echo $prodimg[0];?>" alt=""
             class="products-imgs">
-            <div class="products-name"><?php echo $fetch_produto['nome'];?></div>
+            <div class="products-name"><?php echo $prod['nome'];?></div>
             </a>
-            <div class="flex">
-              
-              <div class="cards-price">
-              R$ <?php echo $fetch_produto['preco'];?> 
-              </div>
-
-                <form action="" method="post">
-                  <input type="hidden" name="id" value="<?php echo $fetch_produto['codProduto'];?>"></input>
-                  <input type="number" name="qty" id="" class="qty"
-                  min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
-                  <!-- Onkeypress faz com que o número "vire" de 99 para 1, 
-                  somente estético nada que atrapalhe no formulário, já que é limitado -->
+            <div class="cards-price">
+              R$ <?php echo $prod['preco'];?> 
             </div>
-                  <input type="submit" value="Adicionar ao Carrinho"
-                  name="add_carrinho" class="buy-btn">
-                </form>
+          <!-- <form action="" method="post">
+              <input type="hidden" name="id" value="<?php echo $prod['codProduto'];?>"></input>
+              <input type="number" name="qty" id="" class="qty"
+              min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
+              <input type="submit" value="Adicionar ao Carrinho"
+              name="add_carrinho" class="buy-btn">
+            </form> -->
+            <div class="buy-btn">
+              <a value="Comprar"
+              name="add_carrinho">Adicionar ao Carrinho</a>
+            </div>
         </div>
                 <?php
             }
@@ -123,11 +117,16 @@
   </main>
   </div>
 
-      <?php require_once '../view/footer.php';?>
+  <?php 
+  // require_once '../view/footer.php';
+  require_once '../view/footer.html';
+  ?>
 
-  <script src="../js/script.js"></script>
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
-  <!-- <script>
+<script src="../js/script.js"></script>
+
+  <script>
     var swiper = new Swiper(".home-slider", {
       loop:true,
       spaceBetween: 20,
@@ -179,6 +178,6 @@
         },
       },
     });
-  </script> -->
+  </script>
   </body>
 </html>

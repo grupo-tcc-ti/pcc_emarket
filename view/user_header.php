@@ -68,8 +68,6 @@
                                     <?php
                                 }
                                 if (isset($_SESSION["admin_id"]) ) {
-                                    //revertido porque toda sessão admin é tratada como admin_id;
-                                    //também o nome 'cliente' ou 'admin' já é em caixa baixa direto na array $usr['type'];
                                     ?>
                                 <a href="../admin/admin_login.php">Admin Panel</a>
                                     <?php

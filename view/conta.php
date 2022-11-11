@@ -15,8 +15,8 @@
     <!-- <link rel="stylesheet" href="../css/login_style.css"> -->
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <!-- <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
-    <?php require_once Path_Locale::head(); ?>
     <link rel="stylesheet" href="../css/login.css" />
+    <?php require_once Path_Locale::head(); ?>
     <title>Login</title>
 
 
@@ -91,7 +91,7 @@ require_once Path_Locale::user_header();
             <form action="#" method="post">
             <input type="hidden" name="usertype" value="cliente">
               <div class="input-field">
-                <input type="text" placeholder="Insira seu nome" name="usuario" required/>
+                <input type="text" placeholder="Insira seu nome" name="nome" required/>
                 <i class="fa-regular fa-user icon"></i>
               </div>
               <div class="input-field">
@@ -123,11 +123,10 @@ require_once Path_Locale::user_header();
       </div>
   </div>
 
-  <div id="footer">
     <?php
-        require_once "footer.php";
+      // require_once '../view/footer.php';
+        require_once '../view/footer.html';
     ?>
-  </div>
 
 
   <!-- <script src="../js/login_script.js"></script> -->
