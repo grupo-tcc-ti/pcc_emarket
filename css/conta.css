@@ -1,6 +1,6 @@
 .conta {
   max-height: 120vh;
-  height: 90vh;
+  height: 72vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -196,4 +196,22 @@
   margin-top: 32px;
   text-align: center;
   font-size: 140%;
+}
+
+/* footer.container {
+  top: 75%;
+  transform: translateY(75%);
+  margin-top: -16px;
+} */
+
+@media (max-width: 600px) {
+  /* .conta {
+    height: 62vh;
+  } */
+
+  footer.container {
+    top: 45%;
+    transform: translateY(45%);
+    margin-top: -16px;
+  }
 }

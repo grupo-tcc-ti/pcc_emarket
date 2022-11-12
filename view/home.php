@@ -26,9 +26,8 @@
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"> </script> -->
     <?php 
-    //isso é só um teste,
-    //também pode servir para usar uma css de svg caso não tenha conectividade com o site fontawesome
     require_once Path_Locale::head(); ?>
+    <link rel="stylesheet" href="../css/home.css">
     <title>Emarket</title>
   </head>
 
@@ -73,18 +72,18 @@
       <section class="container-prod">
         <div class="list-cards">
           <?php
-        $fetch_produto = ProdutosDAO::listarProdutos();
-        if (is_array($fetch_produto)) {
-        foreach ($fetch_produto as $prod) {
-          $prodimg = explode(",", $prod['image']);
-      ?>
+            $fetch_produto = ProdutosDAO::listarProdutos();
+            if (is_array($fetch_produto)) {
+                foreach ($fetch_produto as $prod) {
+                    $prodimg = explode(",", $prod['image']);
+                    ?>
           <div class="cards-items">
             <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
             <a href="espiar_produto.php?id=<?php echo $prod['codProduto'];?>" class="fas fa-eye"></a>
             <a href="gotoproductpage.php">
               <img src="<?php echo $prodimg[0];?>" alt="" class="products-imgs">
               <div class="products-name">
-                <?php echo $prod['nome'];?>
+                    <?php echo $prod['nome'];?>
               </div>
             </a>
             <div class="cards-price">
@@ -101,12 +100,12 @@
               <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
             </div>
           </div>
-          <?php
+                    <?php
+                }
+            } else {
+                echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
             }
-        } else {
-            echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
-        }
-        ?>
+            ?>
         </div>
         <!-- <div class="swiper-pagination"></div>
   </div>
@@ -116,9 +115,9 @@
   </div>
 
   <?php 
-  // require_once '../view/footer.php';
-  require_once '../view/footer.html';
-  ?>
+    // require_once '../view/footer.php';
+    require_once '../view/footer.html';
+    ?>
 
 <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 

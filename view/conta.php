@@ -15,8 +15,8 @@
     <!-- <link rel="stylesheet" href="../css/login_style.css"> -->
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <!-- <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
-    <link rel="stylesheet" href="../css/login.css" />
     <?php require_once Path_Locale::head(); ?>
+    <link rel="stylesheet" href="../css/conta.css" />
     <title>Login</title>
 
 
