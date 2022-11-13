@@ -35,40 +35,40 @@
     <body>
 
     <section>
-        <div class="slider">
-          <div class="slide active">
-            <img src="../image/slider/1.jpg" alt="">
-          </div>
-
-          <div class="slide">
-            <img src="../image/slider/2.jpg" alt="">
-          </div>
-
-          <div class="slide">
-            <img src="../image/slider/3.jpg" alt="">
-          </div>
-
-          <div class="navigation">
-            <i class="fas fa-chevron-left prev-btn"></i>
-            <i class="fas fa-chevron-right next-btn"></i>
-          </div>
-
-          <div class="navigation-visibility">
-            <div class="slide-icon active"></div>
-            <div class="slide-icon"></div>
-            <div class="slide-icon"></div>
-          </div>
+      <div class="slider">
+        <div class="slide active">
+          <img src="../image/slider/1.jpg" alt="">
         </div>
-      </section>
 
-      <section>
-        <?php //include '../view/vitrine_teste.html'; ?>
-      </section>
+        <div class="slide">
+          <img src="../image/slider/2.jpg" alt="">
+        </div>
 
-      <div id="overlay">
+        <div class="slide">
+          <img src="../image/slider/3.jpg" alt="">
+        </div>
+
+        <div class="navigation">
+          <i class="fas fa-chevron-left prev-btn"></i>
+          <i class="fas fa-chevron-right next-btn"></i>
+        </div>
+
+        <div class="navigation-visibility">
+          <div class="slide-icon active"></div>
+          <div class="slide-icon"></div>
+          <div class="slide-icon"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <?php //include '../view/vitrine_teste.html'; ?>
+    </section>
+
+    <div id="overlay">
     <main id="all-container">
       <!-- <div class="swiper products-slider">
-  <div class="swiper-wrapper"> -->
+      <div class="swiper-wrapper"> -->
       <section class="container-prod">
         <div class="list-cards">
           <?php
@@ -108,11 +108,13 @@
             ?>
         </div>
         <!-- <div class="swiper-pagination"></div>
-  </div>
-  </div> -->
+        </div>
+        </div> -->
       </section>
     </main>
   </div>
+
+  
 
   <?php 
     // require_once '../view/footer.php';

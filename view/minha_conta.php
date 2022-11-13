@@ -25,6 +25,7 @@ $usuario = UsuariosDAO::getUserByID(
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
     <!-- <link rel="stylesheet" href="../css/myacc_style.css"> -->
+    <link rel="stylesheet" href="../css/minhaconta.css">
     <?php require_once Path_Locale::head(); ?>
     <title>Minha Conta</title>
 </head>

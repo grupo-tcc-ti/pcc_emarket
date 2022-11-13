@@ -1,14 +1,14 @@
 <?php
-    if (!isset($pdo)) {
-        include_once '../model/connect.php';
-    }
+if (!isset($pdo)) {
+    include_once '../model/connect.php';
+}
     require_once '../model/dao/UsuariosDAO.php';
     require_once '../model/dto/UsuariosDTO.php';
-    if(isset($_GET['logout'])) {
-        include_once '../controller/admin_logoutControl.php';
-        Redirect::page('home.php', 1);
-        exit();
-    }
+if(isset($_GET['logout'])) {
+    include_once '../controller/admin_logoutControl.php';
+    Redirect::page('home.php', 1);
+    exit();
+}
 ?>
 <div id="header">
     <header class="header">
@@ -20,7 +20,7 @@
                     <li>
                         <div class="dropdown">
                             <button id="link-depart" onclick='clickDrop("depart")' class="btn">
-                                <span>Departamento</span>
+                                <span>Departamento </span>
                             <i class="fa-solid fa-chevron-down"></i>
                             <i class="fas fa-bars"></i>
                             </button>
@@ -50,7 +50,7 @@
                     <li>
                         <div class="dropdown">
                             <button id="link-conta" onclick='clickDrop("conta")' class="btn">
-                            <span>conta</span>
+                            <span>Conta </span>
                             <i class="fa-regular fa-user"></i>
                             </button>
                             <nav id="conta" class="dropdown-content">
@@ -79,7 +79,7 @@
                     <li>
                         <div class="dropdown">
                             <button id="link-carrinho" onclick='clickDrop("carrinho")' class="btn">
-                                <span>carrinho</span>
+                                <span>Carrinho </span>
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
                             <nav id="carrinho" class="dropdown-content">
@@ -88,8 +88,20 @@
                             </nav>
                         </div>
                     </li>
+                    <li>
+                        <div>
+                            <button id="darkmode" class="btn dark-mode">
+                                <i class="fas fa-circle-half-stroke"></i>
+                            </button>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </header>
 </div>
 
+<div class="totop">
+    <a href="#top">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+  </div>

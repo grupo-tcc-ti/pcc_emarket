@@ -1,17 +1,21 @@
+body {
+  background-color: var(--background-color);
+}
+
 .conta {
   max-height: 120vh;
   height: 72vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--light-color);
+  background-color: var(--background-color);
 }
 
 .conta .container {
   position: relative;
   max-width: 460px;
   width: 100%;
-  background: var(--light-color);
+  background: var(--background-color);
   border-radius: 8px;
   box-shadow: var(--box-shadow);
   overflow: hidden;
@@ -29,7 +33,7 @@
 .container .form {
   width: 50%;
   padding: 32px;
-  background-color: var(--light-color);
+  background-color: var(--background-color);
   transition: margin-left 0.2s ease;
 }
 
@@ -57,6 +61,7 @@
   position: relative;
   font-size: 32px;
   font-weight: 600;
+  color: var(--font-color);
 }
 
 .container .form .title::before {
@@ -86,7 +91,8 @@
   padding: 0 52px;
   border-top: 2px solid transparent;
   border-radius: 0 20px;
-  border-bottom: var(--brdr-bttm-size) var(--input-shadow);
+  border-bottom: var(--input-border) var(--input-color);
+  background-color: var(--input-color);
   transition: all 0.1s ease;
 }
 
@@ -98,11 +104,11 @@
 }
 
 .form .input-field input:valid {
-  border-bottom: var(--brdr-bttm-size) var(--light-green);
+  border-bottom: var(--input-border) var(--light-green);
 }
 
 .form .input-field input:invalid {
-  border-bottom: var(--brdr-bttm-size) var(--light-red);
+  border-bottom: var(--input-border) var(--light-red);
 }
 
 .form .input-field i {
@@ -131,6 +137,7 @@
   justify-content: space-between;
   margin-top: 32px;
   font-size: 140%;
+  color: var(--font-color);
 }
 
 .form .checkbox-text .checkbox-content {
@@ -162,7 +169,7 @@
 @keyframes linkSlide {
   from {
     width: 32px;
-    background-color: var(--input-shadow);
+    background-color: var(--font-color);
   }
   to {
     width: 100%;
@@ -182,7 +189,7 @@
 
 .conta .container .form .button input {
   border: none;
-  color: var(--light-color);
+  color: var(--background-color);
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 1px;
@@ -196,6 +203,7 @@
   margin-top: 32px;
   text-align: center;
   font-size: 140%;
+  color: var(--font-color);
 }
 
 /* footer.container {
@@ -203,6 +211,19 @@
   transform: translateY(75%);
   margin-top: -16px;
 } */
+
+@media (max-width: 1200px) {
+  /* .conta {
+    height: 62vh;
+  } */
+
+  footer.container {
+    top: 60%;
+    transform: translateY(60%);
+    margin-top: -16px;
+    transition: all .4s ease-in-out;
+  }
+}
 
 @media (max-width: 600px) {
   /* .conta {

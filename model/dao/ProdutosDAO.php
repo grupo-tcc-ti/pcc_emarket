@@ -47,7 +47,20 @@ class ProdutosDAO
         }
         
     }
-    // 
+    public static function produtosCategoria()
+    {
+        try {
+            // $con = Connect::getInstance(); //renameit case fails
+            $qry = "";
+            $select_ = self::connect()->prepare($qry);
+            $select_->execute();
+            $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
+            return $usuarios;
+        } catch ( PDOException $msg ) {
+            echo $msg->getMessage();
+        }
+        
+    }
     public static function cadastrarProduto($nome, $descricao, $preco, $files_img)
     {
         try {

@@ -13,13 +13,14 @@ class Message
                 echo '
                 <div class="mensagem">
                 <span>'.$mensagem.'</span>
-                <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
+                <i class="fas fa-times" onclick = "closeMessage(this);"></i>
                 </div>
                 ';
                 sleep(1);
             }
         }
     }
-
+    
 }
 ?>
+<!-- <i class="fas fa-times" onclick = "this.parentElement.remove();"></i> -->

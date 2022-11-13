@@ -18,9 +18,6 @@
     <?php require_once Path_Locale::head(); ?>
     <link rel="stylesheet" href="../css/conta.css" />
     <title>Login</title>
-
-
-
     <script>
     function required(inputtx)
     {
@@ -35,18 +32,17 @@
 </head>
 
 <body>
-
-<?php
-if (isset($user_id)) {
-    Message::pop('Sua sessão já foi iniciada!');
-    Message::pop('Voce está sendo redirecionado....');
-    Redirect::page('home.php', 2);
-}
-require_once '../controller/loginControl.php';
-require_once '../controller/registerControl.php';
-require_once Path_Locale::user_header();
-
-?>
+  
+  <?php
+    if (isset($user_id)) {
+        Message::pop('Sua sessão já foi iniciada!');
+        Message::pop('Voce está sendo redirecionado....');
+        Redirect::page('home.php', 2);
+    }
+    require_once '../controller/loginControl.php';
+    require_once '../controller/registerControl.php';
+    require_once Path_Locale::user_header();
+    ?>
   <div class="conta">
     <div class="container">
         <div class="forms">
