@@ -14,5 +14,9 @@ class Path_Locale
     {
         return '../view/head.html';
     }
+    public static function conta()
+    {
+        return '../view/conta.php';
+    }
 }
 ?>

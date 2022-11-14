@@ -2,7 +2,7 @@ body {
   background-color: var(--background-color);
 }
 
-.conta {
+.login-register {
   max-height: 120vh;
   height: 72vh;
   display: flex;
@@ -11,7 +11,7 @@ body {
   background-color: var(--background-color);
 }
 
-.conta .container {
+.login-register .container {
   position: relative;
   max-width: 460px;
   width: 100%;
@@ -177,17 +177,17 @@ body {
   }
 }
 
-.conta .container .form a:hover::before {
+.login-register .container .form a:hover::before {
   animation-name: linkSlide;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
 }
 
-.conta .container .form .button {
+.login-register .container .form .button {
   margin-top: 32px;
 }
 
-.conta .container .form .button input {
+.login-register .container .form .button input {
   border: none;
   color: var(--background-color);
   font-size: 16px;
@@ -199,7 +199,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.conta .container .form .login-signup {
+.login-register .container .form .login-signup {
   margin-top: 32px;
   text-align: center;
   font-size: 140%;
@@ -213,7 +213,7 @@ body {
 } */
 
 @media (max-width: 1200px) {
-  /* .conta {
+  /* .login-register {
     height: 62vh;
   } */
 
@@ -226,7 +226,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  /* .conta {
+  /* .login-register {
     height: 62vh;
   } */
 

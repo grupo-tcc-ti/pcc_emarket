@@ -4,7 +4,7 @@
   require_once '../model/dao/UsuariosDAO.php';
   require_once '../model/dto/UsuariosDTO.php';
 if (!isset($_SESSION['client_id']['id']) ) {
-    $client_header = 'conta.php';
+    $client_header = Path_Locale::conta();
     header('location:../view/'.$client_header);
 } else {
     $user_id = $_SESSION['client_id'];

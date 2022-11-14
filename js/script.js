@@ -20,7 +20,8 @@ const qrySA = (selector) =>
 function clickDrop(idname = '') {
   qryS(`#${idname}`).classList.toggle('active');
   if (qryS('.dropdown-content').id != `#${idname}`) {
-    let dropdowns = qrySA(`nav:not(#${idname}).dropdown-content`);
+    // let dropdowns = qrySA(`nav:not(#${idname}).dropdown-content`);
+    let dropdowns = qrySA(`nav:not(#${idname})`);
     dropdowns.forEach((openDropdown) => {
       if (openDropdown.classList.contains('active')) {
         openDropdown.classList.remove('active');
@@ -30,13 +31,20 @@ function clickDrop(idname = '') {
 }
 
 window.onclick = function (event) {
-  if (!event.target.matches('.btn')) {
-    let dropdowns = qrySA('.dropdown-content');
-    dropdowns.forEach((openDropdown) => {
-      if (openDropdown.classList.contains('active')) {
-        openDropdown.classList.remove('active');
+  if (!event.target.matches('.isearch')) {
+    if (!event.target.matches('.btn')) {
+
+      let dropdowns = qrySA('.dropdown-content');
+      dropdowns.forEach((openDropdown) => {
+        if (openDropdown.classList.contains('active')) {
+          openDropdown.classList.remove('active');
+        }
+      });
+      let dropsearch = qryS('.nav-search');
+      if (dropsearch.classList.contains('active')) {
+        dropsearch.classList.remove('active');
       }
-    });
+    }
   }
 };
 
@@ -47,6 +55,10 @@ window.onscroll = () => {
       openDropdown.classList.remove('active');
     }
   });
+  let dropdown = qryS('.nav-search');
+  if (dropdown.classList.contains('active')) {
+    dropdown.classList.remove('active');
+  }
 };
 
 /* ######################Funçao do departamento na barra: starts###################### */
@@ -153,7 +165,8 @@ if ('className' in nextBtn) {
 
 /* ######################Functions for banner ends ######################*/
 
-const container = qryS('.container'),
+/* ###################### Login-Register script starts ######################*/
+const container = qryS('.login-register .container'),
   togglePwd = qrySA('.togglePwd'),
   loginPwd = qrySA('.password'),
   signup = qryS('.signup-link'),
@@ -197,7 +210,10 @@ if (document.URL.includes('?register')) {
   // console.log('signup'); //debug
   container.classList.add('active');
 }
+/* ###################### Login-Register script ends ######################*/
 
+
+// Close message baloon
 function closeMessage(msg) {
   msg.parentElement.classList.add('close');
   setTimeout(function () {
@@ -205,14 +221,17 @@ function closeMessage(msg) {
   }, 1000);
 }
 
+// Toggle dark-mode function
 const darkBtn = qryS('#darkmode');
 darkBtn.addEventListener('click', () => {
   mode = window?.matchMedia('(prefers-color-scheme: dark)');
   html = document.documentElement;
   if (html.classList.contains('light')) {
+    // console.log('dont succumb to darkness...');
     html.classList.remove('light');
     html.classList.add('dark');
   } else if (html.classList.contains('dark')) {
+    // console.log('let there be light!');
     html.classList.remove('dark');
     html.classList.add('light');
   } else {
@@ -220,6 +239,18 @@ darkBtn.addEventListener('click', () => {
       html.classList.add('light');
     } else {
       html.classList.add('dark');
+    }
+  }
+});
+
+//Remove search-bar on resize
+// var viewport_width = window.innerWidth;
+// console.log(viewport_width);
+window.addEventListener('resize', () => {
+  let searchbar = qryS('.nav-search');
+  if (window.innerWidth > 1042) {
+    if (searchbar.classList.contains('active')){
+      searchbar.classList.remove('active');
     }
   }
 });

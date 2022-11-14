@@ -31,19 +31,18 @@
     </script>
 </head>
 
+<?php
+  if (isset($user_id)) {
+    Message::pop('Sua sessão já foi iniciada!');
+    Message::pop('Voce está sendo redirecionado....');
+    Redirect::page('home.php', 2);
+  }
+  require_once '../controller/loginControl.php';
+  require_once '../controller/registerControl.php';
+  require_once Path_Locale::user_header();
+  ?>
 <body>
-  
-  <?php
-    if (isset($user_id)) {
-        Message::pop('Sua sessão já foi iniciada!');
-        Message::pop('Voce está sendo redirecionado....');
-        Redirect::page('home.php', 2);
-    }
-    require_once '../controller/loginControl.php';
-    require_once '../controller/registerControl.php';
-    require_once Path_Locale::user_header();
-    ?>
-  <div class="conta">
+  <div class="login-register">
     <div class="container">
         <div class="forms">
           <div class="form login">

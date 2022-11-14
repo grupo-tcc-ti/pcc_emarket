@@ -1,8 +1,8 @@
 <?php
-require_once '../model/connect.php';
-// require_once '../model/dao/_UsuarioDAO.php';
+if (!isset($pdo)) {
+    include_once '../model/connect.php';
+}
 require_once '../model/dao/UsuariosDAO.php';
-// require_once '../model/dto/_UsuarioDTO.php';
 require_once '../model/dto/UsuariosDTO.php';
 
 if (isset($_POST['register'])) {
