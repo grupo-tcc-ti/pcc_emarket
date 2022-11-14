@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
 
-:root {
+/* Automatic Color Scheme */
+:root, :root.light {
   --main-color: #f75a09; /*darkcyan é a cor anterior, eu coloquei essa atual para combinar com a logo, tambem pode ser azul #2b79d6 */
   --black: #1f1f1f;
   --white: #fff;
@@ -17,7 +18,7 @@
   --blue: navy;
   --light-purple: blueviolet;
   --purple: indigo;
-  --font-color: snow;
+  --font-color: #1f1f1f;
   --background-color: #ebebeb;
   --border: 1px solid var(--font-color);
   --footer-border: 5px solid var(--main-color);
@@ -407,18 +408,12 @@ footer.container .credit span {
 }
 
 /* ########################## Color Scheme ########################## */
+/* Só funciona se tiver âmbas color-schemes */
 @media (prefers-color-scheme: light) {
   :root {
     --font-color: #1f1f1f;
     --background-color: #ebebeb;
-    transition: all 1s ease-in-out;
   }
-}
-
-:root.light {
-  --font-color: #1f1f1f;
-  --background-color: #ebebeb;
-  transition: all 1s ease-in-out;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -428,15 +423,14 @@ footer.container .credit span {
     --card-box-shadow: #d3d3d3 4px 4px 8px 1px;
     --box-shadow: 1px 1px 4px 0px #c7c7c7;
     --input-color: #d3d3d3;
-    transition: all 1s ease-in-out;
   }
 }
 
+/* Manual Dark Color Scheme */
 :root.dark {
   --font-color: snow;
   --background-color: #1f1f1f;
   --card-box-shadow: #d3d3d3 4px 4px 8px 1px;
   --box-shadow: 1px 1px 4px 0px #c7c7c7;
   --input-color: #d3d3d3;
-  transition: 1s ease-in-out;
 }
