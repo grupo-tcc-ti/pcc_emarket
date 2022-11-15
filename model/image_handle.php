@@ -28,7 +28,7 @@ class Image
                     }
                     else if ($image_error != 0 ) {
                         // echo ':upload_invalid; '; //debug
-                        $mensagem[] = 'Ocorreu um erro ao enviar os arquivos de imagem!';
+                        Message::pop('Ocorreu um erro ao enviar os arquivos de imagem!');
                     }
                 }
             
@@ -56,7 +56,7 @@ class Image
                         //Verifica o tamanho do arquivo
                         $image_size = $files_img['size'][$i]; //O tamanho, em bytes, do arquivo enviado.
                         if ($image_size > 2000000) {
-                            $mensagem[] = 'Tamanho do arquivo é maior que o permitido!';
+                            Message::pop('Tamanho do arquivo é maior que o permitido!');
                             $size_valid = false;
                         } else { $size_valid = true; 
                             // echo $size_valid.':arrayimg_size; '; //debug
@@ -80,7 +80,7 @@ class Image
                     }
                     //Verifica o tamanho do arquivo
                     if (implode($files_img['size']) > 2000000) { //O tamanho, em bytes, do arquivo enviado.
-                        $mensagem[] = 'Tamanho do arquivo é maior que o permitido!';
+                        Message::pop('Tamanho do arquivo é maior que o permitido!');
                         $size_valid = false;
                     } else { $size_valid = true;
                         // echo $size_valid.':singleimg_size; '; //debug
@@ -101,7 +101,7 @@ class Image
             // echo $size_valid.':last_size; '; //debug
             // echo $upload_valid.':last_upload; '; //debug
         } catch (PDOException $msg) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
         }
     }
     public static function Validate()

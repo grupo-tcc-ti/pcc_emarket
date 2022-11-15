@@ -53,7 +53,7 @@ class UsuariosDAO
             $select_->execute();
             return $select_->rowCount();
         } catch (PDOException $msg) {
-            $message[] = $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -68,7 +68,7 @@ class UsuariosDAO
             $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
             return $usuarios;
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
         }
         
     }
@@ -83,7 +83,7 @@ class UsuariosDAO
             $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
             return $usuarios;
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
         }
         
     }
@@ -108,7 +108,7 @@ class UsuariosDAO
             $usuario = $select_->fetch(PDO::FETCH_ASSOC);
             return $usuario;
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
         }
     }
     //
@@ -151,7 +151,7 @@ class UsuariosDAO
                 return $insert_->execute();
             }
         } catch (PDOException $msg) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -234,7 +234,7 @@ class UsuariosDAO
             // return var_dump($alterar_);
             return $alterar_->execute();
         } catch (PDOException $msg) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -250,7 +250,7 @@ class UsuariosDAO
             Message::pop('Deletado com sucesso!');
             return $deletar_admin->execute();
         } catch (PDOException $msg) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -279,7 +279,7 @@ class UsuariosDAO
             // Redirect::page('users_contas.php', 1);
 
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -327,7 +327,7 @@ class UsuariosDAO
             }
             return null;
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -336,7 +336,7 @@ class UsuariosDAO
         try {
 
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }

@@ -20,11 +20,11 @@ VALUES
 -- Clientes starts --
 ('cliente', 'cliente@email.com', md5('1234'), 'cliente',
 -- FLOOR(5 + RAND()*(100-1)), 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-40, 0, NULL, NULL, NULL, 6198765432, NULL, NULL, NULL, NULL, '72987654', 'DF', 'Monte das Oliveiras', 'Rua das Palmeiras - Lote 10', 7, 'Sem Complemento'),
+40, 0, NULL, NULL, NULL, 6198765432, 16829267706, 400551676, NULL, NULL, '72987654', 'DF', 'Monte das Oliveiras', 'Rua das Palmeiras - Lote 10', 7, 'Sem Complemento'),
 ('cliente_gabs', 'cliente_gabs@email.com', md5('1234'), 'cliente',
-86, 0, NULL, NULL, NULL, 6198765432, NULL, NULL, NULL, NULL, '72987654', 'DF', 'Monte das Oliveiras', 'Rua das Palmeiras - Lote 10', 7, 'Sem Complemento'),
+86, 0, NULL, NULL, NULL, 6198765432, 16829267706, 400551676, NULL, NULL, '72987654', 'DF', 'Monte das Oliveiras', 'Rua das Palmeiras - Lote 10', 7, 'Sem Complemento'),
 ('cliente_teste', 'cliente_teste@email.com', md5('1234'), 'cliente',
-7, 0, NULL, NULL, NULL, 6198765432, NULL, NULL, NULL, NULL, '72987654', 'DF', 'Monte das Oliveiras', 'Rua das Palmeiras - Lote 10', 7, 'Sem Complemento');
+7, 0, NULL, NULL, NULL, 6198765432, 16829267706, 400551676, NULL, NULL, '72987654', 'DF', 'Monte das Oliveiras', 'Rua das Palmeiras - Lote 10', 7, 'Sem Complemento');
 -- Clientes ends --
 
 -- INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`, `salario`, `admissao`, `demissao`, `telefone`, `cpf`,

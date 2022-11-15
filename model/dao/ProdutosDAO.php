@@ -19,7 +19,7 @@ class ProdutosDAO
         }
         return self::$pdo;
     }
-    public static function QtyProdutos()
+    public static function qtyProdutos()
     {
         try{
             // $pdo = Connect::getInstance(); //renameit case fails
@@ -29,7 +29,7 @@ class ProdutosDAO
             return $select_->rowCount();
         }
         catch (PDOException $msg){
-            $message[] = $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -40,24 +40,44 @@ class ProdutosDAO
             $qry = "SELECT * FROM `produtos` ORDER BY nome";
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
-            return $usuarios;
+            // $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
+            return $select_->fetchAll(PDO::FETCH_ASSOC);
+            // return $usuarios;
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
         }
         
     }
-    public static function produtosCategoria()
+    public static function pesquisarProduto(ProdutosDTO $produtosDTO)
     {
         try {
             // $con = Connect::getInstance(); //renameit case fails
-            $qry = "";
+            // $search_box = $produtosDTO->getNome();
+            $search_box = filter_var($produtosDTO->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$search_box}%'";
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
-            return $usuarios;
+            // $produtos = $select_->fetchAll(PDO::FETCH_ASSOC);
+            return $select_->fetchAll(PDO::FETCH_ASSOC);
+            // return $produtos;
         } catch ( PDOException $msg ) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
+        }
+        
+    }
+    public static function produtosCategoria(ProdutosDTO $produtosDTO)
+    {
+        try {
+            // $con = Connect::getInstance(); //renameit case fails
+            $category = filter_var($produtosDTO->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$category}%'";
+            $select_ = self::connect()->prepare($qry);
+            $select_->execute();
+            // $cat = $select_->fetchAll(PDO::FETCH_ASSOC);
+            return $select_->fetchAll(PDO::FETCH_ASSOC);
+            // return $cat;
+        } catch ( PDOException $msg ) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
         }
         
     }
@@ -106,7 +126,7 @@ class ProdutosDAO
                 return $inserir_->execute();
             }
         } catch (PDOException $msg) {
-            $message[] = $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -151,7 +171,7 @@ class ProdutosDAO
                 Message::pop('Produto alterado com sucesso!');
             }
         } catch (PDOException $msg) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
         }
     }
     // 
@@ -190,7 +210,7 @@ class ProdutosDAO
             // return $mensagem[] = 'Produto deletado com sucesso!';
             Message::pop('Produto deletado com sucesso!');
         } catch (PDOException $msg) {
-            echo $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     

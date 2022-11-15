@@ -126,7 +126,40 @@ require_once Path_Locale::user_header();
           </div>
         </div>
       </div>
+        <div class="col-lg-6">
+          <div class="form-group focused">
+            <label class="form-control-label" for="last_name">Telefone</label>
+            <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Ex: Winchester">
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-6">
+          <div class="form-group focused">
+            <label class="form-control-label" for="last_name">Celular</label>
+            <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Ex: Winchester">
+          </div>
+        </div>
+      </div>
 
+      <div class="col-lg-4">
+          <div class="form-group">
+            <label class="form-control-label" for="country">CEP</label>
+            <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Ex: 72200000">
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group focused">
+            <label class="form-control-label" for="city">Cidade</label>
+            <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Ex: Brasília">
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-group focused">
+            <label class="form-control-label" for="city">Estado</label>
+            <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Ex: Brasília">
+          </div>
+        </div>
       <div class="row">
         <div class="col-md-12">
           <div class="form-group focused">
@@ -135,25 +168,16 @@ require_once Path_Locale::user_header();
           </div>
         </div>
       </div>
-      <div class="row">
         <div class="col-lg-4">
           <div class="form-group focused">
-            <label class="form-control-label" for="city">Cidade</label>
-            <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Ex: Brasília">
-          </div>
-        </div>
-
-        <div class="col-lg-4">
-          <div class="form-group focused">
-            <label class="form-control-label" for="country">País</label>
+            <label class="form-control-label" for="country">Complemento</label>
             <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Ex: Brasil">
           </div>
         </div>
-
         <div class="col-lg-4">
-          <div class="form-group">
-            <label class="form-control-label" for="country">CEP</label>
-            <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Ex: 72200000">
+          <div class="form-group focused">
+            <label class="form-control-label" for="country">Numero</label>
+            <input type="text" id="input-country" class="form-control form-control-alternative" placeholder="Ex: Brasil">
           </div>
         </div>
       </div>
@@ -166,10 +190,7 @@ require_once Path_Locale::user_header();
 </div>
 </div>
 
-    <?php
-      // require_once '../view/footer.php';
-        require_once '../view/footer.html';
-    ?>
+    <?php require_once '../view/footer.html'; ?>
 
   <script src="../js/script.js"></script>
 </body>

@@ -16,15 +16,15 @@ CREATE TABLE usuarios (
     admissao date,
     demissao date,
     telefone bigint(12),
-    cpf int(12),
-    rg int(12),
-    cnpj int(12),
-    ie int(12),
+    cpf bigint(12),
+    rg bigint(12),
+    cnpj bigint(12),
+    ie bigint(12),
     cep varchar(12),
     estado varchar(2),
     cidade varchar(255),
     logradouro varchar(255),
-    numero int(12),
+    numero bigint(12),
     complemento varchar(255),
     PRIMARY KEY (codUsuario, codCliente, codAdmin)
 );
@@ -71,7 +71,7 @@ CREATE TABLE mensagens (
 
 CREATE TABLE carrinho (
     codCarrinho int PRIMARY KEY not null auto_increment,
-    quantidade int(12),
+    quantidade bigint(12),
     fk_usuarios_codUsuario int not null,
     fk_usuarios_codCliente int not null,
     fk_produtos_codProduto int not null,

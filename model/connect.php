@@ -60,6 +60,6 @@ class Connect
     }
 }
 
-$pdo  = Connect::getInstance();
+$pdo = Connect::getInstance();
 // $conn = Connect::getInstance();
 ?>

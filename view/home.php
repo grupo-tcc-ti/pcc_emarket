@@ -10,7 +10,6 @@
 
 <!DOCTYPE html>
 <html lang="pt-br, en">
-
   <head>
     <!-- <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -27,25 +26,24 @@
       crossorigin="anonymous"> </script> -->
     <?php 
     require_once Path_Locale::head(); ?>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/home.css" />
     <title>Emarket</title>
   </head>
 
   <?php require_once Path_Locale::user_header(); ?>
-    <body>
-
+  <body>
     <section>
       <div class="slider">
         <div class="slide active">
-          <img src="../image/slider/1.jpg" alt="">
+          <img src="../image/slider/1.jpg" alt="" />
         </div>
 
         <div class="slide">
-          <img src="../image/slider/2.jpg" alt="">
+          <img src="../image/slider/2.jpg" alt="" />
         </div>
 
         <div class="slide">
-          <img src="../image/slider/3.jpg" alt="">
+          <img src="../image/slider/3.jpg" alt="" />
         </div>
 
         <div class="navigation">
@@ -66,66 +64,69 @@
     </section>
 
     <div id="overlay">
-    <main id="all-container">
-      <!-- <div class="swiper products-slider">
+      <main id="all-container">
+        <!-- <div class="swiper products-slider">
       <div class="swiper-wrapper"> -->
-      <section class="container-prod">
-        <div class="list-cards">
-          <?php
+        <section class="container-prod">
+          <div class="list-cards">
+            <?php
             $fetch_produto = ProdutosDAO::listarProdutos();
             if (is_array($fetch_produto)) {
                 foreach ($fetch_produto as $prod) {
                     $prodimg = explode(",", $prod['image']);
                     ?>
-          <div class="cards-items">
-            <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
-            <a href="espiar_produto.php?id=<?php echo $prod['codProduto'];?>" class="fas fa-eye"></a>
-            <a href="gotoproductpage.php">
-              <img src="<?php echo $prodimg[0];?>" alt="" class="products-imgs">
-              <div class="products-name">
+            <div class="cards-items">
+              <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
+              <a
+                href="espiar_produto.php?id=<?php echo $prod['codProduto'];?>"
+                class="fas fa-eye"
+              ></a>
+              <a href="gotoproductpage.php">
+                <img
+                  src="<?php echo $prodimg[0];?>"
+                  alt=""
+                  class="products-imgs"
+                />
+                <div class="products-name">
                     <?php echo $prod['nome'];?>
+                </div>
+              </a>
+              <div class="cards-price">
+                R$
+                    <?php echo $prod['preco'];?>
               </div>
-            </a>
-            <div class="cards-price">
-              R$ <?php echo $prod['preco'];?> 
-            </div>
-            <!-- <form action="" method="post">
+              <!-- <form action="" method="post">
               <input type="hidden" name="id" value="<?php echo $prod['codProduto'];?>"></input>
               <input type="number" name="qty" id="" class="qty"
               min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
               <input type="submit" value="Adicionar ao Carrinho"
               name="add_carrinho" class="buy-btn">
             </form> -->
-            <div class="buy-btn">
-              <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
+              <div class="buy-btn">
+                <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
+              </div>
             </div>
-          </div>
                     <?php
                 }
             } else {
-                echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
+                echo ' <p class="vazio">>Nenhum produto foi encontrado!</p> ';
             }
             ?>
-        </div>
-        <!-- <div class="swiper-pagination"></div>
+          </div>
+          <!-- <div class="swiper-pagination"></div>
         </div>
         </div> -->
-      </section>
-    </main>
-  </div>
+        </section>
+      </main>
+    </div>
 
-  
+    <?php require_once '../view/footer.html'; ?>
 
-  <?php 
-    // require_once '../view/footer.php';
-    require_once '../view/footer.html';
-    ?>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
-<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="../js/script.js"></script>
 
-<script src="../js/script.js"></script>
-
-  <!-- <script>
+    <!-- <script>
     var swiper = new Swiper(".home-slider", {
       loop:true,
       spaceBetween: 20,
@@ -179,7 +180,7 @@
     });
   </script> -->
 
-  <!-- <div class="home-bg">
+    <!-- <div class="home-bg">
 
     <section class="home">
 

@@ -30,7 +30,7 @@ class PedidosDAO
             return $pedidos;
         }
         catch (PDOException $msg){
-            $message[] = $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -61,7 +61,7 @@ class PedidosDAO
             return $alterar_status->execute();
         }
         catch (PDOException $msg){
-            $message[] = $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
@@ -79,7 +79,7 @@ class PedidosDAO
             Message::pop('Produto deletado!');
             Redirect::page('pedidos.php', 1);
         } catch (PDOException $msg) {
-            $message[] = $msg->getMessage();
+            echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
     }
