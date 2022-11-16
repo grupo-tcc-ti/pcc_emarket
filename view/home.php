@@ -1,11 +1,14 @@
 <?php
-    session_start();
-    require_once '../model/connect.php';
-    require_once '../model/dao/ProdutosDAO.php';
-    ( isset( $_SESSION['client_id'] ) ) ?
-    $user_id = $_SESSION['client_id']
-    : '';
-    // require_once '../components/wishlist_card.php';
+  session_start();
+  require_once '../model/connect.php';
+  require_once '../model/dao/ProdutosDAO.php';
+  require_once '../model/dto/ProdutosDTO.php';
+  ( isset($_SESSION['client_id']) ) ?
+  $user_id = $_SESSION['client_id']
+  : '';
+  (!isset($pageTitle)) ? $pageTitle = 'Emarket' : $pageTitle ;
+  // require_once '../components/wishlist_card.php';
+  require_once '../controller/navigationControl.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,14 +27,15 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"> </script> -->
-    <?php
-    require_once Path_Locale::head();?>
+    <?php require_once Path_Locale::head();?>
     <link rel="stylesheet" href="../css/home.css" />
-    <title>Emarket</title>
+    <!-- <title>Emarket</title> -->
+    <title><?php echo $pageTitle;?></title>
   </head>
 
   <?php require_once Path_Locale::user_header();?>
   <body>
+
     <section>
       <div class="slider">
         <div class="slide active">
@@ -63,6 +67,11 @@
       <?php //include '../view/vitrine_teste.html'; ?>
     </section>
 
+    <?php 
+      // var_dump($_GET['str']);
+      if (!isset($_GET['str']) && !isset($_GET['category'])) {
+    ?>
+
     <div id="overlay">
       <main id="all-container">
         <!-- <div class="swiper products-slider">
@@ -71,9 +80,9 @@
           <div class="list-cards">
             <?php
                 $fetch_produto = ProdutosDAO::listarProdutos();
-                if ( is_array( $fetch_produto ) ) {
-                    foreach ( $fetch_produto as $prod ) {
-                        $prodimg = explode( ",", $prod['image'] );
+            if (!is_null($fetch_produto) ) {
+                foreach ( $fetch_produto as $prod ) {
+                    $prodimg = explode(",", $prod['image']);
                     ?>
             <div class="cards-items">
               <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
@@ -106,16 +115,28 @@
                 <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
               </div>
             </div>
-                    <?php
-                        }
-                        } else {
-                            echo ' <p class="vazio">>Nenhum produto foi encontrado!</p> ';
-                        }
-                    ?>
+          
+            <?php
+                  }
+              } 
+              else {
+                echo ' <p class="vazio">Nenhum produto foi encontrado!</p> ';
+              }
+            } else if (
+              isset($_GET['str']) || isset($_GET['category'])
+              // (isset($_GET['str']) && !empty($_GET['str'])) ||
+              // (isset($_GET['category']) && !empty($_GET['category']))
+              ) {
+                require_once '../view/page.php';
+            } else {
+                echo 'eu aqui - vazio';
+                echo ' <p class="vazio">Talvez o que você procura não esteja aqui. <br> talvez...!</p> ';
+            }
+            ?>
           </div>
           <!-- <div class="swiper-pagination"></div>
-        </div>
-        </div> -->
+            </div>
+          </div> -->
         </section>
       </main>
     </div>

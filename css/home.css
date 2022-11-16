@@ -72,6 +72,18 @@ img#slider {
 }
 
 /* ################## Vitrine ######################## */
+.vazio {
+  background-color: var(--background-color);
+  border-radius: calc(0.5 * var(--1w));
+  border-bottom: 3px solid var(--main-color);
+  text-align: center;
+  padding: calc(1.5 * var(--1w));
+  width: 64%;
+  font-size: calc(2 * var(--1w));
+  color: var(--font-color);
+  box-shadow: var(--box-shadow);
+  margin: calc(1 * var(--1w)) auto;
+}
 
 .list-cards {
   display: grid;
@@ -230,22 +242,22 @@ img#slider {
 @media (min-width: 1200px) {
   .list-cards .cards-items:hover {
     /* .list-cards .cards-items {  */
-      /* debug */
-      box-shadow: var(--card-box-shadow);
-      /* margin-top: -2px; */
-      /* margin-left: -2px; */
-      margin: -2px 2px calc(5 * var(--1w) + 2px) -2px;
-      transition: .2s ease;
-    }
+    /* debug */
+    box-shadow: var(--card-box-shadow);
+    /* margin-top: -2px; */
+    /* margin-left: -2px; */
+    margin: -2px 2px calc(5 * var(--1w) + 2px) -2px;
+    transition: 0.2s ease;
+  }
 }
 
 @media (max-width: 1200px) {
   .list-cards {
-    gap: calc(.1 * var(--1w));
+    gap: calc(0.1 * var(--1w));
   }
 
   .list-cards .cards-items {
-    margin: 0  calc(1 * var(--1w)) calc(4 * var(--1w));
+    margin: 0 calc(1 * var(--1w)) calc(4 * var(--1w));
   }
 }
 
@@ -255,9 +267,9 @@ img#slider {
     /* height: calc(19.4 * var(--1w)); */
     /* margin: calc(1 * var(--1w)); */
   }
-  
+
   .list-cards .cards-items {
-    margin: 0  calc(2 * var(--1w)) calc(4 * var(--1w));
+    margin: 0 calc(2 * var(--1w)) calc(4 * var(--1w));
     width: 90%;
   }
 }

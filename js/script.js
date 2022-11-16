@@ -61,6 +61,17 @@ window.onscroll = () => {
   }
 };
 
+//Remove search-bar on resize
+// var viewport_width = window.innerWidth;
+// console.log(viewport_width);
+window.addEventListener('resize', () => {
+  let searchbar = qryS('.nav-search');
+  if (window.innerWidth > 1042) {
+    if (searchbar.classList.contains('active')){
+      searchbar.classList.remove('active');
+    }
+  }
+});
 /* ######################Funçao do departamento na barra: starts###################### */
 function changeIconDepartamento(anchor) {
   anchor.closest('.dropdown').classList.toggle('active');
@@ -239,18 +250,6 @@ darkBtn.addEventListener('click', () => {
       html.classList.add('light');
     } else {
       html.classList.add('dark');
-    }
-  }
-});
-
-//Remove search-bar on resize
-// var viewport_width = window.innerWidth;
-// console.log(viewport_width);
-window.addEventListener('resize', () => {
-  let searchbar = qryS('.nav-search');
-  if (window.innerWidth > 1042) {
-    if (searchbar.classList.contains('active')){
-      searchbar.classList.remove('active');
     }
   }
 });
