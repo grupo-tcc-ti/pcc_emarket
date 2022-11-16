@@ -1,11 +1,11 @@
 <?php
-  session_start();
-  require_once '../model/connect.php';
-  require_once '../model/dao/ProdutosDAO.php';
-  (isset($_SESSION['client_id']))?
-  $user_id = $_SESSION['client_id']
-  :'';
-  // require_once '../components/wishlist_card.php';
+    session_start();
+    require_once '../model/connect.php';
+    require_once '../model/dao/ProdutosDAO.php';
+    ( isset( $_SESSION['client_id'] ) ) ?
+    $user_id = $_SESSION['client_id']
+    : '';
+    // require_once '../components/wishlist_card.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,13 +24,13 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
       integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
       crossorigin="anonymous"> </script> -->
-    <?php 
-    require_once Path_Locale::head(); ?>
+    <?php
+    require_once Path_Locale::head();?>
     <link rel="stylesheet" href="../css/home.css" />
     <title>Emarket</title>
   </head>
 
-  <?php require_once Path_Locale::user_header(); ?>
+  <?php require_once Path_Locale::user_header();?>
   <body>
     <section>
       <div class="slider">
@@ -70,33 +70,33 @@
         <section class="container-prod">
           <div class="list-cards">
             <?php
-            $fetch_produto = ProdutosDAO::listarProdutos();
-            if (is_array($fetch_produto)) {
-                foreach ($fetch_produto as $prod) {
-                    $prodimg = explode(",", $prod['image']);
+                $fetch_produto = ProdutosDAO::listarProdutos();
+                if ( is_array( $fetch_produto ) ) {
+                    foreach ( $fetch_produto as $prod ) {
+                        $prodimg = explode( ",", $prod['image'] );
                     ?>
             <div class="cards-items">
               <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
               <a
-                href="espiar_produto.php?id=<?php echo $prod['codProduto'];?>"
+                href="espiar_produto.php?id=<?php echo $prod['codProduto']; ?>"
                 class="fas fa-eye"
               ></a>
               <a href="gotoproductpage.php">
                 <img
-                  src="<?php echo $prodimg[0];?>"
+                  src="<?php echo $prodimg[0]; ?>"
                   alt=""
                   class="products-imgs"
                 />
                 <div class="products-name">
-                    <?php echo $prod['nome'];?>
+                    <?php echo $prod['nome']; ?>
                 </div>
               </a>
               <div class="cards-price">
                 R$
-                    <?php echo $prod['preco'];?>
+                    <?php echo $prod['preco']; ?>
               </div>
               <!-- <form action="" method="post">
-              <input type="hidden" name="id" value="<?php echo $prod['codProduto'];?>"></input>
+              <input type="hidden" name="id" value="<?php echo $prod['codProduto']; ?>"></input>
               <input type="number" name="qty" id="" class="qty"
               min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
               <input type="submit" value="Adicionar ao Carrinho"
@@ -107,11 +107,11 @@
               </div>
             </div>
                     <?php
-                }
-            } else {
-                echo ' <p class="vazio">>Nenhum produto foi encontrado!</p> ';
-            }
-            ?>
+                        }
+                        } else {
+                            echo ' <p class="vazio">>Nenhum produto foi encontrado!</p> ';
+                        }
+                    ?>
           </div>
           <!-- <div class="swiper-pagination"></div>
         </div>
@@ -120,7 +120,7 @@
       </main>
     </div>
 
-    <?php require_once '../view/footer.html'; ?>
+    <?php require_once '../view/footer.html';?>
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 

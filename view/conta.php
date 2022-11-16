@@ -1,9 +1,9 @@
 <?php
-  session_start();
-  require_once '../model/connect.php';
-  (isset($_SESSION['client_id']))?
-  $user_id = $_SESSION['client_id']
-  :'';
+    session_start();
+    require_once '../model/connect.php';
+    ( isset( $_SESSION['client_id'] ) ) ?
+    $user_id = $_SESSION['client_id']
+    : '';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
     <!-- <link rel="stylesheet" href="../css/login_style.css"> -->
     <!-- <link rel="stylesheet" href="../css/style.css"> -->
     <!-- <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
-    <?php require_once Path_Locale::head(); ?>
+    <?php require_once Path_Locale::head();?>
     <link rel="stylesheet" href="../css/conta.css" />
     <title>Login</title>
     <script>
@@ -30,15 +30,15 @@
   </head>
 
   <?php
-    if (isset($user_id)) {
-        Message::pop('Sua sessão já foi iniciada!');
-        Message::pop('Voce está sendo redirecionado....');
-        Redirect::page('home.php', 2);
-    }
-    require_once '../controller/loginControl.php';
-    require_once '../controller/registerControl.php';
-    require_once Path_Locale::user_header();
-    ?>
+      if ( isset( $user_id ) ) {
+          Message::pop( 'Sua sessão já foi iniciada!' );
+          Message::pop( 'Voce está sendo redirecionado....' );
+          Redirect::page( 'home.php', 2 );
+      }
+      require_once '../controller/loginControl.php';
+      require_once '../controller/registerControl.php';
+      require_once Path_Locale::user_header();
+  ?>
   <body>
     <div class="login-register">
       <div class="container">
@@ -152,7 +152,7 @@
         </div>
       </div>
     </div>
-    <?php require_once '../view/footer.html'; ?>
+    <?php require_once '../view/footer.html';?>
     <script src="../js/script.js"></script>
   </body>
 </html>

@@ -1,18 +1,20 @@
 <?php
-if (!isset($pdo)) {
-    include_once '../model/connect.php';
-}
-if (!isset($header)) {
-    $header = 1;
-}
+    require_once '../model/dao/ProdutosDAO.php';
+    if ( !isset( $pdo ) ) {
+        include_once '../model/connect.php';
+    }
+    if ( !isset( $header ) ) {
+        $header = 1;
+    }
     // require_once '../model/dao/UsuariosDAO.php';
     // require_once '../model/dto/UsuariosDTO.php';
-if(isset($_GET['logout'])) {
-    include_once '../controller/admin_logoutControl.php';
-    Redirect::page('home.php', 1);
-    exit();
-}
+    if ( isset( $_GET['logout'] ) ) {
+        include_once '../controller/admin_logoutControl.php';
+        Redirect::page( 'home.php', 1 );
+        exit();
+    }
 ?>
+
 <div class="header">
   <header class="container">
     <div class="logo-img">
@@ -91,31 +93,31 @@ if(isset($_GET['logout'])) {
         </button>
         <nav id="dropconta" class="dropdown-content">
           <?php
-            if (!isset($_SESSION['client_id']) ) {
-                ?>
+              if ( !isset( $_SESSION['client_id'] ) ) {
+              ?>
           <!-- <a href="conta.php">Login</a> -->
-          <a href="<?php echo Path_Locale::conta();?>">Login</a>
+          <a href="<?php echo Path_Locale::conta(); ?>">Login</a>
           <!-- <a href="conta.php?register">Registrar</a> -->
-          <a href="<?php echo Path_Locale::conta().'?register';?>">Registrar</a>
+          <a href="<?php echo Path_Locale::conta() . '?register'; ?>">Registrar</a>
                 <?php
-            } else {
-                ?>
+                    } else {
+                    ?>
           <!-- <a href="minha_conta.php">Minha conta</a> -->
           <a href="minha_conta.php">Minha conta</a>
           <!-- <a href="../controller/logoutControl.php" onclick="return confirm('Você deseja sair?');">Logout</a> -->
           <a
-            href="<?php echo '?logout';?>"
+            href="<?php echo '?logout'; ?>"
             onclick="return confirm('Você deseja sair?');"
             >Logout</a
           >
                 <?php
-            }
-            if (isset($_SESSION["admin_id"]) ) {
-                ?>
+                    }
+                    if ( isset( $_SESSION["admin_id"] ) ) {
+                    ?>
           <a href="../admin/admin_login.php">Admin Panel</a>
                 <?php
-            }
-            ?>
+                    }
+                ?>
         </nav>
       </div>
     </div>
@@ -125,11 +127,63 @@ if(isset($_GET['logout'])) {
           <span>Carrinho </span>
           <i class="fas fa-shopping-cart icon"></i>
         </button>
-        <nav id="carrinho" class="dropdown-content">
-          <a href="#">Ver Carrinho</a>
-          <a href="#">Limpar Carrinho</a>
+        <nav id="carrinho" class="dropdown-content-cart">
+
+        <div class="dropdown-menu">
+          <div class="cart-header">
+			      	<i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">
+                <?php
+                    if ( isset( $_SESSION['cart-size'] ) ) {
+                        echo $_SESSION['cart-size'];
+                } else {?>
+                    0
+                     <?php }?> </span>
+
+			      	<div class="total-section">
+			      		<p>Total: <span class="text-info">$1,337.69</span></p>
+              </div>
+          </div>
+
+          <?php
+              $fetch_produto = ProdutosDAO::listarProdutos();
+              if ( is_array( $fetch_produto ) ) {
+                  foreach ( $fetch_produto as $prod ) {
+                      $prodimg               = explode( ",", $prod['image'] );
+                      $_SESSION['cart-size'] = count( $fetch_produto );
+                  ?>
+
+
+                <div class="row cart-detail">
+		    				  <div class="cart-detail-img">
+                    <img src="<?php echo $prodimg[0]; ?>">
+		    				  </div>
+
+		    				  <div class="cart-detail-product">
+		    					  <p>
+                      <?php echo $prod['nome']; ?>
+                    </p>
+		    					  <span class="price text-info">R$		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                  		    					                                   <?php echo $prod['preco']; ?> </span>
+		    				  </div>
+				    	</div>
+
+              <hr>
+
+          <?php
+              }
+              } else {
+                  echo ' <p class="vazio">>Nenhum produto foi encontrado!</p> ';
+              }
+          ?>
+
+				  <div class="checkout">
+				    <button class="btn">Fechar Pedido</button>
+            <!-- aqui redireciona para dentro do carrinho lol -->
+				  </div>
+
+        </div>
         </nav>
       </div>
+
     </div>
     <div class="colorScheme">
       <button id="darkmode" class="btn">
