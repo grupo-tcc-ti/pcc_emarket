@@ -42,22 +42,22 @@ VALUES
 (NULL, 'Correríos', 'tv (1) - smartphone (1) - smartwatch (2)', '5123.45', '2022-10-21', NULL, 'Pendente', 5, 86),
 (NULL, 'Correríos', 'tv (1) - smartphone (1) - smartwatch (2)', '5123.45', '2022-10-21', NULL, 'Cancelado', 6, 7);
 
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador AMD Ryzen 9 5900 3.7GHz (4.8GHz Turbo)', '', '2.699', '../image/produtos/ryzen-5900.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador AMD Ryzen 9 5900 3.7GHz (4.8GHz Turbo)', '', '2699', '../image/produtos/ryzen-5900.jpg');
 INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa Mãe BioStar AMD AM4, mATX, DDR4, Chipset B550', '', '389', '../image/produtos/placa-mae-biostar-b550mh.webp');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador Intel Core i5 10400KF 2.90GHz (4.30GHz Turbo)', '', '1.699', '../image/produtos/processador-intel-core-i5-10400f-.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador Intel Core i5 10400KF 2.90GHz (4.30GHz Turbo)', '', '1699', '../image/produtos/processador-intel-core-i5-10400f-.jpg');
 INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa Mãe AsRock Intel LGA 1700, mATX, DDR4, Chipset H610', '', '679', '../image/produtos/placa-mae-asrock-h610m.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador AMD Ryzen 7 5800 3.4GHz (4.5GHz Turbo)', '', '2.489', '../image/produtos/processador-amd-ryzen-7-5800x3djpg.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa Mãe MSI AMD AM4, mATX, DDR4, Chipset B550', '', '1.099', '../image/produtos/placa-mae-msi-b550-.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador Intel Core i7 10700KF 3.80GHz (5.10GHz Turbo)', '', '2.839', '../image/produtos/processador-intel-core-i7-10700k-3.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador AMD Ryzen 7 5800 3.4GHz (4.5GHz Turbo)', '', '2489', '../image/produtos/processador-amd-ryzen-7-5800x3djpg.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa Mãe MSI AMD AM4, mATX, DDR4, Chipset B550', '', '1099', '../image/produtos/placa-mae-msi-b550-.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Processador Intel Core i7 10700KF 3.80GHz (5.10GHz Turbo)', '', '2839', '../image/produtos/processador-intel-core-i7-10700k-3.jpg');
 INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa Mãe Gigabyte AMD AM4, mATX, DDR4, Chipset A520M', '', '999', '../image/produtos/placa-mae-gigabyte-amd-a520m.webp');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo Gigabyte Geforce RTX 3080 VISION OC, LHR, 10GB, GDDR6X, DLSS, Ray Tracing', '', '7.999', '../image/produtos/placa-de-video-gigabyte-geforce-rtx-3080-.webp');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo PowerColor Radeon RX 6600, LHR, 8GB, GDDR6, FSR, Ray Tracing', '', '1.869', '../image/produtos/placa-de-video-powercolor-radeon-rx-6600-8gb-gddr6.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo MSI Geforce RTX 3060 GAMING OC, LHR, 12GB, GDDR6X, DLSS, Ray Tracing', '', '2.399', '../image/produtos/placa-de-video-msi-geforce-rtx-3060-ventus.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo MSI Geforce GTX 1660 SUPER GAMING, LHR, 6GB, GDDR6, 192bit, 912V3V198Z', '', '1.699', '../image/produtos/placa-de-video-msi-nvidia-geforce-gtx-1660-super.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-BRUXO / RTX 3060TI / I5 8600K / 16GB DDR4 / SSD 240GB', '', '6.999', '../image/produtos/17-min.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-PRICE / RTX 3080 / I7 10700K / 24GB DDR4 / SSD 500GB', '', '13.399', '../image/produtos/18-min.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-GIRL / GTX 1070 / I5 9600K / 8GB DDR4 / SSD 240GB', '', '4.199', '../image/produtos/2-min.jpg');
-INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-BASICO / GTX 1050 / I5 3470 / 8GB DDR3 / HD 500GB', '', '2.199', '../image/produtos/8u-min.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo Gigabyte Geforce RTX 3080 VISION OC, LHR, 10GB, GDDR6X, DLSS, Ray Tracing', '', '7999', '../image/produtos/placa-de-video-gigabyte-geforce-rtx-3080-.webp');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo PowerColor Radeon RX 6600, LHR, 8GB, GDDR6, FSR, Ray Tracing', '', '1869', '../image/produtos/placa-de-video-powercolor-radeon-rx-6600-8gb-gddr6.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo MSI Geforce RTX 3060 GAMING OC, LHR, 12GB, GDDR6X, DLSS, Ray Tracing', '', '2399', '../image/produtos/placa-de-video-msi-geforce-rtx-3060-ventus.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Placa de Vídeo MSI Geforce GTX 1660 SUPER GAMING, LHR, 6GB, GDDR6, 192bit, 912V3V198Z', '', '1699', '../image/produtos/placa-de-video-msi-nvidia-geforce-gtx-1660-super.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-BRUXO / RTX 3060TI / I5 8600K / 16GB DDR4 / SSD 240GB', '', '6999', '../image/produtos/17-min.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-PRICE / RTX 3080 / I7 10700K / 24GB DDR4 / SSD 500GB', '', '13399', '../image/produtos/18-min.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-GIRL / GTX 1070 / I5 9600K / 8GB DDR4 / SSD 240GB', '', '4199', '../image/produtos/2-min.jpg');
+INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`) VALUES (NULL, 'Computador Gamer T-BASICO / GTX 1050 / I5 3470 / 8GB DDR3 / HD 500GB', '', '2199', '../image/produtos/8u-min.jpg');
 
 -- INSERT INTO `produtos` (`codProduto`, `nome`, `descricao`, `preco`, `image`)
 -- VALUES 

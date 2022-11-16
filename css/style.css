@@ -6,7 +6,7 @@
   --black: #1f1f1f;
   --white: #fff;
   --debug-white: lavenderblush;
-  --light-red: tomato;
+  --light-red: #fc355c;
   --red: crimson;
   --light-orange: orange;
   --orange: darkorange;
@@ -25,6 +25,7 @@
   --card-border: 1.8px groove black;
   --card-box-shadow: #5a5a5a 2px 8px 12px 8px;
   --box-shadow: 0px 8px 16px 0px var(--font-color);
+  --text-shadow: 1px 1px 2px var(--font-color);
   --input-color: --background-color;
   --input-border: 1px solid;
   /* Weight */
@@ -166,6 +167,23 @@ section {
 }
 
 /* ################# Estilização do Menu Suspenso - Departamento ################# */
+.vazio {
+  background-color: var(--background-color);
+  border-radius: calc(0.5 * var(--1w));
+  border-bottom: 3px solid var(--main-color);
+  text-align: center;
+  padding: calc(1.5 * var(--1w));
+  width: 64%;
+  font-size: calc(2 * var(--1w));
+  color: var(--font-color);
+  box-shadow: var(--box-shadow);
+  margin: calc(1 * var(--1w)) auto;
+}
+.vazio img {
+  margin-top: 1%;
+  width: 100%;
+  height: 100%;
+}
 
 .btn {
   /* background-color: var(--black); */

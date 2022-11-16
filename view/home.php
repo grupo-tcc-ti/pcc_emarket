@@ -80,9 +80,10 @@
           <div class="list-cards">
             <?php
                 $fetch_produto = ProdutosDAO::listarProdutos();
-            if (!is_null($fetch_produto) ) {
+            if (count($fetch_produto) > 0) {
                 foreach ( $fetch_produto as $prod ) {
                     $prodimg = explode(",", $prod['image']);
+                    $preco = number_format(($prod['preco'] / 12), 2, ',', '.');
                     ?>
             <div class="cards-items">
               <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
@@ -90,47 +91,69 @@
                 href="espiar_produto.php?id=<?php echo $prod['codProduto']; ?>"
                 class="fas fa-eye"
               ></a>
-              <a href="gotoproductpage.php">
+              <a
+              title="<?php echo $prod['nome']; ?>"
+              href="../view/page.php/<?php echo $prod['nome']; ?>">
                 <img
-                  src="<?php echo $prodimg[0]; ?>"
-                  alt=""
-                  class="products-imgs"
+                src="<?php echo $prodimg[0]; ?>"
+                alt=""
+                class="products-imgs"
                 />
+              </a>
+              
+              <a
+              title="<?php echo $prod['nome']; ?>"
+              href="../view/page.php/<?php echo $prod['nome']; ?>">
                 <div class="products-name">
-                    <?php echo $prod['nome']; ?>
+                  <?php echo $prod['nome']; ?>
                 </div>
               </a>
+              
               <div class="cards-price">
-                R$
-                    <?php echo $prod['preco']; ?>
+                <div class="old-price">
+                  de 
+                  <em><?php echo $preco;?></em> por:
+                </div>
+                <div class="price">
+                  R$ <?php echo $preco;?>
+                  <span> à vista</span>
+                <div class="price-opt">
+                  <small>ou em 12x de R$
+                  <?php echo $preco;?>
+                  <i>sem juros</i>
+                  </small>
+                  <!-- ou em 12x de R$<php echo ($prod['preco'] / $prod['max_prest']); ?> <i>sem juros</i> -->
+                </div>
+                </div>
               </div>
+
               <!-- <form action="" method="post">
-              <input type="hidden" name="id" value="<?php echo $prod['codProduto']; ?>"></input>
+              <input type="hidden" name="id" value="<php echo $prod['codProduto']; ?>"></input>
               <input type="number" name="qty" id="" class="qty"
               min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
               <input type="submit" value="Adicionar ao Carrinho"
               name="add_carrinho" class="buy-btn">
             </form> -->
-              <div class="buy-btn">
+
+              <!-- <div class="buy-btn">
                 <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
-              </div>
+              </div> -->
+              
             </div>
           
             <?php
                   }
               } 
               else {
-                echo ' <p class="vazio">Nenhum produto foi encontrado!</p> ';
+                // só por enquanto
+                $error[] = 'Nenhum produto foi encontrado!';
+                $error[] = '../image/error/th-1517709978.jpg';
+                $error[] = 'Não se preocupe estamos trabalhando nisso!';
               }
-            } else if (
-              isset($_GET['str']) || isset($_GET['category'])
-              // (isset($_GET['str']) && !empty($_GET['str'])) ||
-              // (isset($_GET['category']) && !empty($_GET['category']))
-              ) {
+            } else if (isset($_GET['str']) || isset($_GET['category'])) {
                 require_once '../view/page.php';
-            } else {
-                echo 'eu aqui - vazio';
-                echo ' <p class="vazio">Talvez o que você procura não esteja aqui. <br> talvez...!</p> ';
+            } else if (empty($_GET['str']) || empty($_GET['category'])) {
+              $error[] = 'Talvez o que você procura não esteja aqui. <br> talvez...!';
             }
             ?>
           </div>
@@ -140,6 +163,20 @@
         </section>
       </main>
     </div>
+    
+    <?php
+      echo '<div class="thrown-error">';
+        if (isset($error)) {
+          foreach ($error as $obj) {
+            if (str_contains($obj, '/image')) {
+              echo ' <p class="vazio"><img src="'.$obj.'" alt=""></p> ';
+            } else {
+              echo ' <p class="vazio">'.$obj.'</p> ';
+            }
+          }
+        }
+      echo '</div>';
+    ?>
 
     <?php require_once '../view/footer.html';?>
 
