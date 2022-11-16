@@ -20,8 +20,6 @@ class UsuariosDTO
     public static function setCodUsuario($codUsuario)
     {
         self::$codUsuario = $codUsuario;
-
-        return self::class;
     }
 
     /**
@@ -40,8 +38,6 @@ class UsuariosDTO
     public static function setNome($nome)
     {
         self::$nome = $nome;
-
-        return self::class;
     }
 
     /**
@@ -60,8 +56,6 @@ class UsuariosDTO
     public static function setEmail($email)
     {
         self::$email = $email;
-
-        return self::class;
     }
 
     /**
@@ -80,8 +74,6 @@ class UsuariosDTO
     public static function setSenha($senha)
     {
         self::$senha = $senha;
-
-        return self::class;
     }
 
     /**
@@ -100,8 +92,6 @@ class UsuariosDTO
     public static function setUser_type($user_type)
     {
         self::$user_type = $user_type;
-
-        return self::class;
     }
 
     /**
@@ -120,8 +110,6 @@ class UsuariosDTO
     public static function setCodCliente($codCliente)
     {
         self::$codCliente = $codCliente;
-
-        return self::class;
     }
 
     /**
@@ -140,8 +128,6 @@ class UsuariosDTO
     public static function setCodAdmin($codAdmin)
     {
         self::$codAdmin = $codAdmin;
-
-        return self::class;
     }
 
     /**
@@ -160,8 +146,6 @@ class UsuariosDTO
     public static function setSalario($salario)
     {
         self::$salario = $salario;
-
-        return self::class;
     }
 
     /**
@@ -180,8 +164,6 @@ class UsuariosDTO
     public static function setAdmissao($admissao)
     {
         self::$admissao = $admissao;
-
-        return self::class;
     }
 
     /**
@@ -200,8 +182,6 @@ class UsuariosDTO
     public static function setDemissao($demissao)
     {
         self::$demissao = $demissao;
-
-        return self::class;
     }
 
     /**
@@ -220,8 +200,6 @@ class UsuariosDTO
     public static function setTelefone($telefone)
     {
         self::$telefone = $telefone;
-
-        return self::class;
     }
 
     /**
@@ -240,8 +218,6 @@ class UsuariosDTO
     public static function setCpf($cpf)
     {
         self::$cpf = $cpf;
-
-        return self::class;
     }
 
     /**
@@ -260,8 +236,6 @@ class UsuariosDTO
     public static function setRg($rg)
     {
         self::$rg = $rg;
-
-        return self::class;
     }
 
     /**
@@ -280,8 +254,6 @@ class UsuariosDTO
     public static function setCnpj($cnpj)
     {
         self::$cnpj = $cnpj;
-
-        return self::class;
     }
 
     /**
@@ -300,8 +272,6 @@ class UsuariosDTO
     public static function setIe($ie)
     {
         self::$ie = $ie;
-
-        return self::class;
     }
 
     /**
@@ -320,8 +290,6 @@ class UsuariosDTO
     public static function setCep($cep)
     {
         self::$cep = $cep;
-
-        return self::class;
     }
 
     /**
@@ -340,8 +308,6 @@ class UsuariosDTO
     public static function setEstado($estado)
     {
         self::$estado = $estado;
-
-        return self::class;
     }
 
     /**
@@ -360,8 +326,6 @@ class UsuariosDTO
     public static function setCidade($cidade)
     {
         self::$cidade = $cidade;
-
-        return self::class;
     }
 
     /**
@@ -380,8 +344,6 @@ class UsuariosDTO
     public static function setLogradouro($logradouro)
     {
         self::$logradouro = $logradouro;
-
-        return self::class;
     }
 
     /**
@@ -399,9 +361,7 @@ class UsuariosDTO
      */ 
     public static function setNumero($numero)
     {
-        self::$numero = $numero;
-
-        return self::class;
+        self::$numero = $numero;;
     }
 
     /**
@@ -419,8 +379,6 @@ class UsuariosDTO
      */ 
     public static function setComplemento($complemento)
     {
-        self::$complemento = $complemento;
-
-        return self::class;
+        self::$complemento = $complemento;s;
     }
 }

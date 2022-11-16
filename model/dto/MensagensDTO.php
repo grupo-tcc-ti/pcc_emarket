@@ -20,7 +20,7 @@ class MensagensDTO
     {
         self::$codMensagem = $codMensagem;
 
-        return self::class;
+        
     }
 
     /**
@@ -40,7 +40,7 @@ class MensagensDTO
     {
         self::$nome = $nome;
 
-        return self::class;
+        
     }
 
     /**
@@ -60,7 +60,7 @@ class MensagensDTO
     {
         self::$email = $email;
 
-        return self::class;
+        
     }
 
     /**
@@ -80,7 +80,7 @@ class MensagensDTO
     {
         self::$telefone = $telefone;
 
-        return self::class;
+        
     }
 
     /**
@@ -100,7 +100,7 @@ class MensagensDTO
     {
         self::$mensagem = $mensagem;
 
-        return self::class;
+        
     }
 
     /**
@@ -120,7 +120,7 @@ class MensagensDTO
     {
         self::$fk_usuarios_codUsuario = $fk_usuarios_codUsuario;
 
-        return self::class;
+        
     }
 
     /**
@@ -140,7 +140,7 @@ class MensagensDTO
     {
         self::$fk_usuarios_codCliente = $fk_usuarios_codCliente;
 
-        return self::class;
+        
     }
 
     /**
@@ -160,6 +160,6 @@ class MensagensDTO
     {
         self::$fk_usuarios_codAdmin = $fk_usuarios_codAdmin;
 
-        return self::class;
+        
     }
 }

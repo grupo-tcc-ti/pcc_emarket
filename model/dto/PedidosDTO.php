@@ -21,7 +21,7 @@ class PedidosDTO
     {
         self::$codPedido = $codPedido;
 
-        return self::class;
+        
     }
 
     /**
@@ -41,7 +41,7 @@ class PedidosDTO
     {
         self::$tipoEntrega = $tipoEntrega;
 
-        return self::class;
+        
     }
 
     /**
@@ -61,7 +61,7 @@ class PedidosDTO
     {
         self::$totalProduto = $totalProduto;
 
-        return self::class;
+        
     }
 
     /**
@@ -81,7 +81,7 @@ class PedidosDTO
     {
         self::$totalPreco = $totalPreco;
 
-        return self::class;
+        
     }
 
     /**
@@ -101,7 +101,7 @@ class PedidosDTO
     {
         self::$dataEnvio = $dataEnvio;
 
-        return self::class;
+        
     }
 
     /**
@@ -121,7 +121,7 @@ class PedidosDTO
     {
         self::$dataEntrega = $dataEntrega;
 
-        return self::class;
+        
     }
 
     /**
@@ -141,7 +141,7 @@ class PedidosDTO
     {
         self::$statusPagamento = $statusPagamento;
 
-        return self::class;
+        
     }
 
     /**
@@ -161,7 +161,7 @@ class PedidosDTO
     {
         self::$fk_usuarios_codUsuario = $fk_usuarios_codUsuario;
 
-        return self::class;
+        
     }
 
     /**
@@ -181,6 +181,6 @@ class PedidosDTO
     {
         self::$fk_usuarios_codCliente = $fk_usuarios_codCliente;
 
-        return self::class;
+        
     }
 }

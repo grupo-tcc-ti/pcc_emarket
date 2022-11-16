@@ -20,8 +20,6 @@ class ProdutosDTO
     public static function setCodProduto($codProduto)
     {
         self::$codProduto = $codProduto;
-
-        return self::class;
     }
 
     /**
@@ -40,8 +38,6 @@ class ProdutosDTO
     public static function setNome($nome)
     {
         self::$nome = $nome;
-
-        return self::class;
     }
 
     /**
@@ -60,8 +56,6 @@ class ProdutosDTO
     public static function setDescricao($descricao)
     {
         self::$descricao = $descricao;
-
-        return self::class;
     }
 
     /**
@@ -80,8 +74,6 @@ class ProdutosDTO
     public static function setDetalhes($detalhes)
     {
         self::$detalhes = $detalhes;
-
-        return self::class;
     }
 
     /**
@@ -100,8 +92,6 @@ class ProdutosDTO
     public static function setPreco($preco)
     {
         self::$preco = $preco;
-
-        return self::class;
     }
 
     /**
@@ -120,7 +110,5 @@ class ProdutosDTO
     public static function setImage($image)
     {
         self::$image = $image;
-
-        return self::class;
     }
 }

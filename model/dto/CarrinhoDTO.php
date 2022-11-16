@@ -21,7 +21,7 @@ class CarrinhoDTO
     {
         self::$codCarrinho = $codCarrinho;
 
-        return self::class;
+        
     }
 
     /**
@@ -41,7 +41,7 @@ class CarrinhoDTO
     {
         self::$quantidade = $quantidade;
 
-        return self::class;
+        
     }
 
     /**
@@ -61,7 +61,7 @@ class CarrinhoDTO
     {
         self::$fk_usuarios_codUsuario = $fk_usuarios_codUsuario;
 
-        return self::class;
+        
     }
 
     /**
@@ -81,7 +81,7 @@ class CarrinhoDTO
     {
         self::$fk_usuarios_codCliente = $fk_usuarios_codCliente;
 
-        return self::class;
+        
     }
 
     /**
@@ -101,6 +101,6 @@ class CarrinhoDTO
     {
         self::$fk_produtos_codProduto = $fk_produtos_codProduto;
 
-        return self::class;
+        
     }
 }
