@@ -9,7 +9,7 @@ class MensagensDTO
     public static function getCodMensagem()
     {
         return self::$codMensagem;
-    }
+    } 
 
     /**
      * Set the value of codMensagem

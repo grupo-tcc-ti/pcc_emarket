@@ -8,7 +8,7 @@ class PedidosDTO
      * Get the value of codPedido
      */ 
     public function getCodPedido()
-    {
+    { 
         return self::$codPedido;
     }
 

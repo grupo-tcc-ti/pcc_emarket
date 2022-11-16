@@ -7,7 +7,7 @@ class CarrinhoDTO
     /**
      * Get the value of codCarrinho
      */ 
-    public static function getCodCarrinho()
+    public static function getCodCarrinho() 
     {
         return self::$codCarrinho;
     }

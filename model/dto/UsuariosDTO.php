@@ -11,7 +11,7 @@ class UsuariosDTO
     {
         return self::$codUsuario;
     }
-
+ 
     /**
      * Set the value of codUsuario
      *

@@ -87,7 +87,7 @@ class ProdutosDTO
     /**
      * Set the value of preco
      *
-     * @return self
+     * @return self 
      */ 
     public static function setPreco($preco)
     {
