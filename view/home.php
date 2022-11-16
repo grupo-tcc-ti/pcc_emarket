@@ -14,28 +14,13 @@
 <!DOCTYPE html>
 <html lang="pt-br, en">
   <head>
-    <!-- <meta charset="UTF-8" />
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="shortcut icon" href="../image/favicon.ico"
-      type="../image/x-icon"/>
-    <script src="https://kit.fontawesome.com/5e9d92adc0.js"
-      crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
-      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-      crossorigin="anonymous"> </script> -->
     <?php require_once Path_Locale::head();?>
     <link rel="stylesheet" href="../css/home.css" />
-    <!-- <title>Emarket</title> -->
     <title><?php echo $pageTitle;?></title>
   </head>
 
   <?php require_once Path_Locale::user_header();?>
   <body>
-
     <section>
       <div class="slider">
         <div class="slide active">
@@ -68,114 +53,107 @@
     </section>
 
     <?php 
-      // var_dump($_GET['str']);
-      if (!isset($_GET['str']) && !isset($_GET['category'])) {
-    ?>
+    if (!isset($_GET['str']) && !isset($_GET['category'])) {
+        ?>
 
     <div id="overlay">
-      <main id="all-container">
-        <!-- <div class="swiper products-slider">
-      <div class="swiper-wrapper"> -->
-        <section class="container-prod">
-          <div class="list-cards">
-            <?php
-                $fetch_produto = ProdutosDAO::listarProdutos();
-            if (count($fetch_produto) > 0) {
-                foreach ( $fetch_produto as $prod ) {
-                    $prodimg = explode(",", $prod['image']);
-                    $preco = number_format(($prod['preco'] / 12), 2, ',', '.');
-                    ?>
-            <div class="cards-items">
-              <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
-              <a
-                href="espiar_produto.php?id=<?php echo $prod['codProduto']; ?>"
-                class="fas fa-eye"
-              ></a>
-              <a
-              title="<?php echo $prod['nome']; ?>"
-              href="../view/page.php/<?php echo $prod['nome']; ?>">
-                <img
-                src="<?php echo $prodimg[0]; ?>"
-                alt=""
-                class="products-imgs"
-                />
-              </a>
-              
-              <a
-              title="<?php echo $prod['nome']; ?>"
-              href="../view/page.php/<?php echo $prod['nome']; ?>">
-                <div class="products-name">
-                  <?php echo $prod['nome']; ?>
-                </div>
-              </a>
-              
-              <div class="cards-price">
-                <div class="old-price">
-                  de 
-                  <em><?php echo $preco;?></em> por:
-                </div>
-                <div class="price">
-                  R$ <?php echo $preco;?>
-                  <span> à vista</span>
-                <div class="price-opt">
-                  <small>ou em 12x de R$
-                  <?php echo $preco;?>
-                  <i>sem juros</i>
-                  </small>
-                  <!-- ou em 12x de R$<php echo ($prod['preco'] / $prod['max_prest']); ?> <i>sem juros</i> -->
-                </div>
-                </div>
-              </div>
-
-              <!-- <form action="" method="post">
-              <input type="hidden" name="id" value="<php echo $prod['codProduto']; ?>"></input>
-              <input type="number" name="qty" id="" class="qty"
-              min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
-              <input type="submit" value="Adicionar ao Carrinho"
-              name="add_carrinho" class="buy-btn">
-            </form> -->
-
-              <!-- <div class="buy-btn">
-                <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
-              </div> -->
-              
-            </div>
-          
-            <?php
-                  }
-              } 
-              else {
-                // só por enquanto
-                $error[] = 'Nenhum produto foi encontrado!';
-                $error[] = '../image/error/th-1517709978.jpg';
-                $error[] = 'Não se preocupe estamos trabalhando nisso!';
-              }
-            } else if (isset($_GET['str']) || isset($_GET['category'])) {
-                require_once '../view/page.php';
-            } else if (empty($_GET['str']) || empty($_GET['category'])) {
-              $error[] = 'Talvez o que você procura não esteja aqui. <br> talvez...!';
-            }
-            ?>
-          </div>
-          <!-- <div class="swiper-pagination"></div>
-            </div>
-          </div> -->
-        </section>
-      </main>
-    </div>
-    
+    <main id="all-container">
+    <!-- <div class="swiper products-slider">
+    <div class="swiper-wrapper"> -->
+    <section class="container-prod">
+    <div class="list-cards">
     <?php
-      echo '<div class="thrown-error">';
-        if (isset($error)) {
-          foreach ($error as $obj) {
-            if (str_contains($obj, '/image')) {
-              echo ' <p class="vazio"><img src="'.$obj.'" alt=""></p> ';
-            } else {
-              echo ' <p class="vazio">'.$obj.'</p> ';
-            }
-          }
+        $fetch_produto = ProdutosDAO::listarProdutos();
+      if (count($fetch_produto) > 0) {
+        foreach ( $fetch_produto as $prod ) { 
+          $prodimg = explode(",",$prod['image']);
+          $preco = number_format(($prod['preco'] / 12), 2,',', '.');
+          // $prod['max_prest'];
+    ?>
+      <div class="cards-items">
+        <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
+        <a
+          href="espiar_produto.php?id=<?php echo $prod['codProduto']; ?>"
+          class="fas fa-eye"
+        ></a>
+        <a
+          title="<?php echo $prod['nome']; ?>"
+          href="../view/page.php/<?php echo $prod['nome']; ?>"
+        >
+          <img
+            src="<?php echo $prodimg[0]; ?>"
+            alt=""
+            class="products-imgs"
+          />
+        </a>
+
+        <a
+          title="<?php echo $prod['nome']; ?>"
+          href="../view/page.php/<?php echo $prod['nome']; ?>"
+        >
+          <div class="products-name">
+            <?php echo $prod['nome']; ?>
+          </div>
+        </a>
+
+        <div class="cards-price">
+          <div class="old-price">
+            de <em><?php echo $preco;?></em> por: 
+          </div>
+          <div class="price">
+            R$ <?php echo $preco;?>
+            <span> à vista</span>
+            <div class="price-opt">
+              <small> ou em 12x de R$ <?php echo $preco;?> <i>sem juros</i> </small>
+            </div>
+          </div>
+        </div>
+
+        <!-- <form action="" method="post">
+        <input type="hidden" name="id" value="<php echo $prod['codProduto']; ?>"></input>
+        <input type="number" name="qty" id="" class="qty"
+        min="1" max="99" onkeypress="if(this.value> 2) return false;" value="1">
+        <input type="submit" value="Adicionar ao Carrinho"
+        name="add_carrinho" class="buy-btn">
+      </form> -->
+
+        <!-- <div class="buy-btn">
+          <a value="Comprar" name="add_carrinho">Adicionar ao Carrinho</a>
+        </div> -->
+      </div>
+
+  <?php
         }
-      echo '</div>';
+      } else {
+        // só por enquanto
+        $error[] = 'Nenhum produto foi encontrado!';
+        $error[] = '../image/error/th-1517709978.jpg';
+        $error[] = 'Não se preocupe estamos trabalhando nisso!';
+      }
+    } else if (isset($_GET['str']) || isset($_GET['category'])) {
+      include_once '../view/page.php';
+    } else if (empty($_GET['str']) || empty($_GET['category'])) {
+      $error[] = 'Talvez o que você procura não esteja aqui. <br> talvez...!';
+    } 
+  ?>
+    </div>
+    <!-- <div class="swiper-pagination"></div>
+    </div>
+    </div> -->
+    </section>
+    </main>
+    </div>
+
+    <?php
+    if (isset($error)) {
+        echo '<div class="thrown-error">'; foreach ($error as $obj) { 
+          if (str_contains($obj, '/image')) {
+              echo ' <p class="vazio"><img src="'.$obj.'" alt="" /></p> '; 
+          } else {
+              echo ' <p class="vazio">'.$obj.'</p> '; 
+          } 
+      } echo '</div>'; 
+    } 
     ?>
 
     <?php require_once '../view/footer.html';?>
