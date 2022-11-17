@@ -69,7 +69,7 @@
       if (count($fetch_produto) > 0) {
         foreach ( $fetch_produto as $prod ) { 
           $prodimg = explode(",",$prod['image']);
-          $preco = number_format(($prod['preco'] / 12), 2,',', '.');
+          $preco = number_format($prod['preco'], 2,',', '.');
           // $prod['max_prest'];
     ?>
       <div class="cards-items">
@@ -108,10 +108,17 @@
             de <em><?php echo $preco;?></em> por: 
           </div>
           <div class="price">
-            R$ <?php echo $preco;?>
+            R$ <?php 
+
+            $new_price = ($prod['preco'] * 0.90);
+            // var_dump($new_price);
+            // $new_price = number_format($new_price, 2,',', '.');
+            echo number_format($new_price, 2,',', '.');
+            ?>
             <span> à vista</span>
             <div class="price-opt">
-              <small> ou em 12x de R$ <?php echo $preco;?> <i>sem juros</i> </small>
+              <!-- <small> ou em 12x de R$ <php echo ($new_price / 12);?> <i>sem juros</i> </small> -->
+              <small> ou em 12x de R$ <?php echo number_format($new_price / 12, 2,',', '.');?> <i>sem juros</i> </small>
             </div>
           </div>
         </div>
