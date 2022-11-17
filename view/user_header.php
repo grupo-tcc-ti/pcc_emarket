@@ -28,7 +28,7 @@
           <i class="fas fa-bars norm"></i>
         </button>
         <nav id="depart" class="dropdown-content">
-          <ul class="cat cat-main">
+          <!-- <ul class="cat cat-main">
             <li class="cat-li"><a href="<?php echo $_SERVER['PHP_SELF'];?>?category=Promoções">Promoções</a></li>
             <li class="cat-li"><a href="<?php echo $_SERVER['PHP_SELF'];?>?category=Kit Upgrade">Kit Upgrade</a></li>
             <li class="cat-li"><a href="<?php echo $_SERVER['PHP_SELF'];?>?category=Cabos e Acessórios">Cabos e Acessórios</a></li>
@@ -40,21 +40,23 @@
             <li class="cat-li"><a href="<?php echo $_SERVER['PHP_SELF'];?>?category=Diversos">Diversos</a></li>
             <li class="cat-li"><a href="<?php echo $_SERVER['PHP_SELF'];?>?category=Processador">Processador</a></li>
             <li class="cat-li"><a href="<?php echo $_SERVER['PHP_SELF'];?>?category=Placa de Vídeo">Placa de Vídeo</a></li>
-          </ul>
+          </ul> -->
           <!-- <form action="../view/categoria.php" method="get"> -->
-          <!-- <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get"> 
-            <input type="submit" name="str" value="Promoções">
-            <input type="submit" name="str" value="Kit Upgrade">
-            <input type="submit" name="str" value="Cabos e Acessórios">
-            <input type="submit" name="str" value="PC Gamer">
-            <input type="submit" name="str" value="Hardware">
-            <input type="submit" name="str" value="Periféricos">
-            <input type="submit" name="str" value="Gabinetes">
-            <input type="submit" name="str" value="Refrigeração">
-            <input type="submit" name="str" value="Diversos">
-            <input type="submit" name="str" value="Processador">
-            <input type="submit" name="str" value="Placa de Vídeo">
-          </form> -->
+          <div class="nav-wrapper">
+            <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="get">
+                <input type="submit" name="str" value="Promoções">
+                <input type="submit" name="str" value="Kit Upgrade">
+                <input type="submit" name="str" value="Cabos e Acessórios">
+                <input type="submit" name="str" value="PC Gamer">
+                <input type="submit" name="str" value="Hardware">
+                <input type="submit" name="str" value="Periféricos">
+                <input type="submit" name="str" value="Gabinetes">
+                <input type="submit" name="str" value="Refrigeração">
+                <input type="submit" name="str" value="Diversos">
+                <input type="submit" name="str" value="Processador">
+                <input type="submit" name="str" value="Placa de Video">
+            </form>
+        </div>
         </nav>
       </div>
     </div>
