@@ -427,8 +427,6 @@ footer.container .credit span {
   }
 }
 
-
-
 @media (max-width: 980px) {
   html {
     font-size: 60%;
@@ -454,6 +452,7 @@ footer.container .credit span {
 
 /* ########################## Color Scheme ########################## */
 /* Só funciona se tiver âmbas color-schemes */
+
 @media (prefers-color-scheme: light) {
   :root, :root.light {
     --font-color: #1f1f1f;
@@ -479,6 +478,7 @@ footer.container .credit span {
   --box-shadow: 1px 1px 4px 0px #c7c7c7;
   --input-color: #d3d3d3;
 }
+
 
 .dropdown .dropdown-content-cart {
   display: none;

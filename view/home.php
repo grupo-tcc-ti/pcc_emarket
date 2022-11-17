@@ -16,6 +16,8 @@
   <head>
     <?php require_once Path_Locale::head();?>
     <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/quickview.css" />
+    <script src="../js/script.js"></script>
     <title><?php echo $pageTitle;?></title>
   </head>
 
@@ -72,10 +74,15 @@
     ?>
       <div class="cards-items">
         <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
-        <a
-          href="espiar_produto.php?id=<?php echo $prod['codProduto']; ?>"
+        <!-- <a
+          href="espiar_produto.php?id=<php echo $prod['codProduto']; ?>"
           class="fas fa-eye"
-        ></a>
+        ></a> -->
+        <button
+          id="peek-prod"
+          onclick="return peekProd();"
+        ><i class="fas fa-eye"></i>
+      </button>
         <a
           title="<?php echo $prod['nome']; ?>"
           href="../view/page.php/<?php echo $prod['nome']; ?>"
@@ -145,6 +152,9 @@
     </div>
 
     <?php
+
+    require_once '../view/quickview.php';
+
     if (isset($error)) {
         echo '<div class="thrown-error">'; foreach ($error as $obj) { 
           if (str_contains($obj, '/image')) {
@@ -160,7 +170,6 @@
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
-    <script src="../js/script.js"></script>
 
     <!-- <script>
     var swiper = new Swiper(".home-slider", {

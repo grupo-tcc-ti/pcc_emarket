@@ -17,19 +17,6 @@ const qrySA = (selector) =>
     },
   };
 
-function clickDrop(idname = '') {
-  qryS(`#${idname}`).classList.toggle('active');
-  if (qryS('.dropdown-content').id != `#${idname}`) {
-    // let dropdowns = qrySA(`nav:not(#${idname}).dropdown-content`);
-    let dropdowns = qrySA(`nav:not(#${idname})`);
-    dropdowns.forEach((openDropdown) => {
-      if (openDropdown.classList.contains('active')) {
-        openDropdown.classList.remove('active');
-      }
-    });
-  }
-}
-
 window.onclick = function (event) {
   if (!event.target.matches('.isearch')) {
     if (!event.target.matches('.btn')) {
@@ -46,7 +33,35 @@ window.onclick = function (event) {
       }
     }
   }
+
+  // Toggle dark-mode function
+  if (event.target.matches('#darkmode')) {
+  mode = window?.matchMedia('(prefers-color-scheme: dark)');
+  html = document.documentElement;
+  if (html.classList.contains('light')) {
+    // console.log('dont succumb to darkness...');
+    html.classList.remove('light');
+    html.classList.add('dark');
+  } else if (html.classList.contains('dark')) {
+    // console.log('let there be light!');
+    html.classList.remove('dark');
+    html.classList.add('light');
+  } else {
+    if (mode.matches) {
+      html.classList.add('light');
+    } else {
+      html.classList.add('dark');
+    }
+  }
+  }
 };
+
+var mode = window?.matchMedia('(prefers-color-scheme: dark)');
+mode.addEventListener('change', () => {
+  var html = document.documentElement;
+  html.classList.remove('light');
+  html.classList.remove('dark');
+})
 
 window.onscroll = () => {
   let dropdowns = qrySA('.dropdown-content');
@@ -72,6 +87,19 @@ window.addEventListener('resize', () => {
     }
   }
 });
+
+function clickDrop(idname = '') {
+  qryS(`#${idname}`).classList.toggle('active');
+  if (qryS('.dropdown-content').id != `#${idname}`) {
+    // let dropdowns = qrySA(`nav:not(#${idname}).dropdown-content`);
+    let dropdowns = qrySA(`nav:not(#${idname})`);
+    dropdowns.forEach((openDropdown) => {
+      if (openDropdown.classList.contains('active')) {
+        openDropdown.classList.remove('active');
+      }
+    });
+  }
+}
 /* ######################Funçao do departamento na barra: starts###################### */
 function changeIconDepartamento(anchor) {
   anchor.closest('.dropdown').classList.toggle('active');
@@ -232,27 +260,12 @@ function closeMessage(msg) {
   }, 1000);
 }
 
-// Toggle dark-mode function
-const darkBtn = qryS('#darkmode');
-darkBtn.addEventListener('click', () => {
-  mode = window?.matchMedia('(prefers-color-scheme: dark)');
-  html = document.documentElement;
-  if (html.classList.contains('light')) {
-    // console.log('dont succumb to darkness...');
-    html.classList.remove('light');
-    html.classList.add('dark');
-  } else if (html.classList.contains('dark')) {
-    // console.log('let there be light!');
-    html.classList.remove('dark');
-    html.classList.add('light');
-  } else {
-    if (mode.matches) {
-      html.classList.add('light');
-    } else {
-      html.classList.add('dark');
-    }
-  }
-});
+function peekProd() {
+  var quickview = qryS('.quickview');
+  quickview.classList.toggle('active');
+}
+
+
 
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--background-color'));
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--font-color'));

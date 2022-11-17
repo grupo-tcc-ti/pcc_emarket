@@ -13,7 +13,7 @@ class Message
                 echo '
                 <div class="mensagem">
                 <span>'.$mensagem.'</span>
-                <i class="fas fa-times" onclick = "closeMessage(this);"></i>
+                <i class="fas fa-times" onclick="closeMessage(this);"></i>
                 </div>
                 ';
                 sleep(1);
