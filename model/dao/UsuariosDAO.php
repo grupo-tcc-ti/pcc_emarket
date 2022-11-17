@@ -156,6 +156,158 @@ class UsuariosDAO
         }
     }
     //
+
+    public static function alterarUsuario2($usuarioDAO, UsuariosDTO $updateData)
+    {
+        $conn = self::connect();
+
+        $nomeAtual    = $usuarioDAO["nome"];
+        $emailAtual   = $usuarioDAO["email"];
+        $senhaAtual   = $usuarioDAO["senha"];
+
+        $novoUsuario = filter_var($updateData->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $novoEmail   = filter_var($updateData->getEmail(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        var_dump($usuarioDAO);
+        var_dump($updateData);
+
+        $senhaAtualDigitada = MD5( $updateData->getSenha()['atual']);
+        $senhaNova          = MD5( $updateData->getSenha()['nova'] );
+        $senhaNovaConfirma  = MD5( $updateData->getSenha()['confirma'] );
+
+        if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'admin' ) {
+            $columnName = 'codAdmin';
+            $user_id = filter_var($usuarioDAO['codAdmin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        else if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'cliente' ) {
+            $columnName = 'codCliente' ;
+            $user_id = filter_var($usuarioDAO['codCliente'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+
+        // $campo_vazio = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'; //sha1 vazio
+        $campo_vazio = 'd41d8cd98f00b204e9800998ecf8427e'; //md5 vazio
+
+        if ( empty( $senhaAtualDigitada ) || $senhaAtualDigitada == $campo_vazio ) {
+            Message::pop("Por favor insira a sua senha atual!");
+        } else if ( $senhaAtual != $senhaAtualDigitada ) {
+            Message::pop("A senha atual está incorreta!");
+        } else if ( $senhaAtualDigitada == $senhaNova ) {
+            Message::pop("A senha atual é a mesma da nova!");
+        } else if ( $senhaNova != $senhaNovaConfirma ) {
+            Message::pop("As novas senhas não coincidem!");
+        } else {
+            if ( !empty( $novoUsuario ) && $novoUsuario != $nomeAtual ) {
+                $alterarUsuario = $conn->prepare( "UPDATE usuarios SET nome = ? WHERE ".$columnName." = ?" );
+                $alterarUsuario->execute( [$novoUsuario, $user_id] );
+            }
+
+            if ( !empty( $novoEmail ) && $novoEmail != $emailAtual ) {
+                $alterarUsuario = $conn->prepare( "UPDATE usuarios SET email = ? WHERE ".$columnName." = ?" );
+                $alterarUsuario->execute( [$novoEmail, $user_id] );
+            }
+
+            if ( !empty( $senhaNova ) && !empty( $senhaNovaConfirma ) && $senhaNova != $campo_vazio ) {
+                $alterar_senha = $conn->prepare( "UPDATE usuarios SET senha = ? WHERE ".$columnName." = ?" );
+                $alterar_senha->execute( [$senhaNova, $user_id] );
+            } else {
+                if ( !empty( $senhaNova ) && !empty( $senhaNovaConfirma ) && $senhaNova != $campo_vazio ) {
+                    Message::pop("Por favor insira uma nova senha!");
+                }
+            }
+    
+
+            Message::pop("Seus dados foram alterados com sucesso!");
+
+            Sleep( 1 );
+            //header( "Refresh:0" );
+
+            if ($usuarioDAO['user_type'] == 'admin') {
+                Redirect::page('admin_contas.php', 2);
+            } else {
+                Redirect::page('../view/minha_conta.php', 2);
+            }
+        }
+    }
+
+    public static function alterarUsuario3($usuarioDAO, UsuariosDTO $updateData)
+    {
+        $conn = self::connect();
+
+        $cidadeAtual    = $usuarioDAO["cidade"];
+        $bairroAtual   = $usuarioDAO["logradouro"];
+        $numeroAtual   = $usuarioDAO["numero"];
+        $cepAtual   = $usuarioDAO["cep"];
+        $telefoneAtual   = $usuarioDAO["telefone"];
+        $cpfAtual   = $usuarioDAO["cpf"];
+        $rgAtual   = $usuarioDAO["rg"];
+
+        $novoCidade = filter_var($updateData->getCidade(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $novoBairro  = filter_var($updateData->getLogradouro(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $novoNumero  = filter_var($updateData->getNumero(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $novoCep  = filter_var($updateData->getCep(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $novoTelefone  = filter_var($updateData->getTelefone(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $novoCPF  = filter_var($updateData->getCpf(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $novoRG = filter_var($updateData->getRg(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        var_dump($cidadeAtual);
+        var_dump($novoCidade);
+
+        if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'admin' ) {
+            $columnName = 'codAdmin';
+            $user_id = filter_var($usuarioDAO['codAdmin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+        else if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'cliente' ) {
+            $columnName = 'codCliente' ;
+            $user_id = filter_var($usuarioDAO['codCliente'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        }
+
+        if ( !empty( $novoCidade ) && $novoCidade != $cidadeAtual ) {
+            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET cidade = ? WHERE ".$columnName." = ?" );
+            $alterarUsuario->execute( [$novoCidade, $user_id] );
+        }
+
+        if ( !empty( $novoBairro ) && $novoBairro != $bairroAtual ) {
+            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET logradouro = ? WHERE ".$columnName." = ?" );
+            $alterarUsuario->execute( [$novoBairro, $user_id] );
+        }
+
+        if ( !empty( $novoNumero ) && $novoNumero != $numeroAtual ) {
+            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET numero = ? WHERE ".$columnName." = ?" );
+            $alterarUsuario->execute( [$novoNumero, $user_id] );
+        }
+
+        if ( !empty( $novoCep ) && $novoCep != $cepAtual ) {
+            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET cep = ? WHERE ".$columnName." = ?" );
+            $alterarUsuario->execute( [$novoCep, $user_id] );
+        }
+
+        if ( !empty( $novoTelefone ) && $novoTelefone != $telefoneAtual ) {
+            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET telefone = ? WHERE ".$columnName." = ?" );
+            $alterarUsuario->execute( [$novoTelefone, $user_id] );
+        }
+
+        if ( !empty( $novoCPF ) && $novoCPF != $cpfAtual ) {
+            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET cpf = ? WHERE ".$columnName." = ?" );
+            $alterarUsuario->execute( [$novoCPF, $user_id] );
+        }
+
+        if ( !empty( $novoRG ) && $novoRG != $rgAtual ) {
+            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET rg = ? WHERE ".$columnName." = ?" );
+            $alterarUsuario->execute( [$novoRG, $user_id] );
+        }
+
+        Message::pop("Seus dados foram alterados com sucesso!");
+
+        Sleep( 2 );
+        //header( "Refresh:0" );
+
+        if ($usuarioDAO['user_type'] == 'admin') {
+            Redirect::page('admin_contas.php', 2);
+        } else {
+            Redirect::page('../view/minha_conta.php', 2);
+        }
+    }
+
     public static function alterarUsuario( $usuarioDAO, UsuariosDTO $updateData )
     {
         try {

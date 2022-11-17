@@ -4,14 +4,16 @@ if (!isset($pdo)) {
 }
 require_once '../model/dao/UsuariosDAO.php';
 require_once '../model/dto/UsuariosDTO.php';
-if (isset($_POST['submit'])) {
 
-    $usuarioDAO = UsuariosDAO::getUserByID(
-        $user_id['type'],
-        $user_id['id']
-    );
-    $updateData = new UsuariosDTO();
-    // $updateData->setNome($_POST["nome"]);
+$usuarioDAO = UsuariosDAO::getUserByID(
+    $user_id['type'],
+    $user_id['id']
+);
+
+$updateData = new UsuariosDTO();
+
+if (isset($_POST['update_conta'])) {
+   
     (isset($_POST["usuario"]))?$updateData->setNome($_POST["usuario"]):'';
     (isset($_POST["email"]))?$updateData->setEmail($_POST["email"]):'';
     $updateData->setSenha(
@@ -22,13 +24,19 @@ if (isset($_POST['submit'])) {
     );
 
     // UsuariosDAO::alterarUsuario($usuarioDAO, $updateData);
-    $user = UsuariosDAO::alterarUsuario($usuarioDAO, $updateData);
-    if (isset($user)) {
-        if ($updateData->getUser_type() == 'admin') {
-            Redirect::page('admin_contas.php', 2);
-        } else {
-            Redirect::page('../view/minha_conta.php', 2);
-        }
-    }
+    $user = UsuariosDAO::alterarUsuario2($usuarioDAO, $updateData);
+}
+
+if (isset($_POST['update_addr'])) {
+
+    (isset($_POST["cidade"])) ? $updateData->setCidade($_POST["cidade"]) : '';
+    (isset($_POST["bairro"])) ? $updateData->setLogradouro($_POST["bairro"]) : '';
+    (isset($_POST["numero"])) ? $updateData->setNumero($_POST["numero"]) : '';
+    (isset($_POST["cep"])) ? $updateData->setCep($_POST["cep"]) : '';
+    (isset($_POST["telefone"])) ? $updateData->setTelefone($_POST["telefone"]) : '';
+    (isset($_POST["CPF"])) ? $updateData->setCpf($_POST["CPF"]) : '';
+    (isset($_POST["RG"])) ? $updateData->setRg($_POST["RG"]) : '';
+
+    UsuariosDAO::alterarUsuario3($usuarioDAO, $updateData);
 }
 ?>

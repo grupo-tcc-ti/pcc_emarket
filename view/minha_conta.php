@@ -89,7 +89,7 @@
                   </div>
                 </div>
                 <hr class="my-4">
-                <input type="submit" class="submitButton" value="Salvar" name="submit" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
+                <input type="submit" class="submitButton" name="update_conta" value="Salvar" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
               </div>
             </form>
           </div>
@@ -282,7 +282,7 @@
                   </div>
 
                   <hr class="my-4">
-                <input type="submit" class="submitButton" value="Salvar" name="submit" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
+                <input type="submit" class="submitButton" name="update_addr" value="Salvar" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
                 </div>
                </div>
             </form>
