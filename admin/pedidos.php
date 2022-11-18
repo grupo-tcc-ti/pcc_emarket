@@ -51,6 +51,7 @@ if (isset($_POST['deletar_pedido'])) {
         <!-- <div class="box-container"> -->
         <?php
         $fetch_pedido = PedidosDAO::listarPedidos();
+        // var_dump($fetch_pedido[0]); //debug
         if (count($fetch_pedido) > 0) {
             foreach ($fetch_pedido as $pedido) {
         ?>
@@ -82,7 +83,7 @@ if (isset($_POST['deletar_pedido'])) {
             <div class="itemfield">
                 <span class="title">Endereco</span>
                 <p class="box">
-                    <?php echo $pedido['endereco']; ?>
+                    <?php echo $pedido['fullAddress']; ?>
                 </p>
             </div>
             <div class="itemfield">

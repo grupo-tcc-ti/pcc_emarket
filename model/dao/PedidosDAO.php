@@ -21,11 +21,15 @@ class PedidosDAO
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            // $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = :status");
-            $qry = ("SELECT * FROM `pedidos`
-            LEFT JOIN `usuarios`
-            ON `pedidos`.fk_usuarios_codCliente = `usuarios`.codCliente;
-            ORDER BY `pedidos`.statusPagamento ASC");
+            $qry = ("SELECT *
+            FROM `pedidos` pd
+            LEFT JOIN (
+                SELECT *, CONCAT(cidade, ', ', endereco, ', Número: ', numero, ', ', complemento, ' - ', estado) AS fullAddress
+                FROM `usuarios`
+                WHERE codCliente > 0
+            ) usr
+            ON pd.fk_usuarios_codCliente = usr.codCliente
+            ORDER BY pd.statusPagamento ASC");
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
             return $select_->fetchAll(PDO::FETCH_ASSOC);
