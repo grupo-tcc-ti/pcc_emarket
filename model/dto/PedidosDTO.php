@@ -3,184 +3,129 @@ class PedidosDTO
 {
     protected static $codPedido, $tipoEntrega, $totalProduto, $totalPreco, $dataEnvio, $dataEntrega, $statusPagamento, $fk_usuarios_codUsuario, $fk_usuarios_codCliente;
 
-
-    /**
-     * Get the value of codPedido
-     */ 
-    public function getCodPedido()
-    { 
-        return self::$codPedido;
-    }
-
-    /**
-     * Set the value of codPedido
-     *
-     * @return self
-     */ 
-    public function setCodPedido($codPedido)
-    {
-        self::$codPedido = $codPedido;
-
-        
-    }
-
-    /**
-     * Get the value of tipoEntrega
-     */ 
-    public function getTipoEntrega()
-    {
-        return self::$tipoEntrega;
-    }
-
-    /**
-     * Set the value of tipoEntrega
-     *
-     * @return self
-     */ 
-    public function setTipoEntrega($tipoEntrega)
-    {
-        self::$tipoEntrega = $tipoEntrega;
-
-        
-    }
-
-    /**
-     * Get the value of totalProduto
-     */ 
-    public function getTotalProduto()
-    {
-        return self::$totalProduto;
-    }
-
-    /**
-     * Set the value of totalProduto
-     *
-     * @return self
-     */ 
-    public function setTotalProduto($totalProduto)
-    {
-        self::$totalProduto = $totalProduto;
-
-        
-    }
-
-    /**
-     * Get the value of totalPreco
-     */ 
-    public function getTotalPreco()
-    {
-        return self::$totalPreco;
-    }
-
-    /**
-     * Set the value of totalPreco
-     *
-     * @return self
-     */ 
-    public function setTotalPreco($totalPreco)
-    {
-        self::$totalPreco = $totalPreco;
-
-        
-    }
-
-    /**
-     * Get the value of dataEnvio
-     */ 
-    public function getDataEnvio()
-    {
-        return self::$dataEnvio;
-    }
-
-    /**
-     * Set the value of dataEnvio
-     *
-     * @return self
-     */ 
-    public function setDataEnvio($dataEnvio)
-    {
-        self::$dataEnvio = $dataEnvio;
-
-        
-    }
-
-    /**
-     * Get the value of dataEntrega
-     */ 
-    public function getDataEntrega()
-    {
-        return self::$dataEntrega;
-    }
-
-    /**
-     * Set the value of dataEntrega
-     *
-     * @return self
-     */ 
-    public function setDataEntrega($dataEntrega)
-    {
-        self::$dataEntrega = $dataEntrega;
-
-        
-    }
-
-    /**
-     * Get the value of statusPagamento
-     */ 
-    public function getStatusPagamento()
-    {
-        return self::$statusPagamento;
-    }
-
-    /**
-     * Set the value of statusPagamento
-     *
-     * @return self
-     */ 
-    public function setStatusPagamento($statusPagamento)
-    {
-        self::$statusPagamento = $statusPagamento;
-
-        
-    }
-
-    /**
-     * Get the value of fk_usuarios_codUsuario
-     */ 
-    public function getFk_usuarios_codUsuario()
-    {
-        return self::$fk_usuarios_codUsuario;
-    }
-
-    /**
-     * Set the value of fk_usuarios_codUsuario
-     *
-     * @return self
-     */ 
-    public function setFk_usuarios_codUsuario($fk_usuarios_codUsuario)
-    {
-        self::$fk_usuarios_codUsuario = $fk_usuarios_codUsuario;
-
-        
-    }
-
-    /**
-     * Get the value of fk_usuarios_codCliente
-     */ 
-    public function getFk_usuarios_codCliente()
-    {
-        return self::$fk_usuarios_codCliente;
-    }
-
-    /**
-     * Set the value of fk_usuarios_codCliente
-     *
-     * @return self
-     */ 
-    public function setFk_usuarios_codCliente($fk_usuarios_codCliente)
-    {
-        self::$fk_usuarios_codCliente = $fk_usuarios_codCliente;
-
-        
-    }
+	/**
+	 * @return mixed
+	 */
+	public static function getCodPedido() {
+		return self::$codPedido;
+	}
+	
+	/**
+	 * @param mixed $codPedido 
+	 */
+	public static function setCodPedido($codPedido) {
+		self::$codPedido = $codPedido;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getTipoEntrega() {
+		return self::$tipoEntrega;
+	}
+	
+	/**
+	 * @param mixed $tipoEntrega 
+	 */
+	public static function setTipoEntrega($tipoEntrega) {
+		self::$tipoEntrega = $tipoEntrega;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getTotalProduto() {
+		return self::$totalProduto;
+	}
+	
+	/**
+	 * @param mixed $totalProduto 
+	 */
+	public static function setTotalProduto($totalProduto) {
+		self::$totalProduto = $totalProduto;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getTotalPreco() {
+		return self::$totalPreco;
+	}
+	
+	/**
+	 * @param mixed $totalPreco 
+	 */
+	public static function setTotalPreco($totalPreco) {
+		self::$totalPreco = $totalPreco;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getDataEnvio() {
+		return self::$dataEnvio;
+	}
+	
+	/**
+	 * @param mixed $dataEnvio 
+	 */
+	public static function setDataEnvio($dataEnvio) {
+		self::$dataEnvio = $dataEnvio;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getDataEntrega() {
+		return self::$dataEntrega;
+	}
+	
+	/**
+	 * @param mixed $dataEntrega 
+	 */
+	public static function setDataEntrega($dataEntrega) {
+		self::$dataEntrega = $dataEntrega;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getStatusPagamento() {
+		return self::$statusPagamento;
+	}
+	
+	/**
+	 * @param mixed $statusPagamento 
+	 */
+	public static function setStatusPagamento($statusPagamento) {
+		self::$statusPagamento = $statusPagamento;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getFk_usuarios_codUsuario() {
+		return self::$fk_usuarios_codUsuario;
+	}
+	
+	/**
+	 * @param mixed $fk_usuarios_codUsuario 
+	 */
+	public static function setFk_usuarios_codUsuario($fk_usuarios_codUsuario) {
+		self::$fk_usuarios_codUsuario = $fk_usuarios_codUsuario;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getFk_usuarios_codCliente() {
+		return self::$fk_usuarios_codCliente;
+	}
+	
+	/**
+	 * @param mixed $fk_usuarios_codCliente 
+	 */
+	public static function setFk_usuarios_codCliente($fk_usuarios_codCliente) {
+		self::$fk_usuarios_codCliente = $fk_usuarios_codCliente;
+	}
 }

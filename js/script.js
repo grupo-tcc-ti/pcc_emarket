@@ -20,7 +20,6 @@ const qrySA = (selector) =>
 window.onclick = function (event) {
   if (!event.target.matches('.isearch')) {
     if (!event.target.matches('.btn')) {
-
       let dropdowns = qrySA('.dropdown-content');
       dropdowns.forEach((openDropdown) => {
         if (openDropdown.classList.contains('active')) {
@@ -36,23 +35,23 @@ window.onclick = function (event) {
 
   // Toggle dark-mode function
   if (event.target.matches('#darkmode')) {
-  mode = window?.matchMedia('(prefers-color-scheme: dark)');
-  html = document.documentElement;
-  if (html.classList.contains('light')) {
-    // console.log('dont succumb to darkness...');
-    html.classList.remove('light');
-    html.classList.add('dark');
-  } else if (html.classList.contains('dark')) {
-    // console.log('let there be light!');
-    html.classList.remove('dark');
-    html.classList.add('light');
-  } else {
-    if (mode.matches) {
+    mode = window?.matchMedia('(prefers-color-scheme: dark)');
+    html = document.documentElement;
+    if (html.classList.contains('light')) {
+      // console.log('dont succumb to darkness...');
+      html.classList.remove('light');
+      html.classList.add('dark');
+    } else if (html.classList.contains('dark')) {
+      // console.log('let there be light!');
+      html.classList.remove('dark');
       html.classList.add('light');
     } else {
-      html.classList.add('dark');
+      if (mode.matches) {
+        html.classList.add('light');
+      } else {
+        html.classList.add('dark');
+      }
     }
-  }
   }
 };
 
@@ -61,7 +60,7 @@ mode.addEventListener('change', () => {
   var html = document.documentElement;
   html.classList.remove('light');
   html.classList.remove('dark');
-})
+});
 
 window.onscroll = () => {
   let dropdowns = qrySA('.dropdown-content');
@@ -82,7 +81,7 @@ window.onscroll = () => {
 window.addEventListener('resize', () => {
   let searchbar = qryS('.nav-search');
   if (window.innerWidth > 1042) {
-    if (searchbar.classList.contains('active')){
+    if (searchbar.classList.contains('active')) {
       searchbar.classList.remove('active');
     }
   }
@@ -251,7 +250,6 @@ if (document.URL.includes('?register')) {
 }
 /* ###################### Login-Register script ends ######################*/
 
-
 // Close message baloon
 function closeMessage(msg) {
   msg.parentElement.classList.add('close');
@@ -264,8 +262,6 @@ function peekProd() {
   var quickview = qryS('.quickview');
   quickview.classList.toggle('active');
 }
-
-
 
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--background-color'));
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--font-color'));

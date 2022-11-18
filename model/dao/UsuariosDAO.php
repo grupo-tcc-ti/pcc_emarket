@@ -18,9 +18,6 @@ if (!isset($pdo)) {
      */
     include_once __DIR__ . '/../connect.php';
 }
-require_once __DIR__ . '/../dao/_UsuarioDAO.php';
-require_once __DIR__ . '/../dto/_UsuarioDTO.php';
-
 class UsuariosDAO
 {
     private static $pdo;
@@ -51,7 +48,7 @@ class UsuariosDAO
             }
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            return $select_->rowCount();
+            echo $select_->rowCount();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
@@ -67,10 +64,10 @@ class UsuariosDAO
             $select_->execute();
             $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
             return $usuarios;
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
-        
+
     }
     public static function listarUsuariosTipo($user = 'cliente')
     {
@@ -82,10 +79,10 @@ class UsuariosDAO
             $select_->execute();
             $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
             return $usuarios;
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
-        
+
     }
     //
     public static function getUserByID($type, $id)
@@ -94,20 +91,17 @@ class UsuariosDAO
             // $con = Connect::getInstance(); //renameit case fails
             if ($type == 'admin') {
                 $columnName = 'codAdmin';
-                $parseColumn = 'codCliente' ;
+                $parseColumn = 'codCliente';
+            } else {
+                $columnName = 'codCliente';
+                $parseColumn = 'codAdmin';
             }
-            else
-            {
-                $columnName = 'codCliente' ;
-                $parseColumn = 'codAdmin' ;
-            }
-            $qry = "SELECT * from `usuarios` WHERE ".$columnName." = :uid";
+            $qry = "SELECT * from `usuarios` WHERE " . $columnName . " = :uid";
             $select_ = self::connect()->prepare($qry);
             $select_->bindParam(':uid', $id);
             $select_->execute();
-            $usuario = $select_->fetch(PDO::FETCH_ASSOC);
-            return $usuario;
-        } catch ( PDOException $msg ) {
+            return $select_->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
     }
@@ -135,12 +129,12 @@ class UsuariosDAO
                     $qry_insert =
                         "INSERT INTO `usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`)
                         VALUES (:usuario, :email, :rpassword, :usertype, 0, FLOOR(5 + RAND()*(100-1)))"
-                    ;
+                        ;
                 } else if ($usertype == 'cliente') {
                     $qry_insert =
                         "INSERT INTO `usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`)
                         VALUES (:usuario, :email, :rpassword, :usertype, FLOOR(5 + RAND()*(100-1)), 0)"
-                    ;
+                        ;
                 }
                 $insert_ = self::connect()->prepare($qry_insert);
                 $insert_->bindParam(':usuario', $usuario);
@@ -148,7 +142,7 @@ class UsuariosDAO
                 $insert_->bindParam(':rpassword', $rpassword);
                 $insert_->bindValue(':usertype', $usertype);
                 Message::pop('Cadastro realizado com Sucesso!');
-                return $insert_->execute();
+                $insert_->execute();
             }
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
@@ -157,233 +151,125 @@ class UsuariosDAO
     }
     //
 
-    public static function alterarUsuario2($usuarioDAO, UsuariosDTO $updateData)
-    {
-        $conn = self::connect();
-
-        $nomeAtual    = $usuarioDAO["nome"];
-        $emailAtual   = $usuarioDAO["email"];
-        $senhaAtual   = $usuarioDAO["senha"];
-
-        $novoUsuario = filter_var($updateData->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $novoEmail   = filter_var($updateData->getEmail(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        var_dump($usuarioDAO);
-        var_dump($updateData);
-
-        $senhaAtualDigitada = MD5( $updateData->getSenha()['atual']);
-        $senhaNova          = MD5( $updateData->getSenha()['nova'] );
-        $senhaNovaConfirma  = MD5( $updateData->getSenha()['confirma'] );
-
-        if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'admin' ) {
-            $columnName = 'codAdmin';
-            $user_id = filter_var($usuarioDAO['codAdmin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
-        else if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'cliente' ) {
-            $columnName = 'codCliente' ;
-            $user_id = filter_var($usuarioDAO['codCliente'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
-
-        // $campo_vazio = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'; //sha1 vazio
-        $campo_vazio = 'd41d8cd98f00b204e9800998ecf8427e'; //md5 vazio
-
-        if ( empty( $senhaAtualDigitada ) || $senhaAtualDigitada == $campo_vazio ) {
-            Message::pop("Por favor insira a sua senha atual!");
-        } else if ( $senhaAtual != $senhaAtualDigitada ) {
-            Message::pop("A senha atual está incorreta!");
-        } else if ( $senhaAtualDigitada == $senhaNova ) {
-            Message::pop("A senha atual é a mesma da nova!");
-        } else if ( $senhaNova != $senhaNovaConfirma ) {
-            Message::pop("As novas senhas não coincidem!");
-        } else {
-            if ( !empty( $novoUsuario ) && $novoUsuario != $nomeAtual ) {
-                $alterarUsuario = $conn->prepare( "UPDATE usuarios SET nome = ? WHERE ".$columnName." = ?" );
-                $alterarUsuario->execute( [$novoUsuario, $user_id] );
-            }
-
-            if ( !empty( $novoEmail ) && $novoEmail != $emailAtual ) {
-                $alterarUsuario = $conn->prepare( "UPDATE usuarios SET email = ? WHERE ".$columnName." = ?" );
-                $alterarUsuario->execute( [$novoEmail, $user_id] );
-            }
-
-            if ( !empty( $senhaNova ) && !empty( $senhaNovaConfirma ) && $senhaNova != $campo_vazio ) {
-                $alterar_senha = $conn->prepare( "UPDATE usuarios SET senha = ? WHERE ".$columnName." = ?" );
-                $alterar_senha->execute( [$senhaNova, $user_id] );
-            } else {
-                if ( !empty( $senhaNova ) && !empty( $senhaNovaConfirma ) && $senhaNova != $campo_vazio ) {
-                    Message::pop("Por favor insira uma nova senha!");
-                }
-            }
-    
-
-            Message::pop("Seus dados foram alterados com sucesso!");
-
-            Sleep( 1 );
-            //header( "Refresh:0" );
-
-            if ($usuarioDAO['user_type'] == 'admin') {
-                Redirect::page('admin_contas.php', 2);
-            } else {
-                Redirect::page('../view/minha_conta.php', 2);
-            }
-        }
-    }
-
-    public static function alterarUsuario3($usuarioDAO, UsuariosDTO $updateData)
-    {
-        $conn = self::connect();
-
-        $cidadeAtual    = $usuarioDAO["cidade"];
-        $bairroAtual   = $usuarioDAO["logradouro"];
-        $numeroAtual   = $usuarioDAO["numero"];
-        $cepAtual   = $usuarioDAO["cep"];
-        $telefoneAtual   = $usuarioDAO["telefone"];
-        $cpfAtual   = $usuarioDAO["cpf"];
-        $rgAtual   = $usuarioDAO["rg"];
-
-        $novoCidade = filter_var($updateData->getCidade(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $novoBairro  = filter_var($updateData->getLogradouro(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $novoNumero  = filter_var($updateData->getNumero(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $novoCep  = filter_var($updateData->getCep(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $novoTelefone  = filter_var($updateData->getTelefone(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $novoCPF  = filter_var($updateData->getCpf(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $novoRG = filter_var($updateData->getRg(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-        var_dump($cidadeAtual);
-        var_dump($novoCidade);
-
-        if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'admin' ) {
-            $columnName = 'codAdmin';
-            $user_id = filter_var($usuarioDAO['codAdmin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
-        else if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'cliente' ) {
-            $columnName = 'codCliente' ;
-            $user_id = filter_var($usuarioDAO['codCliente'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        }
-
-        if ( !empty( $novoCidade ) && $novoCidade != $cidadeAtual ) {
-            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET cidade = ? WHERE ".$columnName." = ?" );
-            $alterarUsuario->execute( [$novoCidade, $user_id] );
-        }
-
-        if ( !empty( $novoBairro ) && $novoBairro != $bairroAtual ) {
-            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET logradouro = ? WHERE ".$columnName." = ?" );
-            $alterarUsuario->execute( [$novoBairro, $user_id] );
-        }
-
-        if ( !empty( $novoNumero ) && $novoNumero != $numeroAtual ) {
-            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET numero = ? WHERE ".$columnName." = ?" );
-            $alterarUsuario->execute( [$novoNumero, $user_id] );
-        }
-
-        if ( !empty( $novoCep ) && $novoCep != $cepAtual ) {
-            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET cep = ? WHERE ".$columnName." = ?" );
-            $alterarUsuario->execute( [$novoCep, $user_id] );
-        }
-
-        if ( !empty( $novoTelefone ) && $novoTelefone != $telefoneAtual ) {
-            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET telefone = ? WHERE ".$columnName." = ?" );
-            $alterarUsuario->execute( [$novoTelefone, $user_id] );
-        }
-
-        if ( !empty( $novoCPF ) && $novoCPF != $cpfAtual ) {
-            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET cpf = ? WHERE ".$columnName." = ?" );
-            $alterarUsuario->execute( [$novoCPF, $user_id] );
-        }
-
-        if ( !empty( $novoRG ) && $novoRG != $rgAtual ) {
-            $alterarUsuario = $conn->prepare( "UPDATE usuarios SET rg = ? WHERE ".$columnName." = ?" );
-            $alterarUsuario->execute( [$novoRG, $user_id] );
-        }
-
-        Message::pop("Seus dados foram alterados com sucesso!");
-
-        Sleep( 2 );
-        //header( "Refresh:0" );
-
-        if ($usuarioDAO['user_type'] == 'admin') {
-            Redirect::page('admin_contas.php', 2);
-        } else {
-            Redirect::page('../view/minha_conta.php', 2);
-        }
-    }
-
-    public static function alterarUsuario( $usuarioDAO, UsuariosDTO $updateData )
+    public static function alterarUsuario($usuarioDAO, UsuariosDTO $updateData)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'admin' ) {
+            if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'admin') {
                 $columnName = 'codAdmin';
                 $user_id = filter_var($usuarioDAO['codAdmin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            }
-            else if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'cliente' ) {
-                $columnName = 'codCliente' ;
+            } else if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'cliente') {
+                $columnName = 'codCliente';
                 $user_id = filter_var($usuarioDAO['codCliente'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             }
+
+
             $usuario = filter_var($updateData->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $email = filter_var($updateData->getEmail(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             if ($usuario != null) {
                 $cred = $usuario;
-                $qry = "UPDATE `usuarios` SET nome = :cred, senha = :senha WHERE ".$columnName." = :uid";
-            } 
-            else if ($usuario != null && $email != null) {
+                $qry = "UPDATE `usuarios` SET `nome` = :cred, `senha` = :senha WHERE $columnName = :uid";
+            } else if ($usuario != null && $email != null) {
                 $cred = $email;
-                $qry = "UPDATE `usuarios` SET email = :cred, senha = :senha WHERE ".$columnName." = :uid";
-            }
-            else {
-                $cred = $email;
-                $qry = "UPDATE `usuarios` SET email = :cred, senha = :senha WHERE ".$columnName." = :uid";
+                $qry = "UPDATE `usuarios` SET `email` = :cred, `senha` = :senha WHERE $columnName = :uid";
+            } else {
+                // $cred = $email;
+                // $qry = "UPDATE `usuarios` SET `email` = :cred, `senha` = :senha WHERE $columnName = :uid";
+                $cred = null;
+                $qry = "UPDATE `usuarios` SET WHERE $columnName = :uid";
             }
 
-            $select_ = self::connect()->prepare("SELECT senha FROM `usuarios` WHERE ".$columnName." = :uid");
+            $select_ = self::connect()->prepare("SELECT * FROM `usuarios` WHERE $columnName = :uid");
             $select_->bindParam(':uid', $user_id);
             $select_->execute();
-            $fetchpwd_ = $select_->fetch(PDO::FETCH_ASSOC);
-            $senha_anterior = $fetchpwd_['senha'];
+            $senha_anterior = $select_->fetch(PDO::FETCH_ASSOC)['senha'];
 
-            $senha_atual = filter_var(md5($updateData->getSenha()['atual']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $nova_senha = filter_var(md5($updateData->getSenha()['nova']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $confirma_senha = filter_var(md5($updateData->getSenha()['confirma']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-            $alterar_ = self::connect()->prepare($qry) or die('Não foi possivel fazer as alterações');
-            $alterar_->bindParam(':cred', $cred);
-            $alterar_->bindParam(':uid', $user_id);
-            $alterar_->bindParam(':senha', $senha_anterior);
-
-            // $campo_vazio = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'; //sha1 vazio
-            $campo_vazio = 'd41d8cd98f00b204e9800998ecf8427e'; //md5 vazio
-            if (empty($senha_atual)
-                || $senha_atual == $campo_vazio
-            ) {
-                // $mensagem[] = "Por favor insira a senha antiga!";
-                Message::pop("Por favor insira uma senha!");
-            } else if ($senha_atual != $senha_anterior) {
-                // $mensagem[] = "A senha antiga está incorreta!";
-                Message::pop("A senha anterior está incorreta!");
-            } else if ($nova_senha != $confirma_senha) {
-                // $mensagem[] = "As novas senhas não coincidem!";
-                Message::pop("As senhas não coincidem!");
-            } else if ($senha_anterior == $nova_senha) {
-                // $mensagem[] = "A senha antiga é a mesma da atual!";
-                Message::pop("A senha anterior é a mesma da atual!");
-            } else {
-                if (empty($nova_senha) && empty($rnova_senha) 
-                    || $nova_senha == $campo_vazio && $rnova_senha == $campo_vazio
-                ) {
-                    // $mensagem[] = 'Por favor insira uma nova senha!';
-                    Message::pop("Por favor insira uma nova senha!");
+            $updateList = array(
+                // ':nome' => filter_var($updateData->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                // ':email' => filter_var($updateData->getEmail(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                // ':senha' => filter_var($updateData->getSenha(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':salario' => filter_var($updateData->getSalario(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':admissao' => filter_var($updateData->getAdmissao(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':demissao' => filter_var($updateData->getDemissao(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':telefone' => filter_var($updateData->getTelefone(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':cpf' => filter_var($updateData->getCpf(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':rg' => filter_var($updateData->getRg(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':cnpj' => filter_var($updateData->getCnpj(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':ie' => filter_var($updateData->getIe(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':cep' => filter_var($updateData->getCep(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':estado' => filter_var($updateData->getEstado(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':cidade' => filter_var($updateData->getCidade(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':endereco' => filter_var($updateData->getEndereco(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':numero' => filter_var($updateData->getNumero(), FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                ':complemento' => filter_var($updateData->getComplemento(), FILTER_SANITIZE_FULL_SPECIAL_CHARS)
+            );
+            $undo_qry = $qry;
+            $new_bind = [];
+            foreach ($updateList as $key => $value) {
+                $new_qry;
+                $save_qry = $qry;
+                $qry = substr($qry, 0, strpos($qry, "WHERE")) . trim($key, ':') . ' = ' . $key . ', ' . substr($qry, strpos($qry, "WHERE "));
+                if (!empty($value)) {
+                    $new_qry = $qry;
+                    $new_bind[$key] = $value;
                 } else {
-                    $alterar_->bindParam(':senha', $confirma_senha);
+                    $qry = $save_qry;
+                }
+                if (array_key_last($updateList) == $key) {
+                    if (isset($new_qry)) {
+                        if (!is_null($new_qry)) {
+                            $qry = $new_qry;
+                            $qry = substr($qry, 0, strrpos($qry, ", WHERE")) . ' ' . substr($qry, strpos($qry, "WHERE "));
+                        }
+                    } else {
+                        $qry = $undo_qry;
+                        if ($qry == "UPDATE `usuarios` SET WHERE $columnName = :uid") {
+                            // die('Query not affected!');
+                            return;
+                        }
+                    }
                 }
             }
-            
-            // $mensagem[] = 'A senha foi alterada com sucesso!';
-            
-            Message::pop('alteracao_terminou!'); //só indica que terminou, não que fez alterações
-            // return var_dump($confirma_senha);
-            // return var_dump($cred);
-            // return var_dump($user_id);
-            // return var_dump($alterar_);
+
+            $alterar_ = self::connect()->prepare($qry) or die('Não foi possivel fazer as alterações');
+            (!is_null($cred)) ? $alterar_->bindParam(':cred', $cred) : '';
+            $alterar_->bindParam(':uid', $user_id);
+            foreach ($new_bind as $col => $val) {
+                // echo var_dump($col).'<br>'; //debug
+                // echo var_dump($val).'<br>'; //debug
+                $alterar_->bindValue($col, $val);
+            }
+
+            if ($updateData->getSenha() != null) {
+                $senha_atual = filter_var(md5($updateData->getSenha()['atual']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $nova_senha = filter_var(md5($updateData->getSenha()['nova']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $confirma_senha = filter_var(md5($updateData->getSenha()['confirma']), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $alterar_->bindParam(':senha', $senha_anterior);
+                // $campo_vazio = 'da39a3ee5e6b4b0d3255bfef95601890afd80709'; //sha1 vazio
+                $campo_vazio = 'd41d8cd98f00b204e9800998ecf8427e'; //md5 vazio
+                if (
+                    empty($senha_atual)
+                    || $senha_atual == $campo_vazio
+                ) {
+                    Message::pop("Por favor insira uma senha!");
+                } else if ($senha_atual != $senha_anterior) {
+                    Message::pop("A senha anterior está incorreta!");
+                } else if ($nova_senha != $confirma_senha) {
+                    Message::pop("As senhas não coincidem!");
+                } else if ($senha_anterior == $nova_senha) {
+                    Message::pop("A senha anterior é a mesma da atual!");
+                } else {
+                    if (
+                        empty($nova_senha) && empty($rnova_senha)
+                        || $nova_senha == $campo_vazio && $rnova_senha == $campo_vazio
+                    ) {
+                        Message::pop("Por favor insira uma nova senha!");
+                    } else {
+                        $alterar_->bindParam(':senha', $confirma_senha);
+                    }
+                }
+            }
+
             return $alterar_->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
@@ -398,9 +284,8 @@ class UsuariosDAO
             $qry = "DELETE FROM `usuarios` WHERE codAdmin = :cod_admin";
             $deletar_admin = self::connect()->prepare($qry) or die("Não foi possivel achar a Conta Admin!");
             $deletar_admin->bindParam(':cod_admin', $cod_admin);
-            // header('location: admin_contas.php');
             Message::pop('Deletado com sucesso!');
-            return $deletar_admin->execute();
+            $deletar_admin->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
@@ -411,26 +296,20 @@ class UsuariosDAO
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            // $deletarmsg_ = self::connect()->prepare("DELETE FROM `mensagens` WHERE fk_usuarios_codCliente = :cid")
-            // or die("Nenhum item relacionado a conta foi encontrado.");
-            // $deletarmsg_->bindParam(':cid', $cod_cliente);
             $deletaruser_ = self::connect()->prepare("DELETE FROM `usuarios` WHERE codCliente = :cid")
-            or die("Nenhum item relacionado a conta foi encontrado.");
+                or die("Nenhum item relacionado a conta foi encontrado.");
             $deletaruser_->bindParam(':cid', $cod_cliente);
             $deletarpdd_ = self::connect()->prepare("DELETE FROM `pedidos` WHERE fk_usuarios_codCliente = :cid")
-            or die("Nenhum item relacionado a conta foi encontrado.");
+                or die("Nenhum item relacionado a conta foi encontrado.");
             $deletarpdd_->bindParam(':cid', $cod_cliente);
             $deletarcrt_ = self::connect()->prepare("DELETE FROM `carrinho` WHERE fk_usuarios_codCliente = :cid")
-            or die("Nenhum item relacionado a conta foi encontrado.");
+                or die("Nenhum item relacionado a conta foi encontrado.");
             $deletarcrt_->bindParam(':cid', $cod_cliente);
             Message::pop('Deletado com sucesso!');
-            return $deletaruser_->execute();
-            return $deletarpdd_->execute();
-            return $deletarcrt_->execute();
-            // return $deletarmsg_->execute();
-            // Redirect::page('users_contas.php', 1);
-
-        } catch ( PDOException $msg ) {
+            $deletaruser_->execute();
+            $deletarpdd_->execute();
+            $deletarcrt_->execute();
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
@@ -444,15 +323,13 @@ class UsuariosDAO
             $senha = filter_var(md5($usuariosDTO->getSenha()), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             if ($usuario != null) {
                 $cred = $usuario;
-                $qry  = "SELECT * FROM `usuarios` WHERE nome = :cred AND senha = :senha";
-            } 
-            else if ($usuario != null && $email != null) {
+                $qry = "SELECT * FROM `usuarios` WHERE nome = :cred AND senha = :senha";
+            } else if ($usuario != null && $email != null) {
                 $cred = $email;
-                $qry  = "SELECT * FROM `usuarios` WHERE email = :cred AND senha = :senha";
-            }
-            else {
+                $qry = "SELECT * FROM `usuarios` WHERE email = :cred AND senha = :senha";
+            } else {
                 $cred = $email;
-                $qry  = "SELECT * FROM `usuarios` WHERE email = :cred AND senha = :senha";
+                $qry = "SELECT * FROM `usuarios` WHERE email = :cred AND senha = :senha";
             }
 
             $select_ = self::connect()->prepare($qry);
@@ -464,9 +341,7 @@ class UsuariosDAO
                 if ($fetchUser['user_type'] == 'admin') {
                     $session = 'admin_id';
                     $id = $fetchUser['codAdmin'];
-                }
-                else 
-                {
+                } else {
                     $session = 'client_id';
                     $id = $fetchUser['codCliente'];
                 }
@@ -478,7 +353,7 @@ class UsuariosDAO
                 return $login;
             }
             return null;
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
@@ -487,7 +362,7 @@ class UsuariosDAO
     {
         try {
 
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }

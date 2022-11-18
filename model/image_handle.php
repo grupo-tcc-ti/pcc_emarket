@@ -15,30 +15,28 @@ class Image
 
             if (isset($files_img)) {
                 $image_error = $files_img['error'];
-                foreach ($image_error as $image_error){
-                    if ($image_error == 0 ) {
+                foreach ($image_error as $image_error) {
+                    if ($image_error == 0) {
                         $upload_valid = true;
                         // echo ':upload_valid; '; //debug
-                    
-                    }
-                    else if($image_error == 4) {
+
+                    } else if ($image_error == 4) {
                         $upload_valid = true;
                         $path_valid = true;
                         $size_valid = true;
-                    }
-                    else if ($image_error != 0 ) {
+                    } else if ($image_error != 0) {
                         // echo ':upload_invalid; '; //debug
                         Message::pop('Ocorreu um erro ao enviar os arquivos de imagem!');
                     }
                 }
-            
+
                 if (count($files_img['name']) > 1 && $upload_valid) {
                     // echo ':isarray; '; //debug
                     // print_r($prod_path.$files_img['name'][1].':ispath'."\n"); //debug
                     //Loop através da array image
                     for ($i = 0; $i < count($files_img['name']); $i++) {
                         // echo ':isforeach; '; //debug
-                        $image[$i] = $prod_path.$files_img['name'][$i]; //O nome original do arquivo na máquina do cliente.
+                        $image[$i] = $prod_path . $files_img['name'][$i]; //O nome original do arquivo na máquina do cliente.
                         $image[$i] = filter_var($image[$i], FILTER_SANITIZE_FULL_SPECIAL_CHARS); //filtrar processo de arquivos e caracteres especiais
                         //O caminho temporario do arquivos é armazenado
                         //tmp_name O nome temporário com o qual o arquivo enviado foi armazenado no servidor.
@@ -58,7 +56,8 @@ class Image
                         if ($image_size > 2000000) {
                             Message::pop('Tamanho do arquivo é maior que o permitido!');
                             $size_valid = false;
-                        } else { $size_valid = true; 
+                        } else {
+                            $size_valid = true;
                             // echo $size_valid.':arrayimg_size; '; //debug
                         }
                     }
@@ -66,7 +65,7 @@ class Image
                 } else if (count($files_img['name']) == 1 && implode($files_img['error']) != 4) {
                     // echo ':isstring'; //debug
                     $img_name = implode($files_img['name']);
-                    $image = $prod_path.$img_name;
+                    $image = $prod_path . $img_name;
                     $image = filter_var($image, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
                     $image_tmp = implode($files_img['tmp_name']);
                     if ($image_tmp != "") {
@@ -82,10 +81,11 @@ class Image
                     if (implode($files_img['size']) > 2000000) { //O tamanho, em bytes, do arquivo enviado.
                         Message::pop('Tamanho do arquivo é maior que o permitido!');
                         $size_valid = false;
-                    } else { $size_valid = true;
+                    } else {
+                        $size_valid = true;
                         // echo $size_valid.':singleimg_size; '; //debug
                     }
-                
+
                 }
             }
             self::$path_valid = $path_valid;
@@ -94,7 +94,7 @@ class Image
             // var_dump($image);
             return $image;
             //Image handling procedure ends--------->
-        
+
             // var_dump($codProduto); //debug
             // echo $name_valid.':last_name; '; //debug
             // echo $path_valid.':last_path; '; //debug
@@ -108,9 +108,9 @@ class Image
     {
 
         if (self::$path_valid && self::$size_valid && self::$upload_valid) {
-            self::$path_valid=  false;
-            self::$size_valid =  false;
-            self::$upload_valid =  false;
+            self::$path_valid = false;
+            self::$size_valid = false;
+            self::$upload_valid = false;
             return true;
         }
     }

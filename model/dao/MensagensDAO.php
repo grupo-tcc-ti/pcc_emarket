@@ -1,7 +1,4 @@
 <?php
-require_once __DIR__ . '/../dao/_UsuarioDAO.php';
-require_once __DIR__ . '/../dto/_UsuarioDTO.php';
-
 class MensagensDAO
 {
     protected static $instance;

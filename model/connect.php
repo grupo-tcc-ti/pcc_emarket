@@ -1,23 +1,24 @@
 <?php
 require_once 'redirect.php';
 require_once 'path_locale.php';
+require_once 'cleaner.php';
 require 'popup_msg.php';
 class Connect
 {
     private static $instance;
 
-    private static $db_name  = 'mysql:host=localhost; dbname=emarket';
+    private static $db_name = 'mysql:host=localhost; dbname=emarket';
     private static $username = 'root';
     private static $password = '';
 
     public static function getInstance()
     {
         try {
-            if (!isset(self::$instance) ) {
+            if (!isset(self::$instance)) {
                 self::$instance = new PDO(self::$db_name, self::$username, self::$password);
                 self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
         return self::$instance;
@@ -28,7 +29,7 @@ class Connect
      *
      * @return self
      */
-    public function setDb_name( $db_name = 'emarket' )
+    public function setDb_name($db_name = 'emarket')
     {
         $this->db_name = 'mysql:host=localhost; dbname=' . $db_name;
 
@@ -40,7 +41,7 @@ class Connect
      *
      * @return self
      */
-    public function setUsername( $username = 'root' )
+    public function setUsername($username = 'root')
     {
         $this->username = $username;
 
@@ -52,7 +53,7 @@ class Connect
      *
      * @return self
      */
-    public function setPassword( $password = '' )
+    public function setPassword($password = '')
     {
         $this->password = $password;
 

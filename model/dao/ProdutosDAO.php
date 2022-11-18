@@ -5,8 +5,6 @@ if (!isset($pdo)) {
      */
     include_once __DIR__ . '/../connect.php';
 }
-require_once __DIR__ . '/../dao/_UsuarioDAO.php';
-require_once __DIR__ . '/../dto/_UsuarioDTO.php';
 require '../model/image_handle.php';
 class ProdutosDAO
 {
@@ -21,14 +19,13 @@ class ProdutosDAO
     }
     public static function qtyProdutos()
     {
-        try{
+        try {
             // $pdo = Connect::getInstance(); //renameit case fails
             $qry = ("SELECT * FROM `produtos`");
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            return $select_->rowCount();
-        }
-        catch (PDOException $msg){
+            echo $select_->rowCount();
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
@@ -40,30 +37,26 @@ class ProdutosDAO
             $qry = "SELECT * FROM `produtos` ORDER BY nome";
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            // $usuarios = $select_->fetchAll(PDO::FETCH_ASSOC);
             return $select_->fetchAll(PDO::FETCH_ASSOC);
-            // return $usuarios;
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
-        
+
     }
     public static function pesquisarProduto(ProdutosDTO $produtosDTO)
     {
         try {
             // $con = Connect::getInstance(); //renameit case fails
-            // $search_box = $produtosDTO->getNome();
             $search_box = filter_var($produtosDTO->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$search_box}%'";
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            // $produtos = $select_->fetchAll(PDO::FETCH_ASSOC);
             return $select_->fetchAll(PDO::FETCH_ASSOC);
             // return $produtos;
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
-        
+
     }
     public static function produtosCategoria(ProdutosDTO $produtosDTO)
     {
@@ -73,23 +66,18 @@ class ProdutosDAO
             $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$category}%'";
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            // $cat = $select_->fetchAll(PDO::FETCH_ASSOC);
             return $select_->fetchAll(PDO::FETCH_ASSOC);
-            // return $cat;
-        } catch ( PDOException $msg ) {
+        } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
-        
+
     }
     public static function cadastrarProduto($nome, $descricao, $preco, $files_img)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            // $nome = $_POST['nome'];
             $nome = filter_var($nome, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // $descricao = $_POST['descricao'];
             $descricao = filter_var($descricao, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // $preco = $_POST['preco'];
             $preco = filter_var($preco, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $selecionar_ = self::connect()->prepare("SELECT * FROM `produtos` WHERE nome = :nome");
@@ -99,7 +87,6 @@ class ProdutosDAO
             $name_valid = false;
             //Verifica se produto com mesmo nome
             if ($selecionar_->rowCount() > 0) {
-                // $mensagem[] = 'Um produto com o mesmo nome ja existe!';
                 Message::pop('Um produto com o mesmo nome ja existe!');
                 $name_valid = false;
                 // echo ':name_invalid:'; //debug
@@ -120,10 +107,10 @@ class ProdutosDAO
                 $inserir_->bindParam(":nome", $nome);
                 $inserir_->bindParam(":descricao", $descricao);
                 $inserir_->bindParam(":preco", $preco);
-                $inserir_->bindValue(":image", is_array($image_hand)?implode(',', $image_hand):$image_hand);
+                $inserir_->bindValue(":image", is_array($image_hand) ? implode(',', $image_hand) : $image_hand);
                 // $mensagem[] = 'Produto adicionado com sucesso!';
                 Message::pop('Produto adicionado com sucesso!');
-                return $inserir_->execute();
+                $inserir_->execute();
             }
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
@@ -155,11 +142,11 @@ class ProdutosDAO
                 if (!implode($files_img['error']) == 4) {
                     $alterar_prod = self::connect()->prepare("UPDATE `produtos` SET image = :image WHERE codProduto = :cpid");
                     $alterar_prod->bindValue(
-                        ":image", 
-                        is_array($image_hand)?
-                        ((count($image_hand) > 1)?
-                        implode(',', $image_hand):
-                        implode($image_hand)): $image_hand
+                        ":image",
+                        is_array($image_hand) ? 
+                        ((count($image_hand) > 1) ? 
+                            implode(',', $image_hand) :
+                            implode($image_hand)) : $image_hand
                     );
                     $alterar_prod->bindParam(':cpid', $codProduto);
                     $alterar_prod->execute();
@@ -187,12 +174,12 @@ class ProdutosDAO
             $fetch_del_img = $del_prod_img->fetch(PDO::FETCH_ASSOC);
             if ($fetch_del_img['image']) {
                 $fetched_imgs = explode(",", $fetch_del_img['image']);
-                foreach ($fetched_imgs as $prod_img){
-                    if(file_exists($prod_img)) {
-                        echo($prod_img.':image_unlinked');
+                foreach ($fetched_imgs as $prod_img) {
+                    if (file_exists($prod_img)) {
+                        echo ($prod_img . ':image_unlinked');
                         // unlink($prod_img);
-                    }else{
-                        echo($prod_img.':file_doesnt_exist; ');
+                    } else {
+                        echo ($prod_img . ':file_doesnt_exist; ');
                     }
                 }
             }
@@ -205,15 +192,14 @@ class ProdutosDAO
             $del_prod_cart_wlist->bindParam(':id', $prod_id);
             $del_prod_cart_wlist->bindValue(':fk_id', 'produtos_codProduto');
 
-            return $del_prod->execute();
-            return $del_prod_cart_wlist->execute();
-            // return $mensagem[] = 'Produto deletado com sucesso!';
             Message::pop('Produto deletado com sucesso!');
+            $del_prod->execute();
+            $del_prod_cart_wlist->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
-    
+
     }
 }
 ?>

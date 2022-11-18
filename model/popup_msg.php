@@ -12,15 +12,16 @@ class Message
                 sleep(.9);
                 echo '
                 <div class="mensagem">
-                <span>'.$mensagem.'</span>
-                <i class="fas fa-times" onclick="closeMessage(this);"></i>
+                <span>' . $mensagem . '</span>
+                <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
                 </div>
                 ';
                 sleep(1);
             }
         }
     }
-    
+
 }
 ?>
+<!-- <i class="fas fa-times" onclick="closeMessage(this);"></i> -->
 <!-- <i class="fas fa-times" onclick = "this.parentElement.remove();"></i> -->

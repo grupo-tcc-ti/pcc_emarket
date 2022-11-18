@@ -46,7 +46,7 @@ if (!isset($user_id)) {
         <div class="box">
         <?php
             $total_pendente = 0;
-        foreach (PedidosDAO::listarPedidos('pendente') as $pedido){
+        foreach (PedidosDAO::listarPedidosTipo('pendente') as $pedido){
             $total_pendente += $pedido['totalPreco'];
         }
         ?>
@@ -58,7 +58,7 @@ if (!isset($user_id)) {
         <div class="box">
         <?php
             $total_pago = 0;
-        foreach (PedidosDAO::listarPedidos('pago') as $pedido){
+        foreach (PedidosDAO::listarPedidosTipo('pago') as $pedido){
             $total_pago += $pedido['totalPreco'];
         }
         ?>
@@ -70,7 +70,7 @@ if (!isset($user_id)) {
         <div class="box">
         <?php
             $total_cancelado = 0;
-        foreach (PedidosDAO::listarPedidos('cancelado') as $pedido){
+        foreach (PedidosDAO::listarPedidosTipo('cancelado') as $pedido){
             $total_cancelado += $pedido['totalPreco'];
         }
         ?>

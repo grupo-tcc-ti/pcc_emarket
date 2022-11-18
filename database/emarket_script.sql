@@ -5,7 +5,7 @@ use emarket;
 -- INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`) VALUES ('gabs_teste', 'gabs_teste@gmail.com', md5('12345678Abcd@'));
 
 INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`, `salario`, `admissao`, `demissao`, `telefone`, `cpf`,
-`rg`, `cnpj`, `ie`, `cep`, `estado`, `cidade`, `logradouro`, `numero`, `complemento`)
+`rg`, `cnpj`, `ie`, `cep`, `estado`, `cidade`, `endereco`, `numero`, `complemento`)
 -- '72987654', 'Rua das Palmeiras, Monte das Oliveiras, Lote 10, Casa 7, Sem Complemento'
 -- Admins starts --
 VALUES
@@ -28,7 +28,7 @@ VALUES
 -- Clientes ends --
 
 -- INSERT INTO `emarket`.`usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`, `salario`, `admissao`, `demissao`, `telefone`, `cpf`,
--- `rg`, `cnpj`, `ie`, `cep`, `estado`, `cidade`, `logradouro`, `numero`, `complemento`)
+-- `rg`, `cnpj`, `ie`, `cep`, `estado`, `cidade`, `endereco`, `numero`, `complemento`)
 -- values ('cliente_teste', 'cliente_teste@email.com', md5('1234'), 'cliente',
 -- 7, 0, NULL, NULL, NULL, 6198765432, NULL, NULL, NULL, NULL, '72987654', 'DF', 'Monte das Oliveiras', 'Rua das Palmeiras - Lote 10', 7, 'Sem Complemento');
 

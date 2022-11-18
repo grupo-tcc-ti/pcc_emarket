@@ -17,9 +17,9 @@ class Redirect
             self::$current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
         }
         if (!isset($refresh_time) || $refresh_time == 0) {
-            return header('location: http://'.self::$hostname.self::$current_directory.'/'.$page);
-        } else { 
-            return header('refresh:'.$refresh_time.', url=http://'.self::$hostname.self::$current_directory.'/'.$page);
+            header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
+        } else {
+            header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
         }
 
     }

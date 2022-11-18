@@ -23,7 +23,7 @@ CREATE TABLE usuarios (
     cep varchar(12),
     estado varchar(2),
     cidade varchar(255),
-    logradouro varchar(255),
+    endereco varchar(255),
     numero bigint(12),
     complemento varchar(255),
     PRIMARY KEY (codUsuario, codCliente, codAdmin)

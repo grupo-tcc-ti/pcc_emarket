@@ -17,7 +17,6 @@
     <?php require_once Path_Locale::head();?>
     <link rel="stylesheet" href="../css/home.css" />
     <link rel="stylesheet" href="../css/quickview.css" />
-    <script src="../js/script.js"></script>
     <title><?php echo $pageTitle;?></title>
   </head>
 
@@ -70,6 +69,7 @@
         foreach ( $fetch_produto as $prod ) { 
           $prodimg = explode(",",$prod['image']);
           $preco = number_format($prod['preco'], 2,',', '.');
+          $prod_link = cleaner::cleanURL($prod['nome']);
           // $prod['max_prest'];
     ?>
       <div class="cards-items">
@@ -85,7 +85,7 @@
       </button>
         <a
           title="<?php echo $prod['nome']; ?>"
-          href="../view/page.php/<?php echo $prod['nome']; ?>"
+          href="../view/page.php/<?php echo $prod_link; ?>"
         >
           <img
             src="<?php echo $prodimg[0]; ?>"
@@ -96,7 +96,7 @@
 
         <a
           title="<?php echo $prod['nome']; ?>"
-          href="../view/page.php/<?php echo $prod['nome']; ?>"
+          href="../view/page.php/<?php echo $prod_link; ?>"
         >
           <div class="products-name">
             <?php echo $prod['nome']; ?>
@@ -159,6 +159,11 @@
     </div>
 
     <?php
+    // foreach($categorias as $cat) {
+    //   // var_dump($cat);
+    //   $refat = cleaner::cleanName($cat);
+    //   var_dump($refat);
+    // }
 
     require_once '../view/quickview.php';
 
@@ -177,6 +182,7 @@
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
+    <script src="../js/script.js"></script>
 
     <!-- <script>
     var swiper = new Swiper(".home-slider", {

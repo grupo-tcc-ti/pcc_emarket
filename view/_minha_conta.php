@@ -71,7 +71,7 @@
                   <div class="col-lg-6">
                       <div class="form-group focused">
                         <label class="form-control-label" for="senha_atual">Senha Atual</label>
-                        <input type="text" id="input-senha-atual" name="senha_atual" class="form-control form-control-alternative" value="<?php echo $usuario['senha'] ?>">
+                        <input type="text" id="input-senha-atual" name="senha_atual" class="form-control form-control-alternative">
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -89,7 +89,7 @@
                   </div>
                 </div>
                 <hr class="my-4">
-                <input type="submit" class="submitButton" name="submit" value="Salvar" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
+                <input type="submit" class="submitButton" name="update_conta" value="Salvar" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
               </div>
             </form>
           </div>
@@ -110,7 +110,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form method="post">
+              <form>
                 <h6 class="heading-small text-muted mb-4">Meu Endereço</h6>
                 <div class="pl-lg-4">
                   <div class="row">
@@ -242,7 +242,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                       <label class="form-control-label" for="bairro">Bairro</label>
-                        <input type="text" id="input-bairro" name="bairro" class="form-control form-control-alternative" value="<?php echo $usuario['endereco'] ?>">
+                        <input type="text" id="input-bairro" name="bairro" class="form-control form-control-alternative" value="<?php echo $usuario['logradouro'] ?>">
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -282,7 +282,7 @@
                   </div>
 
                   <hr class="my-4">
-                <input type="submit" class="submitButton" name="submit" value="Salvar" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
+                <input type="submit" class="submitButton" name="update_addr" value="Salvar" onclick="return confirm('Você realmente deseja alterar os dados da sua conta?');">
                 </div>
                </div>
             </form>
