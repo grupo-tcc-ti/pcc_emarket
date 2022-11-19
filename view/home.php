@@ -13,7 +13,7 @@ require_once '../controller/navigationControl.php';
 <html lang="pt, en">
 
 <head>
-  <?php require_once Path_Locale::head(); ?>
+  <?php require_once File_Path::head(); ?>
   <link rel="stylesheet" href="../css/home.css" />
   <link rel="stylesheet" href="../css/quickview.css" />
   <title>
@@ -21,7 +21,7 @@ require_once '../controller/navigationControl.php';
   </title>
 </head>
 
-<?php require_once Path_Locale::user_header(); ?>
+<?php require_once File_Path::user_header(); ?>
 
 <body>
   <section>

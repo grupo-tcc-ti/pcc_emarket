@@ -1,8 +1,11 @@
 <?php
     session_start();
     require_once '../model/connect.php';
-    require_once '../model/dao/UsuariosDAO.php';
-    require_once '../model/dto/UsuariosDTO.php';
+    // require_once '../model/dao/UsuariosDAO.php';
+    // require_once '../model/dto/UsuariosDTO.php';
+    //undo requirefolder if fails!
+    File_Path::requireFolder('../model/dao');
+    File_Path::requireFolder('../model/dto');
 
 
     // $test = serialize($_SESSION['client_id']);
@@ -14,7 +17,7 @@
     $uid = str_replace('"', "'", json_encode($_SESSION['client_id']));
     
     if (!isset($_SESSION['client_id'])) {
-      $client_header = Path_Locale::conta();
+      $client_header = File_Path::conta();
       header('location:../view/' . $client_header);
     }
 
@@ -36,14 +39,14 @@
     <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
     <!-- <link rel="stylesheet" href="../css/myacc_style.css"> -->
     <link rel="stylesheet" href="../css/minhaconta.css">
-    <?php require_once Path_Locale::head();?>
+    <?php require_once File_Path::head();?>
     <title>Minha Conta</title>
 </head>
 
 <body>
 <?php
     require_once '../controller/updateUserControl.php';
-    require_once Path_Locale::user_header();
+    require_once File_Path::user_header();
 ?>
 </div>
   <div class="main-content">

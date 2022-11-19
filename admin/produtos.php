@@ -1,10 +1,11 @@
 <?php
 session_start();
 require_once '../model/connect.php';
-require_once '../model/dao/ProdutosDAO.php';
-require_once '../model/dao/UsuariosDAO.php';
-// include aqui!
-
+// require_once '../model/dao/ProdutosDAO.php';
+// require_once '../model/dao/UsuariosDAO.php';
+//undo requirefolder if fails!
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
 
 if (isset($_POST['add_produto'])) {
     ProdutosDAO::cadastrarProduto($_POST['nome'], $_POST['descricao'], $_POST['preco'], $_FILES['image']);
@@ -19,7 +20,7 @@ if (isset($_POST['deletar_prod'])) {
     ProdutosDAO::deletarProduto($_POST['deletar_prod']);
 }
 
-require_once Path_Locale::admin_header();
+require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +37,7 @@ require_once Path_Locale::admin_header();
 </head>
 
 <body>
-    <!-- <php require_once Path_Locale::admin_header();?> -->
+    <!-- <php require_once File_Path::admin_header();?> -->
 
 
     <!-- <section class="add-produtos"> -->

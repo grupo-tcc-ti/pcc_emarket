@@ -1,14 +1,18 @@
 <?php
 session_start();
 require_once '../model/connect.php';
-require_once '../model/dao/UsuariosDAO.php';
+// require_once '../model/dao/UsuariosDAO.php';
+
+//undo requirefolder if fails!
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
 
 if (isset($_GET['deletar'])) {
     UsuariosDAO::deletarAdmin($_GET['deletar']);
     Redirect::page('admin_contas.php', 0);
 }
 
-require_once Path_Locale::admin_header();
+require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +27,7 @@ require_once Path_Locale::admin_header();
     <title>Contas de Administradores</title>
 </head>
 <body>
-    <!-- <php require_once Path_Locale::admin_header(); ?> -->
+    <!-- <php require_once File_Path::admin_header(); ?> -->
 
     <section class="contas register-admin">
         <div class="gridbox">

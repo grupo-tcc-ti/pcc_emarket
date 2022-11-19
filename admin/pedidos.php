@@ -1,11 +1,12 @@
 <?php
 session_start();
 require_once '../model/connect.php';
-require_once '../model/dao/PedidosDAO.php';
-require_once '../model/dto/PedidosDTO.php';
-require_once '../model/dao/UsuariosDAO.php';
-// include aqui!
-
+// require_once '../model/dao/PedidosDAO.php';
+// require_once '../model/dto/PedidosDTO.php';
+// require_once '../model/dao/UsuariosDAO.php';
+//undo requirefolder if fails!
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
 
 if (isset($_POST['alterar_status'])) {
     $updateData = new PedidosDTO;
@@ -18,7 +19,7 @@ if (isset($_POST['alterar_status'])) {
 if (isset($_POST['deletar_pedido'])) {
     PedidosDAO::deletarPedido($_POST['codPedido']);
 }
-require_once Path_Locale::admin_header();
+require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +33,7 @@ require_once Path_Locale::admin_header();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- <php require_once Path_Locale::head(); ?> -->
+    <!-- <php require_once File_Path::head(); ?> -->
     <link rel="stylesheet" href="../css/admin_stylesheet.css">
     <script src="../js/admin_script.js"></script>
 
@@ -41,7 +42,7 @@ require_once Path_Locale::admin_header();
 
 <body>
 
-    <!-- <php require_once Path_Locale::admin_header(); ?> -->
+    <!-- <php require_once File_Path::admin_header(); ?> -->
 
     <h1 class="head-list">Lista de Pedidos</h1>
     <section class="pedidos">

@@ -1,6 +1,6 @@
 <?php
 require_once 'redirect.php';
-require_once 'path_locale.php';
+require_once 'file_path.php';
 require_once 'cleaner.php';
 require 'popup_msg.php';
 class Connect

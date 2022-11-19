@@ -2,11 +2,13 @@
 session_start();
 
 require_once '../model/connect.php';
-require_once '../model/dao/PedidosDAO.php';
-require_once '../model/dao/ProdutosDAO.php';
-require_once '../model/dao/UsuariosDAO.php';
-
-require_once Path_Locale::admin_header();
+// require_once '../model/dao/PedidosDAO.php';
+// require_once '../model/dao/ProdutosDAO.php';
+// require_once '../model/dao/UsuariosDAO.php';
+//undo requirefolder if fails!
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
+require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +26,7 @@ require_once Path_Locale::admin_header();
 
 <body>
 
-    <!-- <php require_once Path_Locale::admin_header(); ?> -->
+    <!-- <php require_once File_Path::admin_header(); ?> -->
 
     <div class="heading-dash">
         <h1><span>i</span>DASH</h1>

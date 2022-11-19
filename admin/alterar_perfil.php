@@ -1,9 +1,12 @@
 <?php
 session_start();
 require_once '../model/connect.php';
-require_once '../model/dao/UsuariosDAO.php';
-require_once '../model/dto/UsuariosDTO.php';
-require_once Path_Locale::admin_header();
+// require_once '../model/dao/UsuariosDAO.php';
+// require_once '../model/dto/UsuariosDTO.php';
+//undo requirefolder if fails!
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
+require_once File_Path::admin_header();
 $uid = str_replace('"', "'", json_encode($_SESSION['admin_id']));
 ?>
 

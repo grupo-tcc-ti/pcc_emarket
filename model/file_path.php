@@ -1,7 +1,14 @@
 <?php
-class Path_Locale
+class File_Path
 {
     private static $instance;
+    public static function requireFolder($name)
+    {
+        foreach (glob($name . '/*.php') as $filename) {
+            require_once $filename;
+            // echo $filename . '<br>'; //debug
+        }
+    }
     public static function admin_header()
     {
         return '../admin/admin_header.php';
@@ -18,5 +25,6 @@ class Path_Locale
     {
         return '../view/conta.php';
     }
+
 }
 ?>

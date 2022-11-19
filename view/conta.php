@@ -13,7 +13,7 @@ require_once '../model/connect.php';
   <!-- <link rel="stylesheet" href="../css/login_style.css"> -->
   <!-- <link rel="stylesheet" href="../css/style.css"> -->
   <!-- <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
-  <?php require_once Path_Locale::head(); ?>
+  <?php require_once File_Path::head(); ?>
   <link rel="stylesheet" href="../css/conta.css" />
   <title>Login</title>
   <script>
@@ -35,7 +35,7 @@ if (isset($_SESSION['client_id'])) {
 }
 require_once '../controller/loginControl.php';
 require_once '../controller/registerControl.php';
-require_once Path_Locale::user_header();
+require_once File_Path::user_header();
 ?>
 
 <body>

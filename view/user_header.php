@@ -8,7 +8,7 @@ set_include_path('../model');
 // }
 
 if (isset($_GET['logout'])) {
-  include_once '../controller/admin_logoutControl.php';
+  include_once '../controller/logoutControl.php';
 }
 
 require_once '../controller/cartControl.php'; // important!
@@ -81,8 +81,8 @@ $categorias = array(
           <?php
           if (!isset($_SESSION['client_id'])) {
           ?>
-          <a href="<?php echo Path_Locale::conta(); ?>">Login</a>
-          <a href="<?php echo Path_Locale::conta() . '?register'; ?>">Registrar</a>
+          <a href="<?php echo File_Path::conta(); ?>">Login</a>
+          <a href="<?php echo File_Path::conta() . '?register'; ?>">Registrar</a>
           <?php
           } else {
           ?>

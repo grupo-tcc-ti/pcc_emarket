@@ -1,11 +1,12 @@
 <?php
 if (!isset($pdo)) {
     include_once '../model/connect.php';
+    //undo requirefolder if fails!
+    File_Path::requireFolder('../model/dao');
+    File_Path::requireFolder('../model/dto');
 }
-require_once '../model/dao/UsuariosDAO.php';
-require_once '../model/dto/UsuariosDTO.php';
-// $user_id important
 
+// $user_id important
 if (isset($_POST['submit'])) {
     $uid = str_replace( "'", '"', json_encode($_SESSION['client_id']));
     $uid = (array) json_decode($uid);

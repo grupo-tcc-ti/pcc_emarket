@@ -1,7 +1,10 @@
 <?php
-set_include_path('../model');
-// require_once '../model/dao/UsuariosDAO.php';
-// require_once '../model/dto/UsuariosDTO.php';
+if (!isset($pdo)) {
+    include_once '../model/connect.php';
+    //undo requirefolder if fails!
+    File_Path::requireFolder('../model/dao');
+    File_Path::requireFolder('../model/dto');
+}
 
 $user_id = $_SESSION['admin_id'];
 if (!isset($user_id)) {
@@ -10,7 +13,7 @@ if (!isset($user_id)) {
 }
 
 if (isset($_GET['adminlogout'])) {
-    include_once '../controller/admin_logoutControl.php';
+    include_once '../controller/logoutControl.php';
 }
 ?>
 
