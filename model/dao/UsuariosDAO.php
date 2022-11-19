@@ -157,10 +157,10 @@ class UsuariosDAO
             // $pdo = Connect::getInstance(); //renameit case fails
             if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'admin') {
                 $columnName = 'codAdmin';
-                $user_id = filter_var($usuarioDAO['codAdmin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $uid = filter_var($usuarioDAO['codAdmin'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             } else if (filter_var($usuarioDAO['user_type'], FILTER_SANITIZE_FULL_SPECIAL_CHARS) == 'cliente') {
                 $columnName = 'codCliente';
-                $user_id = filter_var($usuarioDAO['codCliente'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $uid = filter_var($usuarioDAO['codCliente'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             }
 
 
@@ -180,7 +180,7 @@ class UsuariosDAO
             }
 
             $select_ = self::connect()->prepare("SELECT * FROM `usuarios` WHERE $columnName = :uid");
-            $select_->bindParam(':uid', $user_id);
+            $select_->bindParam(':uid', $uid);
             $select_->execute();
             $senha_anterior = $select_->fetch(PDO::FETCH_ASSOC)['senha'];
 
@@ -233,7 +233,7 @@ class UsuariosDAO
 
             $alterar_ = self::connect()->prepare($qry) or die('Não foi possivel fazer as alterações');
             (!is_null($cred)) ? $alterar_->bindParam(':cred', $cred) : '';
-            $alterar_->bindParam(':uid', $user_id);
+            $alterar_->bindParam(':uid', $uid);
             foreach ($new_bind as $col => $val) {
                 // echo var_dump($col).'<br>'; //debug
                 // echo var_dump($val).'<br>'; //debug
@@ -367,13 +367,13 @@ class UsuariosDAO
             die();
         }
     }
-    public static function addToWishlist($user_id)
+    public static function addToWishlist($uid)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
 
             $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
-            $delete_cart_item->execute([$user_id]);
+            $delete_cart_item->execute([$uid]);
             header('location:cart.php');
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
@@ -381,13 +381,13 @@ class UsuariosDAO
         }
         return null;
     }
-    public static function updateWishlist($user_id)
+    public static function updateWishlist($uid)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
 
             $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
-            $delete_cart_item->execute([$user_id]);
+            $delete_cart_item->execute([$uid]);
             header('location:cart.php');
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
@@ -395,13 +395,13 @@ class UsuariosDAO
         }
         return null;
     }
-    public static function listWishlist($user_id)
+    public static function listWishlist($uid)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
 
             $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
-            $delete_cart_item->execute([$user_id]);
+            $delete_cart_item->execute([$uid]);
             header('location:cart.php');
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
@@ -409,13 +409,13 @@ class UsuariosDAO
         }
         return null;
     }
-    public static function removeFromWishlist($user_id)
+    public static function removeFromWishlist($uid)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
 
             $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
-            $delete_cart_item->execute([$user_id]);
+            $delete_cart_item->execute([$uid]);
             header('location:cart.php');
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();

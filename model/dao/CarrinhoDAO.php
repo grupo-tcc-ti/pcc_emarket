@@ -112,7 +112,7 @@ class CarrinhoDAO
         }
         return null;
     }
-    public static function deleteCart($user_id)
+    public static function deleteCart($uid)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails

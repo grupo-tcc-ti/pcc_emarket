@@ -4,12 +4,16 @@ if (!isset($pdo)) {
 }
 require_once '../model/dao/UsuariosDAO.php';
 require_once '../model/dto/UsuariosDTO.php';
+// $user_id important
 
 if (isset($_POST['submit'])) {
+    $uid = str_replace( "'", '"', json_encode($_SESSION['client_id']));
+    $uid = (array) json_decode($uid);
+    // echo var_dump($uid) . '<br>'; //debug
 
     $usuarioDAO = UsuariosDAO::getUserByID(
-        $user_id['type'],
-        $user_id['id']
+        $uid['type'],
+        $uid['id']
     );
     $updateData = new UsuariosDTO();
     (isset($_POST["usuario"])) ? $updateData->setNome($_POST["usuario"]) : '';

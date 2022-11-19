@@ -513,19 +513,14 @@ footer.container .credit span {
   --input-color: #d3d3d3;
 }
 
-/* #carrinho.dropdown-content-cart { */
 #carrinho.dropdown-content.cart {
-  right: 0;
-  margin: 10px 16px;
-
   display: none;
   /* debug carrinho */
+
   max-width: calc(46 * var(--1w));
-  min-height: calc(12 * var(--1w));
   max-height: calc(50 * var(--1w));
 }
 
-/* #carrinho.dropdown-content-cart.active { */
 #carrinho.dropdown-content.cart.active {
   display: block;
   overflow-y: scroll;

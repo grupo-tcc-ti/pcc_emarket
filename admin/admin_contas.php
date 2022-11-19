@@ -3,22 +3,16 @@ session_start();
 require_once '../model/connect.php';
 require_once '../model/dao/UsuariosDAO.php';
 
-$user_id = $_SESSION['admin_id'];
-
-if (!isset($user_id)) {
-    $admin_header = 'admin_login.php';
-    header('location:../admin/'.$admin_header);
-} 
-
 if (isset($_GET['deletar'])) {
     UsuariosDAO::deletarAdmin($_GET['deletar']);
     Redirect::page('admin_contas.php', 0);
 }
 
+require_once Path_Locale::admin_header();
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR, en">
+<html lang="pt, en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -29,7 +23,7 @@ if (isset($_GET['deletar'])) {
     <title>Contas de Administradores</title>
 </head>
 <body>
-    <?php require_once Path_Locale::admin_header(); ?>
+    <!-- <php require_once Path_Locale::admin_header(); ?> -->
 
     <section class="contas register-admin">
         <div class="gridbox">
@@ -61,7 +55,7 @@ if (isset($_GET['deletar'])) {
             <p class="box"><?php echo $fetch_contas['nome'];?></p>
         </div>
             <div class="flex-btn">
-                <?php if ($fetch_contas['codAdmin'] == $user_id['id']) {
+                <?php if ($fetch_contas['codAdmin'] == $_SESSION['admin_id']['id']) {
                         $_POST['alterar'] = $fetch_contas['codAdmin'];
                         echo '<a href="alterar_perfil.php" class="option-btn"
                     onclick="return confirm(`Deseja fazer alterações nesta Conta?`)">Alterar</a>';

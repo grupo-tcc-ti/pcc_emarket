@@ -3,16 +3,16 @@ require_once '../model/connect.php';
 require_once '../model/dao/ProdutosDAO.php';
 session_start();
 
-$user_id = $_SESSION['admin_id'];
-
-if (!isset($user_id)) {
+//['admin_id'] no header
+if (!isset($_SESSION['admin_id'])) {
     $admin_header = 'admin_login.php';
-    header('location:../admin/'.$admin_header);
+    header('location:../admin/' . $admin_header);
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR, en">
+<html lang="pt, en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -22,8 +22,9 @@ if (!isset($user_id)) {
     <link rel="stylesheet" href="../css/admin_stylesheet.css">
     <title>Alterar Cadastro de Produtos</title>
 </head>
+
 <body>
-<?php
+    <?php
 
 //####### Alterar produto starts ###########################
 if (isset($_POST['alterar'])) {
@@ -40,7 +41,7 @@ if (isset($_POST['alterar'])) {
 
 //#######Voltar###########################
 if (isset($_POST['voltar'])) {
-    
+
     unset($_SESSION['codProduto']);
     Message::pop('Ate mais!');
     Redirect::page('produtos.php', 1);
@@ -49,10 +50,10 @@ if (isset($_POST['voltar'])) {
 //#######Voltar###########################
 ?>
 
-<section class="alterar-produto">
-    <h1 class="heading">Alterar Produto</h1>
+    <section class="alterar-produto">
+        <h1 class="heading">Alterar Produto</h1>
 
-    <?php //....::PHP::..... starts ..
+        <?php //....::PHP::..... starts ..
     $alterar_id = $_SESSION['codProduto'];
     $mostrar_produtos = $pdo->prepare("SELECT * FROM  `produtos` WHERE codProduto = :cpid");
     $mostrar_produtos->bindParam(':cpid', $alterar_id);
@@ -60,45 +61,44 @@ if (isset($_POST['voltar'])) {
     // var_dump($_SESSION['codProduto']); //debug
     if ($mostrar_produtos->rowCount() > 0) {
         while ($fetch_produto = $mostrar_produtos->fetch(PDO::FETCH_ASSOC)) {
-            !is_array($fetch_produto['image'])?
-            $fetched_imgs = explode(",", $fetch_produto['image']) :
-            $fetched_imgs = implode($fetch_produto['image']); ?>
+            !is_array($fetch_produto['image']) ? 
+                $fetched_imgs = explode(",", $fetch_produto['image']) :
+                $fetched_imgs = implode($fetch_produto['image']); ?>
 
-    
-    <form action="" method="post" enctype="multipart/form-data"
-    class="" name="alterar_form">
-        <input type="hidden" name="codProduto" value='<?php echo $fetch_produto['codProduto'];?>'>
-        <input type="hidden" name="nome_anterior" value='<?php echo $fetch_produto['nome'];?>'>
-        <input type="hidden" name="image" value='<?php echo $fetched_imgs;?>'>
-        <div class="image-container">
-            <!-- Fazer script que rode as outras imagens -->
-            <div class="main-image">
-                <!-- Colocar imagem principal aqui -->
-                <img src='<?php echo $fetched_imgs[0];?>' alt="">
-                <!-- width="200px" height="200px" -->
-            </div>
 
-            <?php //....::PHP::..... starts ..
+        <form action="" method="post" enctype="multipart/form-data" class="" name="alterar_form">
+            <input type="hidden" name="codProduto" value='<?php echo $fetch_produto['codProduto']; ?>'>
+            <input type="hidden" name="nome_anterior" value='<?php echo $fetch_produto['nome']; ?>'>
+            <input type="hidden" name="image" value='<?php echo $fetched_imgs; ?>'>
+            <div class="image-container">
+                <!-- Fazer script que rode as outras imagens -->
+                <div class="main-image">
+                    <!-- Colocar imagem principal aqui -->
+                    <img src='<?php echo $fetched_imgs[0]; ?>' alt="">
+                    <!-- width="200px" height="200px" -->
+                </div>
+
+                <?php //....::PHP::..... starts ..
             foreach (array_slice($fetched_imgs, 0) as $img) {
                 //....::PHP::..... ends .. ?>
             <div class="sub-image">
                 <!-- Colocar um image array aqui -->
-                <img src='<?php echo $img;?>' alt="">
+                <img src='<?php echo $img; ?>' alt="">
             </div>
                 <?php //....::PHP::..... starts ..
-            } 
+            }
             //....::PHP::..... ends .. ?>
         </div>
         <span>Nome</span>
         <input type="text" name="nome" id="" class="box required-field" required
         maxlength="200" placeholder="Insira o nome a ser alterado"
-        value="<?php echo $fetch_produto['nome']?>"><br>
+        value="<?php echo $fetch_produto['nome'] ?>"><br>
 
         <span>Novo Preço</span>
         <input type="number" name="preco" id="" class="box required-field" required 
         min="0" max="9999999999" step="any" placeholder="Insira um novo preço para o produto" 
         onkeypress="if(this.value.length == 10) return false;"
-        value="<?php echo $fetch_produto['preco']?>"><br><br>
+        value="<?php echo $fetch_produto['preco'] ?>"><br><br>
             
         <span>Alterar Descrição</span>
         <textarea name="descricao" id="" cols="30" rows="10"  required
@@ -129,9 +129,10 @@ if (isset($_POST['voltar'])) {
         echo '<p class="vazio">Nenhum produto adicionado...</p>';
     }
     //....::PHP::..... ends ..
-    ?>
-</section>
+            ?>
+    </section>
 
-<script src="../js/admin_script.js"></script>
+    <script src="../js/admin_script.js"></script>
 </body>
+
 </html>

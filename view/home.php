@@ -3,16 +3,14 @@ session_start();
 require_once '../model/connect.php';
 require_once '../model/dao/ProdutosDAO.php';
 require_once '../model/dto/ProdutosDTO.php';
-(isset($_SESSION['client_id'])) ? 
-  $user_id = $_SESSION['client_id']
-  : '';
+
 (!isset($pageTitle)) ? $pageTitle = 'Emarket' : $pageTitle;
 // require_once '../components/wishlist_card.php';
 require_once '../controller/navigationControl.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br, en">
+<html lang="pt, en">
 
 <head>
   <?php require_once Path_Locale::head(); ?>

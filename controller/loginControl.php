@@ -6,7 +6,6 @@ require_once '../model/dao/UsuariosDAO.php';
 require_once '../model/dto/UsuariosDTO.php';
 
 if (isset($_POST['login'])) {
-
     $usuarioDTO = new UsuariosDTO;
     (isset($_POST["usuario"])) ? $usuarioDTO->setNome($_POST["usuario"]) : '';
     (isset($_POST["email"])) ? $usuarioDTO->setEmail($_POST["email"]) : '';
@@ -30,9 +29,3 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-<!-- if ($usr['type']=='cliente') {
-            Redirect::page('../view/home.php', 1);
-        }
-        else {
-            Redirect::page('../admin/dashboard.php', 2);
-        } -->

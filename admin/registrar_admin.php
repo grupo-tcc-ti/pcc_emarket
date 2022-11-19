@@ -3,28 +3,12 @@ session_start();
 require_once '../model/connect.php';
 require_once '../model/dao/UsuariosDAO.php';
 
-$user_id = $_SESSION['admin_id'];
-
-if (!isset($user_id)) {
-    $admin_header = 'admin_header.php';
-    header('location:../admin/'.$admin_header);
-}
-
-// if (isset($_POST['submit'])) {
-//     UsuariosDAO::cadastrarUsuario(
-//         $_POST['username'],
-//         $_POST['email'],
-//         $_POST['password'],
-//         $_POST['rpassword'],
-//         $_POST['usertype']
-//     );
-// }
-
-
+require_once Path_Locale::admin_header();
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-BR, en">
+<html lang="pt, en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -34,44 +18,41 @@ if (!isset($user_id)) {
     <link rel="stylesheet" href="../css/admin_stylesheet.css">
     <title>Registrar Conta de Administrador</title>
 </head>
+
 <body>
 
-<?php
-require_once Path_Locale::admin_header();
-// require_once '../controller/admin_registerControl.php';
-require_once '../controller/registerControl.php';
-?>
+    <?php require_once '../controller/registerControl.php'; ?>
 
-<section class="form-container">
-    <form action="" method="post">
-    <!-- <form action="../controller/registerControl.php" method="post"> -->
-        <h3 class="heading">Criar Nova Conta - Administrador</h3><br><br><br>
-        <input type="hidden" name="usertype" value="admin">
-        <div class="flex">
-            <div class="inputbox">
-                <span class="title required-field">Usuário</span>
-                <input type="text" name="nome" class="box" maxlength="255" required placeholder="Digite o nome do Usuário"
-                oninput = "this.value = this.value.replace(/\s/g, '')" >
+    <section class="form-container">
+        <form action="" method="post">
+            <!-- <form action="../controller/registerControl.php" method="post"> -->
+            <h3 class="heading">Criar Nova Conta - Administrador</h3><br><br><br>
+            <input type="hidden" name="usertype" value="admin">
+            <div class="flex">
+                <div class="inputbox">
+                    <span class="title required-field">Usuário</span>
+                    <input type="text" name="nome" class="box" maxlength="255" required
+                        placeholder="Digite o nome do Usuário" oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+                <div class="inputbox">
+                    <span class="title required-field">Email</span>
+                    <input type="email" name="email" class="box" maxlength="255" required
+                        placeholder="Insira um email válido" oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+                <div class="inputbox">
+                    <span class="title required-field">Senha</span>
+                    <input type="password" name="senha" class="box" maxlength="50" required placeholder="Digite a Senha"
+                        oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+                <div class="inputbox">
+                    <span class="title required-field">Confirme a Senha</span>
+                    <input type="password" name="rsenha" class="box" maxlength="50" required
+                        placeholder="Confirme a senha" oninput="this.value = this.value.replace(/\s/g, '')">
+                </div>
+                <input type="submit" value="Cadastrar" class="btn" name="register">
             </div>
-            <div class="inputbox">
-                <span class="title required-field">Email</span>
-                <input type="email" name="email" class="box" maxlength="255" required placeholder="Insira um email válido"
-                oninput = "this.value = this.value.replace(/\s/g, '')" >
-            </div>
-            <div class="inputbox">
-                <span class="title required-field">Senha</span>
-                <input type="password" name="senha" class="box" maxlength="50" required placeholder="Digite a Senha"
-                oninput = "this.value = this.value.replace(/\s/g, '')" >
-            </div>
-            <div class="inputbox">
-                <span class="title required-field">Confirme a Senha</span>
-                <input type="password" name="rsenha" class="box" maxlength="50" required placeholder="Confirme a senha"
-                oninput = "this.value = this.value.replace(/\s/g, '')" >
-            </div>
-        <input type="submit" value="Cadastrar" class="btn" name="register">
-        </div>
-    </form>
-</section>
+        </form>
+    </section>
 
 
 
@@ -92,6 +73,7 @@ require_once '../controller/registerControl.php';
 
 
 
-<script src="../js/admin_script.js"></script>
+    <script src="../js/admin_script.js"></script>
 </body>
+
 </html>

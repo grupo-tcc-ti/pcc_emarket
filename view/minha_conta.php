@@ -3,16 +3,26 @@
     require_once '../model/connect.php';
     require_once '../model/dao/UsuariosDAO.php';
     require_once '../model/dto/UsuariosDTO.php';
-    if ( !isset( $_SESSION['client_id']['id'] ) ) {
-        $client_header = Path_Locale::conta();
-        header( 'location:../view/' . $client_header );
-    } else {
-        $user_id = $_SESSION['client_id'];
+
+
+    // $test = serialize($_SESSION['client_id']);
+    // // echo $test;
+    // $test = unserialize($test);
+    // // print_r($test);
+    // echo var_dump($test) . '<br>';
+
+    $uid = str_replace('"', "'", json_encode($_SESSION['client_id']));
+    
+    if (!isset($_SESSION['client_id'])) {
+      $client_header = Path_Locale::conta();
+      header('location:../view/' . $client_header);
     }
+
     $usuario = UsuariosDAO::getUserByID(
         $_SESSION['client_id']['type'],
         $_SESSION['client_id']['id']
     );
+    
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +61,8 @@
             </div>
             <div class="card-body">
               <form action="" method="post">
+                <input type="hidden" name="user_id" value="<?php echo str_replace('"', "'", json_encode($_SESSION['client_id'])); ?>"> 
+                <!-- important -->
                 <h6 class="heading-small text-muted mb-4">Informações do usuáiro</h6>
                 <div class="pl-lg-4">
                   <div class="row">
@@ -111,6 +123,8 @@
             </div>
             <div class="card-body">
               <form method="post">
+              <input type="hidden" name="user_id" value="<?php echo str_replace('"', "'", json_encode($_SESSION['client_id'])); ?>">
+              <!-- important -->
                 <h6 class="heading-small text-muted mb-4">Meu Endereço</h6>
                 <div class="pl-lg-4">
                   <div class="row">

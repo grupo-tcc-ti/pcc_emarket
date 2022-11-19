@@ -3,13 +3,9 @@ session_start();
 require_once '../model/connect.php';
 require_once '../model/dao/PedidosDAO.php';
 require_once '../model/dto/PedidosDTO.php';
+require_once '../model/dao/UsuariosDAO.php';
+// include aqui!
 
-$user_id = $_SESSION['admin_id'];
-
-if (!isset($user_id)) {
-    $admin_header = 'admin_login.php';
-    header('location:../admin/' . $admin_header);
-}
 
 if (isset($_POST['alterar_status'])) {
     $updateData = new PedidosDTO;
@@ -22,6 +18,7 @@ if (isset($_POST['alterar_status'])) {
 if (isset($_POST['deletar_pedido'])) {
     PedidosDAO::deletarPedido($_POST['codPedido']);
 }
+require_once Path_Locale::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +41,7 @@ if (isset($_POST['deletar_pedido'])) {
 
 <body>
 
-    <?php require_once Path_Locale::admin_header(); ?>
+    <!-- <php require_once Path_Locale::admin_header(); ?> -->
 
     <h1 class="head-list">Lista de Pedidos</h1>
     <section class="pedidos">

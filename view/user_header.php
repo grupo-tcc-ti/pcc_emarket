@@ -1,19 +1,17 @@
 <?php
-require_once '../model/dao/ProdutosDAO.php';
-if (!isset($pdo)) {
-  include_once '../model/connect.php';
-}
-if (!isset($header)) {
-  $header = 1;
-}
-require_once '../controller/cartControl.php';
+set_include_path('../model');
 // require_once '../model/dao/UsuariosDAO.php';
 // require_once '../model/dto/UsuariosDTO.php';
+
+// if (!isset($user_id)) {
+//   $user_id = $_SESSION['client_id'];
+// }
+
 if (isset($_GET['logout'])) {
   include_once '../controller/admin_logoutControl.php';
-  Redirect::page('home.php', 1);
-  exit();
 }
+
+require_once '../controller/cartControl.php'; // important!
 $categorias = array(
   'Promoções',
   'Kit Upgrade',

@@ -18,24 +18,26 @@ class Redirect
             self::$current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
         }
         switch (true) {
-            case ($self != 'self'):
+            case ($refresh_time != 0):
+                header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
+                break;
+            case ($self == 'self'):
+                header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::trimPage($page));
+                break;
             case ($refresh_time == 0):
                 header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
                 break;
-            case ($refresh_time != 0 && $self != 'self'):
-                header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
-            case ($self == 'self'):
-                // Message::pop('its a me!');
-                header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::trimPage($page));
-                break;
             default:
-                header('../xindex.php');
+                header('location: ' . Redirect::directory($_SERVER['PHP_SELF']));
+                die();
         }
 
-        // if ($refresh_time == 0) {
-        //     header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
-        // } else {
+        // if ($refresh_time != 0) {
         //     header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
+        // } else if ($self == 'self') {
+        //     header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::trimPage($page));
+        // } else {
+        //     header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
         // }
     }
     public static function trimPage($page)

@@ -54,7 +54,7 @@ class cleaner
 
         // Replaces multiple hyphens with single one. 
         $file_name_str = preg_replace('/-+/', '-', $file_name_str);
-        
+
         // $file_name_str = preg_replace('/-+/', '-', $file_name_str);
         // $clean_file_name = $file_name_str;
 
@@ -139,5 +139,5 @@ class cleaner
         $str = strtr($str, $unwanted_chars);
         return $str;
     }
-    
+
 }
