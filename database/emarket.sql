@@ -26,6 +26,7 @@ CREATE TABLE usuarios (
     endereco varchar(255),
     numero bigint(12),
     complemento varchar(255),
+    favoritos longblob,
     PRIMARY KEY (codUsuario, codCliente, codAdmin)
 );
 
@@ -71,7 +72,7 @@ CREATE TABLE mensagens (
 
 CREATE TABLE carrinho (
     codCarrinho int PRIMARY KEY not null auto_increment,
-    quantidade bigint(12),
+    quantidade int(255),
     fk_usuarios_codUsuario int not null,
     fk_usuarios_codCliente int not null,
     fk_produtos_codProduto int not null,

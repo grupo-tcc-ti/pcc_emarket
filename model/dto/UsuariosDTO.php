@@ -1,7 +1,7 @@
 <?php
 class UsuariosDTO
 {
-    protected static $codUsuario, $nome, $email, $senha, $user_type, $codCliente, $codAdmin, $salario, $admissao, $demissao, $telefone, $cpf, $rg, $cnpj, $ie, $cep, $estado, $cidade, $endereco, $numero, $complemento;
+    protected static $codUsuario, $nome, $email, $senha, $user_type, $codCliente, $codAdmin, $salario, $admissao, $demissao, $telefone, $cpf, $rg, $cnpj, $ie, $cep, $estado, $cidade, $endereco, $numero, $complemento, $favoritos;
 
 	/**
 	 * @return mixed
@@ -295,5 +295,19 @@ class UsuariosDTO
 	 */
 	public static function setComplemento($complemento) {
 		self::$complemento = $complemento;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public static function getFavoritos() {
+		return self::$favoritos;
+	}
+	
+	/**
+	 * @param mixed $favoritos 
+	 */
+	public static function setFavoritos($favoritos) {
+		self::$favoritos = $favoritos;
 	}
 }

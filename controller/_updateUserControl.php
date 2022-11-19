@@ -24,7 +24,7 @@ if (isset($_POST['update_conta'])) {
     );
 
     // UsuariosDAO::alterarUsuario($usuarioDAO, $updateData);
-    $user = UsuariosDAO::alterarUsuario2($usuarioDAO, $updateData);
+    // $user = UsuariosDAO::alterarUsuario2($usuarioDAO, $updateData);
 }
 
 if (isset($_POST['update_addr'])) {

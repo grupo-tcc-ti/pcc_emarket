@@ -8,7 +8,8 @@ class Redirect
     private static $current_directory;
 
     // $page = 'page.php' Define o nome da pagina
-    public static function page($page = 'page.php', $refresh_time)
+    // $self = self caso esteja usando 'PHP_SELF'
+    public static function page($page = 'page.php', $refresh_time = 0, $self = 'goto')
     {
         if (!isset(self::$hostname)) {
             self::$hostname = $_SERVER['HTTP_HOST'];
@@ -16,12 +17,36 @@ class Redirect
         if (!isset(self::$current_directory)) {
             self::$current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
         }
-        if (!isset($refresh_time) || $refresh_time == 0) {
-            header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
-        } else {
-            header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
+        switch (true) {
+            case ($self != 'self'):
+            case ($refresh_time == 0):
+                header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
+                break;
+            case ($refresh_time != 0 && $self != 'self'):
+                header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
+            case ($self == 'self'):
+                // Message::pop('its a me!');
+                header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::trimPage($page));
+                break;
+            default:
+                header('../xindex.php');
         }
 
+        // if ($refresh_time == 0) {
+        //     header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
+        // } else {
+        //     header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
+        // }
+    }
+    public static function trimPage($page)
+    {
+        $trimmed = rtrim($page, '/');
+        return $trimmed;
+    }
+    public static function directory($page)
+    {
+        $trimmed = rtrim(dirname($page), '/');
+        return $trimmed;
     }
 }
 

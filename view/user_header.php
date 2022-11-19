@@ -6,6 +6,7 @@ if (!isset($pdo)) {
 if (!isset($header)) {
   $header = 1;
 }
+require_once '../controller/cartControl.php';
 // require_once '../model/dao/UsuariosDAO.php';
 // require_once '../model/dto/UsuariosDTO.php';
 if (isset($_GET['logout'])) {
@@ -24,7 +25,7 @@ $categorias = array(
   'Refrigeração',
   'Diversos',
   'Processador',
-  'Placa de Video'
+  'Placa de Vídeo'
 );
 ?>
 
@@ -43,16 +44,17 @@ $categorias = array(
         <nav id="depart" class="dropdown-content">
 
           <div class="nav-wrapper">
-            <!-- <form action="<php echo $_SERVER['PHP_SELF']; ?>" method="get"> -->
-            <!-- <input type="submit" name="str" value="'.$cat.'"> -->
-            <?php
-            echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="get">';
-            foreach ($categorias as $cat) {
-              // var_dump($cat);
-              echo '<input type="submit" name="str" value="' . $cat . '">';
-            }
-            echo '</form>';
-            ?>
+            <form action="" method="get">
+              <!-- <input type="submit" name="str" value="'.$cat.'"> -->
+              <?php
+              // echo '<form action="' . $_SERVER['PHP_SELF'] . '" method="get">';
+              foreach ($categorias as $cat) {
+                // var_dump($cat); //debug
+                // echo '<input type="submit" name="category" value="' . $cat . '">';
+                echo '<button class="send" type="submit" name="category" value="' . strtolower(cleaner::removeSpecialChars($cat)) . '">' . $cat . '</button>';
+              }
+              echo '</form>';
+              ?>
           </div>
         </nav>
       </div>
@@ -62,7 +64,8 @@ $categorias = array(
         <i class="fas fa-search"></i>
       </button>
       <!-- <form class="search-form" method="get" action="../view/busca.php"> -->
-      <form class="search-form" method="get" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+      <!-- <form class="search-form" method="get" action="../controller/searchControl.php"> -->
+      <form class="search-form" method="get" action="">
         <nav id="dropsearch" class="nav-search">
           <input type="search" name="str" maxlength="100" class="isearch" autocomplete="off" aria-label="campo de busca"
             placeholder="Pesquise o seu produto" required />
@@ -84,17 +87,17 @@ $categorias = array(
           <a href="<?php echo Path_Locale::conta() . '?register'; ?>">Registrar</a>
           <?php
           } else {
-                ?>
+          ?>
           <a href="minha_conta.php">Minha conta</a>
           <a href="<?php echo '?logout'; ?>" onclick="return confirm('Você deseja sair?');">Logout</a>
           <?php
           }
           if (isset($_SESSION["admin_id"])) {
-                ?>
+          ?>
           <a href="../admin/admin_login.php">Admin Panel</a>
           <?php
           }
-                ?>
+          ?>
         </nav>
       </div>
     </div>
@@ -104,54 +107,78 @@ $categorias = array(
           <span>Carrinho &nbsp;</span>
           <i class="fas fa-shopping-cart icon"></i>
         </button>
-        <nav id="carrinho" class="dropdown-content-cart">
+        <nav id="carrinho" class="dropdown-content cart">
           <div class="dropdown-menu">
-            <div class="cart-header">
-              <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-              <span class="badge badge-pill badge-danger">
 
-                <?php
-                if (isset($_SESSION['cart-size'])) {
-                  echo $_SESSION['cart-size'];
-                } else { ?>
-                <!-- 0 -->
-                <?php } ?>
-              </span>
-              <div class="total-section">
-                <p>Total: <span class="text-info">$1,337.69</span></p>
-              </div>
-            </div>
+
             <?php
-            $fetch_produto = ProdutosDAO::listarProdutos();
-            if (is_array($fetch_produto)) {
-              foreach ($fetch_produto as $prod) {
-                $prodimg = explode(",", $prod['image']);
-                $_SESSION['cart-size'] = count($fetch_produto);
+            if (isset($_SESSION['client_id']['id'])) {
             ?>
-            <div class="row cart-detail">
-              <div class="cart-detail-img">
-                <img src="<?php echo $prodimg[0]; ?>" />
-              </div>
-              <div class="cart-detail-product">
-                <p>
-                  <?php echo $prod['nome']; ?>
-                </p>
-                <span class="price text-info">R$
-                  <?php echo $prod['preco']; ?>
+            <div class="cart-header">
+              <div class="total-qty">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                <span>
+                  <?php echo $cartTotal['qty']; ?>
                 </span>
               </div>
+              <div class="price total-price">
+                <p>Total: <span>R$</span>&nbsp;
+                  <?php echo $cartTotal['price']; ?>
+                </p>
+              </div>
             </div>
-            <hr />
-            <?php
-              }
-            } else {
-              echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
-            }
-                    ?>
+            <form action="" method="post" class="checkout">
 
-            <div class="checkout">
-              <button class="btn">Fechar Pedido</button>
-            </div>
+              <?php
+              //cartControl.php
+              if (count($fetchCart) > 0) {
+                foreach ($fetchCart as $prod) {
+                  $prodimg = explode(",", $prod['image']);
+                  // echo var_dump($prod) . '<br>';
+              ?>
+
+              <div class="prod-wrapper">
+                <div class="cart-del-btn">
+                  <button type="submit" name="del_cart">
+                    <i class="fas fa-multiply"></i>
+                  </button>
+                </div>
+                <div class="cart-info">
+                  <div class="cart-img">
+                    <img src="<?php echo $prodimg[0]; ?>" />
+                  </div>
+                  <div class="cart-title">
+                    <?php echo $prod['nome']; ?>
+                  </div>
+                </div>
+                <div class="cart-info price">
+                  <div class="item-price"><span>R$</span>&nbsp;
+                    <?php echo $prod['preco']; ?>
+                  </div>
+                  <div class="item-qty">x
+                    <?php echo $prod['quantidade']; ?>
+                  </div>
+                </div>
+              </div>
+
+              <div class="divisor">
+                <hr>
+              </div>
+              <?php } ?>
+              <div class="checkout-btn">
+                <button type="submit" class="btn" name="buy" value="true">Fechar Pedido</button>
+              </div>
+
+            </form>
+            <?php
+              } else {
+                echo '<p class="vazio">Nenhum produto foi encontrado!</p>';
+              }
+            ?>
+            <?php } else {
+            ?>
+            <a href="conta.php?register">Crie sua conta!</a>
+            <?php } ?>
           </div>
         </nav>
       </div>

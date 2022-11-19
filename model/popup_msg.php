@@ -9,7 +9,7 @@ class Message
         self::$mensagem = array($mensagem);
         if (isset(self::$mensagem)) {
             foreach (self::$mensagem as $mensagem) {
-                sleep(.9);
+                sleep(.4);
                 echo '
                 <div class="mensagem">
                 <span>' . $mensagem . '</span>

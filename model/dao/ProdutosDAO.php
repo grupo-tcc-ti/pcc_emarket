@@ -48,11 +48,37 @@ class ProdutosDAO
         try {
             // $con = Connect::getInstance(); //renameit case fails
             $search_box = filter_var($produtosDTO->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$search_box}%'";
+            $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$search_box}%' OR descricao LIKE '%{$search_box}%'";
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            return $select_->fetchAll(PDO::FETCH_ASSOC);
-            // return $produtos;
+            // $search['found'] = true;
+            $search['catalog'] = $select_->fetchAll(PDO::FETCH_ASSOC);
+            // if (count($search['catalog']) == 0) {
+            //     //se a pesquisa não econtrou itens, pesquisa de itens relacionados começa
+
+            //     $search['found'] = false;
+            //     // echo var_dump($search['found']) . '<br>'; //debug
+
+            //     $search_box = explode(" ", $search_box);
+            //     // echo var_dump($search_box). '<br>'; //debug
+
+            //     foreach ($search_box as $str) {
+            //         $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$str}%' OR descricao LIKE '%{$str}%'";
+            //         // echo var_dump($qry). '<br>'; //debug
+
+            //         $select_ = self::connect()->prepare($qry);
+            //         $select_->execute();
+
+            //         //adiciona ao catalogo itens relacionados de cada palavra ex.: cadeira computador, ou , processador computador
+            //         $fetch_prod = $select_->fetchAll(PDO::FETCH_ASSOC);
+            //         if (count($fetch_prod) > 0) {
+            //             foreach ($fetch_prod as $item) {
+            //                 array_push($search['catalog'], $item);
+            //             }
+            //         }
+            //     }
+            // }
+            return $search;
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }
@@ -63,10 +89,13 @@ class ProdutosDAO
         try {
             // $con = Connect::getInstance(); //renameit case fails
             $category = filter_var($produtosDTO->getNome(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$category}%'";
+            $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$category}%'"; //nome -> categoria /mudar posteriormente
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
-            return $select_->fetchAll(PDO::FETCH_ASSOC);
+            // return $select_->fetchAll(PDO::FETCH_ASSOC);
+            $cat = $select_->fetchAll(PDO::FETCH_ASSOC);
+            // echo var_dump(count($cat)) . '<br>'; //debug
+            return $cat;
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
         }

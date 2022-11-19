@@ -205,8 +205,8 @@ class UsuariosDAO
             );
             $undo_qry = $qry;
             $new_bind = [];
+            $new_qry = null;
             foreach ($updateList as $key => $value) {
-                $new_qry;
                 $save_qry = $qry;
                 $qry = substr($qry, 0, strpos($qry, "WHERE")) . trim($key, ':') . ' = ' . $key . ', ' . substr($qry, strpos($qry, "WHERE "));
                 if (!empty($value)) {
@@ -366,5 +366,61 @@ class UsuariosDAO
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
+    }
+    public static function addToWishlist($user_id)
+    {
+        try {
+            // $pdo = Connect::getInstance(); //renameit case fails
+
+            $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
+            $delete_cart_item->execute([$user_id]);
+            header('location:cart.php');
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+            die();
+        }
+        return null;
+    }
+    public static function updateWishlist($user_id)
+    {
+        try {
+            // $pdo = Connect::getInstance(); //renameit case fails
+
+            $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
+            $delete_cart_item->execute([$user_id]);
+            header('location:cart.php');
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+            die();
+        }
+        return null;
+    }
+    public static function listWishlist($user_id)
+    {
+        try {
+            // $pdo = Connect::getInstance(); //renameit case fails
+
+            $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
+            $delete_cart_item->execute([$user_id]);
+            header('location:cart.php');
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+            die();
+        }
+        return null;
+    }
+    public static function removeFromWishlist($user_id)
+    {
+        try {
+            // $pdo = Connect::getInstance(); //renameit case fails
+
+            $delete_cart_item = self::connect()->prepare("DELETE FROM `cart` WHERE user_id = ?");
+            $delete_cart_item->execute([$user_id]);
+            header('location:cart.php');
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+            die();
+        }
+        return null;
     }
 }

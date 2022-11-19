@@ -113,6 +113,7 @@ img#slider {
   font-size: calc(1.8 * var(--1w));
   /* color: var(--black); */
   color: var(--font-color);
+  background-color: var(--background-color);
   border-radius: calc(0.5 * var(--1w));
 }
 

@@ -16,7 +16,7 @@
     $produtos->setNome(
     filter_var($_GET['str'], FILTER_SANITIZE_FULL_SPECIAL_CHARS)
     );
-    $section = ProdutosDAO::pesquisarProduto($produtos); 
+    $section = ProdutosDAO::pesquisarProduto($produtos);
     $pageTitle = 'Busca: '.$_GET['str'].'- Techgrifo';
     $nav_label = '"'.$produtos->getNome().'"';
   } 

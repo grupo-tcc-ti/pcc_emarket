@@ -1,8 +1,7 @@
 <?php
 class CarrinhoDTO
 {
-    protected static $codCarrinho, $quantidade, $fk_usuarios_codUsuario, $fk_usuarios_codCliente, $fk_produtos_codProduto;
-    
+    protected static $codCarrinho, $quantidade, $fk_codUsuario, $fk_codCliente, $fk_codProduto;
 
 	/**
 	 * @return mixed
@@ -35,42 +34,42 @@ class CarrinhoDTO
 	/**
 	 * @return mixed
 	 */
-	public static function getFk_usuarios_codUsuario() {
-		return self::$fk_usuarios_codUsuario;
+	public static function getFk_codUsuario() {
+		return self::$fk_codUsuario;
 	}
 	
 	/**
-	 * @param mixed $fk_usuarios_codUsuario 
+	 * @param mixed $fk_codUsuario 
 	 */
-	public static function setFk_usuarios_codUsuario($fk_usuarios_codUsuario) {
-		self::$fk_usuarios_codUsuario = $fk_usuarios_codUsuario;
-	}
-	
-	/**
-	 * @return mixed
-	 */
-	public static function getFk_usuarios_codCliente() {
-		return self::$fk_usuarios_codCliente;
-	}
-	
-	/**
-	 * @param mixed $fk_usuarios_codCliente 
-	 */
-	public static function setFk_usuarios_codCliente($fk_usuarios_codCliente) {
-		self::$fk_usuarios_codCliente = $fk_usuarios_codCliente;
+	public static function setFk_codUsuario($fk_codUsuario) {
+		self::$fk_codUsuario = $fk_codUsuario;
 	}
 	
 	/**
 	 * @return mixed
 	 */
-	public static function getFk_produtos_codProduto() {
-		return self::$fk_produtos_codProduto;
+	public static function getFk_codCliente() {
+		return self::$fk_codCliente;
 	}
 	
 	/**
-	 * @param mixed $fk_produtos_codProduto 
+	 * @param mixed $fk_codCliente 
 	 */
-	public static function setFk_produtos_codProduto($fk_produtos_codProduto) {
-		self::$fk_produtos_codProduto = $fk_produtos_codProduto;
+	public static function setFk_codCliente($fk_codCliente) {
+		self::$fk_codCliente = $fk_codCliente;
+	}
+	
+	/**
+	 * @return mixed
+	 */
+	public static function getFk_codProduto() {
+		return self::$fk_codProduto;
+	}
+	
+	/**
+	 * @param mixed $fk_codProduto 
+	 */
+	public static function setFk_codProduto($fk_codProduto) {
+		self::$fk_codProduto = $fk_codProduto;
 	}
 }
