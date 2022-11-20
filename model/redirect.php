@@ -18,14 +18,11 @@ class Redirect
             self::$current_directory = rtrim(dirname($_SERVER['PHP_SELF']), '/');
         }
         switch (true) {
-            case ($refresh_time != 0):
+            case ($self != 'self'):
                 header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::$current_directory . '/' . $page);
                 break;
             case ($self == 'self'):
                 header('refresh:' . $refresh_time . ', url=http://' . self::$hostname . self::trimPage($page));
-                break;
-            case ($refresh_time == 0):
-                header('location: http://' . self::$hostname . self::$current_directory . '/' . $page);
                 break;
             default:
                 header('location: ' . Redirect::directory($_SERVER['PHP_SELF']));
@@ -47,8 +44,8 @@ class Redirect
     }
     public static function directory($page)
     {
-        $trimmed = rtrim(dirname($page), '/');
-        return $trimmed;
+        // echo basename(dirname($page), "/"); //debug
+        return "../".basename(dirname($page), "/");
     }
 }
 

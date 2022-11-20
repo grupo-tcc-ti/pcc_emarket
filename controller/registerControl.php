@@ -19,7 +19,7 @@ if (isset($_POST['register'])) {
         var_dump($usuarioDTO->getUser_type());
     } else {
         var_dump($usuarioDTO->getUser_type());
-        Redirect::page('../view/minha_conta.php', 2);
+        Redirect::page(Redirect::directory($_SERVER['PHP_SELF']) . '/minha_conta.php', 2);
     }
 }
 ?>

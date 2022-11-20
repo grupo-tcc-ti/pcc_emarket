@@ -6,17 +6,15 @@ if (!isset($pdo)) {
     File_Path::requireFolder('../model/dto');
 }
 
-// $user_id important
 if (isset($_POST['submit'])) {
-    $uid = str_replace( "'", '"', json_encode($_SESSION['client_id']));
-    $uid = (array) json_decode($uid);
-    // echo var_dump($uid) . '<br>'; //debug
-
+    (isset($_POST["admin_id"])) ? $uid = $_SESSION['admin_id']: '';
+    (isset($_POST["client_id"])) ? $uid = $_SESSION['client_id']: '';
     $usuarioDAO = UsuariosDAO::getUserByID(
         $uid['type'],
         $uid['id']
     );
     $updateData = new UsuariosDTO();
+    $updateData->setUser_type($uid['type']);
     (isset($_POST["usuario"])) ? $updateData->setNome($_POST["usuario"]) : '';
     (isset($_POST["email"])) ? $updateData->setEmail($_POST["email"]) : '';
     (isset($_POST["cpf"])) ? $updateData->setCpf($_POST["cpf"]) : '';
@@ -46,7 +44,7 @@ if (isset($_POST['submit'])) {
         if ($updateData->getUser_type() == 'admin') {
             Redirect::page('admin_contas.php', 2);
         } else {
-            Redirect::page('../view/minha_conta.php', 2);
+            Redirect::page(Redirect::directory($_SERVER['PHP_SELF']) . '/minha_conta.php', 2);
         }
     }
 }

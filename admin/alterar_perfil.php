@@ -7,7 +7,7 @@ require_once '../model/connect.php';
 File_Path::requireFolder('../model/dao');
 File_Path::requireFolder('../model/dto');
 require_once File_Path::admin_header();
-$uid = str_replace('"', "'", json_encode($_SESSION['admin_id']));
+require_once '../controller/updateUserControl.php';
 ?>
 
 <!DOCTYPE html>
@@ -24,15 +24,9 @@ $uid = str_replace('"', "'", json_encode($_SESSION['admin_id']));
 </head>
 
 <body>
-
-    <?php
-
-    require_once '../controller/updateUserControl.php';
-    ?>
-
     <section class="form-container">
         <form action="" method="post">
-            <input type="hidden" name="user_id" value="<?php echo str_replace('"', "'", json_encode($_SESSION['admin_id'])); ?>">
+            <input type="hidden" name="admin_id" wfd-invisible="true" />
             <h3 class="heading">Alterar Perfil - Administrador</h3><br><br><br>
             <div class="flex">
                 <div class="inputbox">

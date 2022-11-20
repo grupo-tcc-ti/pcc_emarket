@@ -77,51 +77,71 @@ class CarrinhoDAO
                 $inserir_->bindParam(':qty', $qty);
                 $inserir_->bindParam(':uid', $codCliente);
                 $inserir_->bindParam(':pid', $pid);
-                $inserir_->execute();
+                return $inserir_->execute();
                 // echo var_dump($inserir_) . 'insert_pdo::<br>'; //debug
 
-                Message::pop('Produto adicionado ao carrinho!');
             }
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
-        return null;
     }
-    public static function updateCart()
+    public static function updateCart(CarrinhoDTO $carrinhoDTO)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            // $qry = "UPDATE `cart` SET quantity = ? WHERE id = ?";
-            // Message::pop('Quantidade atualizada!');
+            $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $pid = filter_var($carrinhoDTO->getFk_codProduto(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $qty = filter_var($carrinhoDTO->getQuantidade(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+            // funcionamento
+            // $qry = "SELECT quantidade FROM `carrinho` WHERE fk_usuarios_codCliente = :uid AND fk_produtos_codProduto = :pid";
+            // if ($quantidade != $qty) {
+            //     echo 'alterar quantidade';
+            // } else if ($quantidade == $qty) {
+            //     return;
+            // }
+
+            $qry = "UPDATE `carrinho` SET quantidade = :qty WHERE fk_usuarios_codCliente = :uid AND fk_produtos_codProduto = :pid";
+            $update_ = self::connect()->prepare($qry);
+            $update_->bindParam(":uid", $uid);
+            $update_->bindParam(":pid", $pid);
+            $update_->bindParam(":qty", $qty);
+            return $update_->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
-        return null;
     }
-    public static function deleteCartItem()
+    public static function deleteCartItem(CarrinhoDTO $carrinhoDTO)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            // $qry = "DELETE FROM `cart` WHERE id = ?";
+            $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $pid = filter_var($carrinhoDTO->getFk_codProduto(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $qry = "DELETE FROM `carrinho` WHERE fk_usuarios_codCliente = :uid AND fk_produtos_codProduto = :pid";
+            $update_ = self::connect()->prepare($qry);
+            $update_->bindParam(":uid", $uid);
+            $update_->bindParam(":pid", $pid);
+            return $update_->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
-        return null;
     }
-    public static function deleteCart($uid)
+    public static function deleteCart(CarrinhoDTO $carrinhoDTO)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            // $qry = "DELETE FROM `cart` WHERE user_id = ?";
+            $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $qry = "DELETE FROM `carrinho` WHERE fk_usuarios_codCliente = :uid";
+            $update_ = self::connect()->prepare($qry);
+            $update_->bindParam(":uid", $uid);
+            return $update_->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
         }
-        return null;
     }
 
 }

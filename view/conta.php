@@ -115,7 +115,7 @@ require_once File_Path::user_header();
       </div>
     </div>
   </div>
-  <?php require_once '../view/footer.html'; ?>
+  <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
   <script src="../js/script.js"></script>
 </body>
 

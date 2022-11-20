@@ -7,6 +7,7 @@ require_once '../model/dto/ProdutosDTO.php';
 (!isset($pageTitle)) ? $pageTitle = 'Emarket' : $pageTitle;
 // require_once '../components/wishlist_card.php';
 require_once '../controller/navigationControl.php';
+require_once File_Path::user_header();
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +21,6 @@ require_once '../controller/navigationControl.php';
     <?php echo $pageTitle; ?>
   </title>
 </head>
-
-<?php require_once File_Path::user_header(); ?>
 
 <body>
   <section>
@@ -52,7 +51,7 @@ require_once '../controller/navigationControl.php';
   </section>
 
   <section>
-    <?php //include '../view/vitrine_teste.html'; ?>
+    <?php //include Redirect::directory($_SERVER['PHP_SELF']) . '/vitrine_teste.html'; ?>
     </section>
 
     <?php
@@ -110,10 +109,12 @@ require_once '../controller/navigationControl.php';
 
               <!-- Provavelmente essa opção será movida para a página do produto -->
               <form action="" method="post">
-                <input type="hidden" name="pid" value="<?php echo $prod['codProduto']; ?>"></input>
                 <input type="number" name="qty" class="qty" min="1" max="99"
-                  onkeypress="if(this.value> 2) return false;" value="1">
+                onkeypress="if(this.value> 2) return false;" value="1">
                 <input type="submit" value="Adicionar ao Carrinho" name="add_cart" class="buy-btn">
+                <!-- rename if fails-->
+                <input type="hidden" name="pid" value="<?php echo $prod['codProduto']; ?>"></input>
+                <input type="hidden" name="client_cart">
               </form>
             </div>
 
@@ -126,7 +127,7 @@ require_once '../controller/navigationControl.php';
         $error[] = 'Não se preocupe estamos trabalhando nisso!';
       }
     } else if (isset($_GET['str']) || isset($_GET['category'])) {
-      include_once '../view/page.php';
+      include_once Redirect::directory($_SERVER['PHP_SELF']) . '/page.php';
     } else if (array_key_first($_GET) != "str" || array_key_first($_GET) != "category") {
       $error[] = 'Talvez o que você procura não esteja aqui. <br> talvez...!';
       $error[] = '../image/error/th-1517709978.jpg';
@@ -145,7 +146,7 @@ require_once '../controller/navigationControl.php';
     </div>
 
     <?php
-    require_once '../view/quickview.php';
+    require_once Redirect::directory($_SERVER['PHP_SELF']) . '/quickview.php';
 
     if (isset($error)) {
       echo '<div class="thrown-error">';
@@ -160,7 +161,7 @@ require_once '../controller/navigationControl.php';
     }
     ?>
 
-    <?php require_once '../view/footer.html'; ?>
+    <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
 
@@ -168,72 +169,6 @@ require_once '../controller/navigationControl.php';
 
     <script src="../js/script.js"></script>
 
-
-    <!-- <div class="home-bg">
-
-    <section class="home">
-
-      <div class="swiper home-slider">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide slide active">
-            <div class="image">
-              <img src="../image/produtos/home-img-1.png" alt="">
-            </div>
-            <div class="content">
-              <span>upto 50% off</span>
-              <h3>latest smartphones</h3>
-              <a href="shop.php" class="btn">shop now</a>
-            </div>
-          </div>
-
-          <div class="swiper-slide slide">
-            <div class="image">
-              <img src="../image/produtos/home-img-2.png" alt="">
-            </div>
-            <div class="content">
-              <span>upto 50% off</span>
-              <h3>latest watches</h3>
-              <a href="shop.php" class="btn">shop now</a>
-            </div>
-          </div>
-
-          <div class="swiper-slide slide">
-            <div class="image">
-              <img src="../image/produtos/home-img-3.png" alt="">
-            </div>
-            <div class="content">
-              <span>upto 50% off</span>
-              <h3>latest headsets</h3>
-              <a href="shop.php" class="btn">shop now</a>
-            </div>
-          </div>
-
-          <div class="swiper-slide slide">
-            <div class="image fill">
-              <img src="../image/slider/1.jpg" alt="">
-            </div>
-          </div>
-          <div class="swiper-slide slide">
-            <div class="image fill">
-              <img src="../image/slider/2.jpg" alt="">
-            </div>
-          </div>
-          <div class="swiper-slide slide">
-            <div class="image fill">
-              <img src="../image/slider/3.jpg" alt="">
-            </div>
-          </div>
-
-          <div class="swiper-pagination"></div>
-        </div>
-      </div>
-    </section>
-    <div class="navigation">
-      <i class="fas fa-chevron-left prev-btn"></i>
-      <i class="fas fa-chevron-right next-btn"></i>
-    </div>
-  </div> -->
 </body>
 
 </html>

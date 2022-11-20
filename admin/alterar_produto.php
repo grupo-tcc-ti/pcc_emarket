@@ -1,6 +1,9 @@
 <?php
 require_once '../model/connect.php';
-require_once '../model/dao/ProdutosDAO.php';
+// require_once '../model/dao/ProdutosDAO.php';
+//undo requirefolder if fails!
+// F-ile_Path::requireFolder('../model/dao');
+// F-ile_Path::requireFolder('../model/dto');
 session_start();
 
 //['admin_id'] no header

@@ -15,15 +15,15 @@ class File_Path
     }
     public static function user_header()
     {
-        return '../view/user_header.php';
+        return Redirect::directory($_SERVER['PHP_SELF']) . '/user_header.php';
     }
     public static function head()
     {
-        return '../view/head.html';
+        return Redirect::directory($_SERVER['PHP_SELF']) . '/head.html';
     }
     public static function conta()
     {
-        return '../view/conta.php';
+        return Redirect::directory($_SERVER['PHP_SELF']) . '/conta.php';
     }
 
 }

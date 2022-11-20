@@ -48,25 +48,24 @@
 }
 
 ::-webkit-scrollbar {
-  width: calc(0.4 * var(--1w));
-  height: calc(0.5 * var(--1w));
-  background-color: var(--main-color);
-  transition: width 0.6s ease-in-out;
-}
-
-::-webkit-scrollbar:hover,
-::-webkit-scrollbar:active {
   width: calc(1 * var(--1w));
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-track {
   background-color: var(--black);
-  border-radius: calc(0.6 * var(--1w));
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--main-color);
   border-radius: calc(0.6 * var(--1w));
+  width: calc(0.2 * var(--1w));
+  border: 4px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border: 2px solid transparent;
 }
 
 html {
@@ -195,8 +194,10 @@ section {
 }
 
 .container .colorScheme .btn {
-  border-radius: 40px;
-  margin: 4px;
+  /* border-radius: 40px; */
+  /* margin: 4px; */
+  border-radius: 20px 0 0 20px;
+  margin: -4px;
 }
 
 /* ################# Estilização do Menu Suspenso - Departamento ################# */
@@ -526,6 +527,8 @@ footer.container .credit span {
   overflow-y: scroll;
   transition: 0.8s;
   animation: dropDownAnimation 300ms ease-in-out forwards;
+  right: 0;
+  margin-right: 4px;
 }
 
 #carrinho .dropdown-menu .divisor {
@@ -577,7 +580,6 @@ footer.container .credit span {
   /* debug carrinho */
   position: absolute;
   right: 0;
-  /* transform: translate(-50%, -50%); */
   transform: translate(0%, -50%);
 }
 
@@ -600,15 +602,16 @@ footer.container .credit span {
   justify-content: space-between;
   padding: 1px 2px;
   font-size: calc(1.6 * var(--1w));
+  max-width: calc(30 * var(--1w));
   /* background-color: var(--light-orange); */
   /* debug carrinho */
 }
 
 #carrinho .cart-info .cart-img {
-  align-self: baseline;
+  align-self: flex-start;
   /* background-color: var(--purple); */
   /* debug carrinho */
-  max-width: 30%;
+  /* max-width: 30%; */
 }
 
 #carrinho .cart-info .cart-img img {
@@ -621,10 +624,19 @@ footer.container .credit span {
   /* background-color: var(--light-red); */
   /* debug carrinho */
   font-size: calc(1.6 * var(--1w));
+  margin-left: calc(1.6 * var(--1w));
   text-align: right;
-  padding-right: 2px;
-  max-width: 70%;
+  align-self: flex-start;
+  /* padding-right: 2px; */
+  /* max-width: 70%; */
+  max-height: 100px;
   overflow: hidden;
+  transition: max-height 1s ease;
+}
+
+#carrinho .cart-info .cart-title:hover {
+  /* transform: translateY(calc(10 * var(--1w))); */
+  max-height: 200px;
 }
 
 #carrinho .cart-info .item-qty {
