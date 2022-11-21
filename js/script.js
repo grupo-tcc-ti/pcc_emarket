@@ -263,6 +263,16 @@ function peekProd() {
   quickview.classList.toggle('active');
 }
 
+let closeBtn = qryS('#peek-prod');
+let mainImage = qryS('.quickview .wrap .col.prod-img img');
+let subImages = qrySA('.quickview .wrap .col.img-swip img');
+subImages.forEach((image) => {
+  image.onclick = () => {
+    let src = image.getAttribute('src');
+    mainImage.src = src;
+  };
+});
+
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--background-color'));
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--font-color'));
 // console.log(window.matchMedia("(prefers-color-scheme: dark)"));

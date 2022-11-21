@@ -3,22 +3,23 @@
 /* Automatic Color Scheme */
 :root,
 :root.light {
-  --main-color: #f75a09; /*darkcyan é a cor anterior, eu coloquei essa atual para combinar com a logo, tambem pode ser azul #2b79d6 */
+  --main-color: #f75a09;
+  --secondary-color: #2b79d6;
   --black: #1f1f1f;
   --white: #fff;
-  --debug-white: lavenderblush;
+  --debug-white: #fff0f5; /* lavenderblush */
   --light-red: #fc355c;
-  --red: crimson;
-  --light-orange: orange;
-  --orange: darkorange;
-  --light-yellow: khaki;
-  --yellow: gold;
-  --light-green: mediumseagreen;
-  --green: forestgreen;
-  --light-blue: dodgerBlue;
-  --blue: navy;
-  --light-purple: blueviolet;
-  --purple: indigo;
+  --red: #dc143c; /* crimson */  
+  --light-orange: #ffa500; /* orange */  
+  --orange: #ff8c00; /* darkorange */  
+  --light-yellow: #f0e68c; /* khaki */  
+  --yellow: #ffd700; /* gold */  
+  --light-green: #3cb371; /* mediumseagreen */  
+  --green: #228b22; /* forestgreen */  
+  --light-blue: #1e90ff; /* dodgerBlue */  
+  --blue: #000080; /* navy */  
+  --light-purple: #8a2be2; /* blueviolet */  
+  --purple: #4b0082; /* indigo */  
   --font-color: #1f1f1f;
   --background-color: #ebebeb;
   --border: 1px solid var(--font-color);
@@ -26,8 +27,8 @@
   --card-border: 1.8px groove black;
   --card-box-shadow: #5a5a5a 2px 8px 12px 8px;
   --box-shadow: 0px 8px 16px 0px var(--font-color);
-  --text-shadow: 1px 1px 2px var(--font-color);
-  --input-color: --background-color;
+  --input-shadow: 1px 4px 10px -6px var(--font-color);
+  --input-color: var(--background-color);
   --input-border: 1px solid;
   /* Weight */
   /* --1w: 1rem; */
@@ -180,6 +181,21 @@ section {
   animation: searchbarAnima 0.8s ease forwards alternate;
   z-index: 999;
   width: 99%;
+}
+
+.header .container .nav-cart .cart-qty {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  border-radius: 80px;
+  height: calc(1.6 * var(--1w));
+  width: calc(1.6 * var(--1w));
+  font-size: calc(1.2 * var(--1w));
+  padding-bottom: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  transform: translate(-20%,-50%);
 }
 
 @keyframes searchbarAnima {
@@ -497,7 +513,7 @@ footer.container .credit span {
 @media (prefers-color-scheme: dark) {
   :root,
   :root.dark {
-    --font-color: snow;
+    --font-color: #fffafa;
     --background-color: #1f1f1f;
     --card-box-shadow: #d3d3d3 4px 4px 8px 1px;
     --box-shadow: 1px 1px 4px 0px #c7c7c7;
@@ -507,7 +523,7 @@ footer.container .credit span {
 
 /* Manual Dark Color Scheme */
 :root.dark {
-  --font-color: snow;
+  --font-color: #fffafa;
   --background-color: #1f1f1f;
   --card-box-shadow: #d3d3d3 4px 4px 8px 1px;
   --box-shadow: 1px 1px 4px 0px #c7c7c7;

@@ -64,7 +64,6 @@ require_once File_Path::user_header();
   <?php require_once File_Path::head(); ?>
   <title>Minha Conta</title>
 </head>
-
 <body>
   <div id="minha-conta">
     <section class="wrapper">
@@ -128,7 +127,7 @@ require_once File_Path::user_header();
           </div>
         </form>
 
-        
+
 
         <form action="" method="post">
           <div class="section adress-info">

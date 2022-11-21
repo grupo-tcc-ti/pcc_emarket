@@ -59,6 +59,7 @@
 
 #minha-conta .section .row.icon {
   position: relative;
+  color: var(--font-color);
 }
 
 #minha-conta .section .row.icon i {
@@ -75,13 +76,15 @@
 }
 
 #minha-conta .section .row .input-field {
+  background-color: var(--background-color);
+  box-shadow: var(--input-shadow);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  /* border: 1px solid gainsboro; */
+  color: var(--font-color);
   width: 100%;
-  padding-left: calc(2 * var(--1w));
-  border-radius: 2px;
-  border-top: 2px solid transparent;
-  border: 1px solid gainsboro;
-  color:dimgrey;
   height: calc(3.8 * var(--1w));
+  padding-left: calc(2 * var(--1w));
 }
 
 #minha-conta .section.adress-info .row .input-field {

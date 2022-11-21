@@ -1,6 +1,14 @@
 <?php
 session_start();
 require_once '../model/connect.php';
+if (isset($_SESSION['client_id'])) {
+  Message::pop('Sua sessão já foi iniciada!');
+  Message::pop('Voce está sendo redirecionado....');
+  Redirect::page('home.php', 2);
+}
+require_once '../controller/loginControl.php';
+require_once '../controller/registerControl.php';
+require_once File_Path::user_header();
 ?>
 
 <!DOCTYPE html>
@@ -26,18 +34,6 @@ require_once '../model/connect.php';
     }
   </script>
 </head>
-
-<?php
-if (isset($_SESSION['client_id'])) {
-  Message::pop('Sua sessão já foi iniciada!');
-  Message::pop('Voce está sendo redirecionado....');
-  Redirect::page('home.php', 2);
-}
-require_once '../controller/loginControl.php';
-require_once '../controller/registerControl.php';
-require_once File_Path::user_header();
-?>
-
 <body>
   <div class="login-register">
     <div class="container">

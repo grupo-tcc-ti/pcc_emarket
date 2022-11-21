@@ -20,6 +20,7 @@ require_once File_Path::user_header();
   <title>
     <?php echo $pageTitle; ?>
   </title>
+
 </head>
 
 <body>
@@ -110,7 +111,7 @@ require_once File_Path::user_header();
               <!-- Provavelmente essa opção será movida para a página do produto -->
               <form action="" method="post">
                 <input type="number" name="qty" class="qty" min="1" max="99"
-                onkeypress="if(this.value> 2) return false;" value="1">
+                  onkeypress="if(this.value> 2) return false;" value="1">
                 <input type="submit" value="Adicionar ao Carrinho" name="add_cart" class="buy-btn">
                 <!-- rename if fails-->
                 <input type="hidden" name="pid" value="<?php echo $prod['codProduto']; ?>"></input>

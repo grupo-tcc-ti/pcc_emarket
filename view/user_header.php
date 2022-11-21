@@ -77,8 +77,10 @@ $categorias = array(
           <?php
           if (!isset($_SESSION['client_id'])) {
           ?>
-          <a href="<?php echo File_Path::conta(); ?>">Login</a>
-          <a href="<?php echo File_Path::conta() . '?register'; ?>">Registrar</a>
+          <!-- <a href="<php echo File_Path::conta(); ?>">Login</a> -->
+          <a href="../view/conta.php">Login</a>
+          <!-- <a href="<php echo File_Path::conta() . '?register'; ?>">Registrar</a> -->
+          <a href="../view/conta.php?register">Registrar</a>
           <?php
           } else {
           ?>
@@ -99,6 +101,7 @@ $categorias = array(
       <div class="dropdown">
         <button id="link-carrinho" onclick='clickDrop("carrinho")' class="btn">
           <span>Carrinho &nbsp;</span>
+          <div class="cart-qty"><?php echo $cartTotal['qty']; ?></div>
           <i class="fas fa-shopping-cart icon"></i>
         </button>
         <nav id="carrinho" class="dropdown-content cart">
@@ -166,7 +169,7 @@ $categorias = array(
               <input type="hidden" name="pid" value="<?php echo $prod['codProduto']; ?>"></input>
               <input type="hidden" name="client_cart">
             </form>
-            <!-- +++++++++Carrinho_starts+++++++++ -->
+            <!-- +++++++++Carrinho_ends+++++++++ -->
             <?php
               } else {
                 echo '<p class="vazio">Carrinho vazio!</p>';

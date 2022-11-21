@@ -92,7 +92,7 @@
   border-top: 2px solid transparent;
   border-radius: 0 20px;
   border-bottom: var(--input-border) var(--input-color);
-  background-color: var(--input-color);
+  /* background-color: var(--input-color); */
   transition: all 0.1s ease;
 }
 

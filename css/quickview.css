@@ -21,18 +21,15 @@
 }
 
 .quickview .closeWindow {
-  position: relative;
+  transform: translate(1100%, 4vh);
 }
 
 .quickview .closeWindow button {
   /* background: dodgerblue; */
-  background: var(--font-color);
   /* debug */
-  position: absolute;
+  background: var(--font-color);
   color: #8c8c8c;
-  top: 50%;
-  right: 50%;
-  /* transform: translate(100%, 50%); */
+  
   width: calc(4 * var(--1w));
   height: calc(4 * var(--1w));
   border: 0;
@@ -41,7 +38,7 @@
   line-height: 0;
   opacity: 1;
   outline: 0;
-  overflow: visible;
+  /* overflow: visible; */
   cursor: pointer;
   z-index: 100;
 }
@@ -83,6 +80,7 @@
 
 .quickview .btn-nav button {
   width: calc(2 * var(--1w));
+  height: calc(2 * var(--1w));
   border-radius: calc(4 * var(--1w));
   margin: 6px;
 }
@@ -229,6 +227,7 @@
     max-width: calc(64 * var(--1w));
     max-height: calc(88 * var(--1w));
     margin: calc(1 * var(--1w));
+    margin-top: calc(12 * var(--1w));
   }
   .quickview .wrap .img-swip {
     flex-direction: row;
@@ -240,7 +239,7 @@
   .quickview .wrap .prod-info .prod-price {
     margin: calc(1 * var(--1w)) auto;
   }
-  .quickview .closeWindow button {
-    transform: translate(50%, -25%);
+  .quickview .closeWindow {
+    transform: translate(530%, 15vh);
   }
 }
