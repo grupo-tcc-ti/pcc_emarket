@@ -6,7 +6,7 @@ require_once '../model/dto/ProdutosDTO.php';
 
 (!isset($pageTitle)) ? $pageTitle = 'Emarket' : $pageTitle;
 // require_once '../components/wishlist_card.php';
-require_once '../controller/navigationControl.php';
+require_once '../controller/navigationControl.php'; // important!
 require_once File_Path::user_header();
 ?>
 
@@ -78,7 +78,8 @@ require_once File_Path::user_header();
             ?>
             <div class="cards-items peek">
               <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
-              <button id="peek-prod" onclick="return peekProd();"><i class="fas fa-eye"></i>
+              <button id="peek-prod" onclick="peekProd(this);" value="<?php echo $prod['codProduto']; ?>"><i
+                  class="fas fa-eye"></i>
               </button>
               <a title="<?php echo $prod['nome']; ?>" href="../view/page.php/<?php echo $prod_link; ?>">
                 <img src="<?php echo $prodimg[0]; ?>" alt="" class="products-imgs" />
@@ -108,15 +109,8 @@ require_once File_Path::user_header();
                 </div>
               </div>
 
-              <!-- Provavelmente essa opção será movida para a página do produto -->
-              <form action="" method="post">
-                <input type="number" name="qty" class="qty" min="1" max="99"
-                  onkeypress="if(this.value> 2) return false;" value="1">
-                <input type="submit" value="Adicionar ao Carrinho" name="add_cart" class="buy-btn">
-                <!-- rename if fails-->
-                <input type="hidden" name="pid" value="<?php echo $prod['codProduto']; ?>"></input>
-                <input type="hidden" name="client_cart">
-              </form>
+              
+              <?php require Redirect::directory($_SERVER['PHP_SELF']) . '/quickview.php'; ?>
             </div>
 
             <?php
@@ -147,8 +141,8 @@ require_once File_Path::user_header();
     </div>
 
     <?php
-    require_once Redirect::directory($_SERVER['PHP_SELF']) . '/quickview.php';
-
+    // require_once Redirect::directory($_SERVER['PHP_SELF']) . '/quickview.php';
+    
     if (isset($error)) {
       echo '<div class="thrown-error">';
       foreach ($error as $obj) {

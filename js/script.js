@@ -258,9 +258,19 @@ function closeMessage(msg) {
   }, 1000);
 }
 
-function peekProd() {
-  var quickview = qryS('.quickview');
-  quickview.classList.toggle('active');
+function peekProd(el) {
+  const parent = el.parentElement;
+  if (parent.classList.contains('active')){
+    parent.classList.toggle('active');
+  }
+  for (const child of parent.children) {
+    if (child.classList.contains('quickview')){
+      child.classList.toggle('active');
+    }
+  }
+  // Array.prototype.forEach.call(parent.children, (child) => {
+    // console.log(child.classList.contains('quickview'));
+  // });
 }
 
 let closeBtn = qryS('#peek-prod');

@@ -64,8 +64,12 @@ if (isset($_POST['client_cart'])) {
                 break;
             default:
                 Message::pop('procedimento cart falhou!');
+                unset($_POST['client_cart']);
+
         }
-        unset($_POST['client_cart']);
+        if (isset($_POST['client_cart'])) {
+            unset($_POST['client_cart']);
+        }
         // Redirect::page($_SERVER['PHP_SELF'], 2, 'self');
     }
 }

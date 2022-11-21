@@ -106,16 +106,6 @@ img#slider {
   color: var(--font-color);
 }
 
-.cards-items .qty {
-  width: calc(7 * var(--1w));
-  padding: calc(1 * var(--1w));
-  border: var(--border);
-  font-size: calc(1.8 * var(--1w));
-  /* color: var(--black); */
-  color: var(--font-color);
-  background-color: var(--background-color);
-  border-radius: calc(0.5 * var(--1w));
-}
 
 .cards-items .cards-price {
   color: var(--font-color);
@@ -203,32 +193,6 @@ img#slider {
   /* color: var(--black); */
   color: var(--font-color);
   border-radius: calc(0.5 * var(--1w));
-}
-
-.cards-items .buy-btn {
-  background-color: var(--green);
-  color: var(--white);
-  width: 100%;
-  margin-top: 16px;
-  padding: 12px 20px;
-  font-size: 16px;
-  border-radius: 4px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-}
-
-.buy-btn input {
-  background-color: var(--green);
-  color: var(--font-color);
-  width: 100%;
-  margin-top: calc(1 * var(--1w));
-  padding: calc(1 * var(--1w)) calc(3 * var(--1w));
-  font-size: calc(1.4 * var(--1w));
-  border-radius: calc(0.5 * var(--1w));
-  text-align: center;
-  border: none;
-  cursor: pointer;
 }
 
 @media (min-width: 1220px) {
