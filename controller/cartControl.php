@@ -19,9 +19,10 @@ foreach ($fetchCart as $total) {
     // echo var_dump($produ) . '<br>'; //debug
 }
 // echo var_dump($cartTotal) . '<br>'; //debug
+        // echo var_dump($_POST['client_cart']) . '<br>';
 
 if (isset($_POST['client_cart'])) {
-    // Message::pop('carrinho cliente!'); //debug
+    unset($_POST['client_cart']);
 
     if (!isset($_SESSION['client_id'])) {
         Message::pop('Faça uma conta e aproveite nossas ofertas!');
@@ -36,6 +37,7 @@ if (isset($_POST['client_cart'])) {
         // echo var_dump($carrinho->getFk_codCliente()) . '<br>'; //debug
         // echo var_dump($carrinho->getFk_codProduto()) . '<br>'; //debug
         // echo var_dump($carrinho->getQuantidade()) . '<br>'; //debug
+        // echo var_dump($_POST['client_cart']) . '<br>';
         switch (true) {
             // melhorar design para alterar produto
             // case (isset($_POST['updt_cart'])):
@@ -65,12 +67,9 @@ if (isset($_POST['client_cart'])) {
             default:
                 Message::pop('procedimento cart falhou!');
                 unset($_POST['client_cart']);
+        }
 
-        }
-        if (isset($_POST['client_cart'])) {
-            unset($_POST['client_cart']);
-        }
-        // Redirect::page($_SERVER['PHP_SELF'], 2, 'self');
+        Redirect::page($_SERVER['PHP_SELF'], 2, 'self');
     }
 }
 ?>

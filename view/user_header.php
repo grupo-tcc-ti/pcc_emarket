@@ -101,7 +101,9 @@ $categorias = array(
       <div class="dropdown">
         <button id="link-carrinho" onclick='clickDrop("carrinho")' class="btn">
           <span>Carrinho &nbsp;</span>
-          <div class="cart-qty"><?php echo $cartTotal['qty']; ?></div>
+          <div class="cart-qty">
+            <?php echo $cartTotal['qty']; ?>
+          </div>
           <i class="fas fa-shopping-cart icon"></i>
         </button>
         <nav id="carrinho" class="dropdown-content cart">
@@ -126,14 +128,14 @@ $categorias = array(
             </div>
 
             <!-- +++++++++Carrinho_starts+++++++++ -->
-            <form action="" method="post" class="checkout">
-              <?php
+            <?php
               //cartControl.php
               if (count($fetchCart) > 0) {
                 foreach ($fetchCart as $prod) {
                   $prodimg = explode(",", $prod['image']);
                   // echo var_dump($prod['codProduto']) . '<br>'; //debug
-              ?>
+            ?>
+            <form action="" method="post">
               <div class="prod-wrapper">
                 <div class="cart-del-btn">
                   <button type="submit" name="del_cart_item">
