@@ -79,10 +79,17 @@ window.onscroll = () => {
   // header permanece visivel ao rolar a pagina
   const headerflex = qryS('.header .container');
   if (window.scrollY > 0) {
-    // console.log(window.scrollY); //debug
+    console.log(window.scrollY); //debug
     headerflex.style.position = 'fixed';
     } else {
       headerflex.style.position = 'sticky';
+  }
+
+  const totop = qryS('.totop');
+  if (window.scrollY > 250) {
+    totop.style.display = 'flex';
+  } else {
+    totop.style.display = 'none';
   }
 };
 
