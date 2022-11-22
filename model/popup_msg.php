@@ -22,6 +22,6 @@ class Message
     }
 
 }
+// <i class="fas fa-times" onclick="closeMessage(this);"></i>
+// <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
 ?>
-<!-- <i class="fas fa-times" onclick="closeMessage(this);"></i> -->
-<!-- <i class="fas fa-times" onclick = "this.parentElement.remove();"></i> -->

@@ -20,7 +20,6 @@ if (isset($_POST['deletar_prod'])) {
     ProdutosDAO::deletarProduto($_POST['deletar_prod']);
 }
 
-require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +36,7 @@ require_once File_Path::admin_header();
 </head>
 
 <body>
-    <!-- <php require_once File_Path::admin_header();?> -->
+    <?php require_once File_Path::admin_header(); ?>
 
 
     <!-- <section class="add-produtos"> -->
@@ -77,12 +76,12 @@ require_once File_Path::admin_header();
     <h3 class="head-list">Lista de Produtos</h3>
     <section class="mostrar-produtos">
         <?php
-            $mostrar_prods = $pdo->prepare("SELECT * FROM  `produtos`");
-            $mostrar_prods->execute();
-            if ($mostrar_prods->rowCount() > 0) {
-                while ($fetch_prod = $mostrar_prods->fetch(PDO::FETCH_ASSOC)) {
-                    $fetched_imgs = explode(",", $fetch_prod['image']);
-            ?>
+        $mostrar_prods = $pdo->prepare("SELECT * FROM  `produtos`");
+        $mostrar_prods->execute();
+        if ($mostrar_prods->rowCount() > 0) {
+            while ($fetch_prod = $mostrar_prods->fetch(PDO::FETCH_ASSOC)) {
+                $fetched_imgs = explode(",", $fetch_prod['image']);
+        ?>
         <div class="box">
             <img src='<?php echo $fetched_imgs[0]; ?>' alt="">
             <div class="nome">
@@ -111,11 +110,11 @@ require_once File_Path::admin_header();
             </form>
         </div>
         <?php
-                }
-            } else {
-                echo '<p class="vazio">Nenhum produto adicionado...</p>';
             }
-            ?>
+        } else {
+            echo '<p class="vazio">Nenhum produto adicionado...</p>';
+        }
+        ?>
     </section>
 
 

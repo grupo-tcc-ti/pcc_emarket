@@ -14,7 +14,6 @@ if (isset($_GET['deletar'])) {
     header('location:mensagens.php');
 }
 
-require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +31,7 @@ require_once File_Path::admin_header();
 
 <body>
 
-    <!-- <php require_once File_Path::admin_header(); ?> -->
+    <?php require_once File_Path::admin_header(); ?>
 
     <section class="mensagens">
 

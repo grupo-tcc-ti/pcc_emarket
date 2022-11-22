@@ -7,7 +7,6 @@ require_once '../model/dto/ProdutosDTO.php';
 (!isset($pageTitle)) ? $pageTitle = 'Emarket' : $pageTitle;
 // require_once '../components/wishlist_card.php';
 require_once '../controller/navigationControl.php'; // important!
-require_once File_Path::user_header();
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +21,7 @@ require_once File_Path::user_header();
   </title>
 
 </head>
+<?php require_once File_Path::user_header(); ?>
 
 <body>
   <section>
@@ -50,10 +50,6 @@ require_once File_Path::user_header();
       </div>
     </div>
   </section>
-
-  <section>
-    <?php //include Redirect::directory($_SERVER['PHP_SELF']) . '/vitrine_teste.html'; ?>
-    </section>
 
     <?php
     // if (!isset($_GET['str']) && !isset($_GET['category'])) {
@@ -109,7 +105,7 @@ require_once File_Path::user_header();
                 </div>
               </div>
 
-              
+
               <?php require Redirect::directory($_SERVER['PHP_SELF']) . '/quickview.php'; ?>
             </div>
 
@@ -159,8 +155,6 @@ require_once File_Path::user_header();
     <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
 
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-
-    <!-- <script src="../js/swiper.js"></script> -->
 
     <script src="../js/script.js"></script>
 

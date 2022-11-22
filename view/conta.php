@@ -8,7 +8,6 @@ if (isset($_SESSION['client_id'])) {
 }
 require_once '../controller/loginControl.php';
 require_once '../controller/registerControl.php';
-require_once File_Path::user_header();
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +34,7 @@ require_once File_Path::user_header();
   </script>
 </head>
 <body>
+<?php require_once File_Path::user_header(); ?>
   <div class="login-register">
     <div class="container">
       <div class="forms">

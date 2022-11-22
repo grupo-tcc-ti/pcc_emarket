@@ -46,7 +46,6 @@ $estados = array(
   'EX' => 'Estrangeiro'
 );
 require_once '../controller/updateUserControl.php';
-require_once File_Path::user_header();
 ?>
 
 <!DOCTYPE html>
@@ -64,7 +63,9 @@ require_once File_Path::user_header();
   <?php require_once File_Path::head(); ?>
   <title>Minha Conta</title>
 </head>
+
 <body>
+  <?php require_once File_Path::user_header(); ?>
   <div id="minha-conta">
     <section class="wrapper">
       <div class="account-header">

@@ -19,7 +19,6 @@ if (isset($_POST['alterar_status'])) {
 if (isset($_POST['deletar_pedido'])) {
     PedidosDAO::deletarPedido($_POST['codPedido']);
 }
-require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +41,7 @@ require_once File_Path::admin_header();
 
 <body>
 
-    <!-- <php require_once File_Path::admin_header(); ?> -->
+    <?php require_once File_Path::admin_header(); ?>
 
     <h1 class="head-list">Lista de Pedidos</h1>
     <section class="pedidos">

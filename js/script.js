@@ -1,3 +1,4 @@
+// Funções query como objetos para evitar erros em páginas
 const qryS = (selector) =>
   document.querySelector(selector) || {
     classList: {
@@ -18,6 +19,7 @@ const qrySA = (selector) =>
   };
 
 window.onclick = function (event) {
+  // esconde tags 'nav' caso o clique ocorra em qualquer lugar da tela
   if (!event.target.matches('.isearch')) {
     if (!event.target.matches('.btn')) {
       let dropdowns = qrySA('.dropdown-content');
@@ -33,7 +35,7 @@ window.onclick = function (event) {
     }
   }
 
-  // Toggle dark-mode function
+  // Aciona função 'Toggle dark-mode'
   if (event.target.matches('#darkmode')) {
     mode = window?.matchMedia('(prefers-color-scheme: dark)');
     html = document.documentElement;
@@ -54,7 +56,7 @@ window.onclick = function (event) {
     }
   }
 };
-
+// detecta mudança do esquema de cores e remove as classes light e dark do html
 var mode = window?.matchMedia('(prefers-color-scheme: dark)');
 mode.addEventListener('change', () => {
   var html = document.documentElement;
@@ -69,15 +71,23 @@ window.onscroll = () => {
       openDropdown.classList.remove('active');
     }
   });
+  // remove a barra de pesquisa modo mobile on scroll
   let dropdown = qryS('.nav-search');
   if (dropdown.classList.contains('active')) {
     dropdown.classList.remove('active');
   }
+  // header permanece visivel ao rolar a pagina
+  const headerflex = qryS('.header .container');
+  if (window.scrollY > 0) {
+    // console.log(window.scrollY); //debug
+    headerflex.style.position = 'fixed';
+    } else {
+      headerflex.style.position = 'sticky';
+  }
 };
 
+// console.log(window.innerWidth); //debug
 //Remove search-bar on resize
-// var viewport_width = window.innerWidth;
-// console.log(viewport_width);
 window.addEventListener('resize', () => {
   let searchbar = qryS('.nav-search');
   if (window.innerWidth > 1042) {
@@ -240,7 +250,9 @@ if ('className' in login) {
     //   console.log('login'); //debug
   });
 }
+/* ###################### Login-Register script starts ######################*/
 
+// aciona a parte de registro na página conta.php
 var sPath = window.location.pathname;
 var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 if (document.URL.includes('?register')) {
@@ -258,21 +270,24 @@ function closeMessage(msg) {
   }, 1000);
 }
 
+// acionamento da janela quickvew
 function peekProd(el) {
   const parent = el.parentElement;
-  if (parent.classList.contains('active')){
+  if (parent.classList.contains('active')) {
     parent.classList.toggle('active');
   }
+  // 'get' quickview por iteração
   for (const child of parent.children) {
-    if (child.classList.contains('quickview')){
+    if (child.classList.contains('quickview')) {
       child.classList.toggle('active');
     }
   }
   // Array.prototype.forEach.call(parent.children, (child) => {
-    // console.log(child.classList.contains('quickview'));
+  // console.log(child.classList.contains('quickview'));
   // });
 }
 
+// funcionamento de seleção de imagens da quickview
 let closeBtn = qryS('#peek-prod');
 let mainImage = qryS('.quickview .wrap .col.prod-img img');
 let subImages = qrySA('.quickview .wrap .col.img-swip img');

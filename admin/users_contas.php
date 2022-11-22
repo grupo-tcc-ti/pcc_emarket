@@ -10,7 +10,6 @@ if (isset($_GET['deletar'])) {
     UsuariosDAO::deletarCliente($_GET['deletar']);
     Redirect::page('../admin/users_contas.php', 0);
 }
-require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +27,7 @@ require_once File_Path::admin_header();
 
 <body>
 
-    <!-- <php require_once File_Path::admin_header(); ?> -->
+    <?php require_once File_Path::admin_header(); ?>
 
     <h1 class="head-list">Contas de Usuários</h1>
     <section class="contas">

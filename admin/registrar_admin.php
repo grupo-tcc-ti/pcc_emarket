@@ -5,7 +5,6 @@ require_once '../model/connect.php';
 //undo requirefolder if fails!
 File_Path::requireFolder('../model/dao');
 File_Path::requireFolder('../model/dto');
-require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +22,8 @@ require_once File_Path::admin_header();
 
 <body>
 
-    <?php require_once '../controller/registerControl.php'; ?>
+    <?php require_once '../controller/registerControl.php';
+    require_once File_Path::admin_header(); ?>
 
     <section class="form-container">
         <form action="" method="post">

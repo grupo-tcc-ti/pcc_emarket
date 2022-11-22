@@ -11,8 +11,6 @@ if (isset($_GET['deletar'])) {
     UsuariosDAO::deletarAdmin($_GET['deletar']);
     Redirect::page('admin_contas.php', 0);
 }
-
-require_once File_Path::admin_header();
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +25,7 @@ require_once File_Path::admin_header();
     <title>Contas de Administradores</title>
 </head>
 <body>
-    <!-- <php require_once File_Path::admin_header(); ?> -->
+    <?php require_once File_Path::admin_header(); ?>
 
     <section class="contas register-admin">
         <div class="gridbox">

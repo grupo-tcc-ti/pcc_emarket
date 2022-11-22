@@ -89,6 +89,7 @@ section {
 .header .container {
   display: flex;
   position: sticky;
+  top: 0;
   align-items: center;
   justify-content: space-between;
   border-bottom: 3px solid var(--main-color);
@@ -100,6 +101,7 @@ section {
   height: 70px;
   margin: 0;
   z-index: 1000;
+  transition: position 0.2s ease;
 }
 
 .header .container .logo-img img {
@@ -163,12 +165,14 @@ section {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  height: 57px;
+  gap: 2px;
 }
 
 .header .container .nav-search .isearch {
   font-size: calc(1.6 * var(--1w));
   padding-left: calc(1.5 * var(--1w));
-  height: 57px;
+  height: 100%;
   width: 90%;
 }
 
@@ -211,12 +215,16 @@ section {
   }
 }
 
+.container .colorScheme {
+  margin-right: -4px;
+}
+
 .container .colorScheme .btn {
   /* border-radius: 40px; */
   /* margin: 4px; */
   border-radius: 20px 0 0 20px;
   margin: 0;
-  margin-right: -4px;
+  float: right;
 }
 
 /* ################# Estilização do Menu Suspenso - Departamento ################# */
@@ -244,9 +252,9 @@ section {
   background-color: var(--font-color);
   color: var(--background-color);
   padding: 16px 10px;
-  min-width: calc(6 * var(--1w));
   padding: calc(1.6 * var(--1w));
-  min-height: calc(3.5 * var(--1w));
+  /* min-width: calc(6 * var(--1w)); */
+  /* min-height: calc(3.5 * var(--1w)); */
   border-radius: calc(0.1 * var(--1w));
   font-size: calc(1.6 * var(--1w));
   transition: 0.2s ease;

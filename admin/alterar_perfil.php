@@ -6,7 +6,6 @@ require_once '../model/connect.php';
 //undo requirefolder if fails!
 File_Path::requireFolder('../model/dao');
 File_Path::requireFolder('../model/dto');
-require_once File_Path::admin_header();
 require_once '../controller/updateUserControl.php';
 ?>
 
@@ -24,6 +23,7 @@ require_once '../controller/updateUserControl.php';
 </head>
 
 <body>
+    <?php require_once File_Path::admin_header(); ?>
     <section class="form-container">
         <form action="" method="post">
             <input type="hidden" name="admin_id" wfd-invisible="true" />

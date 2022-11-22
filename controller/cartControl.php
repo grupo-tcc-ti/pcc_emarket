@@ -74,18 +74,3 @@ if (isset($_POST['client_cart'])) {
     }
 }
 ?>
-<!-- // if (isset($_POST['add_cart'])) {
-// if (!is_null(CarrinhoDAO::addToCart($carrinho))) {
-// Message::pop('Produto adicionado ao carrinho!');
-// Redirect::page($_SERVER['PHP_SELF'], 2, 'self');
-// }
-// }
-// if (isset($_POST['del_cart_item'])) {
-//     Message::pop('excluiu item!');
-// }
-// if (isset($_POST['del_cart'])) {
-//     Message::pop('esvaziou carrinho!');
-// }
-// if (isset($_POST['checkout'])) {
-//     Message::pop('fechou pedido!');
-// } -->
