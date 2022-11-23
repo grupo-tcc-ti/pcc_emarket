@@ -48,7 +48,8 @@
   text-decoration: none;
   scrollbar-color: var(--main-color) var(--black);
   /* thumb track */
-  scrollbar-gutter: stable both-edges;
+  /* scrollbar-gutter: stable both-edges; */
+  scrollbar-gutter: stable;
   scrollbar-width: thin;
 }
 
