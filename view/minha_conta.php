@@ -102,23 +102,23 @@ require_once '../controller/updateUserControl.php';
               </div>
               <div class="row icon">
                 <i class="fas fa-lock"></i>
-                <input type="text" name="senha_atual" class="input-field" value="<?php echo $usuario['senha'] ?>" />
+                <input type="password" name="senha_atual" class="input-field" value="<?php echo $usuario['senha'] ?>" />
               </div>
               <div class="row">
                 <label class="input-label" for="senha_nova">Nova Senha</label>
               </div>
               <div class="row">
-                <input type="text" name="senha_nova" class="input-field" />
+                <input type="password" name="senha_nova" class="input-field" />
               </div>
               <div class="row">
                 <label class="input-label" for="senha_confirma">Confime a Nova Senha</label>
               </div>
               <div class="row">
-                <input type="text" name="senha_confirma" class="input-field" />
+                <input type="password" name="senha_confirma" class="input-field" />
               </div>
-              <div class="row line">
+              <!-- <div class="row line">
                 <hr class="" />
-              </div>
+              </div> -->
 
               <div class="row">
                 <input type="submit" class="submitButton" name="submit" value="Alterar Conta"
@@ -131,7 +131,7 @@ require_once '../controller/updateUserControl.php';
 
 
         <form action="" method="post">
-          <div class="section adress-info">
+          <div class="section address-info">
             <input type="hidden" name="client_id" wfd-invisible="true" />
             <div class="account-subtitle">
               <p class="">Informações do Usuario</p>
@@ -208,9 +208,9 @@ require_once '../controller/updateUserControl.php';
                 <input type="text" name="cidade" class="input-field" value="Sem Complemento" />
               </div>
 
-              <div class="row line">
+              <!-- <div class="row line">
                 <hr class="" />
-              </div>
+              </div> -->
 
               <div class="row">
                 <input type="submit" class="submitButton" name="submit" value="Alterar Dados"
