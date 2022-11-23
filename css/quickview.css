@@ -210,11 +210,11 @@
 }
 
 .quickview .choose-opt .opt-list img:hover {
-  height: calc(5.2 * var(--1w));
-  padding-bottom: 2px;
-  margin: -1px 0 -1px;
+  /* height: calc(5.2 * var(--1w)); */
+  /* padding-bottom: 2px; */
+  /* margin: -1px 0 -1px; */
   border: calc(0.2 * var(--1w)) solid var(--main-color);
-  background-color: var(--main-color);
+  /* background-color: var(--main-color); */
   cursor: pointer;
   transition: all 0.2s ease;
 }

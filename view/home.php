@@ -72,8 +72,11 @@ require_once '../controller/navigationControl.php'; // important!
           $prod_link = cleaner::cleanURL($prod['nome']);
           // $prod['max_prest'];
             ?>
-            <div class="cards-items peek">
-              <a type="submit" class="fas fa-heart" name="addListadesejo"></a>
+            <div class="cards-items">
+              <div class="wishlist_heart">
+                <!-- <span data-code="2I2-5019-322" data-device="desktop" data-department="depart" data-template="pdp" data-category="informatica" data-href="&amp;page="> -->
+                <i class="fas fa-heart"></i>
+              </div>
               <button id="peek-prod" onclick="peekProd(this);" value="<?php echo $prod['codProduto']; ?>"><i
                   class="fas fa-eye"></i>
               </button>

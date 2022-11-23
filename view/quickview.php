@@ -40,9 +40,7 @@
                     <?php echo number_format(($prod['preco'] * 0.90), 2, ',', '.'); ?>&nbsp;<span>à vista</span>
                 </div>
                 <div class="opt">
-                    <small>ou até 6x de&nbsp;
-                        <?php echo number_format(($prod['preco'] * 0.90) / 12, 2, ',', '.'); ?>&nbsp;<i>sem
-                            juros</i>
+                    <small>ou em até 6x de&nbsp;<?php echo number_format(($prod['preco'] * 0.90) / 12, 2, ',', '.'); ?>&nbsp;<i>sem juros</i>
                     </small>
                 </div>
             </div>
