@@ -64,7 +64,6 @@ class PedidosDAO
             $select_->bindValue(':uid', $uid);
             $select_->execute();
             $fetch_user_ = $select_->fetch(PDO::FETCH_ASSOC);
-            echo var_dump($fetch_user_) . '<br>';
 
             // reminder: form com tipoEntrega, tipoPagamento(inserir no banco) - inserir endereco, 
             $codUsuario = filter_var($fetch_user_['codUsuario'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
