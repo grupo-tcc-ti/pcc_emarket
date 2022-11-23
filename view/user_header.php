@@ -162,13 +162,16 @@ $categorias = array(
               <div class="divisor">
                 <hr>
               </div>
-              <!-- +++++++++Foreach_ends+++++++++ -->
-              <?php } ?>
+              <input type="hidden" name="client_cart">
+              <input type="hidden" name="pid" value="<?php echo $prod['codProduto']; ?>"></input>
+            </form>
+            <!-- +++++++++Foreach_ends+++++++++ -->
+            <?php } ?>
+            <form action="" method="post">
               <div class="checkout-btn">
                 <button type="submit" class="btn" name="checkout" value="true">Fechar Pedido</button>
                 <button type="submit" class="btn" name="del_cart" value="true">Esvaziar Carrinho</button>
               </div>
-              <input type="hidden" name="pid" value="<?php echo $prod['codProduto']; ?>"></input>
               <input type="hidden" name="client_cart">
             </form>
             <!-- +++++++++Carrinho_ends+++++++++ -->
