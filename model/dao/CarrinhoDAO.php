@@ -1,4 +1,13 @@
 <?php
+if (!isset($pdo)) {
+    /**
+     * Case page doesn't have connection to database
+     */
+    include_once __DIR__ . '/../connect.php';
+}
+//undo requirefolder if fails!
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
 class CarrinhoDAO
 {
     protected static $inst;
@@ -16,7 +25,6 @@ class CarrinhoDAO
             // $pdo = Connect::getInstance(); //renameit case fails
             $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             // echo var_dump($uid) . '<br>';
-            // $qry = "SELECT * FROM `carrinho` WHERE fk_usuarios_codCliente = :uid ORDER BY codCarrinho";
             $qry = "SELECT * FROM `carrinho` crt
             LEFT OUTER JOIN `produtos` pdo
             ON crt.fk_produtos_codProduto = pdo.codProduto
@@ -29,6 +37,29 @@ class CarrinhoDAO
             // $cart = $select_->fetchAll(PDO::FETCH_ASSOC); //debug
             // echo var_dump($cart) . '<br>'; //debug
             // return $cart; //debug
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+            die();
+        }
+    }
+    public static function buyCart(CarrinhoDTO $carrinhoDTO)
+    {
+        try {
+            // $pdo = Connect::getInstance(); //renameit case fails
+            $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // echo var_dump($uid) . '<br>';
+            $qry = "SELECT * FROM `carrinho` WHERE fk_usuarios_codCliente = :uid";
+            $select_ = self::connect()->prepare($qry);
+            $select_->bindParam(':uid', $uid);
+            $select_->execute();
+            $cartData = $select_->fetchAll(PDO::FETCH_ASSOC);
+            // $qtyProd = $select_->rowCount(); //debug
+            // echo var_dump($qtyProd) . '<br>'; //debug
+            // echo var_dump($cart) . '<br>'; //debug
+            // return $cart; //debug
+            if (!is_null(PedidosDAO::fazerPedido($uid, $cartData))) {
+                return true;
+            }
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
@@ -73,11 +104,11 @@ class CarrinhoDAO
                 (quantidade, fk_usuarios_codUsuario, fk_usuarios_codCliente, fk_produtos_codProduto) 
                 VALUES(:qty,(SELECT codUsuario FROM `usuarios` WHERE codCliente = :uid),:uid,:pid)";
                 // VALUES(?,?,?,?,?,?)";
-                $inserir_ = self::connect()->prepare($qry);
-                $inserir_->bindParam(':qty', $qty);
-                $inserir_->bindParam(':uid', $codCliente);
-                $inserir_->bindParam(':pid', $pid);
-                return $inserir_->execute();
+                $insert_ = self::connect()->prepare($qry);
+                $insert_->bindParam(':qty', $qty);
+                $insert_->bindParam(':uid', $codCliente);
+                $insert_->bindParam(':pid', $pid);
+                return $insert_->execute();
                 // echo var_dump($inserir_) . 'insert_pdo::<br>'; //debug
 
             }
@@ -120,10 +151,10 @@ class CarrinhoDAO
             $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $pid = filter_var($carrinhoDTO->getFk_codProduto(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $qry = "DELETE FROM `carrinho` WHERE fk_usuarios_codCliente = :uid AND fk_produtos_codProduto = :pid";
-            $update_ = self::connect()->prepare($qry);
-            $update_->bindParam(":uid", $uid);
-            $update_->bindParam(":pid", $pid);
-            return $update_->execute();
+            $delete_item_ = self::connect()->prepare($qry);
+            $delete_item_->bindParam(":uid", $uid);
+            $delete_item_->bindParam(":pid", $pid);
+            return $delete_item_->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
@@ -135,9 +166,9 @@ class CarrinhoDAO
             // $pdo = Connect::getInstance(); //renameit case fails
             $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $qry = "DELETE FROM `carrinho` WHERE fk_usuarios_codCliente = :uid";
-            $update_ = self::connect()->prepare($qry);
-            $update_->bindParam(":uid", $uid);
-            return $update_->execute();
+            $delete_ = self::connect()->prepare($qry);
+            $delete_->bindParam(":uid", $uid);
+            return $delete_->execute();
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();

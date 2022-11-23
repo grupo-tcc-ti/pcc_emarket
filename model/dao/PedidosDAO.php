@@ -5,6 +5,9 @@ if (!isset($pdo)) {
      */
     include_once __DIR__ . '/../connect.php';
 }
+//undo requirefolder if fails!
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
 class PedidosDAO
 {
     protected static $inst;
@@ -52,43 +55,46 @@ class PedidosDAO
             die();
         }
     }
-    public static function fazerPedido()
+    public static function fazerPedido($uid, $cartData)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            // $qry = ("SELECT * FROM `pedidos` WHERE statusPagamento = :status");
-            // if (isset($_POST['order'])) {
+            $qry = ("SELECT * FROM `usuarios` WHERE codCliente = :uid");
+            $select_ = self::connect()->prepare($qry);
+            $select_->bindValue(':uid', $uid);
+            $select_->execute();
+            $fetch_user_ = $select_->fetch(PDO::FETCH_ASSOC);
+            echo var_dump($fetch_user_) . '<br>';
 
-            //     $name = $_POST['name'];
-            //     $name = filter_var($name, FILTER_SANITIZE_STRING);
-            //     $number = $_POST['number'];
-            //     $number = filter_var($number, FILTER_SANITIZE_STRING);
-            //     $email = $_POST['email'];
-            //     $email = filter_var($email, FILTER_SANITIZE_STRING);
-            //     $method = $_POST['method'];
-            //     $method = filter_var($method, FILTER_SANITIZE_STRING);
-            //     $address = 'flat no. ' . $_POST['flat'] . ', ' . $_POST['street'] . ', ' . $_POST['city'] . ', ' . $_POST['state'] . ', ' . $_POST['country'] . ' - ' . $_POST['pin_code'];
-            //     $address = filter_var($address, FILTER_SANITIZE_STRING);
-            //     $total_products = $_POST['total_products'];
-            //     $total_price = $_POST['total_price'];
+            // reminder: form com tipoEntrega, tipoPagamento(inserir no banco) - inserir endereco, 
+            $codUsuario = filter_var($fetch_user_['codUsuario'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-            //     $check_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
-            //     $check_cart->execute([$user_id]);
+            $totalProduto = [];
+            $totalPreco = 0;
+            foreach ($cartData as $data) {
+                $qry = ("SELECT nome, preco FROM `produtos` WHERE codProduto = :pid");
+                $select_ = self::connect()->prepare($qry);
+                $select_->bindValue(':pid', $data['fk_produtos_codProduto']);
+                $select_->execute();
+                $produto = $select_->fetch();
+                $totalProduto[] = "$produto[nome]  ($data[quantidade])";
+                $totalPreco += ($data['quantidade'] * $produto['preco']);
+            }
 
-            //     if ($check_cart->rowCount() > 0) {
+            $qry = ("INSERT INTO `pedidos` (tipoEntrega, totalProduto, totalPreco, dataEnvio, dataEntrega, statusPagamento, fk_usuarios_codUsuario, fk_usuarios_codCliente)
+            VALUES ('Correríos', :totalprod, :totalprc, CURRENT_DATE(), NULL, 'pendente', :pkey, :uid)");
+            $insert_ = self::connect()->prepare($qry);
+            $insert_->bindValue(':totalprod', implode(", ", $totalProduto));
+            $insert_->bindValue(':totalprc', $totalPreco);
+            $insert_->bindValue(':pkey', $codUsuario);
+            $insert_->bindValue(':uid', $uid);
 
-            //         $insert_order = $conn->prepare("INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price) VALUES(?,?,?,?,?,?,?,?)");
-            //         $insert_order->execute([$user_id, $name, $number, $email, $method, $address, $total_products, $total_price]);
+            $del_cart_ = new CarrinhoDTO;
+            $del_cart_->setFk_codCliente($uid);
+            if (CarrinhoDAO::deleteCart($del_cart_)) {
+                return $insert_->execute();
+            }
 
-            //         $delete_cart = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
-            //         $delete_cart->execute([$user_id]);
-
-            //         $message[] = 'order placed successfully!';
-            //     } else {
-            //         $message[] = 'your cart is empty';
-            //     }
-
-            // }
         } catch (PDOException $msg) {
             echo "Erro ao conectar :: " . $msg->getMessage();
             die();
