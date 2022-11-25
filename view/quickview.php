@@ -1,25 +1,21 @@
-<?php
-// echo $prod['codProduto'];
-?>
-
 <div class="quickview">
     <!-- <div class="closeWindow"> -->
     <div class="closeWindow" onclick="peekProd(this)">
-        <button><i class="fas fa-multiply"></i></button>
+            <i class="fas fa-multiply"></i>
     </div>
     <!-- </div> -->
     <section class="wrap">
         <div class="col img-swip">
             <!-- js faz a mudança de fotos funcionar //important! -->
             <div class="btn-nav">
-                <button><i class="fas fa-chevron-up"></i></button>
+                <i class="fas fa-chevron-up"></i>
             </div>
             <?php foreach ($prodimg as $img) {
                 echo "<img src='$img' alt=''>";
             }
             ?>
             <div class="btn-nav">
-                <button><i class="fas fa-chevron-down"></i></button>
+                <i class="fas fa-chevron-down"></i>
             </div>
         </div>
         <div class="col prod-img">
@@ -40,7 +36,8 @@
                     <?php echo number_format(($prod['preco'] * 0.90), 2, ',', '.'); ?>&nbsp;<span>à vista</span>
                 </div>
                 <div class="opt">
-                    <small>ou em até 6x de&nbsp;<?php echo number_format(($prod['preco'] * 0.90) / 12, 2, ',', '.'); ?>&nbsp;<i>sem juros</i>
+                    <small>ou em até 6x de&nbsp;
+                        <?php echo number_format(($prod['preco'] * 0.90) / 12, 2, ',', '.'); ?>&nbsp;<i>sem juros</i>
                     </small>
                 </div>
             </div>
@@ -52,9 +49,9 @@
                 <div class="opt-list">
                     <!-- <img src="../image/produtos/1-min.jpg" alt=""> -->
                     <?php foreach ($prodimg as $img) {
-                            echo "<img src='$img' alt=''>";
-                        }
-                        ?>
+                        echo "<img src='$img' alt=''>";
+                    }
+                    ?>
                 </div>
                 <!-- objeto com opções -->
             </div>

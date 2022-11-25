@@ -66,6 +66,11 @@ class cleaner
 
         return $clean_file_name;
     }
+    // public static function stringURL($file_name)
+    // {
+    //     $file_name_str = self::removeSpecialChars($file_name);
+    //     return $file_name_str = str_replace('-', '+', $file_name_str);
+    // }
 
     public static function removeSpecialChars($str)
     {

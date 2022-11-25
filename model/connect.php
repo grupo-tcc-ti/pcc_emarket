@@ -2,7 +2,9 @@
 require_once 'redirect.php';
 require_once 'file_path.php';
 require_once 'cleaner.php';
-require 'popup_msg.php';
+require_once 'popup_msg.php';
+require_once 'arrayList.php';
+
 class Connect
 {
     private static $instance;

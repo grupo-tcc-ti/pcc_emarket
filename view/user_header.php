@@ -11,26 +11,11 @@ if (isset($_GET['logout'])) {
 }
 
 require_once '../controller/cartControl.php'; // important!
-
-$categorias = array(
-  'Promoções',
-  'Kit Upgrade',
-  'Cabos e Acessórios',
-  'PC Gamer',
-  'Hardware',
-  'Periféricos',
-  'Gabinetes',
-  'Refrigeração',
-  'Diversos',
-  'Processador',
-  'Placa de Vídeo'
-);
 ?>
 
 <div class="header">
   <header class="container">
     <div class="logo-img">
-      <!-- <a href="home.php"><img src="../image/logo.png" alt="logo" /></a> -->
       <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']); ?>"><img src="../image/logo.png" alt="logo" /></a>
     </div>
     <div class="categorias">
@@ -45,7 +30,8 @@ $categorias = array(
           <div class="nav-wrapper">
             <form action="" method="get">
               <?php
-              foreach ($categorias as $cat) {
+              // foreach ($categorias as $cat) {
+              foreach (ArrayList::$categorias as $cat) {
                 // var_dump($cat); //debug
                 echo '<button class="send" type="submit" name="category" value="' . strtolower(cleaner::removeSpecialChars($cat)) . '">' . $cat . '</button>';
               }
@@ -70,17 +56,15 @@ $categorias = array(
     <div class="nav-conta">
       <div class="dropdown">
         <button id="link-conta" onclick='clickDrop("dropconta")' class="btn">
-          <span>Conta &nbsp;</span>
+          <span>Conta&nbsp;</span>
           <i class="fa-regular fa-user icon"></i>
         </button>
         <nav id="dropconta" class="dropdown-content">
           <?php
           if (!isset($_SESSION['client_id'])) {
           ?>
-          <!-- <a href="<php echo File_Path::conta(); ?>">Login</a> -->
-          <a href="../view/conta.php">Login</a>
-          <!-- <a href="<php echo File_Path::conta() . '?register'; ?>">Registrar</a> -->
-          <a href="../view/conta.php?register">Registrar</a>
+          <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php"; ?>">Login</a>
+          <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php?register"; ?>">Registrar</a>
           <?php
           } else {
           ?>
@@ -100,7 +84,7 @@ $categorias = array(
     <div class="nav-cart">
       <div class="dropdown">
         <button id="link-carrinho" onclick='clickDrop("carrinho")' class="btn">
-          <span>Carrinho &nbsp;</span>
+          <span>Carrinho&nbsp;</span>
           <div class="cart-qty">
             <?php echo $cartTotal['qty']; ?>
           </div>
@@ -182,6 +166,7 @@ $categorias = array(
             ?>
             <?php } else {
             ?>
+            <!-- <a href="conta.php?register">Crie sua conta!</a> -->
             <a href="conta.php?register">Crie sua conta!</a>
             <?php } ?>
           </div>

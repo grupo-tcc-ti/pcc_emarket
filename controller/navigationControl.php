@@ -1,7 +1,7 @@
 <?php 
 // page_test
   $section = [];
-
+  $nav_label = 'nada encontrado!';
   if (!empty($_GET['category'])) {
     $cat = new ProdutosDTO;
     $cat->setNome(
@@ -10,7 +10,8 @@
     $section = ProdutosDAO::produtosCategoria($cat);
     $pageTitle = 'Categoria: '.$_GET['category'].'- Techgrifo';
     $nav_label = $cat->getNome();
-  } 
+  }
+
   else if (!empty($_GET['str'])) {
     $produtos = new ProdutosDTO;
     $produtos->setNome(
@@ -19,8 +20,5 @@
     $section = ProdutosDAO::pesquisarProduto($produtos);
     $pageTitle = 'Busca: '.$_GET['str'].'- Techgrifo';
     $nav_label = '"'.$produtos->getNome().'"';
-  } 
-  else { 
-    $nav_label = 'nada encontrado!';
   }
 ?>

@@ -10,46 +10,16 @@ File_Path::requireFolder('../model/dto');
 if (!isset($_SESSION['client_id'])) {
   // $client_header = File_Path::conta();
   // header('location:../view/' . $client_header);
-  header('location: ' . File_Path::conta());
+  header('location: conta.php');
 }
 $usuario = UsuariosDAO::getUserByID(
   $_SESSION['client_id']['type'], $_SESSION['client_id']['id']
-);
-$estados = array(
-  'AC' => 'Acre',
-  'AL' => 'Alagoas',
-  'AP' => 'Amapá',
-  'AM' => 'Amazonas',
-  'BA' => 'Bahia',
-  'CE' => 'Ceará',
-  'DF' => 'Distrito Federal',
-  'ES' => 'Espírito Santo',
-  'GO' => 'Goiás',
-  'MA' => 'Maranhão',
-  'MT' => 'Mato Grosso',
-  'MS' => 'Mato Grosso do Sul',
-  'MG' => 'Minas Gerais',
-  'PA' => 'Pará',
-  'PB' => 'Paraíba',
-  'PR' => 'Paraná',
-  'PE' => 'Pernambuco',
-  'PI' => 'Piauí',
-  'RJ' => 'Rio de Janeiro',
-  'RN' => 'Rio Grande do Norte',
-  'RS' => 'Rio Grande do Sul',
-  'RO' => 'Rondônia',
-  'RR' => 'Roraima',
-  'SC' => 'Santa Catarina',
-  'SP' => 'São Paulo',
-  'SE' => 'Sergipe',
-  'TO' => 'Tocantins',
-  'EX' => 'Estrangeiro'
 );
 require_once '../controller/updateUserControl.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br, en">
 
 <head>
   <!-- <meta charset="UTF-8">
@@ -65,7 +35,7 @@ require_once '../controller/updateUserControl.php';
 </head>
 
 <body>
-  <?php require_once File_Path::user_header(); ?>
+  <?php require_once 'user_header.php'; ?>
   <div id="minha-conta">
     <section class="wrapper">
       <div class="account-header">
@@ -116,9 +86,9 @@ require_once '../controller/updateUserControl.php';
               <div class="row">
                 <input type="password" name="senha_confirma" class="input-field" />
               </div>
-              <!-- <div class="row line">
+              <div class="row line">
                 <hr class="" />
-              </div> -->
+              </div>
 
               <div class="row">
                 <input type="submit" class="submitButton" name="submit" value="Alterar Conta"
@@ -175,7 +145,8 @@ require_once '../controller/updateUserControl.php';
 
                 <select class="input-field" name="estado">
                   <?php
-                  foreach ($estados as $key => $val) {
+                  // foreach ($estados as $key => $val) {
+                  foreach (ArrayList::$estados as $key => $val) {
                     if ($usuario['estado'] == $key) {
                       echo "<option value='$key' selected disabled>$val</option>";
                       continue;
@@ -208,9 +179,9 @@ require_once '../controller/updateUserControl.php';
                 <input type="text" name="cidade" class="input-field" value="Sem Complemento" />
               </div>
 
-              <!-- <div class="row line">
+              <div class="row line">
                 <hr class="" />
-              </div> -->
+              </div>
 
               <div class="row">
                 <input type="submit" class="submitButton" name="submit" value="Alterar Dados"

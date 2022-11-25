@@ -1,12 +1,8 @@
-<?php
-// page_test
-?>
-
 <section class="produtos">
   <div class="container">
     <div class="header-content">
       <h3>
-        Resultados para: &nbsp;<span>
+        Resultados para:&nbsp;<span>
           <?php echo $nav_label; ?>
         </span>
       </h3>

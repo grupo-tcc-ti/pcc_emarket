@@ -43,6 +43,21 @@ class ProdutosDAO
         }
 
     }
+    public static function productByID($pid)
+    {
+        try {
+            // $con = Connect::getInstance(); //renameit case fails
+            // $qry = "SELECT * FROM `produtos` WHERE nome LIKE '%{$search_name}%'";
+            $qry = "SELECT * FROM `produtos` WHERE codProduto = :pid";
+            $select_ = self::connect()->prepare($qry);
+            $select_->bindParam(':pid', $pid);
+            $select_->execute();
+            return $select_->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+        }
+
+    }
     public static function pesquisarProduto(ProdutosDTO $produtosDTO)
     {
         try {

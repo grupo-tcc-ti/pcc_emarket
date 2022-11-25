@@ -4,7 +4,7 @@ require_once '../model/connect.php';
 if (isset($_SESSION['client_id'])) {
   Message::pop('Sua sessão já foi iniciada!');
   Message::pop('Voce está sendo redirecionado....');
-  Redirect::page('home.php', 2);
+  Redirect::page('minha_conta.php', 2);
 }
 require_once '../controller/loginControl.php';
 require_once '../controller/registerControl.php';
@@ -34,7 +34,7 @@ require_once '../controller/registerControl.php';
   </script>
 </head>
 <body>
-<?php require_once File_Path::user_header(); ?>
+<?php require_once 'user_header.php'; ?>
   <div class="login-register">
     <div class="container">
       <div class="forms">

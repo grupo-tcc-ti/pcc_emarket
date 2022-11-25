@@ -15,7 +15,6 @@ img#slider {
   width: 100%;
   height: 280px;
   overflow: hidden;
-  border-radius: 0px;
   margin-top: calc(2.4 * var(--1w));
 }
 

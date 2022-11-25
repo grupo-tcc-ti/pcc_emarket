@@ -1,5 +1,3 @@
-/* https://getcssscan.com/css-box-shadow-examples */
-
 #minha-conta {
   display: flex;
   flex-direction: column;
@@ -9,6 +7,7 @@
 
 #minha-conta .wrapper {
   background-color: var(--background-color);
+  /* box-shadow: var(--box-shadow); */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 8px;
   overflow: hidden;
@@ -34,7 +33,8 @@
 }
 
 #minha-conta .account-sections .section {
-  padding: 37px;
+  /* padding: 8px; */
+  padding: 24px;
 }
 
 #minha-conta .section .account-subtitle {
@@ -50,13 +50,13 @@
 
 #minha-conta .section .row {
   font-size: calc(1.2 * var(--1w));
-  margin-left: 25px;
   padding-bottom: 10px;
 }
 
 #minha-conta .section .row.line {
   border-bottom: 1px solid var(--font-color);
   opacity: 0.4;
+  /* width: 90%; */
   width: 100%;
   padding: 0 4px;
   margin: 8px auto;
@@ -71,6 +71,7 @@
   position: absolute;
   float: left;
   left: 0;
+  /* top: 50%; */
   top: 40%;
   transform: translate(40%, -50%);
 }
@@ -82,14 +83,15 @@
 
 #minha-conta .section .row .input-field {
   background-color: var(--background-color);
+  /* box-shadow: var(--input-shadow); */
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 4px;
   border: 2px solid transparent;
   /* border: 1px solid gainsboro; */
   color: var(--font-color);
+  width: 100%;
   height: calc(3.8 * var(--1w));
   padding-left: calc(2 * var(--1w));
-  width: 130%;
 }
 
 #minha-conta .section.address-info .row .input-field {
@@ -99,20 +101,9 @@
 #minha-conta .section .row .submitButton {
   background-color: var(--font-color);
   color: var(--background-color);
-  margin: 8px;
   padding: 8px;
   font-weight: 500;
   width: 100%;
-}
-
-#minha-conta .section.account-info .row .submitButton 
-{
-  margin-left: 25px;
-}
-
-#minha-conta .section.address-info .row .submitButton 
-{
-  margin-left: 35px;
 }
 
 #minha-conta .section .row .submitButton:hover {
@@ -127,19 +118,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  justify-content: flex-end;
+  gap: 12vh;
   /* width: 50%; */
   width: auto;
   height: 100%;
-  margin-top: 25px;
-}
-
-#minha-conta .section.address-info {
-  padding-bottom: 10px;
-}
-
-#minha-conta .section.account-info .account-data {
-  padding-top: 65px;
 }
 
 #minha-conta .section.account-info .public-view {
@@ -169,13 +153,16 @@
   border: 2px solid var(--ligt-green);
 }
 
-/* #minha-conta .section.address-info { */
+/* #minha-conta .section.adress-info { */
 /* width: 50%; */
 /* background-color: var(--light-yellow); */
 /* debug minha_conta*/
 /* } */
 
 @media (max-width: 480px) {
+  #minha-conta .wrapper {
+    width: 400px;
+  }
   #minha-conta .account-sections {
     flex-direction: column;
     transition: 0.4s ease;
@@ -184,7 +171,7 @@
     /* width: 100%; */
     align-items: normal;
   }
-  #minha-conta .section.address-info {
-    width: 130%;
+  #minha-conta .section.adress-info {
+    width: 100%;
   }
 }

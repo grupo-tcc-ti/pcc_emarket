@@ -5,8 +5,10 @@ require_once '../model/dao/ProdutosDAO.php';
 require_once '../model/dto/ProdutosDTO.php';
 
 (!isset($pageTitle)) ? $pageTitle = 'Emarket' : $pageTitle;
-// require_once '../components/wishlist_card.php';
+// require_once 'wishlist_card.php';
 require_once '../controller/navigationControl.php'; // important!
+// require_once '../php/product_page.php';
+require_once '../php/controlP.php';
 ?>
 
 <!DOCTYPE html>
@@ -19,11 +21,13 @@ require_once '../controller/navigationControl.php'; // important!
   <title>
     <?php echo $pageTitle; ?>
   </title>
-
 </head>
-<?php require_once File_Path::user_header(); ?>
+<?php require_once 'user_header.php'; ?>
 
 <body>
+
+  
+
   <section>
     <div class="slider">
       <div class="slide active">
@@ -51,115 +55,116 @@ require_once '../controller/navigationControl.php'; // important!
     </div>
   </section>
 
-    <?php
-    // if (!isset($_GET['str']) && !isset($_GET['category'])) {
-    if (!isset($_GET) || empty($_GET)) {
-    ?>
 
-    <div id="overlay">
-      <main id="all-container">
-        <!-- <div class="swiper products-slider">
+  <div id="overlay">
+    <main id="all-container">
+      <!-- <div class="swiper products-slider">
     <div class="swiper-wrapper"> -->
-        <section class="container-prod">
-          <div class="list-cards">
-            <?php
-      $fetch_produto = ProdutosDAO::listarProdutos();
-      if (count($fetch_produto) > 0) {
-        foreach ($fetch_produto as $prod) {
-          $prodimg = explode(",", $prod['image']);
-          $preco = number_format($prod['preco'], 2, ',', '.');
-          // NumberFormatter
-          $prod_link = cleaner::cleanURL($prod['nome']);
-          // $prod['max_prest'];
-            ?>
-            <div class="cards-items">
-              <div class="wishlist_heart">
-                <!-- <span data-code="2I2-5019-322" data-device="desktop" data-department="depart" data-template="pdp" data-category="informatica" data-href="&amp;page="> -->
-                <i class="fas fa-heart"></i>
-              </div>
-              <button id="peek-prod" onclick="peekProd(this);" value="<?php echo $prod['codProduto']; ?>"><i
-                  class="fas fa-eye"></i>
-              </button>
-              <a title="<?php echo $prod['nome']; ?>" href="../view/page.php/<?php echo $prod_link; ?>">
-                <img src="<?php echo $prodimg[0]; ?>" alt="" class="products-imgs" />
-              </a>
+      <section class="container-prod">
+        <div class="list-cards">
+          <?php
 
-              <a title="<?php echo $prod['nome']; ?>" href="../view/page.php/<?php echo $prod_link; ?>">
-                <div class="products-name">
-                  <?php echo $prod['nome']; ?>
-                </div>
-              </a>
-
-              <div class="cards-price">
-                <div class="old-price">
-                  de&nbsp;<em>&nbsp;
-                    <?php echo $preco; ?>&nbsp;
-                  </em>&nbsp;por:
-                </div>
-                <div class="price">
-                  R$
-                  <?php echo number_format(($prod['preco'] * 0.90), 2, ',', '.'); ?>
-                  <span> à vista</span>
-                  <div class="price-opt">
-                    <small> ou em 12x de R$
-                      <?php echo number_format(($prod['preco'] * 0.90) / 12, 2, ',', '.'); ?> <i>sem juros</i>
-                    </small>
-                  </div>
-                </div>
-              </div>
-
-
-              <?php require Redirect::directory($_SERVER['PHP_SELF']) . '/quickview.php'; ?>
+          switch (true) {
+            case (!isset($_GET) || empty($_GET)): //case 1
+              $fetch_produto = ProdutosDAO::listarProdutos();
+              if (count($fetch_produto) > 0) {
+                foreach ($fetch_produto as $prod) {
+                  $prodimg = explode(",", $prod['image']);
+                  $preco = number_format($prod['preco'], 2, ',', '.');
+                  $prod_link = cleaner::cleanURL($prod['nome']);
+                  // $prod['max_prest'];
+          ?>
+          
+          <div class="cards-items">
+            <div class="wishlist_heart">
+              <!-- <span data-code="2I2-5019-322" data-device="desktop" data-department="depart" data-template="pdp" data-category="informatica" data-href="&amp;page="> -->
+              <i class="fas fa-heart"></i>
+            </div>
+            <div id="peek-prod" onclick="peekProd(this);"><i
+                class="fas fa-eye"></i>
             </div>
 
-            <?php
-        }
-      } else {
-        // só por enquanto
-        $error[] = 'Nenhum produto foi encontrado!';
-        $error[] = '../image/error/th-1517709978.jpg';
-        $error[] = 'Não se preocupe estamos trabalhando nisso!';
-      }
-    } else if (isset($_GET['str']) || isset($_GET['category'])) {
-      include_once Redirect::directory($_SERVER['PHP_SELF']) . '/page.php';
-    } else if (array_key_first($_GET) != "str" || array_key_first($_GET) != "category") {
-      $error[] = 'Talvez o que você procura não esteja aqui. <br> talvez...!';
-      $error[] = '../image/error/th-1517709978.jpg';
-    } else if (empty($_GET['str']) || empty($_GET['category'])) {
-      $error[] = 'Nenhum produto foi encontrado!';
-    }
-    // var_dump(array_key_first($_GET)); //debug
-    // var_dump($_GET); //debug
-            ?>
+            <!-- <a title="<php echo $prod['nome']; ?>" href="../view/<php echo $prod_link; ?>"> -->
+            <a title="<?php echo $prod['nome']; ?>"
+              href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/$prod_link"; ?>">
+              <img src="<?php echo $prodimg[0]; ?>" alt="" class="products-imgs" />
+            </a>
+
+            <!-- <a title="<php echo $prod['nome']; ?>" href="../view/<php echo $prod_link; ?>"> -->
+            <a title="<?php echo $prod['nome']; ?>"
+              href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/$prod_link"; ?>">
+
+              <div class="products-name">
+                <?php echo $prod['nome']; ?>
+              </div>
+            </a>
+
+            <div class="cards-price">
+              <div class="old-price">
+                de&nbsp;<em>&nbsp;
+                  <?php echo $preco; ?>&nbsp;
+                </em>&nbsp;por:
+              </div>
+              <div class="price">
+                R$
+                <?php echo number_format(($prod['preco'] * 0.90), 2, ',', '.'); ?>
+                <span> à vista</span>
+                <div class="price-opt">
+                  <small> ou em 12x de R$
+                    <?php echo number_format(($prod['preco'] * 0.90) / 12, 2, ',', '.'); ?> <i>sem juros</i>
+                  </small>
+                </div>
+              </div>
+            </div>
+            <?php require 'quickview.php'; ?>
           </div>
-          <!-- <div class="swiper-pagination"></div>
-    </div>
-    </div> -->
-        </section>
-      </main>
-    </div>
+          <?php
+                }
+              } else {
+                $error[] = 'Nenhum produto foi encontrado!';
+                $error[] = '../image/error/th-1517709978.jpg';
+                $error[] = 'Não se preocupe estamos trabalhando nisso!';
+              }
+              break;
+            case (isset($_GET['str']) || isset($_GET['category'])): //case 2
+              require_once 'page.php';
+              break;
+            case (empty($_GET['str']) || empty($_GET['category'])): //case 3
+              $error[] = 'Nenhum produto foi encontrado!';
+              break;
+            // case ():
+            //   break;
+            default:
+              $error[] = 'Talvez o que você procura não esteja aqui. <br> talvez...!';
+              $error[] = '../image/error/th-1517709978.jpg';
+          } // switch ends +++++++++++++++++++++++++++++++++++++
+          // var_dump(array_key_first($_GET)); //debug
+          // var_dump($_GET); //debug
+          ?>
+        </div>
+      </section>
+    </main>
+  </div>
 
-    <?php
-    // require_once Redirect::directory($_SERVER['PHP_SELF']) . '/quickview.php';
-    
-    if (isset($error)) {
-      echo '<div class="thrown-error">';
-      foreach ($error as $obj) {
-        if (str_contains($obj, '/image')) {
-          echo ' <p class="vazio"><img src="' . $obj . '" alt="" /></p> ';
-        } else {
-          echo ' <p class="vazio">' . $obj . '</p> ';
-        }
+  <?php
+  if (isset($error)) {
+    echo '<div class="thrown-error">';
+    foreach ($error as $obj) {
+      if (str_contains($obj, '/image')) {
+        echo ' <p class="vazio"><img src="' . $obj . '" alt="" /></p> ';
+      } else {
+        echo ' <p class="vazio">' . $obj . '</p> ';
       }
-      echo '</div>';
     }
-    ?>
+    echo '</div>';
+  }
+  ?>
 
-    <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
+  <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
 
-    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+  <script src="../js/swiper-bundle.min.js"></script>
 
-    <script src="../js/script.js"></script>
+  <script src="../js/script.js"></script>
 
 </body>
 

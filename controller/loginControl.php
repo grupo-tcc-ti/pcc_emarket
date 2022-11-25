@@ -22,7 +22,8 @@ if (isset($_POST['login'])) {
         if ($usr['type'] == 'admin') {
             Redirect::page('../admin/dashboard.php', 2);
         } else {
-            Redirect::page(Redirect::directory($_SERVER['PHP_SELF']) . '/home.php', 1);
+            // Redirect::page(Redirect::directory($_SERVER['PHP_SELF']) . '/home.php', 1);
+            Redirect::page(Redirect::directory($_SERVER['PHP_SELF']), 1);
         }
     } else {
         Message::pop('Usuário e/ou Senha incorretos!');

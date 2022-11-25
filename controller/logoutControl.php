@@ -8,6 +8,7 @@ if(isset($_GET['adminlogout'])) {
 }
 if(isset($_GET['logout'])) {
     unset($_SESSION['client_id']);
-    Redirect::page('home.php', 2);
+    // Redirect::page('home.php', 2);
+    Redirect::page(Redirect::directory($_SERVER['PHP_SELF']), 2);
 }
 ?>
