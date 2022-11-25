@@ -61,15 +61,15 @@ require_once '../controller/cartControl.php'; // important!
         </button>
         <nav id="dropconta" class="dropdown-content">
           <?php
-          if (!isset($_SESSION['client_id'])) {
-          ?>
-          <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php"; ?>">Login</a>
-          <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php?register"; ?>">Registrar</a>
-          <?php
-          } else {
+          if (isset($_SESSION['client_id']) || isset($_SESSION['admin_id']) ) {
           ?>
           <a href="minha_conta.php">Minha conta</a>
           <a href="<?php echo '?logout'; ?>" onclick="return confirm('Você deseja sair?');">Logout</a>
+          <?php
+          } else {
+          ?>
+          <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php"; ?>">Login</a>
+          <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php?register"; ?>">Registrar</a>
           <?php
           }
           if (isset($_SESSION["admin_id"])) {

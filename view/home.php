@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once '../model/connect.php';
@@ -8,7 +9,7 @@ require_once '../model/dto/ProdutosDTO.php';
 // require_once 'wishlist_card.php';
 require_once '../controller/navigationControl.php'; // important!
 // require_once '../php/product_page.php';
-require_once '../php/controlP.php';
+// require_once '../php/controlp.php';
 ?>
 
 <!DOCTYPE html>

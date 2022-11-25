@@ -103,10 +103,7 @@ class PedidosDAO
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
-            if (
-                empty($pedidoDTO->getStatusPagamento())
-                || is_null($pedidoDTO->getStatusPagamento())
-            ) {
+            if (is_null($pedidoDTO->getStatusPagamento())) {
                 // Message::pop('Status do pagamento alterado!');
                 return;
             } else {

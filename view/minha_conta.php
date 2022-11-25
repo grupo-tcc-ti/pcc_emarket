@@ -7,6 +7,10 @@ require_once '../model/connect.php';
 File_Path::requireFolder('../model/dao');
 File_Path::requireFolder('../model/dto');
 
+if (isset($_SESSION['admin_id'])) {
+  header('location: ../admin/alterar_perfil.php');
+}
+
 if (!isset($_SESSION['client_id'])) {
   // $client_header = File_Path::conta();
   // header('location:../view/' . $client_header);
@@ -72,7 +76,7 @@ require_once '../controller/updateUserControl.php';
               </div>
               <div class="row icon">
                 <i class="fas fa-lock"></i>
-                <input type="password" name="senha_atual" class="input-field" value="<?php echo $usuario['senha'] ?>" />
+                <input type="password" name="senha_atual" class="input-field" />
               </div>
               <div class="row">
                 <label class="input-label" for="senha_nova">Nova Senha</label>
@@ -165,7 +169,7 @@ require_once '../controller/updateUserControl.php';
               <div class="row">
                 <label class="input-label" for="bairro">Endereço</label>
 
-                <input type="text" name="bairro" class="input-field" value="<?php echo $usuario['endereco'] ?>" />
+                <input type="text" name="bairro" class="input-field" value="<?php echo $usuario['logradouro'] ?>" />
               </div>
               <div class="row">
                 <label class="input-label" for="numero">Número</label>
