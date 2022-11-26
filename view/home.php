@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 require_once '../model/connect.php';
@@ -8,8 +7,6 @@ require_once '../model/dto/ProdutosDTO.php';
 (!isset($pageTitle)) ? $pageTitle = 'Emarket' : $pageTitle;
 // require_once 'wishlist_card.php';
 require_once '../controller/navigationControl.php'; // important!
-// require_once '../php/product_page.php';
-// require_once '../php/controlp.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,12 +20,9 @@ require_once '../controller/navigationControl.php'; // important!
     <?php echo $pageTitle; ?>
   </title>
 </head>
-<?php require_once 'user_header.php'; ?>
 
 <body>
-
-  
-
+  <?php require_once 'user_header.php'; ?>
   <section>
     <div class="slider">
       <div class="slide active">
@@ -75,26 +69,22 @@ require_once '../controller/navigationControl.php'; // important!
                   $prod_link = cleaner::cleanURL($prod['nome']);
                   // $prod['max_prest'];
           ?>
-          
+
           <div class="cards-items">
             <div class="wishlist_heart">
               <!-- <span data-code="2I2-5019-322" data-device="desktop" data-department="depart" data-template="pdp" data-category="informatica" data-href="&amp;page="> -->
               <i class="fas fa-heart"></i>
             </div>
-            <div id="peek-prod" onclick="peekProd(this);"><i
-                class="fas fa-eye"></i>
+            <div id="peek-prod" onclick="peekProd(this);"><i class="fas fa-eye"></i>
             </div>
 
-            <!-- <a title="<php echo $prod['nome']; ?>" href="../view/<php echo $prod_link; ?>"> -->
-            <a title="<?php echo $prod['nome']; ?>"
-              href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/$prod_link"; ?>">
+            <a title="<?php echo $prod['nome']; ?>" href="<?php echo "produto.php?id=$prod[codProduto]"; ?>">
               <img src="<?php echo $prodimg[0]; ?>" alt="" class="products-imgs" />
             </a>
 
-            <!-- <a title="<php echo $prod['nome']; ?>" href="../view/<php echo $prod_link; ?>"> -->
-            <a title="<?php echo $prod['nome']; ?>"
-              href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/$prod_link"; ?>">
+            <a title="<?php echo $prod['nome']; ?>" href="<?php echo "produto.php?id=$prod[codProduto]"; ?>">
 
+              <!-- href="<php echo Redirect::directory($_SERVER['PHP_SELF']) . "/produto/$prod[codProduto]/$prod_link"; ?>" onclick=""> -->
               <div class="products-name">
                 <?php echo $prod['nome']; ?>
               </div>

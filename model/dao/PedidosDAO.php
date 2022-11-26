@@ -55,6 +55,21 @@ class PedidosDAO
             die();
         }
     }
+    public static function orderByUserId($uid)
+    {
+        try {
+            // $pdo = Connect::getInstance(); //renameit case fails
+            $qry = ("SELECT * FROM `pedidos` WHERE fk_usuarios_codCliente  = :uid");
+            $select_ = self::connect()->prepare($qry);
+            $select_->bindValue(':uid', $uid);
+            $select_->execute();
+            return $select_->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+            die();
+        }
+    }
+
     public static function fazerPedido($uid, $cartData)
     {
         try {
@@ -104,7 +119,6 @@ class PedidosDAO
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
             if (is_null($pedidoDTO->getStatusPagamento())) {
-                // Message::pop('Status do pagamento alterado!');
                 return;
             } else {
                 $statusPagamento = filter_var($pedidoDTO->getStatusPagamento(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -128,7 +142,7 @@ class PedidosDAO
             $qry = "DELETE FROM `pedidos` WHERE codPedido = :cpid";
             $deletar_pedido = self::connect()->prepare($qry);
             $deletar_pedido->bindParam(':cpid', $codPedido);
-            Message::pop('Produto deletado!');
+            Message::pop('Pedido deletado!');
             Redirect::page('pedidos.php', 1);
             $deletar_pedido->execute();
         } catch (PDOException $msg) {

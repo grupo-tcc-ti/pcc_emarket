@@ -7,13 +7,7 @@ require_once '../model/connect.php';
 File_Path::requireFolder('../model/dao');
 File_Path::requireFolder('../model/dto');
 
-if (isset($_SESSION['admin_id'])) {
-  header('location: ../admin/alterar_perfil.php');
-}
-
 if (!isset($_SESSION['client_id'])) {
-  // $client_header = File_Path::conta();
-  // header('location:../view/' . $client_header);
   header('location: conta.php');
 }
 $usuario = UsuariosDAO::getUserByID(
@@ -169,7 +163,7 @@ require_once '../controller/updateUserControl.php';
               <div class="row">
                 <label class="input-label" for="bairro">Endereço</label>
 
-                <input type="text" name="bairro" class="input-field" value="<?php echo $usuario['logradouro'] ?>" />
+                <input type="text" name="endereco" class="input-field" value="<?php echo $usuario['endereco'] ?>" />
               </div>
               <div class="row">
                 <label class="input-label" for="numero">Número</label>
@@ -178,9 +172,9 @@ require_once '../controller/updateUserControl.php';
               </div>
 
               <div class="row">
-                <label class="input-label" for="cidade">Complemento</label>
+                <label class="input-label" for="complemento">Complemento</label>
 
-                <input type="text" name="cidade" class="input-field" value="Sem Complemento" />
+                <input type="text" name="complemento" class="input-field" value="<?php echo $usuario['complemento'] ?>" />
               </div>
 
               <div class="row line">

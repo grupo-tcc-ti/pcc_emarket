@@ -46,6 +46,11 @@ class ArrayList
         'Processador',
         'Placa de Vídeo'
     );
+    public static $payStatus = array(
+        'pendente',
+        'pago',
+        'cancelado'
+    );
 }
 
 ?>

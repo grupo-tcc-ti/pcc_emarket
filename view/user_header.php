@@ -2,9 +2,6 @@
 if (!isset($pdo)) {
   include_once '../model/connect.php';
 }
-// if (!isset($user_id)) {
-//   $user_id = $_SESSION['client_id'];
-// }
 
 if (isset($_GET['logout'])) {
   include_once '../controller/logoutControl.php';
@@ -61,9 +58,10 @@ require_once '../controller/cartControl.php'; // important!
         </button>
         <nav id="dropconta" class="dropdown-content">
           <?php
-          if (isset($_SESSION['client_id']) || isset($_SESSION['admin_id']) ) {
+          if (isset($_SESSION['client_id'])) {
           ?>
           <a href="minha_conta.php">Minha conta</a>
+          <a href="pedidos.php">Meus Pedidos</a>
           <a href="<?php echo '?logout'; ?>" onclick="return confirm('Você deseja sair?');">Logout</a>
           <?php
           } else {

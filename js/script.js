@@ -81,8 +81,8 @@ window.onscroll = () => {
   if (window.scrollY > 0) {
     // console.log(window.scrollY); //debug
     headerflex.style.position = 'fixed';
-    } else {
-      headerflex.style.position = 'sticky';
+  } else {
+    headerflex.style.position = 'sticky';
   }
 
   const totop = qryS('.totop');
@@ -296,8 +296,8 @@ function peekProd(el) {
 
 // funcionamento de seleção de imagens da quickview
 let closeBtn = qryS('#peek-prod');
-let mainImage = qryS('.quickview .wrap .col.prod-img img');
-let subImages = qrySA('.quickview .wrap .col.img-swip img');
+let mainImage = qryS('.prod-img img');
+let subImages = qrySA('.img-swip img');
 subImages.forEach((image) => {
   image.onclick = () => {
     let src = image.getAttribute('src');

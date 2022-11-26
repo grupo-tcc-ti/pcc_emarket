@@ -116,12 +116,15 @@ if (isset($_POST['deletar_pedido'])) {
             <form action="" method="post" name="pedido_form" enctype="multipart/form-data">
                 <input type="hidden" name="codPedido" value="<?php echo $pedido['codPedido']; ?>">
                 <select name="status_pagamento">
-                    <option selected disabled value="">
-                        <?php echo ucfirst($pedido['statusPagamento']); ?>
-                    </option>
-                    <option value="pendente">Pendente</option>
-                    <option value="pago">Pago</option>
-                    <option value="cancelado">Cancelado</option>
+                    <?php
+                foreach (ArrayList::$payStatus as $status) {
+                    if ($pedido['statusPagamento'] == $status) {
+                        echo "<option selected disabled style='color:dodgerblue;' value=\"$status\">" . ucfirst($status) . "</option>";
+                        continue;
+                    }
+                    echo "<option value='$status'>" . ucfirst($status) . "</option>";
+                }
+                    ?>
                 </select>
                 <div class="flex-btn">
                     <button type="submit" name="alterar_status" value="" class="option-btn">Alterar Pagamento</button>

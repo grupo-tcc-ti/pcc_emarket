@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
     (isset($_POST["cep"])) ? $updateData->setCep($_POST["cep"]) : '';
     (isset($_POST["estado"])) ? $updateData->setEstado($_POST["estado"]) : '';
     (isset($_POST["cidade"])) ? $updateData->setCidade($_POST["cidade"]) : '';
-    (isset($_POST["bairro"])) ? $updateData->setEndereco($_POST["bairro"]) : '';
+    (isset($_POST["endereco"])) ? $updateData->setEndereco($_POST["endereco"]) : '';
     (isset($_POST["numero"])) ? $updateData->setNumero($_POST["numero"]) : '';
     (isset($_POST["complemento"])) ? $updateData->setComplemento($_POST["complemento"]) : '';
 

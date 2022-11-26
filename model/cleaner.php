@@ -56,15 +56,14 @@ class cleaner
         $file_name_str = preg_replace('/-+/', '-', $file_name_str);
 
         // $file_name_str = preg_replace('/-+/', '-', $file_name_str);
-        // $clean_file_name = $file_name_str;
 
         // Replaces last hyphen
         $pos = strrpos($file_name_str, "-");
         if ($pos !== false) {
-            $clean_file_name = substr($file_name_str, 0, $pos);
+            $file_name_str = substr($file_name_str, 0, $pos);
         }
 
-        return $clean_file_name;
+        return $file_name_str;
     }
     // public static function stringURL($file_name)
     // {
