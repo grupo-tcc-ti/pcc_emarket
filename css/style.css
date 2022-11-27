@@ -34,6 +34,7 @@
   /* Weight */
   /* --1w: 1rem; */
   --1w: 10px;
+  --checkout-offset: 0%;
 }
 
 /* Modifica todos os conteudo dentro do documento HTML*/
@@ -356,6 +357,12 @@ section {
   font-size: calc(2 * var(--1w));
 }
 
+#carrinho .checkout-btn {
+  display: flex;
+  gap: 4px;
+  max-width: 321px;
+}
+
 /* ################# Estilização do Menu Suspenso - Departamento ################# */
 .vazio {
   background-color: var(--background-color);
@@ -407,7 +414,7 @@ section {
   padding: 10px;
 }
 
-.dropdown .dropdown-content a {
+.dropdown .dropdown-content .link {
   display: flex;
   flex-direction: column;
   color: white;

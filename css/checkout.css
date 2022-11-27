@@ -1,0 +1,366 @@
+.checkout {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+}
+.checkout .container {
+  max-width: 468px;
+  width: 100%;
+  background: white;
+  /* overflow: hidden; */
+  margin: 0 20px;
+  /* padding: 0 42px; */
+
+  border-radius: 8px; /*aqui*/
+  /* background-color: crimson; */
+  /* debug */
+}
+
+.checkout .container .concat {
+  background-color: white;
+  width: 20%;
+  padding: 32px;
+  transition: margin-left 0.2s ease;
+  visibility: hidden;
+  /* show divs */
+  border-radius: 8px; /*aqui*/
+
+  /* visibility: visible; */
+  /* debug */
+  /* background-color: orange; */
+  /* debug */
+}
+
+/* +++++++++++++++++++++++++++++++++++++++ */
+.checkout .container .form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* height: 100%; */
+  width: 600%;
+  transition: height 0.2s ease;
+
+  border-radius: 8px; /*aqui*/
+}
+/* +++++++++++++++++++++++++++++++++++++++ */
+.checkout .radio-selector input {
+  display: none;
+}
+.checkout .radio-selector input:is(:focus, :checked) + .js {
+  border-radius: 0 calc(1 * var(--1w)) calc(1 * var(--1w)) 0;
+  border-left: 4px solid dodgerblue;
+  /* margin: 16px -8px 16px 8px; */
+  margin: 0 -4px 0 4px;
+  transition: 0.1s ease;
+}
+.checkout .radio-selector .js label {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  height: 60px;
+}
+
+.checkout .radio-selector .js {
+  background-color: var(--backgound-color);
+  border-radius: 0 calc(1 * var(--1w)) calc(1 * var(--1w)) 0;
+  border-left: 2px solid silver;
+  box-shadow: silver 0px 1px 2px;
+  font-size: calc(1.6 * var(--1w));
+  font-weight: 400;
+  /* margin: 16px auto; */
+  margin: 0 auto;
+}
+
+.checkout .radio-selector .js:hover {
+  background-color: dodgerblue;
+  color: white;
+  /* margin: 16px -4px 16px 4px; */
+  margin: 0 -4px 0 4px;
+  transition: 0.2s ease;
+}
+/* +++++++++++++++++++++++++++++++++++++++ */
+.checkout .form .shipping-method.current {
+  visibility: visible;
+  opacity: 1;
+  /* show divs */
+  height: 440px;
+  height: auto;
+  margin-left: 0%;
+  /* divs margin */
+  transition: 0.3s ease;
+
+  border-radius: 8px; /*aqui*/
+}
+.checkout .form .shipping-method {
+  opacity: 0;
+  /* show divs */
+  height: 0;
+  margin-left: -3%;
+  /* correção matemática da div, */
+  /* e que tambem ajuda na transição */
+  box-shadow: var(--box-shadow);
+  transition: 0.2s ease;
+  border-radius: 8px; /*aqui*/
+
+  /* margin-left: 0%; */
+  /* debug */
+}
+
+/* +++++++++++++++++++++++++++++++++++++++ */
+.checkout .form .payment-method.current {
+  visibility: visible;
+  opacity: 1;
+  /* show divs */
+  margin-left: calc(-20% + var(--checkout-offset));
+  /* divs margin */
+  height: 340px;
+  height: auto;
+  transition: 0.3s ease;
+}
+.checkout .form .payment-method {
+  opacity: 0;
+  /* show divs */
+  height: 0;
+  box-shadow: var(--box-shadow);
+  transition: 0.2s ease;
+}
+/* +++++++++++++++++++++++++++++++++++++++ */
+.checkout .form .credit-card-option.current {
+  visibility: visible;
+  opacity: 1;
+  /* show divs */
+  height: auto;
+  margin-left: -60%;
+  /* divs margin */
+  transition: 0.3s ease;
+}
+.checkout .form .credit-card-option {
+  opacity: 0;
+  /* show divs */
+  height: 0;
+  box-shadow: var(--box-shadow);
+  transition: 0.2s ease;
+}
+/* +++++++++++++++++++++++++++++++++++++++ */
+
+.checkout .form .receipt-data.current {
+  visibility: visible;
+  opacity: 1;
+  /* show divs */
+  height: auto;
+  margin-left: calc(-100% + var(--checkout-offset));
+  /* divs margin */
+  transition: 0.3s ease;
+}
+.checkout .form .receipt-data {
+  opacity: 0;
+  /* show divs */
+  height: 0;
+  box-shadow: var(--box-shadow);
+  transition: 0.2s ease;
+}
+/* .checkout .form .receipt-data .data-select {
+  margin: 16px auto;
+} */
+.checkout .form .receipt-data .data-select {
+  margin-top: 32px;
+}
+.checkout .form .receipt-data .data-select label {
+  font-size: medium;
+}
+.checkout .form .receipt-data .data-select .input-field {
+  font-size: 16px;
+  padding: 0 4px;
+  border-top: 2px solid transparent;
+  /* border-radius: 0 20px; */
+  border-bottom: 1px solid silver;
+  transition: all 0.1s ease;
+}
+
+.checkout .form .receipt-data .card-figure {
+  font-size: medium;
+  background-color: silver;
+  border-radius: 8px;
+  margin-top: 24px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  width: calc((16 + 10) * var(--1w));
+  height: calc((6 + 10) * var(--1w));
+}
+.checkout .form .receipt-data .card-figure .line {
+  width: 100%;
+  border-bottom: 1px solid dimgray;
+  margin: 8px auto;
+}
+.checkout .form .receipt-data .card-figure .bar {
+  margin: 32px auto 0;
+}
+.checkout .form .receipt-data .card-figure .bar i {
+  font-size: 32px;
+  font-weight: 600;
+}
+/* +++++++++++++++++++++++++++++++++++++++ */
+
+.checkout .form .review-purchase.current {
+  visibility: visible;
+  opacity: 1;
+  /* show divs */
+  height: auto;
+  margin-left: calc(-140% + var(--checkout-offset));
+  /* divs margin */
+  transition: 0.3s ease;
+}
+.checkout .form .review-purchase {
+  opacity: 0;
+  /* show divs */
+  height: 0;
+  box-shadow: var(--box-shadow);
+  transition: 0.2s ease;
+}
+
+/* +++++++++++++++++++++++++++++++++++++++ */
+
+.checkout .form .checkout-complete.current {
+  visibility: visible;
+  opacity: 1;
+  /* show divs */
+  height: calc(12 * var(--1w));
+  height: auto;
+  margin-left: calc(-180% + var(--checkout-offset));
+  /* divs margin */
+  transition: 0.3s ease;
+}
+.checkout .form .checkout-complete {
+  opacity: 0;
+  /* show divs */
+  height: 0;
+  box-shadow: var(--box-shadow);
+  transition: 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+.checkout .form .checkout-complete .icons {
+  background-color: mediumseagreen;
+  width: calc(10.4 * var(--1w));
+  height: calc(10.4 * var(--1w));
+  font-size: calc(5.2 * var(--1w));
+  border-radius: calc(2.4 * var(--1w));
+  justify-self: center;
+  align-self: center;
+  margin-top: 4vh;
+
+}
+/* +++++++++++++++++++++++++++++++++++++++ */
+
+/* ...::: Box-Content :::... */
+
+.checkout .icons {
+  background-color: var(--main-color);
+  color: var(--font-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 12px;
+  padding: 16px;
+  width: calc(2.6 * var(--1w));
+  height: calc(2.6 * var(--1w));
+  font-size: calc(1.2 * var(--1w));
+  border-radius: calc(2 * var(--1w));
+}
+.checkout .client-address,
+.checkout .checkout-review {
+  background-color: var(--backgound-color);
+  box-shadow: silver 0px 1px 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(2 * var(--1w));
+  font-size: calc(1.6 * var(--1w));
+  font-weight: 400;
+  padding: 16px;
+  margin: 16px auto;
+  word-spacing: 1px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.checkout .locoicon {
+  background-color: var(--main-color);
+  color: var(--font-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 12px;
+  padding: 16px;
+  width: calc(2.6 * var(--1w));
+  height: calc(2.6 * var(--1w));
+  font-size: calc(1.2 * var(--1w));
+  border-radius: calc(2 * var(--1w));
+}
+.checkout .back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 80px;
+  visibility: visible;
+  cursor: pointer;
+  position: absolute;
+  transform: translateY(-5vh);
+
+  background-color: crimson;
+  /* debug */
+}
+
+.checkout .next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-top: 32px;
+  width: auto;
+  height: 40px;
+  padding: 16px;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 4px;
+  cursor: pointer;
+
+  background-color: crimson;
+  /* debug */
+}
+
+.checkout .buy {
+  background-color: var(--secondary-color);
+  color: var(--white);
+  width: 100%;
+  font-weight: 500;
+  font-size: calc(2 * var(--1w));
+  letter-spacing: 2px;
+  border-radius: 8px;
+}
+.checkout .buy:hover {
+  background-color: var(--main-color);
+}
+.checkout .title {
+  position: relative;
+  font-size: calc(3.2 * var(--1w));
+  font-weight: 600;
+}
+.checkout .subtitle {
+  position: relative;
+  font-size: calc(1.8 * var(--1w));
+  font-weight: 600;
+}
+
+@media (max-width: 612px) {
+  .checkout .container {
+    max-width: 300px;
+  }
+}

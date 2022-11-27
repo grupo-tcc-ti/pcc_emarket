@@ -61,7 +61,7 @@ if (isset($_POST['client_cart'])) {
                     Message::pop('esvaziou carrinho!');
                 }
                 break;
-            case (isset($_POST['checkout'])):
+            case (isset($_POST['purchase'])):
                 if (!is_null(CarrinhoDAO::buyCart($carrinho))) {
                     Message::pop('fechou pedido!');
                 }
