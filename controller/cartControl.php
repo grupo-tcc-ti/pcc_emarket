@@ -4,11 +4,14 @@ if (!isset($pdo)) {
 }
 require_once '../model/dao/CarrinhoDAO.php';
 require_once '../model/dto/CarrinhoDTO.php';
-
 $cart = new CarrinhoDTO;
 if (isset($_SESSION['client_id']['id'])) {
     $cart->setFk_codCliente($_SESSION['client_id']['id']);
 }
+
+// if (!empty($_POST)){
+//     echo var_dump($_POST) . '<br>'; //debug
+// }
 
 $fetchCart = CarrinhoDAO::listCartByUserId($cart);
 $cartTotal['qty'] = $cartTotal['price'] = 0;
@@ -22,7 +25,7 @@ foreach ($fetchCart as $total) {
 // echo var_dump($_POST['client_cart']) . '<br>';
 
 if (isset($_POST['client_cart'])) {
-    unset($_POST['client_cart']);
+    // echo var_dump($_POST['client_cart']) . '<br>'; //debug
 
     if (!isset($_SESSION['client_id'])) {
         Message::pop('Faça uma conta e aproveite nossas ofertas!');
@@ -61,17 +64,16 @@ if (isset($_POST['client_cart'])) {
                     Message::pop('esvaziou carrinho!');
                 }
                 break;
-            case (isset($_POST['purchase'])):
+            case ($_POST['client_cart'] == 'purchase'):
                 if (!is_null(CarrinhoDAO::buyCart($carrinho))) {
-                    Message::pop('fechou pedido!');
                 }
                 break;
             default:
                 Message::pop('procedimento cart falhou!');
                 unset($_POST['client_cart']);
         }
-
-        Redirect::page($_SERVER['PHP_SELF'], 2, 'self');
+        unset($_POST['client_cart']);
+        Redirect::page($_SERVER['PHP_SELF'], 1, 'self');
     }
 }
 ?>

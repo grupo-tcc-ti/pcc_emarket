@@ -31,12 +31,33 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
 
 <body>
     <?php require_once 'user_header.php'; ?>
+    <?php
+    if (count($fetchCart) <= 0) {
+    ?>
+
+    <div class="empty-cart">
+        <a href="../view/pedidos.php">
+            <div class="gotoorders">Ver minhas compras</div>
+        </a>
+        <p class="box">Carrinho vazio...
+            &nbsp;&nbsp;&nbsp;
+            <i class="fa-brands fa-opencart"></i>
+            <img src="../image/cart_empty.png" alt="">
+        </p>
+    </div>
+
+    <?php
+    } else {
+        ?>
 
     <div class="checkout">
+
         <div class="back" id="prev-checkout">
             <i class="fas fa-arrow-left"></i>
         </div>
         <section class="container">
+            <!-- <form action="" id="checkout" method="post" class="form" novalidate> -->
+            <!-- <form action="" id="checkout" method="post" class="form" enctype="multipart/form-data" novalidate> -->
             <form action="" id="checkout" method="post" class="form" novalidate>
                 <div class="concat shipping-method current">
                     <!-- <div class="concat shipping-method"> -->
@@ -115,8 +136,8 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                             </label>
                         </div>
                         <?php for ($i = 2; $i < 13; $i++) {
-                            $itm = ($cartTotal['price'] / $i);
-                            $itm = number_format($itm, 2, ',', '.');
+            $itm = ($cartTotal['price'] / $i);
+            $itm = number_format($itm, 2, ',', '.');
                         ?>
                         <input type="radio" name="installment" id="row<?= $i; ?>" class="num-itm"
                             value="<?php echo json_encode(array($i, $cartTotal['price'] / $i)); ?>">
@@ -191,7 +212,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                     </div>
                     <button type="submit" class="btn buy" name="purchase" value="true">Comprar</button>
                     <!-- <input type="submit" class="btn buy" name="purchase" value="Comprar"></input> -->
-                    <!-- <input type="hidden" name="client_cart"> -->
+                    <input type="hidden" name="client_cart" value="purchase">
                 </div>
 
                 <!-- <div class="concat checkout-complete current"> -->
@@ -204,8 +225,9 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
             <div class="next" id="next-checkout">Próximo</div>
         </section>
     </div>
+    <?php } ?>
 
-    <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
+    <!-- <php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?> -->
 
     <script src="../js/script.js"></script>
     <script src="../js/checkout.js"></script>

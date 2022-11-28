@@ -511,76 +511,80 @@ section {
 
 /* ########################## Rodapé ########################## */
 
-footer.container {
+#footer {
+  max-width: unset;
+}
+#footer .container {
   border-top: 2px solid var(--main-color);
   background-color: var(--black);
-  position: absolute;
-  padding: 20px;
-  width: 100%;
+  /* margin-top: 10%; */
+  margin-top: 32px;
+  padding: 32px;
+  position: relative;
+  bottom: 0;
   left: 0;
-  top: 100%;
-  transform: translateY(100%);
-  z-index: 997;
+  width: 100%;
+  z-index: -9999999;
 }
 
-footer.container .footer {
+#footer .container .footer-wrap {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
   gap: 16px;
   align-items: flex-start;
 }
 
-footer.container .footer .box h3 {
+#footer .container .footer-wrap .row h3 {
   font-size: 20px;
   color: var(--white);
   margin-bottom: 20px;
   text-transform: capitalize;
 }
 
-footer.container .footer .box a {
+#footer .container .footer-wrap .row a {
   display: block;
   margin: 16px 0;
   font-size: 16px;
   color: var(--white);
 }
 
-footer.container .footer .box a i {
+#footer .container .footer-wrap .row a i {
   padding-right: calc(1 * var(--1w));
   transition: 0.2s linear;
   color: var(--main-color);
 }
 
-footer.container .footer .box a:hover {
+#footer .container .footer-wrap .row a:hover {
   color: var(--main-color);
 }
 
-footer.container .footer .box a:hover i {
+#footer .container .footer-wrap .row a:hover i {
   padding-right: calc(2 * var(--1w));
 }
 
-footer.container .footer .pay {
+#footer .container .footer-wrap .pay {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
 }
 
-footer.container .footer .pay img {
+#footer .container .footer-wrap .pay img {
   width: 18%;
 }
 
-footer.container .footer .box .sml {
+#footer .container .footer-wrap .row .sml {
   width: 50%;
 }
 
-footer.container .credit {
+#footer .container .credit {
   text-align: center;
   border-top: 1px solid #fff;
   color: var(--white);
   font-size: 12px;
 }
 
-footer.container .credit span {
+#footer .container .credit span {
   color: var(--main-color);
 }
 
@@ -609,12 +613,6 @@ footer.container .credit span {
 
   .header .container .searchbar {
     width: auto;
-  }
-
-  footer.container {
-    top: 94%;
-    transform: translateY(94%);
-    margin-top: -16px;
   }
 }
 

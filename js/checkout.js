@@ -1,5 +1,6 @@
 /* ###################### checkout script starts ######################*/
-const form = qryS('#checkout');
+// const form = qryS('#checkout');
+const form = document.getElementById('checkout');
 const concats = qrySA('.checkout .container .concat');
 const prevCheckout = document.getElementById('prev-checkout'),
     nextCheckout = document.getElementById('next-checkout');
@@ -78,27 +79,21 @@ const isCheckoutComplete = () => {
     if ('className' in checkoutComplete) {
         // console.log(checkoutComplete); //debug
         nextCheckout.style.removeProperty('display');
-        
-        prevCheckout.innerHTML = '';
-        const prevBtnNode = document.createElement('a');
-        const prevBtnText = document.createTextNode("Ver minhas compras");
-        // prevBtnNode.setAttribute('href', 'pedidos.php');
-        prevBtnNode.setAttribute('href', '../view');
-        prevCheckout.setAttribute('class', 'pedidos');
-        prevBtnNode.appendChild(prevBtnText);
-        prevCheckout.appendChild(prevBtnNode);
     }
 }
 // prev button
+// if (prevCheckout == !null) {
 prevCheckout.addEventListener('click', () => {
     previousFormPage();
 });
+// }
 // next button
+// if (nextCheckout == !null) {
 nextCheckout.addEventListener('click', () => {
     nextFormPage();
 
 });
-
+// }
 let selectedRadio = [];
 // selectedRadio[0] --> shipping-method
 // selectedRadio[1] --> payment-method
@@ -172,19 +167,23 @@ const credType = document.querySelector('select[id="data-id"]'),
     credValue = document.querySelector('input[id="data-number"]'),
     cardfigureval = document.querySelector('.card-figure .di span'),
     cardfigure = document.querySelector('.card-figure .di p');
-
+// if (credValue == !null) {
 credValue.addEventListener('keyup', function () {
     // console.log(credValue.value); //debug
     cardfigureval.innerHTML = credValue.value;
     checkCredencial();
-
 });
+// }
+
+// if (credType == !null) {
 credType.addEventListener('change', () => {
     // console.log(credType.value); //debug
     cardfigure.innerHTML = (`${credType.value}&nbsp;&nbsp;&nbsp;`);
     credValue.value = '';
     checkCredencial();
 });
+// }
+
 const checkCredencial = () => {
     // return void()
     let valid = false;
@@ -286,11 +285,13 @@ const showSuccess = (input) => {
     error.textContent = '';
 }
 
+// if (form == !null) {
 form.addEventListener('submit', function (event) {
-    // evita o envio do formulário
-    console.log(event);
+    // console.log(event);
 
+    // evita o envio do formulário
     event.preventDefault();
+
     // validate fields
     let
         radioSteps = (!selectedRadio.length == 0),
@@ -300,6 +301,7 @@ form.addEventListener('submit', function (event) {
         isFormValid =
             radioSteps &&
             isCredencialValid;
+
 
     if (event.submitter.name == 'purchase') {
         // console.log('Acionar compra'); //debug
@@ -314,12 +316,14 @@ form.addEventListener('submit', function (event) {
         setTimeout(function () {
             setTimeout(function () {
                 nextFormPage();
+                setTimeout(function () { form.submit(); form.reset(); }, 3000);
             }, 2000);
             event.submitter.innerHTML = '';
             return event.submitter.appendChild(submitBtnNode);
         }, 1000);
     }
 });
+// }
 
 const debounce = (fn, delay = 500) => {
     let timeoutId;
@@ -336,7 +340,7 @@ const debounce = (fn, delay = 500) => {
 };
 
 
-
+// if (form == !null) {
 form.addEventListener('input', debounce(function (event) {
     // console.log(event); //debug
     switch (event.target.name) {
@@ -354,3 +358,4 @@ form.addEventListener('input', debounce(function (event) {
             break;
     }
 }));
+// }

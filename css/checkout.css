@@ -1,7 +1,8 @@
 .checkout {
   display: flex;
   justify-content: center;
-  margin-top: 10vh;
+  margin: 142px auto;
+  position: relative;
 }
 .checkout .container {
   max-width: 468px;
@@ -252,7 +253,7 @@
   border-radius: calc(2.4 * var(--1w));
   justify-self: center;
   align-self: center;
-  margin-top: 4vh;
+  margin-top: 32px;
 }
 /* +++++++++++++++++++++++++++++++++++++++ */
 
@@ -312,7 +313,7 @@
   visibility: visible;
   cursor: pointer;
   position: absolute;
-  transform: translateY(-5vh);
+  transform: translateY(-42px);
 
   background-color: crimson;
   /* debug */
@@ -375,7 +376,14 @@ small.message .success {
   color: var(--light-green);
 }
 
-.checkout .pedidos {
+.empty-cart {
+  display: flex;
+  justify-content: center;
+  margin: 90px auto;
+  position: relative;
+}
+
+.gotoorders {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -384,14 +392,28 @@ small.message .success {
   height: 46px;
   font-size: 16px;
   border-radius: 80px;
-  position: absolute;
-  transform: translateY(-8vh);
+  position: fixed;
+  right: 50%;
+  transform: translateX(50%);
   background-color: crimson;
 }
 
-.checkout .pedidos a {
-  color: white;
-
+p.box {
+  background-color: var(--background-color);
+  color: var(--font-color);
+  box-shadow: silver 2px 2px 4px 2px;
+  border-radius: 8px;
+  margin: 120px auto;
+  padding: 16px;
+  font-size: 32px;
+  font-weight: 600;
+  /* height: 440px; */
+  width: 730px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 @media (max-width: 612px) {
