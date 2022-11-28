@@ -319,7 +319,8 @@
 }
 
 .checkout .next {
-  display: flex;
+  /* display: flex; */
+  display: none;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -372,6 +373,25 @@ small.message .error {
 }
 small.message .success {
   color: var(--light-green);
+}
+
+.checkout .pedidos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 192px;
+  height: 46px;
+  font-size: 16px;
+  border-radius: 80px;
+  position: absolute;
+  transform: translateY(-8vh);
+  background-color: crimson;
+}
+
+.checkout .pedidos a {
+  color: white;
+
 }
 
 @media (max-width: 612px) {
