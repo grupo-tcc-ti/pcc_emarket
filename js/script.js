@@ -77,7 +77,7 @@ window.onscroll = () => {
     dropdown.classList.remove('active');
   }
   // header permanece visivel ao rolar a pagina
-  const headerflex = qryS('.header .container');
+  const headerflex = qryS('#header .container');
   if (window.scrollY > 0) {
     // console.log(window.scrollY); //debug
     headerflex.style.position = 'fixed';

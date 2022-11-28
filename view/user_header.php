@@ -10,7 +10,7 @@ if (isset($_GET['logout'])) {
 require_once '../controller/cartControl.php'; // important!
 ?>
 
-<div class="header">
+<div id="header">
   <header class="container">
     <div class="logo-img">
       <a href="<?php echo Redirect::directory($_SERVER['PHP_SELF']); ?>"><img src="../image/logo.png" alt="logo" /></a>
@@ -22,20 +22,21 @@ require_once '../controller/cartControl.php'; // important!
           <i class="fa-solid fa-chevron-down mob"></i>
           <i class="fas fa-bars norm"></i>
         </button>
-        <nav id="depart" class="dropdown-content">
-
-          <div class="nav-wrapper">
-            <form action="" method="get">
-              <?php
-              // foreach ($categorias as $cat) {
-              foreach (ArrayList::$categorias as $cat) {
-                // var_dump($cat); //debug
-                echo '<button class="send" type="submit" name="category" value="' . strtolower(cleaner::removeSpecialChars($cat)) . '">' . $cat . '</button>';
-              }
-              echo '</form>';
-              ?>
-          </div>
-        </nav>
+        <div class="dropdown-wrapper">
+          <nav id="depart" class="dropdown-content">
+            <div class="nav-wrapper">
+              <form action="" method="get">
+                <?php
+                // foreach ($categorias as $cat) {
+                foreach (ArrayList::$categorias as $cat) {
+                  // var_dump($cat); //debug
+                  echo '<button class="send" type="submit" name="category" value="' . strtolower(cleaner::removeSpecialChars($cat)) . '">' . $cat . '</button>';
+                }
+                echo '</form>';
+                ?>
+            </div>
+          </nav>
+        </div>
       </div>
     </div>
     <div class="searchbar">
@@ -56,27 +57,30 @@ require_once '../controller/cartControl.php'; // important!
           <span>Conta&nbsp;</span>
           <i class="fa-regular fa-user icon"></i>
         </button>
-        <nav id="dropconta" class="dropdown-content">
-          <?php
-          if (isset($_SESSION['client_id'])) {
-          ?>
-          <a class="link" href="minha_conta.php">Minha conta</a>
-          <a class="link" href="pedidos.php">Meus Pedidos</a>
-          <a class="link" href="<?php echo '?logout'; ?>" onclick="return confirm('Você deseja sair?');">Logout</a>
-          <?php
-          } else {
-          ?>
-          <a class="link" href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php"; ?>">Login</a>
-          <a class="link" href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php?register"; ?>">Registrar</a>
-          <?php
-          }
-          if (isset($_SESSION["admin_id"])) {
-          ?>
-          <a class="link" href="../admin/admin_login.php">Admin Panel</a>
-          <?php
-          }
-          ?>
-        </nav>
+        <div class="dropdown-wrapper">
+          <nav id="dropconta" class="dropdown-content">
+            <?php
+            if (isset($_SESSION['client_id'])) {
+            ?>
+            <a class="link" href="minha_conta.php">Minha conta</a>
+            <a class="link" href="pedidos.php">Meus Pedidos</a>
+            <a class="link" href="<?php echo '?logout'; ?>" onclick="return confirm('Você deseja sair?');">Logout</a>
+            <?php
+            } else {
+            ?>
+            <a class="link" href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php"; ?>">Login</a>
+            <a class="link"
+              href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php?register"; ?>">Registrar</a>
+            <?php
+            }
+            if (isset($_SESSION["admin_id"])) {
+            ?>
+            <a class="link" href="../admin/admin_login.php">Admin Panel</a>
+            <?php
+            }
+            ?>
+          </nav>
+        </div>
       </div>
     </div>
     <div class="nav-cart">
@@ -88,13 +92,12 @@ require_once '../controller/cartControl.php'; // important!
           </div>
           <i class="fas fa-shopping-cart icon"></i>
         </button>
-        <nav id="carrinho" class="dropdown-content cart">
-          <div class="dropdown-menu">
-
+        <div class="dropdown-wrapper cart">
+          <nav id="carrinho" class="dropdown-content">
             <!-- +++++++++Switch_Carrinho+++++++++ -->
             <?php
-            if (isset($_SESSION['client_id']['id'])) {
-            ?>
+                if (isset($_SESSION['client_id']['id'])) {
+                ?>
             <div class="cart-header">
               <div class="total-qty">
                 <i class="fas fa-shopping-cart" aria-hidden="true"></i>
@@ -108,15 +111,14 @@ require_once '../controller/cartControl.php'; // important!
                 </p>
               </div>
             </div>
-
             <!-- +++++++++Carrinho_starts+++++++++ -->
             <?php
-              //cartControl.php
-              if (count($fetchCart) > 0) {
-                foreach ($fetchCart as $prod) {
-                  $prodimg = explode(",", $prod['image']);
-                  // echo var_dump($prod['codProduto']) . '<br>'; //debug
-            ?>
+                  //cartControl.php
+                  if (count($fetchCart) > 0) {
+                    foreach ($fetchCart as $prod) {
+                      $prodimg = explode(",", $prod['image']);
+                      // echo var_dump($prod['codProduto']) . '<br>'; //debug
+                ?>
             <form action="" method="post">
               <div class="prod-wrapper">
                 <div class="cart-del-btn">
@@ -161,17 +163,17 @@ require_once '../controller/cartControl.php'; // important!
             </form>
             <!-- +++++++++Carrinho_ends+++++++++ -->
             <?php
-              } else {
-                echo '<p class="vazio">Carrinho vazio!</p>';
-              }
-            ?>
+                  } else {
+                    echo '<p class="vazio">Carrinho vazio!</p>';
+                  }
+                ?>
             <?php } else {
-            ?>
+                ?>
             <!-- <a href="conta.php?register">Crie sua conta!</a> -->
             <a href="conta.php?register">Crie sua conta!</a>
             <?php } ?>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </div>
     </div>
     <div class="colorScheme">
