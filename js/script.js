@@ -221,7 +221,7 @@ if ('className' in nextBtn) {
 /* ######################Functions for banner ends ######################*/
 
 /* ###################### Login-Register script starts ######################*/
-const container = qryS('.login-register .container'),
+const loginRegister = qryS('.login-register .container'),
   togglePwd = qrySA('.togglePwd'),
   loginPwd = qrySA('.password'),
   signup = qryS('.signup-link'),
@@ -247,17 +247,17 @@ togglePwd.forEach((eyeIcon) => {
 
 if ('className' in signup) {
   signup.addEventListener('click', () => {
-    container.classList.add('active');
+    loginRegister.classList.add('active');
     //   console.log('signup'); //debug
   });
 }
 if ('className' in login) {
   login.addEventListener('click', () => {
-    container.classList.remove('active');
+    loginRegister.classList.remove('active');
     //   console.log('login'); //debug
   });
 }
-/* ###################### Login-Register script starts ######################*/
+/* ###################### Login-Register script page ######################*/
 
 // aciona a parte de registro na página conta.php
 var sPath = window.location.pathname;
@@ -265,7 +265,7 @@ var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
 if (document.URL.includes('?register')) {
   // window.location = "http://google.com";
   // console.log('signup'); //debug
-  container.classList.add('active');
+  loginRegister.classList.add('active');
 }
 /* ###################### Login-Register script ends ######################*/
 
@@ -304,6 +304,8 @@ subImages.forEach((image) => {
     mainImage.src = src;
   };
 });
+
+
 
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--background-color'));
 // console.log(window.getComputedStyle(document.documentElement).getPropertyValue('--font-color'));

@@ -91,7 +91,7 @@ require_once '../controller/cartControl.php'; // important!
         <nav id="carrinho" class="dropdown-content cart">
           <div class="dropdown-menu">
 
-
+            <!-- +++++++++Switch_Carrinho+++++++++ -->
             <?php
             if (isset($_SESSION['client_id']['id'])) {
             ?>

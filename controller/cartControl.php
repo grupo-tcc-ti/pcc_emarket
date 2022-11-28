@@ -10,7 +10,7 @@ if (isset($_SESSION['client_id']['id'])) {
     $cart->setFk_codCliente($_SESSION['client_id']['id']);
 }
 
-$fetchCart = CarrinhoDAO::listCart($cart);
+$fetchCart = CarrinhoDAO::listCartByUserId($cart);
 $cartTotal['qty'] = $cartTotal['price'] = 0;
 foreach ($fetchCart as $total) {
     // echo var_dump($total) . '<br><br>'; //debug

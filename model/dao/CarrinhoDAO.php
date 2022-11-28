@@ -23,6 +23,19 @@ class CarrinhoDAO
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
+            $qry = "SELECT * FROM `carrinho`";
+            $select_ = self::connect()->prepare($qry);
+            $select_->execute();
+            return $select_->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $msg) {
+            echo "Erro ao conectar :: " . $msg->getMessage();
+            die();
+        }
+    }
+    public static function listCartByUserId(CarrinhoDTO $carrinhoDTO)
+    {
+        try {
+            // $pdo = Connect::getInstance(); //renameit case fails
             $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             // echo var_dump($uid) . '<br>';
             $qry = "SELECT * FROM `carrinho` crt

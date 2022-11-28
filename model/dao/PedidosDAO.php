@@ -55,7 +55,7 @@ class PedidosDAO
             die();
         }
     }
-    public static function orderByUserId($uid)
+    public static function listarPedidosUserId($uid)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
