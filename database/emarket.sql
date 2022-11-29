@@ -26,7 +26,6 @@ CREATE TABLE usuarios (
     endereco varchar(255),
     numero bigint(12),
     complemento varchar(255),
-    favoritos longblob,
     PRIMARY KEY (codUsuario, codCliente, codAdmin)
 );
 
@@ -53,21 +52,6 @@ CREATE TABLE pedidos (
     FOREIGN KEY (fk_usuarios_codUsuario, fk_usuarios_codCliente)
     REFERENCES usuarios (codUsuario, codCliente)
     ON DELETE CASCADE
-);
-
-CREATE TABLE mensagens (
-    codMensagem int PRIMARY KEY not null auto_increment,
-    nome varchar(255),
-    email varchar(255),
-    telefone varchar(12),
-    mensagem varchar(500),
-    fk_usuarios_codUsuario int,
-    fk_usuarios_codCliente int,
-    fk_usuarios_codAdmin int,
-    CONSTRAINT fk_mensagens
-    FOREIGN KEY (fk_usuarios_codUsuario, fk_usuarios_codCliente, fk_usuarios_codAdmin)
-    REFERENCES usuarios (codUsuario, codCliente, codAdmin)
-    ON DELETE RESTRICT
 );
 
 CREATE TABLE carrinho (
