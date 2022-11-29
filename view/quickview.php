@@ -44,18 +44,15 @@
             <div class="shipping">
                 Vendido e enviado por <em>Techgrifo</em>
             </div>
-            <div class="choose-opt">
+            <!-- <div class="choose-opt">
                 <div class="label"><em>Opções:</em> Indianred</div>
                 <div class="opt-list">
-                    <!-- <img src="../image/produtos/1-min.jpg" alt=""> -->
-                    <?php foreach ($prodimg as $img) {
+                    <php foreach ($prodimg as $img) {
                         echo "<img src='$img' alt=''>";
                     }
                     ?>
                 </div>
-                <!-- objeto com opções -->
-            </div>
-            <!-- Provavelmente essa opção será movida para a página do produto -->
+            </div> -->
             <form action="" method="post">
                 <input type="number" name="qty" class="qty" min="1" max="99"
                     onkeypress="if(this.value> 2) return false;" value="1">

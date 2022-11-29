@@ -80,16 +80,16 @@ window.onscroll = () => {
   const headerflex = qryS('#header .container');
   if (window.scrollY > 0) {
     // console.log(window.scrollY); //debug
-    headerflex.style.position = 'fixed';
+    headerflex.style.setProperty('position', 'fixed');
   } else {
-    headerflex.style.position = 'sticky';
+    headerflex.style.removeProperty('position');
   }
 
   const totop = qryS('.totop');
   if (window.scrollY > 250) {
-    totop.style.display = 'flex';
+    totop.style.setProperty('display', 'flex');
   } else {
-    totop.style.display = 'none';
+    totop.style.removeProperty('display');
   }
 };
 

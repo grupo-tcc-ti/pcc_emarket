@@ -19,10 +19,16 @@ class CarrinhoDAO
         }
         return self::$pdo;
     }
+
     public static function listCart(CarrinhoDTO $carrinhoDTO)
     {
         try {
             // $pdo = Connect::getInstance(); //renameit case fails
+            // $uid = filter_var($carrinhoDTO->getFk_codCliente(), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // $qry = "CREATE VIEW IF NOT EXISTS customer_cart AS SELECT quantidade, fk_produtos_codProduto FROM `carrinho` WHERE fk_usuarios_codCliente = :uid";
+            // $select_->bindParam(':uid', $uid);
+            // $qry = "SELECT * FROM `customer_cart`";
+
             $qry = "SELECT * FROM `carrinho`";
             $select_ = self::connect()->prepare($qry);
             $select_->execute();
@@ -97,22 +103,6 @@ class CarrinhoDAO
                 Message::pop('Produto já está no carrinho!');
                 return;
             } else {
-                // $qry = "SELECT favoritos FROM `carrinho` WHERE fk_produtos_codProduto = :pid AND fk_usuarios_codCliente = :uid";
-                $qry = "SELECT favoritos FROM `usuarios` WHERE codCliente = :uid";
-                $fetchWishlist = self::connect()->prepare($qry);
-                // $fetchWishlist->bindParam(':pid', $pid);
-                $fetchWishlist->bindParam(':uid', $codCliente);
-                $fetchWishlist->execute();
-                $favs = $fetchWishlist->fetchAll(PDO::FETCH_ASSOC);
-                // echo var_dump($favs) . 'wishlist_pdo::<br>'; //debug
-                if (count($favs)) {
-                    // echo 'fav_count_true::<br>'; //debug
-                    // CarrinhoDAO::removeFromWishlist(); //remover dos favoritos e adicionar ao carrinho (design ruim, melhor remover depois da compra)
-                    ////     $qry = "DELETE FROM `wishlist` WHERE fk_produtos_codProduto = :pid AND fk_usuarios_codCliente = :uid";
-                    ////     $delete_ = self::connect()->prepare($qry);
-                    ////     $delete_->execute();
-                }
-
                 $qry = "INSERT INTO `carrinho`
                 (quantidade, fk_usuarios_codUsuario, fk_usuarios_codCliente, fk_produtos_codProduto) 
                 VALUES(:qty,(SELECT codUsuario FROM `usuarios` WHERE codCliente = :uid),:uid,:pid)";

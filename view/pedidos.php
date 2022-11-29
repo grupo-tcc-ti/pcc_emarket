@@ -28,7 +28,9 @@ require_once '../controller/navigationControl.php'; // important!
 </head>
 
 <body>
-    <?php require_once 'user_header.php'; ?>
+    <div id="header">
+        <?php require_once 'user_header.php'; ?>
+    </div>
 
 
 

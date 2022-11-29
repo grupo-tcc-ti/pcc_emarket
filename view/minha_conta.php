@@ -33,7 +33,9 @@ require_once '../controller/updateUserControl.php';
 </head>
 
 <body>
-  <?php require_once 'user_header.php'; ?>
+  <div id="header">
+    <?php require_once 'user_header.php'; ?>
+  </div>
   <div id="minha-conta">
     <section class="wrapper">
       <div class="account-header">
@@ -174,7 +176,8 @@ require_once '../controller/updateUserControl.php';
               <div class="row">
                 <label class="input-label" for="complemento">Complemento</label>
 
-                <input type="text" name="complemento" class="input-field" value="<?php echo $usuario['complemento'] ?>" />
+                <input type="text" name="complemento" class="input-field"
+                  value="<?php echo $usuario['complemento'] ?>" />
               </div>
 
               <div class="row line">

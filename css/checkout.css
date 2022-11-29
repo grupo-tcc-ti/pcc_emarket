@@ -313,7 +313,7 @@
   visibility: visible;
   cursor: pointer;
   position: absolute;
-  transform: translateY(-42px);
+  transform: translateY(-54px);
 
   background-color: crimson;
   /* debug */
@@ -395,6 +395,7 @@ small.message .success {
   position: fixed;
   right: 50%;
   transform: translateX(50%);
+  margin-top: 50px;
   background-color: crimson;
 }
 

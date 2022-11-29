@@ -30,7 +30,9 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
 </head>
 
 <body>
-    <?php require_once 'user_header.php'; ?>
+    <div id="header">
+        <?php require_once 'user_header.php'; ?>
+    </div>
     <?php
     if (count($fetchCart) <= 0) {
     ?>
@@ -48,7 +50,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
 
     <?php
     } else {
-        ?>
+    ?>
 
     <div class="checkout">
 
@@ -56,9 +58,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
             <i class="fas fa-arrow-left"></i>
         </div>
         <section class="container">
-            <!-- <form action="" id="checkout" method="post" class="form" novalidate> -->
-            <!-- <form action="" id="checkout" method="post" class="form" enctype="multipart/form-data" novalidate> -->
-            <form action="" id="checkout" method="post" class="form" novalidate>
+            <form action="" id="checkout_form" method="post" class="form" novalidate>
                 <div class="concat shipping-method current">
                     <!-- <div class="concat shipping-method"> -->
                     <span class="title">Método de Entrega</span>
@@ -210,9 +210,8 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn buy" name="purchase" value="true">Comprar</button>
-                    <!-- <input type="submit" class="btn buy" name="purchase" value="Comprar"></input> -->
-                    <input type="hidden" name="client_cart" value="purchase">
+                    <button type="submit" class="btn buy" id="purchase_btn" name="purchase"
+                        value="true">Comprar</button>
                 </div>
 
                 <!-- <div class="concat checkout-complete current"> -->

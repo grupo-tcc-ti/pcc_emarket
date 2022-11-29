@@ -1,6 +1,5 @@
 /* ###################### checkout script starts ######################*/
-// const form = qryS('#checkout');
-const form = document.getElementById('checkout');
+const form = document.getElementById('checkout_form');
 const concats = qrySA('.checkout .container .concat');
 const prevCheckout = document.getElementById('prev-checkout'),
     nextCheckout = document.getElementById('next-checkout');
@@ -79,25 +78,34 @@ const isCheckoutComplete = () => {
     if ('className' in checkoutComplete) {
         // console.log(checkoutComplete); //debug
         nextCheckout.style.removeProperty('display');
+
+        let linkNode = document.createElement('a');
+        let divNode = document.createElement('div');
+        linkNode.setAttribute('href', '../view/pedidos.php');
+        divNode.setAttribute('class', 'gotoorders');
+        divNode.innerText = 'Ver minhas compras';
+        linkNode.appendChild(divNode);
+
+        let checkoutEl = qryS('.checkout');
+        prevCheckout.remove();
+        document.body.insertBefore(linkNode, checkoutEl);
+
     }
 }
 // prev button
-// if (prevCheckout == !null) {
 prevCheckout.addEventListener('click', () => {
     previousFormPage();
 });
-// }
 // next button
-// if (nextCheckout == !null) {
 nextCheckout.addEventListener('click', () => {
     nextFormPage();
 
 });
-// }
 let selectedRadio = [];
 // selectedRadio[0] --> shipping-method
 // selectedRadio[1] --> payment-method
 // selectedRadio[2] --> boleto ou credito
+// selectedRadio[3] --> credenciais :: tipo+valor
 function writeDetails() {
     locationDetail = qryS('.location p span');
     shippingDetail = qryS('.shipping p span');
@@ -126,9 +134,8 @@ const checkTipoPagamento = (element) => {
     console.log(payMethod); //debug
     selectedRadio[1] = payMethod;
     if (payMethod == 'boleto') {
-        // selectedRadio[2] = qryS('input[id="row1"]').value;
-        selectedRadio[2] = document.getElementById('row1').value;
-        console.log(selectedRadio[2] + 'checktipopagamento :: boleto+preco'); //debug
+        selectedRadio[2] = JSON.parse(document.getElementById('row1').value);
+        console.log(selectedRadio[2] + ' checktipopagamento :: boleto+preco'); //debug
         // console.log(selectedRadio[2][0]); //debug
         // console.log(selectedRadio[2][1]); //debug
         for (i = 0; i < 2; i++) {
@@ -167,22 +174,18 @@ const credType = document.querySelector('select[id="data-id"]'),
     credValue = document.querySelector('input[id="data-number"]'),
     cardfigureval = document.querySelector('.card-figure .di span'),
     cardfigure = document.querySelector('.card-figure .di p');
-// if (credValue == !null) {
 credValue.addEventListener('keyup', function () {
     // console.log(credValue.value); //debug
     cardfigureval.innerHTML = credValue.value;
     checkCredencial();
 });
-// }
 
-// if (credType == !null) {
 credType.addEventListener('change', () => {
     // console.log(credType.value); //debug
     cardfigure.innerHTML = (`${credType.value}&nbsp;&nbsp;&nbsp;`);
     credValue.value = '';
     checkCredencial();
 });
-// }
 
 const checkCredencial = () => {
     // return void()
@@ -226,8 +229,9 @@ const checkCredencial = () => {
             }
             break;
     }
-    // console.log(valid + 'show next button'); //debug
     if (valid) {
+        selectedRadio[3] = [credType.value, credValue.value];
+        console.log(selectedRadio[3] + ' check_credencial :: tipo+valor'); //debug
         // show next button if valid
         nextCheckout.style.setProperty('display', 'flex');
         isReviewPurchase();
@@ -285,13 +289,7 @@ const showSuccess = (input) => {
     error.textContent = '';
 }
 
-// if (form == !null) {
-form.addEventListener('submit', function (event) {
-    // console.log(event);
-
-    // evita o envio do formulário
-    event.preventDefault();
-
+const isFormValid = () => {
     // validate fields
     let
         radioSteps = (!selectedRadio.length == 0),
@@ -301,29 +299,54 @@ form.addEventListener('submit', function (event) {
         isFormValid =
             radioSteps &&
             isCredencialValid;
+    return isFormValid;
+}
 
+form.addEventListener('submit', function (event) {
+    // console.log(event);
+
+    // evita o envio do formulário
+    event.preventDefault();
 
     if (event.submitter.name == 'purchase') {
         // console.log('Acionar compra'); //debug
         event.submitter.innerHTML = '<br/>';
     }
 
-    // envia o formulário para o servidor se válido, retornando 'true'
-    if (isFormValid) {
+    // envia o formulário para o servidor se válido
+    if (isFormValid()) {
         const submitBtnNode = document.createElement("i");
         submitBtnNode.setAttribute('class', 'fas fa-circle-check');
-        // alert('Compra efetuada com sucesso!');
         setTimeout(function () {
             setTimeout(function () {
                 nextFormPage();
-                setTimeout(function () { form.submit(); form.reset(); }, 3000);
             }, 2000);
             event.submitter.innerHTML = '';
             return event.submitter.appendChild(submitBtnNode);
         }, 1000);
     }
 });
-// }
+
+$('#purchase_btn').click(function () {
+    if (!isFormValid()) return;
+    $.ajax({
+        // url: '../controller/cartControl.php',
+        type: 'POST',
+        data: {
+            tipoEntrega: selectedRadio[0],
+            tipoPagamento: selectedRadio[1],
+            parcela: selectedRadio[2],
+            tipoCred: credType.value,
+            credValue: credValue.value,
+            client_cart: 'purchase'
+        },
+        success: function () {
+            // alert('Acionar compra'); //debug
+            setTimeout(() => { alert('Obrigado pela sua preferência!'); }, 2000);
+        }
+    });
+    $('#header').load('../view/user_header.php');
+});
 
 const debounce = (fn, delay = 500) => {
     let timeoutId;
@@ -340,7 +363,6 @@ const debounce = (fn, delay = 500) => {
 };
 
 
-// if (form == !null) {
 form.addEventListener('input', debounce(function (event) {
     // console.log(event); //debug
     switch (event.target.name) {
@@ -358,4 +380,3 @@ form.addEventListener('input', debounce(function (event) {
             break;
     }
 }));
-// }

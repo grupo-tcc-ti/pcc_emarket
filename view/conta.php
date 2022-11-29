@@ -33,8 +33,11 @@ require_once '../controller/registerControl.php';
     }
   </script>
 </head>
+
 <body>
-<?php require_once 'user_header.php'; ?>
+  <div id="header">
+    <?php require_once 'user_header.php'; ?>
+  </div>
   <div class="login-register">
     <div class="container">
       <div class="forms">

@@ -9,20 +9,18 @@ if (isset($_SESSION['client_id']['id'])) {
     $cart->setFk_codCliente($_SESSION['client_id']['id']);
 }
 
-// if (!empty($_POST)){
-//     echo var_dump($_POST) . '<br>'; //debug
-// }
+// $cartTeste = CarrinhoDAO::listCart($cart);
+// echo var_dump($cartTeste) . '<br>';
+
 
 $fetchCart = CarrinhoDAO::listCartByUserId($cart);
 $cartTotal['qty'] = $cartTotal['price'] = 0;
 foreach ($fetchCart as $total) {
-    // echo var_dump($total) . '<br><br>'; //debug
     $cartTotal['qty'] += $total['quantidade'];
     $cartTotal['price'] += ($total['quantidade'] * $total['preco']);
-    // echo var_dump($produ) . '<br>'; //debug
+    // echo var_dump($total) . '<br><br>'; //debug
 }
 // echo var_dump($cartTotal) . '<br>'; //debug
-// echo var_dump($_POST['client_cart']) . '<br>';
 
 if (isset($_POST['client_cart'])) {
     // echo var_dump($_POST['client_cart']) . '<br>'; //debug
@@ -66,6 +64,7 @@ if (isset($_POST['client_cart'])) {
                 break;
             case ($_POST['client_cart'] == 'purchase'):
                 if (!is_null(CarrinhoDAO::buyCart($carrinho))) {
+                    return;
                 }
                 break;
             default:
