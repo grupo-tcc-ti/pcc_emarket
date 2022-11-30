@@ -76,14 +76,14 @@
   width: 100%;
 }
 
-.container .form .input-field {
+.container .form .row {
   position: relative;
   height: 54px;
   width: 100%;
   margin-top: 32px;
 }
 
-.form .input-field input {
+.form .row input {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -96,22 +96,22 @@
   transition: all 0.1s ease;
 }
 
-.form .input-field input:is(:focus) ~ i.icon::before {
+.form .row input:is(:focus) ~ .icon {
   padding-bottom: 2px;
   border-bottom: 2px solid var(--main-color);
   border-radius: 2px;
   transition: border-bottom 0.1s linear;
 }
 
-.form .input-field input:valid {
+.form .row input:valid {
   border-bottom: var(--input-border) var(--light-green);
 }
 
-.form .input-field input:invalid {
+.form .row input:invalid {
   border-bottom: var(--input-border) var(--light-red);
 }
 
-.form .input-field svg {
+.form .row svg {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -120,12 +120,12 @@
   transition: all 0.2s ease;
 }
 
-.form .input-field i.icon {
+.form .row .icon {
   left: 0;
-  padding-left: 16px;
+  margin-left: 16px;
 }
 
-.form .input-field i.togglePwd {
+.form .row .icontoggle {
   right: 0%;
   cursor: pointer;
   padding: 10px;
@@ -221,7 +221,7 @@
     top: 60%;
     transform: translateY(60%);
     margin-top: -16px;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
 }
 

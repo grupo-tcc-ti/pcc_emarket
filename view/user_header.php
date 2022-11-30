@@ -96,11 +96,11 @@ require_once '../controller/cartControl.php'; // important!
         <svg class="fas fa-shopping-cart icon"></svg>
       </button>
       <div class="dropdown-wrapper cart">
-        <nav id="carrinho" class="dropdown-content">
-          <!-- +++++++++Switch_Carrinho+++++++++ -->
-          <?php
+        <!-- +++++++++Switch_Carrinho+++++++++ -->
+        <?php
             if (isset($_SESSION['client_id']['id'])) {
-            ?>
+              ?>
+        <nav id="carrinho" class="dropdown-content">
           <div class="cart-header">
             <div class="total-qty">
               <svg class="fas fa-shopping-cart" aria-hidden="true"></svg>
@@ -165,6 +165,7 @@ require_once '../controller/cartControl.php'; // important!
             <input type="hidden" name="client_cart">
           </form>
           <!-- +++++++++Carrinho_ends+++++++++ -->
+        </nav>
           <?php
               } else {
                 echo '<p class="vazio">Carrinho vazio!</p>';
@@ -172,7 +173,7 @@ require_once '../controller/cartControl.php'; // important!
             ?>
           <?php } else {
             ?>
-          <!-- <a href="conta.php?register">Crie sua conta!</a> -->
+        <nav id="carrinho" class="dropdown-content register">
           <a class="link" href="conta.php?register">Crie sua conta!</a>
           <?php } ?>
         </nav>

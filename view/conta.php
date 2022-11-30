@@ -46,20 +46,21 @@ require_once '../controller/registerControl.php';
           <!-- Login Form Sender -->
           <form action="#" method="post">
             <input type="hidden" name="usertype" value="cliente" />
-            <div class="input-field">
+            <div class="row">
               <input type="text" placeholder="Insira seu email" name="email" required value="usuario@email.com" />
               <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
-              < class="far fa-envelope icon"></>
+              <svg class="far fa-envelope icon"></svg>
             </div>
-            <div class="input-field">
+            <div class="row">
               <!-- <input type="password" class="loginPwd" placeholder="Insira sua senha" name="" required/> -->
-              <input type="password" class="password" placeholder="Insira sua senha" name="senha" required
+              <input type="password" class="input-field pwd" placeholder="Insira sua senha" name="senha" required
                 value="1234" />
               <!--pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" -->
               <svg class="fas fa-lock icon"></svg>
-              <svg class="far fa-eye-slash togglePwd"></svg>
-              <!-- <svg class="far fa-eye togglePwd"></svg> -->
+              <button type="button" class="toggleBtn">
+                <svg class="far fa-eye-slash icontoggle"></svg>
+              </button>
             </div>
             <div class="checkbox-text">
               <div class="checkbox-content">
@@ -68,7 +69,7 @@ require_once '../controller/registerControl.php';
               </div>
               <a href="#" class="text">Esqueceu a senha?</a>
             </div>
-            <div class="input-field button">
+            <div class="row button">
               <input type="submit" value="Logar" name="login" />
             </div>
           </form>
@@ -82,27 +83,31 @@ require_once '../controller/registerControl.php';
           <span class="title">Crie sua Conta</span>
           <form action="#" method="post">
             <input type="hidden" name="usertype" value="cliente" />
-            <div class="input-field">
+            <div class="row">
               <input type="text" placeholder="Insira seu nome" name="nome" required />
               <svg class="fa-regular fa-user icon"></svg>
             </div>
-            <div class="input-field">
+            <div class="row">
               <input type="text" placeholder="Insira seu email" name="email" required />
               <svg class="far fa-envelope icon"></svg>
             </div>
-            <div class="input-field">
+            <div class="row">
               <!-- <input type="password" class="registerPwd" placeholder="Insira sua senha" name="" required/> -->
-              <input type="password" class="password" placeholder="Crie uma senha" name="senha" required />
+              <input type="password" class="input-field pwd" placeholder="Crie uma senha" name="senha" required />
               <svg class="fas fa-lock icon"></svg>
-              <svg class="far fa-eye-slash togglePwd"></svg>
+              <button type="button" class="toggleBtn">
+                <svg class="far fa-eye-slash icontoggle"></svg>
+              </button>
             </div>
-            <div class="input-field">
+            <div class="row">
               <!-- <input type="password" class="cRegisterPwd" placeholder="Confirme sua senha" name="" required/> -->
-              <input type="password" class="password" placeholder="Confirme a senha" name="rsenha" required />
+              <input type="password" class="input-field pwd" placeholder="Confirme a senha" name="rsenha" required />
               <svg class="fas fa-lock icon"></svg>
-              <svg class="far fa-eye-slash togglePwd"></svg>
+              <button type="button" class="toggleBtn">
+                <svg class="far fa-eye-slash icontoggle"></svg>
+              </button>
             </div>
-            <div class="input-field button">
+            <div class="row button">
               <input type="submit" value="Registrar" name="register" />
             </div>
           </form>

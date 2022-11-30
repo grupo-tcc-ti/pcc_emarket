@@ -76,6 +76,13 @@
   transform: translate(40%, -50%);
 }
 
+#minha-conta .section .row.icon .icontoggle {
+  left: unset;
+  right: 0;
+  cursor: pointer;
+  margin-right: 16px;
+}
+
 #minha-conta .section .row .input-label {
   font-size: calc(1.2 * var(--1w));
   color: var(--font-color);

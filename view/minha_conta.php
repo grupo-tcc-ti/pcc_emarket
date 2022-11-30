@@ -72,19 +72,28 @@ require_once '../controller/updateUserControl.php';
               </div>
               <div class="row icon">
                 <svg class="fas fa-lock"></svg>
-                <input type="password" name="senha_atual" class="input-field" />
+                <input type="password" name="senha_atual" class="input-field pwd" />
+                <button type="button" class="toggleBtn">
+                <svg class="far fa-eye-slash icontoggle"></svg>
+              </button>
               </div>
               <div class="row">
                 <label class="input-label" for="senha_nova">Nova Senha</label>
               </div>
-              <div class="row">
-                <input type="password" name="senha_nova" class="input-field" />
+              <div class="row icon">
+                <input type="password" name="senha_nova" class="input-field pwd" />
+                <button type="button" class="toggleBtn">
+                <svg class="far fa-eye-slash icontoggle"></svg>
+              </button>
               </div>
               <div class="row">
                 <label class="input-label" for="senha_confirma">Confime a Nova Senha</label>
               </div>
-              <div class="row">
-                <input type="password" name="senha_confirma" class="input-field" />
+              <div class="row icon">
+                <input type="password" name="senha_confirma" class="input-field pwd" />
+                <button type="button" class="toggleBtn">
+                <svg class="far fa-eye-slash icontoggle"></svg>
+              </button>
               </div>
               <div class="row line">
                 <hr class="" />

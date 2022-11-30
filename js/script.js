@@ -222,23 +222,29 @@ if ('className' in nextBtn) {
 
 /* ###################### Login-Register script starts ######################*/
 const loginRegister = qryS('.login-register .container'),
-  togglePwd = qrySA('.togglePwd'),
-  loginPwd = qrySA('.password'),
+  btnSwitch = qrySA('.toggleBtn'),
+  loginPwd = qrySA('.input-field.pwd'),
   signup = qryS('.signup-link'),
   login = qryS('.login-link');
 
-togglePwd.forEach((eyeIcon) => {
-  eyeIcon.addEventListener('click', () => {
+
+btnSwitch.forEach((toggleBtn) => {
+  toggleBtn.addEventListener('click', () => {
     loginPwd.forEach((pwd) => {
+      console.log(loginPwd);
       if (pwd.type === 'password') {
         pwd.type = 'text';
-        togglePwd.forEach((icon) => {
-          icon.classList.replace('fa-eye-slash', 'fa-eye');
+        btnSwitch.forEach((toggleBtn) => {
+          for (const icontoggle of toggleBtn.children) {
+            icontoggle.classList.replace('fa-eye-slash', 'fa-eye');
+          }
         });
       } else {
         pwd.type = 'password';
-        togglePwd.forEach((icon) => {
-          icon.classList.replace('fa-eye', 'fa-eye-slash');
+        btnSwitch.forEach((toggleBtn) => {
+          for (const icontoggle of toggleBtn.children) {
+            icontoggle.classList.replace('fa-eye', 'fa-eye-slash');
+          }
         });
       }
     });
