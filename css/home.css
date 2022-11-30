@@ -145,10 +145,11 @@ img#slider {
 .cards-items .fa-eye {
   position: absolute;
   top: calc(1 * var(--1w));
-  height: calc(4.5 * var(--1w));
-  width: calc(4.5 * var(--1w));
+  /* height: calc(4.5 * var(--1w)); */
+  /* width: calc(4.5 * var(--1w)); */
   line-height: calc(4.2 * var(--1w));
-  font-size: calc(2 * var(--1w));
+  font-size: calc(1.8 * var(--1w));
+  padding: 8px;
   /* background-color: var(--white); */
   background-color: var(--background-color);
   border: var(--border);

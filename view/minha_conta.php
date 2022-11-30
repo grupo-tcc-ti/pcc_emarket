@@ -17,7 +17,7 @@ require_once '../controller/updateUserControl.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br, en">
+<html lang="pt, en">
 
 <head>
   <!-- <meta charset="UTF-8">
@@ -57,21 +57,21 @@ require_once '../controller/updateUserControl.php';
                 <label class="input-label" for="usuario">Usuário</label>
               </div>
               <div class="row icon">
-                <i class="fas fa-user"></i>
+                <svg class="fas fa-user"></svg>
                 <input type="text" name="usuario" class="input-field" value="<?php echo $usuario['nome'] ?>" />
               </div>
               <div class="row">
                 <label class="input-label" for="email">Email</label>
               </div>
               <div class="row icon">
-                <i class="fas fa-envelope"></i>
+                <svg class="fas fa-envelope"></svg>
                 <input type="email" name="email" class="input-field" value="<?php echo $usuario['email'] ?>" />
               </div>
               <div class="row">
                 <label class="input-label" for="senha_atual">Senha Atual</label>
               </div>
               <div class="row icon">
-                <i class="fas fa-lock"></i>
+                <svg class="fas fa-lock"></svg>
                 <input type="password" name="senha_atual" class="input-field" />
               </div>
               <div class="row">

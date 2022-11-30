@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
 $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
 ?>
 <!DOCTYPE html>
-<html class="light" lang="pt-br, en">
+<html lang="pt-br, en">
 
 <head>
     <?php require_once File_Path::head(); ?>
@@ -18,9 +18,9 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
 </head>
 
 <body>
-    <?php
-    require_once '../view/user_header.php';
-    ?>
+    <div id="header">
+        <?php require_once 'user_header.php'; ?>
+    </div>
     <div class="product-page">
         <section class="wrap">
             <?php
@@ -31,7 +31,7 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
             <div class="col img-swip">
                 <!-- js faz a mudança de fotos funcionar //important! -->
                 <div class="btn-nav">
-                    <i class="fas fa-chevron-up"></i>
+                    <svg class="fas fa-chevron-up"></svg>
                 </div>
                 <?php
                 foreach ($prodimg as $img) {
@@ -39,7 +39,7 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
                 }
                 ?>
                 <div class="btn-nav">
-                    <i class="fas fa-chevron-down"></i>
+                    <svg class="fas fa-chevron-down"></svg>
                 </div>
             </div>
 
@@ -58,11 +58,11 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
                         <em>Marca:</em> TechGrifo-Product
                     </span>
                     <div class="ratings">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <svg class="fas fa-star"></svg>
+                        <svg class="fas fa-star"></svg>
+                        <svg class="fas fa-star"></svg>
+                        <svg class="fas fa-star"></svg>
+                        <svg class="fas fa-star"></svg>
                         (5)
                     </div>
                 </div>
@@ -86,7 +86,7 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
                 <div class="payment-view">
                     <div class="prod-price">
                         <span class="">
-                            <i class="fas fa-money-bill"></i>
+                            <svg class="fas fa-money-bill"></svg>
                             À vista</span>
                         <div class="discount">
                             <small>de&nbsp;<em>&nbsp;R$&nbsp;
@@ -112,7 +112,7 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
                     <div class="financed-limit">
                         <div class="wrap-content">
                             <span class="">
-                                <i class="fas fa-credit-card"></i>
+                                <svg class="fas fa-credit-card"></svg>
                                 Parcelamento</span>
                             <div class="installments">
                                 <?php

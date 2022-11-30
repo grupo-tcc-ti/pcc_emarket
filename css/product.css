@@ -23,6 +23,7 @@
   height: calc(2 * var(--1w));
   border-radius: calc(4 * var(--1w));
   background-color: var(--font-color);
+  color: var(--background-color);
   margin: 4px;
   display: flex;
   align-items: center;

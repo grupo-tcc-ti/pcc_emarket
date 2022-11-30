@@ -200,7 +200,7 @@
 .checkout .form .receipt-data .card-figure .bar {
   margin: 32px auto 0;
 }
-.checkout .form .receipt-data .card-figure .bar i {
+.checkout .form .receipt-data .card-figure .bar svg {
   font-size: 32px;
   font-weight: 600;
 }
@@ -252,7 +252,6 @@
   height: calc(10.4 * var(--1w));
   font-size: calc(5.2 * var(--1w));
   border-radius: calc(2.4 * var(--1w));
-  justify-self: center;
   align-self: center;
   margin-top: 32px;
 }
@@ -268,10 +267,10 @@
   justify-content: center;
   margin: auto 12px;
   padding: 16px;
-  width: calc(2.6 * var(--1w));
-  height: calc(2.6 * var(--1w));
+  /* width: calc(2.6 * var(--1w)); */
+  /* height: calc(2.6 * var(--1w)); */
   font-size: calc(1.2 * var(--1w));
-  border-radius: calc(2 * var(--1w));
+  border-radius: calc(4 * var(--1w));
 }
 .checkout .client-address,
 .checkout .checkout-review {

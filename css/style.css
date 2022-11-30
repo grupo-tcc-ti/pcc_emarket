@@ -87,7 +87,7 @@ body {
 
 section {
   max-width: 1200px;
-  margin: calc(2 * var(--1w)) auto;
+  margin: calc(2 * var(--1w)) auto 0;
 }
 
 /* ################# Estilização da User_Header ################# */
@@ -304,12 +304,13 @@ section {
   background-color: transparent;
 }
 
-#carrinho .prod-wrapper .cart-del-btn button i {
+#carrinho .prod-wrapper .cart-del-btn button svg {
   color: var(--background-color);
 }
 
-#carrinho .prod-wrapper .cart-del-btn button:hover i {
+#carrinho .prod-wrapper .cart-del-btn button:hover svg {
   color: var(--light-red);
+  cursor: pointer;
 }
 
 #carrinho .cart-info {
@@ -475,13 +476,13 @@ section {
   color: var(--font-color);
 }
 
-.mensagem i {
+.mensagem svg {
   font-size: calc(2.5 * var(--1w));
   color: var(--red);
   cursor: pointer;
 }
 
-.mensagem i:hover {
+.mensagem svg:hover {
   color: var(--main-color);
 }
 
@@ -511,7 +512,6 @@ section {
   bottom: 2%;
   animation: topAnim 0.8s ease alternate;
 }
-
 @keyframes topAnim {
   from {
     bottom: -6%;
@@ -526,7 +526,7 @@ section {
   filter: invert(0%);
 }
 
-.totop i {
+.totop a {
   font-size: calc(2 * var(--1w));
   color: var(--font-color);
 }
@@ -569,7 +569,7 @@ section {
   color: var(--white);
 }
 
-#footer .container .footer-wrap .row a i {
+#footer .container .footer-wrap .row a svg {
   padding-right: calc(1 * var(--1w));
   transition: 0.2s linear;
   color: var(--main-color);
@@ -579,7 +579,7 @@ section {
   color: var(--main-color);
 }
 
-#footer .container .footer-wrap .row a:hover i {
+#footer .container .footer-wrap .row a:hover svg {
   padding-right: calc(2 * var(--1w));
 }
 

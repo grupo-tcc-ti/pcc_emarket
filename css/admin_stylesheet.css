@@ -84,13 +84,13 @@ section {
     color: var(--black);
 }
 
-.mensagem i {
+.mensagem  {
     font-size: 2.5rem;
     color: var(--red);
     cursor: pointer;
 }
 
-.mensagem i:hover {
+.mensagem :hover {
     color: var(--black);
 }
 

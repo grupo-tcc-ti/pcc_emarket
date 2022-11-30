@@ -1,21 +1,21 @@
 <div class="quickview">
     <!-- <div class="closeWindow"> -->
     <div class="closeWindow" onclick="peekProd(this)">
-            <i class="fas fa-multiply"></i>
+            <svg class="fas fa-multiply"></svg>
     </div>
     <!-- </div> -->
     <section class="wrap">
         <div class="col img-swip">
             <!-- js faz a mudança de fotos funcionar //important! -->
             <div class="btn-nav">
-                <i class="fas fa-chevron-up"></i>
+                <svg class="fas fa-chevron-up"></svg>
             </div>
             <?php foreach ($prodimg as $img) {
                 echo "<img src='$img' alt=''>";
             }
             ?>
             <div class="btn-nav">
-                <i class="fas fa-chevron-down"></i>
+                <svg class="fas fa-chevron-down"></svg>
             </div>
         </div>
         <div class="col prod-img">

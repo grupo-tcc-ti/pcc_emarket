@@ -30,7 +30,8 @@
 }
 
 .quickview .closeWindow {
-  background: var(--font-color);
+  background-color: var(--font-color);
+  color: var(--background-color);
   width: calc(4 * var(--1w));
   height: calc(4 * var(--1w));
   border-radius: 50%;
@@ -41,11 +42,7 @@
   /* debug */
 }
 
-.quickview .closeWindow i {
-  color: var(--background-color);
-}
-
-.quickview .closeWindow:hover i {
+.quickview .closeWindow:hover {
   color: var(--red);
 }
 
@@ -76,6 +73,7 @@
   height: calc(2 * var(--1w));
   border-radius: calc(4 * var(--1w));
   background-color: var(--font-color);
+  color: var(--background-color);
   margin: 6px;
   display: flex;
   align-items: center;

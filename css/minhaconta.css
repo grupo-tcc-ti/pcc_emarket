@@ -67,7 +67,7 @@
   color: var(--font-color);
 }
 
-#minha-conta .section .row.icon i {
+#minha-conta .section .row.icon svg {
   position: absolute;
   float: left;
   left: 0;

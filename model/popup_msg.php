@@ -13,7 +13,7 @@ class Message
                 echo '
                 <div class="mensagem">
                 <span>' . $mensagem . '</span>
-                <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+                <svg class="fas fa-times" onclick="this.parentElement.remove();"></svg>
                 </div>
                 ';
                 sleep(1);
@@ -22,6 +22,4 @@ class Message
     }
 
 }
-// <i class="fas fa-times" onclick="closeMessage(this);"></i>
-// <i class="fas fa-times" onclick = "this.parentElement.remove();"></i>
 ?>

@@ -49,7 +49,7 @@ require_once '../controller/registerControl.php';
             <div class="input-field">
               <input type="text" placeholder="Insira seu email" name="email" required value="usuario@email.com" />
               <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" -->
-              <i class="far fa-envelope icon"></i>
+              < class="far fa-envelope icon"></>
             </div>
             <div class="input-field">
               <!-- <input type="password" class="loginPwd" placeholder="Insira sua senha" name="" required/> -->
@@ -57,9 +57,9 @@ require_once '../controller/registerControl.php';
                 value="1234" />
               <!--pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                 title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" -->
-              <i class="fas fa-lock icon"></i>
-              <i class="far fa-eye-slash togglePwd"></i>
-              <!-- <i class="far fa-eye togglePwd"></i> -->
+              <svg class="fas fa-lock icon"></svg>
+              <svg class="far fa-eye-slash togglePwd"></svg>
+              <!-- <svg class="far fa-eye togglePwd"></svg> -->
             </div>
             <div class="checkbox-text">
               <div class="checkbox-content">
@@ -84,23 +84,23 @@ require_once '../controller/registerControl.php';
             <input type="hidden" name="usertype" value="cliente" />
             <div class="input-field">
               <input type="text" placeholder="Insira seu nome" name="nome" required />
-              <i class="fa-regular fa-user icon"></i>
+              <svg class="fa-regular fa-user icon"></svg>
             </div>
             <div class="input-field">
               <input type="text" placeholder="Insira seu email" name="email" required />
-              <i class="far fa-envelope icon"></i>
+              <svg class="far fa-envelope icon"></svg>
             </div>
             <div class="input-field">
               <!-- <input type="password" class="registerPwd" placeholder="Insira sua senha" name="" required/> -->
               <input type="password" class="password" placeholder="Crie uma senha" name="senha" required />
-              <i class="fas fa-lock icon"></i>
-              <i class="far fa-eye-slash togglePwd"></i>
+              <svg class="fas fa-lock icon"></svg>
+              <svg class="far fa-eye-slash togglePwd"></svg>
             </div>
             <div class="input-field">
               <!-- <input type="password" class="cRegisterPwd" placeholder="Confirme sua senha" name="" required/> -->
               <input type="password" class="password" placeholder="Confirme a senha" name="rsenha" required />
-              <i class="fas fa-lock icon"></i>
-              <i class="far fa-eye-slash togglePwd"></i>
+              <svg class="fas fa-lock icon"></svg>
+              <svg class="far fa-eye-slash togglePwd"></svg>
             </div>
             <div class="input-field button">
               <input type="submit" value="Registrar" name="register" />

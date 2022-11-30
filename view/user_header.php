@@ -22,8 +22,8 @@ require_once '../controller/cartControl.php'; // important!
     <div class="dropdown">
       <button id="link-depart" onclick='clickDrop("depart")' class="btn">
         <span>Departamentos </span>
-        <i class="fa-solid fa-chevron-down mob"></i>
-        <i class="fas fa-bars norm"></i>
+        <svg class="fa-solid fa-chevron-down mob"></svg>
+        <svg class="fas fa-bars norm"></svg>
       </button>
       <div class="dropdown-wrapper">
         <nav id="depart" class="dropdown-content">
@@ -44,7 +44,7 @@ require_once '../controller/cartControl.php'; // important!
   </div>
   <div class="searchbar">
     <button id="link-search" onclick='clickDrop("dropsearch")' class="btn norm" aria-label="botao buscar">
-      <i class="fas fa-search"></i>
+      <svg class="fas fa-search"></svg>
     </button>
     <form class="search-form" method="get" action="">
       <nav id="dropsearch" class="nav-search">
@@ -58,7 +58,7 @@ require_once '../controller/cartControl.php'; // important!
     <div class="dropdown">
       <button id="link-conta" onclick='clickDrop("dropconta")' class="btn">
         <span>Conta&nbsp;</span>
-        <i class="fa-regular fa-user icon"></i>
+        <svg class="fa-regular fa-user icon"></svg>
       </button>
       <div class="dropdown-wrapper">
         <nav id="dropconta" class="dropdown-content">
@@ -93,7 +93,7 @@ require_once '../controller/cartControl.php'; // important!
         <div class="cart-qty">
           <?php echo $cartTotal['qty']; ?>
         </div>
-        <i class="fas fa-shopping-cart icon"></i>
+        <svg class="fas fa-shopping-cart icon"></svg>
       </button>
       <div class="dropdown-wrapper cart">
         <nav id="carrinho" class="dropdown-content">
@@ -103,7 +103,7 @@ require_once '../controller/cartControl.php'; // important!
             ?>
           <div class="cart-header">
             <div class="total-qty">
-              <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+              <svg class="fas fa-shopping-cart" aria-hidden="true"></svg>
               <span>
                 <?php echo $cartTotal['qty']; ?>
               </span>
@@ -126,7 +126,7 @@ require_once '../controller/cartControl.php'; // important!
             <div class="prod-wrapper">
               <div class="cart-del-btn">
                 <button type="submit" name="del_cart_item">
-                  <i class="fas fa-multiply"></i>
+                  <svg class="fas fa-multiply"></svg>
                 </button>
               </div>
               <div class="cart-info">
@@ -181,13 +181,13 @@ require_once '../controller/cartControl.php'; // important!
   </div>
   <div class="colorScheme">
     <button id="darkmode" class="btn">
-      <i class="fas fa-circle-half-stroke"></i>
+      <svg class="fas fa-circle-half-stroke"></svg>
     </button>
   </div>
 </header>
 <!-- </div> -->
 <div class="totop">
   <a href="#top">
-    <i class="fas fa-chevron-up"></i>
+    <svg class="fas fa-chevron-up"></svg>
   </a>
 </div>
