@@ -81,7 +81,7 @@ require_once '../controller/updateUserControl.php';
                 <label class="input-label" for="senha_nova">Nova Senha</label>
               </div>
               <div class="row icon">
-                <input type="password" name="senha_nova" class="input-field pwd" />
+                <input type="password" name="senha_nova" class="input-field pwd" placeholder="&#8226;&#8226;&#8226;&#8226;"/>
                 <button type="button" class="toggleBtn">
                 <svg class="far fa-eye-slash icontoggle"></svg>
               </button>
@@ -90,7 +90,7 @@ require_once '../controller/updateUserControl.php';
                 <label class="input-label" for="senha_confirma">Confime a Nova Senha</label>
               </div>
               <div class="row icon">
-                <input type="password" name="senha_confirma" class="input-field pwd" />
+                <input type="password" name="senha_confirma" class="input-field pwd" placeholder="&#8226;&#8226;&#8226;&#8226;"/>
                 <button type="button" class="toggleBtn">
                 <svg class="far fa-eye-slash icontoggle"></svg>
               </button>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap'); */
 
 /* Automatic Color Scheme */
 :root,
@@ -226,6 +226,11 @@ section {
   border-radius: 20px 0 0 20px;
   margin: 0;
   float: right;
+}
+
+header .icons {
+  width: calc(1.6 * var(--1w));
+  height: calc(1.6 * var(--1w));
 }
 
 /* .nav-cart .cart-wrapper {
@@ -531,7 +536,7 @@ section {
   filter: invert(0%);
 }
 
-.totop a {
+.totop svg {
   font-size: calc(2 * var(--1w));
   color: var(--font-color);
 }

@@ -51,6 +51,7 @@
 #minha-conta .section .row {
   font-size: calc(1.2 * var(--1w));
   padding-bottom: 10px;
+  width: 320px;
 }
 
 #minha-conta .section .row.line {
@@ -166,7 +167,7 @@
 /* debug minha_conta*/
 /* } */
 
-@media (max-width: 480px) {
+@media (max-width: 780px) {
   #minha-conta .wrapper {
     width: 400px;
   }
@@ -180,5 +181,8 @@
   }
   #minha-conta .section.adress-info {
     width: 100%;
+  }
+  #minha-conta .section .row {
+    width: 340px;
   }
 }

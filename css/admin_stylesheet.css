@@ -90,7 +90,7 @@ section {
     cursor: pointer;
 }
 
-.mensagem :hover {
+.mensagem svg:hover {
     color: var(--black);
 }
 
