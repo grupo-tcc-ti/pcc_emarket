@@ -247,6 +247,7 @@
 }
 .checkout .form .checkout-complete .icons {
   background-color: mediumseagreen;
+  color: white;
   width: calc(10.4 * var(--1w));
   height: calc(10.4 * var(--1w));
   font-size: calc(5.2 * var(--1w));

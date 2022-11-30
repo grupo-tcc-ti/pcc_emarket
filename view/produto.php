@@ -171,8 +171,6 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
     require_once '../view/footer.html';
     ?>
 
-    <script src="../js/swiper-bundle.min.js"></script>
-
     <script src="../js/script.js"></script>
 </body>
 

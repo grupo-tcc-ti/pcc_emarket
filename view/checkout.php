@@ -33,6 +33,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
     <div id="header">
         <?php require_once 'user_header.php'; ?>
     </div>
+    <script src="../js/script.js"></script>
     <?php
     if (count($fetchCart) <= 0) {
     ?>
@@ -224,13 +225,10 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
             <div class="next" id="next-checkout">Próximo</div>
         </section>
     </div>
+    <script src="../js/checkout.js"></script>
     <?php } ?>
 
     <!-- <php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?> -->
-
-    <script src="../js/script.js"></script>
-    <script src="../js/checkout.js"></script>
-
 </body>
 
 </html>

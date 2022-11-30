@@ -36,8 +36,6 @@ require_once '../controller/navigationControl.php'; // important!
 
     <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
 
-    <script src="../js/swiper-bundle.min.js"></script>
-
     <script src="../js/script.js"></script>
 
 </body>

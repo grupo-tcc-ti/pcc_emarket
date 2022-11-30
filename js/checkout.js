@@ -34,8 +34,11 @@ function previousFormPage() {
             break;
         }
     }
+    if (isReceipt()) {
+        checkCredencial();
+    }
     isReviewPurchase(); //redudancy
-    checkCredencial();
+
 }
 
 function nextFormPage() {
@@ -53,8 +56,8 @@ function nextFormPage() {
     if (isReceipt()) {
         checkCredencial();
     }
-    isReviewPurchase(); //redudancy
-    isCheckoutComplete(); //redudancy
+    isReviewPurchase(); //redudancy of checkCredencial
+    isCheckoutComplete(); //redudancy of checkCredencial
 };
 
 const isReceipt = () => {
@@ -62,14 +65,16 @@ const isReceipt = () => {
     if ('className' in receipt) {
         // console.log(receipt); //debug
         return true;
+    } else {
+        nextCheckout.style.removeProperty('display');
+        return false;
     }
-    return false;
 }
 const isReviewPurchase = () => {
     let reviewPurchase = qryS('.review-purchase.current');
     if ('className' in reviewPurchase) {
         // console.log(reviewPurchase); //debug
-        nextCheckout.style.removeProperty('display');
+        // nextCheckout.style.removeProperty('display'); // undo if fails
         writeDetails();
     }
 }
@@ -77,7 +82,7 @@ const isCheckoutComplete = () => {
     let checkoutComplete = qryS('.checkout-complete.current');
     if ('className' in checkoutComplete) {
         // console.log(checkoutComplete); //debug
-        nextCheckout.style.removeProperty('display');
+        // nextCheckout.style.removeProperty('display'); // undo if fails
 
         let linkNode = document.createElement('a');
         let divNode = document.createElement('div');
@@ -135,9 +140,7 @@ const checkTipoPagamento = (element) => {
     selectedRadio[1] = payMethod;
     if (payMethod == 'boleto') {
         selectedRadio[2] = JSON.parse(document.getElementById('row1').value);
-        console.log(selectedRadio[2] + ' checktipopagamento :: boleto+preco'); //debug
-        // console.log(selectedRadio[2][0]); //debug
-        // console.log(selectedRadio[2][1]); //debug
+        console.log(selectedRadio[2] + ' checktipopagamento :: boleto+preco'); //showdata
         for (i = 0; i < 2; i++) {
             nextFormPage();
         }
@@ -160,9 +163,7 @@ const checkItm = (element) => {
     const itm = element.target.value;
     // console.log(itm); //debug
     selectedRadio[2] = JSON.parse(itm);
-    console.log(selectedRadio[2] + ' checkitm :: parcela'); //debug
-    // console.log(selectedRadio[2][0]); //debug
-    // console.log(selectedRadio[2][1]); //debug
+    console.log(selectedRadio[2] + ' checkitm :: parcela'); //showdata
     if (itm) {
         nextFormPage();
         // valid = true; //forced select
@@ -177,14 +178,16 @@ const credType = document.querySelector('select[id="data-id"]'),
 credValue.addEventListener('keyup', function () {
     // console.log(credValue.value); //debug
     cardfigureval.innerHTML = credValue.value;
-    checkCredencial();
+    // checkCredencial();
 });
 
+const changeCredType = () => {
+    cardfigure.innerHTML = (`${credType.value}&nbsp;&nbsp;&nbsp;`);
+};
 credType.addEventListener('change', () => {
     // console.log(credType.value); //debug
-    cardfigure.innerHTML = (`${credType.value}&nbsp;&nbsp;&nbsp;`);
+    changeCredType();
     credValue.value = '';
-    checkCredencial();
 });
 
 const checkCredencial = () => {
@@ -231,7 +234,7 @@ const checkCredencial = () => {
     }
     if (valid) {
         selectedRadio[3] = [credType.value, credValue.value];
-        console.log(selectedRadio[3] + ' check_credencial :: tipo+valor'); //debug
+        console.log(selectedRadio[3] + ' check_credencial :: tipo+valor'); //showdata
         // show next button if valid
         nextCheckout.style.setProperty('display', 'flex');
         isReviewPurchase();
@@ -315,15 +318,16 @@ form.addEventListener('submit', function (event) {
 
     // envia o formulário para o servidor se válido
     if (isFormValid()) {
+        nextCheckout.style.removeProperty('display');
         const submitBtnNode = document.createElement("i");
         submitBtnNode.setAttribute('class', 'fas fa-circle-check');
         setTimeout(function () {
             setTimeout(function () {
                 nextFormPage();
-            }, 2000);
-            event.submitter.innerHTML = '';
+            }, 3000);
+            event.submitter.innerHTML = '&nbsp;';
             return event.submitter.appendChild(submitBtnNode);
-        }, 1000);
+        }, 2000);
     }
 });
 
@@ -342,7 +346,8 @@ $('#purchase_btn').click(function () {
         },
         success: function () {
             // alert('Acionar compra'); //debug
-            setTimeout(() => { alert('Obrigado pela sua preferência!'); }, 2000);
+            nextCheckout.remove();
+            setTimeout(() => { alert('Obrigado pela sua preferência!'); }, 3000);
         }
     });
     $('#header').load('../view/user_header.php');
@@ -376,6 +381,7 @@ form.addEventListener('input', debounce(function (event) {
             checkItm(event);
             break;
         case 'credencial':
+            changeCredType();
             checkCredencial();
             break;
     }

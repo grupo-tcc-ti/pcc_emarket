@@ -1,4 +1,7 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start(); // assync session solving
+}
 if (!isset($pdo)) {
   include_once '../model/connect.php';
 }

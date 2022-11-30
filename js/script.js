@@ -86,10 +86,10 @@ window.onscroll = () => {
   }
 
   const totop = qryS('.totop');
-  if (window.scrollY > 250) {
-    totop.style.setProperty('display', 'flex');
+  if (window.scrollY > 220) {
+    totop.classList.add('scrollup');
   } else {
-    totop.style.removeProperty('display');
+    totop.classList.remove('scrollup');
   }
 };
 

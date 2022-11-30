@@ -25,7 +25,6 @@ require_once '../controller/navigationControl.php'; // important!
   <div id="header">
     <?php require_once 'user_header.php'; ?>
   </div>
-
   <section>
     <div class="slider">
       <div class="slide active">
@@ -74,10 +73,10 @@ require_once '../controller/navigationControl.php'; // important!
           ?>
 
           <div class="cards-items">
-            <div class="wishlist_heart">
+            <!-- <div class="wishlist_heart"> -->
               <!-- <span data-code="2I2-5019-322" data-device="desktop" data-department="depart" data-template="pdp" data-category="informatica" data-href="&amp;page="> -->
-              <i class="fas fa-heart"></i>
-            </div>
+              <!-- <i class="fas fa-heart"></i> -->
+            <!-- </div> -->
             <div id="peek-prod" onclick="peekProd(this);"><i class="fas fa-eye"></i>
             </div>
 
@@ -155,8 +154,6 @@ require_once '../controller/navigationControl.php'; // important!
   ?>
 
   <?php require_once Redirect::directory($_SERVER['PHP_SELF']) . '/footer.html'; ?>
-
-  <script src="../js/swiper-bundle.min.js"></script>
 
   <script src="../js/script.js"></script>
 
