@@ -2,9 +2,6 @@
 session_start();
 
 require_once '../model/connect.php';
-// require_once '../model/dao/PedidosDAO.php';
-// require_once '../model/dao/ProdutosDAO.php';
-// require_once '../model/dao/UsuariosDAO.php';
 //undo requirefolder if fails!
 File_Path::requireFolder('../model/dao');
 File_Path::requireFolder('../model/dto');
@@ -14,18 +11,16 @@ File_Path::requireFolder('../model/dto');
 <html lang="pt, en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <?php require_once File_Path::head(); ?>
     <link rel="stylesheet" href="../css/admin_stylesheet.css">
     <title>Administrador - Intranet</title>
 </head>
 
 <body>
 
-    <?php require_once File_Path::admin_header(); ?>
+    <div class="header">
+        <?php require_once File_Path::admin_header(); ?>
+    </div>
 
     <div class="heading-dash">
         <h1><span>i</span>DASH</h1>
@@ -111,7 +106,7 @@ File_Path::requireFolder('../model/dto');
         </div>
 
         <!-- <div class="box">
-        <?php
+        <php
         $qry = ("SELECT * FROM `mensagens`");
         $select_mensagens = $pdo->prepare($qry);
         $select_mensagens->execute();
@@ -122,15 +117,6 @@ File_Path::requireFolder('../model/dto');
         <a href="mensagens.php" class="btn">Ver Mensagens</a>
         </div> -->
     </section>
-
-
-
-
-
-
-
-
-
 
     <script src="../js/admin_script.js"></script>
 </body>

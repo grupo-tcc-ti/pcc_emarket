@@ -17,7 +17,7 @@ if (isset($_GET['adminlogout'])) {
 }
 ?>
 
-<header class="header">
+<header class="container">
 
     <section class="flex">
 
@@ -29,12 +29,18 @@ if (isset($_GET['adminlogout'])) {
             <a href="pedidos.php">Pedidos</a>
             <a href="users_contas.php">Usuários</a>
             <a href="admin_contas.php">Administradores</a>
-            <a href="mensagens.php">Mensagens</a>
+            <!-- <a href="mensagens.php">Mensagens</a> -->
         </nav>
         <div class="spacing"></div>
         <div class="icons">
-            <div id="menu-btn" class="fas fa-bars"></div>
-            <div id="user-btn" class="fas fa-user"></div>
+            <!-- <div id="menu-btn" class="fas fa-bars"> -->
+            <button type="button" id="menu-btn">
+                <svg class="fas fa-bars"></svg>
+            </button>
+            <!-- <div id="user-btn" class="fas fa-user"> -->
+            <button type="button" id="user-btn">
+                <svg class="fas fa-user"></svg>
+            </button>
         </div>
 
         <div class="profile">

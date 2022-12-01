@@ -487,6 +487,8 @@ header .icons {
 }
 
 .mensagem svg {
+  width: calc(2.6 * var(--1w));
+  height: calc(2.6 * var(--1w));
   font-size: calc(2.5 * var(--1w));
   color: var(--red);
   cursor: pointer;

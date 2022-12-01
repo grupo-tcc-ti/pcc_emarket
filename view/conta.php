@@ -11,7 +11,7 @@ require_once '../controller/registerControl.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt, en">
 
 <head>
   <!-- <meta charset="UTF-8"> -->
