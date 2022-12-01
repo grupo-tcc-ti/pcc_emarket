@@ -22,7 +22,6 @@ if (isset($_GET['adminlogout'])) {
     <section class="flex">
 
         <a href="dashboard.php" class="logo">Admin<span>Dashboard</span></a>
-        <div class="spacing"></div>
         <nav class="navbar">
             <a href="dashboard.php">Home</a>
             <a href="produtos.php">Produtos</a>
@@ -31,7 +30,6 @@ if (isset($_GET['adminlogout'])) {
             <a href="admin_contas.php">Administradores</a>
             <!-- <a href="mensagens.php">Mensagens</a> -->
         </nav>
-        <div class="spacing"></div>
         <div class="icons">
             <!-- <div id="menu-btn" class="fas fa-bars"> -->
             <button type="button" id="menu-btn">

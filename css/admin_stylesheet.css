@@ -9,9 +9,13 @@
   --white: whitesmoke;
   --light-bg: snow;
   --light-color: silver;
-  --border: 0.2rem solid var(--black);
-  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
-  --box-light: 0 0.5rem 1rem rgba(255, 255, 255, 0.8);
+  --border: calc(0.2 * var(--1w)) solid var(--black);
+  --box-shadow: 0 calc(0.5 * var(--1w)) calc(1 * var(--1w)) rgba(0, 0, 0, 0.2);
+  --box-light: 0 calc(0.5 * var(--1w)) calc(1 * var(--1w))
+    rgba(255, 255, 255, 0.8);
+  /* --1w: 1rem; */
+  --1w: 10px;
+  /* --1w: 0.8em; */
 }
 
 * {
@@ -30,8 +34,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 1rem;
-  height: 0.5rem;
+  width: calc(1 * var(--1w));
+  height: calc(0.5 * var(--1w));
 }
 
 ::-webkit-scrollbar-track {
@@ -52,7 +56,7 @@ body {
 }
 
 section {
-  padding: 2rem;
+  padding: calc(2 * var(--1w));
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -65,22 +69,22 @@ section {
   align-items: center;
   position: sticky;
   /* max-width: 1200px; */
-  max-width: 75rem;
+  max-width: calc(75 * var(--1w));
   margin: 0 auto;
-  padding: 2rem;
+  padding: calc(2 * var(--1w));
   top: 0;
-  gap: 1rem;
+  gap: calc(1 * var(--1w));
   border: var(--border);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
 }
 
 .mensagem span {
-  font-size: 2.5rem;
+  font-size: calc(2.5 * var(--1w));
   color: var(--black);
 }
 
 .mensagem {
-  font-size: 2.5rem;
+  font-size: calc(2.5 * var(--1w));
   color: var(--red);
   cursor: pointer;
 }
@@ -118,12 +122,12 @@ section {
 .option-btn {
   display: block;
   width: 100%;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
+  border-radius: calc(0.5 * var(--1w));
+  margin-top: calc(1 * var(--1w));
   cursor: pointer;
-  font-size: 2.5rem;
+  font-size: calc(2.5 * var(--1w));
   color: var(--white);
-  padding: 1rem 4.5rem;
+  padding: calc(1 * var(--1w)) calc(4.5 * var(--1w));
   text-transform: capitalize;
   text-align: center;
 }
@@ -168,7 +172,7 @@ section {
     border-radius: 5px;
     box-shadow: var(--box-shadow);
     display: inline-block;
-    margin-right: 6rem;
+    margin-right: calc( 6 * var(--1w));
     padding: 6px 12px;
     cursor: pointer;
 } */
@@ -184,22 +188,22 @@ section {
 }
 
 .spacing {
-  width: 1rem;
+  width: calc(1 * var(--1w));
   display: inline-flex;
 }
 
 .vazio {
   background-color: var(--white);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
   border: var(--border);
   text-align: center;
-  padding: 1.5rem;
+  padding: calc(1.5 * var(--1w));
   width: 64%;
-  font-size: 2rem;
+  font-size: calc(2 * var(--1w));
   /* text-transform: capitalize; */
   color: var(--red);
   box-shadow: var(--box-shadow);
-  margin: 1rem auto;
+  margin: calc(1 * var(--1w)) auto;
 }
 
 /* Formulário com campos de inserção starts */
@@ -212,27 +216,27 @@ section {
 
 .form-container form {
   background-color: var(--white);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
   border: var(--border);
   box-shadow: var(--box-shadow);
-  padding: 2rem;
-  width: 50rem;
-  margin: 4rem auto;
+  padding: calc(2 * var(--1w));
+  width: calc(50 * var(--1w));
+  margin: calc(4 * var(--1w)) auto;
   /* text-align: center; */
 }
 
 .form-container form .heading {
-  font-size: 1.8rem;
-  /* font-size: 4rem; */
+  font-size: calc(1.8 * var(--1w));
+  /* font-size: calc( 4 * var(--1w)); */
   color: var(--black);
-  margin-bottom: 2rem;
+  margin-bottom: calc(2 * var(--1w));
   text-align: center;
   text-transform: uppercase;
 }
 
 .form-container form p {
-  margin: 1rem 0;
-  font-size: 1.8rem;
+  margin: calc(1 * var(--1w)) 0;
+  font-size: calc(1.8 * var(--1w));
   color: var(--light-color);
 }
 
@@ -243,16 +247,16 @@ section {
 .form-container form .flex {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: calc(1 * var(--1w));
 }
 
 .form-container form .flex .inputbox {
-  margin: 1rem 0;
-  flex: 1 1 40rem;
+  margin: calc(1 * var(--1w)) 0;
+  flex: 1 1 calc(40 * var(--1w));
 }
 
 .form-container form .flex .inputbox .title {
-  font-size: 2rem;
+  font-size: calc(2 * var(--1w));
   color: var(--black);
 }
 
@@ -264,21 +268,21 @@ section {
   background-color: var(--light-bg);
   box-shadow: var(--box-shadow);
   width: 100%;
-  padding: 1.4rem;
-  font-size: 1.8rem;
+  padding: calc(1.4 * var(--1w));
+  font-size: calc(1.8 * var(--1w));
   color: var(--black);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
 }
 
 /* Formulário com campos de inserção ends */
 
 .head-list {
-  font-size: 4rem;
+  font-size: calc(4 * var(--1w));
   color: var(--black);
-  margin-bottom: 2rem;
+  margin-bottom: calc(2 * var(--1w));
   text-align: center;
   justify-content: center;
-  margin: 2rem;
+  margin: calc(2 * var(--1w));
 }
 
 /* ############################ De uso generico ends ############################ */
@@ -299,11 +303,13 @@ section {
   align-items: center;
   justify-content: space-between;
   position: relative;
+  max-width: unset;
+  width: 100%;
 }
 
 .header .container .flex .logo {
   display: inline-flex;
-  font-size: 2.5rem;
+  font-size: calc(2.5 * var(--1w));
   color: var(--black);
 }
 
@@ -311,21 +317,28 @@ section {
   color: var(--main-color);
 }
 
+.header .container .flex .navbar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(calc(18 * var(--1w)), 1fr));
+  gap: calc(1 * var(--1w));
+  width: calc(96 * var(--1w));
+  height: calc(4 * var(--1w));
+  justify-items: center;
+  align-content: center;
+}
+
 .header .container .flex .navbar a {
-  margin: 0 1rem;
-  font-size: 2rem;
+  font-size: calc(2.4 * var(--1w));
   color: var(--black);
+  padding: calc(1 * var(--1w));
 }
 
 .header .container .flex .navbar a:hover {
   background-color: var(--main-color);
-  border: 1rem solid var(--main-color);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
   color: var(--white);
-  margin: 0rem;
-  padding: 0rem;
-  justify-content: space-between;
-  transition: 0.1s;
+  transform: translateY(-5%);
+  transition: 0.2s ease;
 }
 
 .header .container .flex .icons {
@@ -333,8 +346,8 @@ section {
 }
 
 .header .container .flex .icons div {
-  margin-left: 1.7rem;
-  font-size: 2.5rem;
+  margin-left: calc(1.7 * var(--1w));
+  font-size: calc(2.5 * var(--1w));
   cursor: pointer;
   color: var(--black);
 }
@@ -345,21 +358,21 @@ section {
 
 @keyframes fadeIn {
   0% {
-    transform: translateY(3rem);
+    transform: translateY(calc(3 * var(--1w)));
   }
 }
 
 .header .container .flex .profile {
   position: absolute;
   top: 120%;
-  right: 2rem;
+  right: calc(2 * var(--1w));
   background-color: var(--white);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
   box-shadow: var(--box-shadow);
   border: var(--border);
-  padding: 2rem;
-  width: 30rem;
-  padding-top: 1.2rem;
+  padding: calc(2 * var(--1w));
+  width: calc(30 * var(--1w));
+  padding-top: calc(1.2 * var(--1w));
   display: none;
   animation: fadeIn 0.2s linear;
 }
@@ -371,22 +384,19 @@ section {
 .header .container .flex .profile p {
   text-align: center;
   color: var(--black);
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: calc(2 * var(--1w));
+  margin-bottom: calc(1 * var(--1w));
 }
 
 /* ############################ Admin_header.php ends ############################ */
 
 /* ############################ Dashboard.php starts ############################ */
 .heading-dash {
-  /* position: relative;
-    top: 2rem; right: 40rem;
-    text-align: right; */
   text-align: center;
-  margin: 1rem 0;
+  margin: calc(1 * var(--1w)) 0;
   text-transform: uppercase;
   color: var(--black);
-  font-size: 2rem;
+  font-size: calc(2 * var(--1w));
 }
 
 .heading-dash span {
@@ -396,8 +406,8 @@ section {
 
 .dashboard {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(27rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(calc(28 * var(--1w)), 1fr));
+  gap: calc(1.5 * var(--1w));
   align-items: stretch;
 }
 
@@ -409,26 +419,26 @@ section {
   background-color: var(--white);
   box-shadow: var(--box-shadow);
   border: var(--border);
-  padding: 1.5rem;
-  border-radius: 0.5rem;
+  padding: calc(1.5 * var(--1w));
+  border-radius: calc(0.5 * var(--1w));
   text-align: center;
 }
 
 .dashboard .box h3 {
-  font-size: 2rem;
+  font-size: calc(2 * var(--1w));
   color: var(--black);
 }
 
 .dashboard .box h3 span {
-  font-size: 1.5rem;
+  font-size: calc(1.5 * var(--1w));
 }
 
 .dashboard .box p {
-  padding: 1.5rem;
-  border-radius: 0.5rem;
+  padding: calc(1.5 * var(--1w));
+  border-radius: calc(0.5 * var(--1w));
   background-color: var(--light-bg);
   /* background-color: transparent; */
-  font-size: 2rem;
+  font-size: calc(2 * var(--1w));
   box-shadow: var(--box-shadow);
 }
 
@@ -436,7 +446,7 @@ section {
 
 /* ############################ Produtos.php starts ############################ */
 .form-container .add-produto {
-  width: 70rem;
+  width: calc(70 * var(--1w));
 }
 
 /* ############################ Produtos.php ends ############################ */
@@ -444,43 +454,43 @@ section {
 /* ############################ Mostrar lista de Produtos.php starts ############################ */
 .mostrar-produtos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 50rem);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, calc(50 * var(--1w)));
+  gap: calc(1.5 * var(--1w));
   justify-content: center;
   align-items: flex-start;
 }
 
 .mostrar-produtos .box {
   background-color: var(--white);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
   box-shadow: var(--box-shadow);
   border: var(--border);
-  padding: 2rem;
+  padding: calc(2 * var(--1w));
 }
 
 .mostrar-produtos .box img {
   width: 100%;
-  height: 20rem;
+  height: calc(20 * var(--1w));
   object-fit: contain;
 }
 
 .mostrar-produtos .box .nome {
-  font-size: 1.5rem;
+  font-size: calc(1.5 * var(--1w));
   color: var(--black);
 }
 
 .mostrar-produtos .box .preco {
-  font-size: 2.5rem;
+  font-size: calc(2.5 * var(--1w));
   color: var(--main-color);
-  margin: 1rem 0;
+  margin: calc(1 * var(--1w)) 0;
 }
 
 .mostrar-produtos .box .descricao {
   line-height: 2;
-  font-size: 1.5rem;
+  font-size: calc(1.5 * var(--1w));
   color: var(--black);
   width: 100%;
-  height: 10rem;
+  height: calc(10 * var(--1w));
   overflow: scroll;
 }
 
@@ -488,48 +498,48 @@ section {
 
 /* ############################ Alterar_produto.php starts ############################ */
 .alterar-produto .heading {
-  font-size: 3rem;
+  font-size: calc(3 * var(--1w));
   color: var(--black);
-  margin-bottom: 2rem;
+  margin-bottom: calc(2 * var(--1w));
   text-align: center;
   justify-content: center;
-  margin: 2rem;
+  margin: calc(2 * var(--1w));
 }
 
 .alterar-produto form {
   background-color: var(--white);
   box-shadow: var(--box-shadow);
-  border-radius: 0.4rem;
+  border-radius: calc(0.4 * var(--1w));
   border: var(--border);
-  padding: 2rem;
-  max-width: 60rem;
-  margin: 4rem auto;
+  padding: calc(2 * var(--1w));
+  max-width: calc(60 * var(--1w));
+  margin: calc(4 * var(--1w)) auto;
 }
 
 .alterar-produto form .image-container {
-  margin-bottom: 2rem;
+  margin-bottom: calc(2 * var(--1w));
 }
 
 .alterar-produto form .image-container .main-image img {
-  height: 20rem;
+  height: calc(20 * var(--1w));
   width: 100%;
   object-fit: contain;
 }
 
 .alterar-produto form .image-container .sub-image {
   display: inline-flex;
-  gap: 4rem;
+  gap: calc(4 * var(--1w));
   justify-content: center;
-  margin: 1rem 0;
+  margin: calc(1 * var(--1w)) 0;
 }
 
 .alterar-produto form .image-container .sub-image img {
-  height: 5rem;
-  width: 7rem;
+  height: calc(5 * var(--1w));
+  width: calc(7 * var(--1w));
   object-fit: contain;
-  padding: 0.2rem;
+  padding: calc(0.2 * var(--1w));
   border: var(--border);
-  border-radius: 0.4rem;
+  border-radius: calc(0.4 * var(--1w));
   cursor: pointer;
   transition: 0.4s linear;
 }
@@ -540,27 +550,27 @@ section {
 
 .alterar-produto form .box {
   width: 100%;
-  border-radius: 0.5rem;
-  padding: 1.4rem;
-  font-size: 1.8rem;
+  border-radius: calc(0.5 * var(--1w));
+  padding: calc(1.4 * var(--1w));
+  font-size: calc(1.8 * var(--1w));
   color: var(--black);
   background-color: var(--light-bg);
-  margin: 1rem 0;
+  margin: calc(1 * var(--1w)) 0;
 }
 
 .alterar-produto form span {
   display: flex;
-  font-size: 1.7rem;
+  font-size: calc(1.7 * var(--1w));
   color: var(--black);
 }
 
 .alterar-produto form textarea {
   display: flex;
-  height: 15rem;
-  /* width: 15rem; */
-  width: 50rem;
-  margin: 2rem auto;
-  border-radius: 0.7rem;
+  height: calc(15 * var(--1w));
+  /* width: calc( 15 * var(--1w)); */
+  width: calc(50 * var(--1w));
+  margin: calc(2 * var(--1w)) auto;
+  border-radius: calc(0.7 * var(--1w));
   resize: none;
 }
 
@@ -569,8 +579,8 @@ section {
 /* ############################ Pedidos.php starts ############################ */
 .pedidos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(calc(40 * var(--1w)), 1fr));
+  gap: calc(1.5 * var(--1w));
   align-items: flex-start;
   justify-content: center;
 }
@@ -578,20 +588,20 @@ section {
 .pedidos .gridbox {
   background-color: var(--white);
   box-shadow: var(--box-shadow);
-  padding: 2rem;
-  padding-top: 1rem;
-  border-radius: 0.5rem;
+  padding: calc(2 * var(--1w));
+  padding-top: calc(1 * var(--1w));
+  border-radius: calc(0.5 * var(--1w));
   border: var(--border);
 }
 
 .pedidos .gridbox .itemfield span {
-  font-size: 1.5rem;
+  font-size: calc(1.5 * var(--1w));
   color: var(--black);
 }
 
 .pedidos .gridbox .itemfield p {
-  margin: 1rem 0;
-  font-size: 1.8rem;
+  margin: calc(1 * var(--1w)) 0;
+  font-size: calc(1.8 * var(--1w));
   color: var(--light-color);
 }
 
@@ -603,20 +613,20 @@ section {
   background-color: var(--light-bg);
   box-shadow: var(--box-shadow);
   width: 100%;
-  padding: 1.4rem;
-  font-size: 1.8rem;
+  padding: calc(1.4 * var(--1w));
+  font-size: calc(1.8 * var(--1w));
   color: var(--black);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
 }
 
 .pedidos .gridbox select {
   background-color: var(--light-bg);
   box-shadow: var(--box-shadow);
   width: 100%;
-  padding: 1.4rem;
-  font-size: 1.8rem;
+  padding: calc(1.4 * var(--1w));
+  font-size: calc(1.8 * var(--1w));
   color: var(--black);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
 }
 
 /* ############################ Pedidos.php ends ############################ */
@@ -625,14 +635,14 @@ section {
 
 .contas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(36rem, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(calc(36 * var(--1w)), 1fr));
+  gap: calc(1.5 * var(--1w));
   justify-content: center;
   /* align-items: flex-start; */
 }
 
 .register-admin {
-  padding-top: 4rem;
+  padding-top: calc(4 * var(--1w));
   width: 30%;
 }
 
@@ -640,12 +650,12 @@ section {
   background-color: var(--white);
   box-shadow: var(--box-shadow);
   /* border:var(--border); */
-  padding: 2rem 2rem;
-  border-radius: 0.5rem;
+  padding: calc(2 * var(--1w)) calc(2 * var(--1w));
+  border-radius: calc(0.5 * var(--1w));
 }
 
 .contas .gridbox .itemfield .title {
-  font-size: 1.5rem;
+  font-size: calc(1.5 * var(--1w));
   color: var(--black);
 }
 
@@ -653,11 +663,11 @@ section {
   background-color: var(--light-bg);
   box-shadow: var(--box-shadow);
   width: 100%;
-  padding: 1.4rem;
-  font-size: 1.8rem;
+  padding: calc(1.4 * var(--1w));
+  font-size: calc(1.8 * var(--1w));
   color: var(--black);
-  border-radius: 0.5rem;
-  margin: 1rem 0;
+  border-radius: calc(0.5 * var(--1w));
+  margin: calc(1 * var(--1w)) 0;
 }
 
 .contas .gridbox .itemfield .box span {
@@ -668,17 +678,32 @@ section {
   background-color: var(--light-bg);
   box-shadow: var(--box-shadow);
   width: 100%;
-  padding: 1.4rem;
-  font-size: 1.8rem;
+  padding: calc(1.4 * var(--1w));
+  font-size: calc(1.8 * var(--1w));
   color: var(--black);
-  border-radius: 0.5rem;
+  border-radius: calc(0.5 * var(--1w));
 }
 
 /* ############################ Admin_contas.php ends ############################ */
 
+@media (max-width: 1290px) {
+  .header .container .flex {
+    padding: calc(5 * var(--1w));
+  }
+  .header .container .flex .navbar {
+    width: calc(65 * var(--1w));
+  }
+}
+
 @media (max-width: 920px) {
   html {
     font-size: 55%;
+  }
+  .header .container .flex {
+    padding: calc(7 * var(--1w));
+  }
+  .header .container .flex .navbar {
+    width: calc(40 * var(--1w));
   }
 }
 
@@ -686,14 +711,19 @@ section {
   #menu-btn {
     display: inline-block;
   }
-
+  .header .container .flex {
+    padding: calc(2 * var(--1w));
+  }
   .header .container .flex .navbar {
+    display: block;
+    width: unset;
+    height: unset;
     position: absolute;
     top: 99%;
     left: 0;
     right: 0;
     border: var(--border);
-    border-radius: 0.6rem;
+    border-radius: calc(0.6 * var(--1w));
     background-color: var(--white);
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
     transition: 0.1s linear;
@@ -704,16 +734,19 @@ section {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
+  .header .container .flex .navbar {
+    width: calc(56 * var(--1w));
+  }
   .header .container .flex .navbar a {
     display: block;
-    margin: 2rem;
+    margin: calc(2 * var(--1w));
   }
 
   .header .container .flex .navbar a:hover {
-    border: 0.5rem solid var(--main-color);
-    border-radius: 0.5rem;
-    margin: 2rem;
-    padding-left: 1rem;
+    border: calc(0.5 * var(--1w)) solid var(--main-color);
+    border-radius: calc(0.5 * var(--1w));
+    margin: calc(2 * var(--1w));
+    padding-left: calc(1 * var(--1w));
     box-shadow: var(--box-shadow);
   }
 }
@@ -729,7 +762,7 @@ section {
   }
 
   .heading-dash {
-    font-size: 1.5rem;
+    font-size: calc(1.5 * var(--1w));
   }
 
   .mostrar-produtos .box-container {
