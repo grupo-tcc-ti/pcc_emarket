@@ -11,7 +11,10 @@ require_once './model/connect.php';
     <link rel="stylesheet" href="./font/stylesheet.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="shortcut icon" href="./image/favicon.ico" type="./image/x-icon" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css" />
+    <script src="./assets/fontawesome/js/all.min.js"></script>
+    <script src="./assets/jquery/jquery-3.6.1.js"></script>
+
     <title>Redirecting...</title>
 </head>
 
