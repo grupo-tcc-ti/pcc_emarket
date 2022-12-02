@@ -86,19 +86,22 @@ class PedidosDAO
             $totalProduto = [];
             $totalPreco = 0;
             foreach ($cartData as $data) {
-                $qry = ("SELECT nome, preco FROM `produtos` WHERE codProduto = :pid");
+                $qry = ("SELECT nome, preco, image FROM `produtos` WHERE codProduto = :pid");
                 $select_ = self::connect()->prepare($qry);
                 $select_->bindValue(':pid', $data['fk_produtos_codProduto']);
                 $select_->execute();
                 $produto = $select_->fetch();
-                $totalProduto[] = "$produto[nome]  ($data[quantidade])";
+                // $totalProduto[] = "$produto[nome]  ($data[quantidade])";
+                $totalProduto[] = array('nome' => $produto['nome'], 'preco' => $produto['preco'], 'quantidade' => $data['quantidade'], 'image' => $produto['image']);
+
                 $totalPreco += ($data['quantidade'] * $produto['preco']);
             }
 
             $qry = ("INSERT INTO `pedidos` (tipoEntrega, totalProduto, totalPreco, dataEnvio, dataEntrega, statusPagamento, fk_usuarios_codUsuario, fk_usuarios_codCliente)
             VALUES ('Correríos', :totalprod, :totalprc, CURRENT_DATE(), NULL, 'pendente', :pkey, :uid)");
             $insert_ = self::connect()->prepare($qry);
-            $insert_->bindValue(':totalprod', implode(", ", $totalProduto));
+            // $insert_->bindValue(':totalprod', implode(", ", $totalProduto));
+            $insert_->bindValue(':totalprod', serialize($totalProduto));
             $insert_->bindValue(':totalprc', $totalPreco);
             $insert_->bindValue(':pkey', $codUsuario);
             $insert_->bindValue(':uid', $uid);
