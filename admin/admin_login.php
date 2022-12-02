@@ -37,12 +37,12 @@ require_once '../model/connect.php';
                 <div class="inputbox">
                     <!-- <span class="title required-field">Usuario</span> -->
                     <input type="text" name="usuario" class="box required-field" maxlength="20" required
-                        placeholder="Usuário*" oninput="this.value = this.value.replace(/\s/g, '')" value="admin">
+                        placeholder="Usuário*" oninput="this.value = this.value.replace(/\s/g, '')">
                 </div>
                 <div class="inputbox">
                     <!-- <span class="title required-field">Senha</span> -->
                     <input type="password" name="senha" class="box required-field" maxlength="20" required
-                        placeholder="Senha*" oninput="this.value = this.value.replace(/\s/g, '')" value="1234">
+                        placeholder="Senha*" oninput="this.value = this.value.replace(/\s/g, '')">
                     <!-- Tirar value 1234 -->
                 </div>
                 <input type="submit" value="Logar" class="btn" name="login">
