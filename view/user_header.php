@@ -22,8 +22,8 @@ require_once '../controller/cartControl.php'; // important!
     <div class="dropdown">
       <button id="link-depart" onclick='clickDrop("depart")' class="btn">
         <span>Departamentos </span>
-        <i class="fa-solid fa-chevron-down mob icons"></i>
-        <i class="fas fa-bars norm icons"></i>
+        <i class="fa-solid fa-chevron-down icons"></i>
+        <i class="fas fa-bars icons"></i>
       </button>
       <div class="dropdown-wrapper">
         <nav id="depart" class="dropdown-content">
@@ -43,7 +43,7 @@ require_once '../controller/cartControl.php'; // important!
     </div>
   </div>
   <div class="searchbar">
-    <button id="link-search" onclick='clickDrop("dropsearch")' class="btn norm" aria-label="botao buscar">
+    <button id="link-search" onclick='clickDrop("dropsearch")' class="btn mobile" aria-label="botao buscar">
       <i class="fas fa-search icons"></i>
     </button>
     <form class="search-form" method="get" action="">

@@ -28,7 +28,7 @@ $fetch_produto = ProdutosDAO::productByID($_SESSION['last_visited']);
             $preco = number_format($fetch_produto['preco'], 2, ',', '.');
             $prod_link = cleaner::cleanURL($fetch_produto['nome']);
             ?>
-            <div class="col img-swip">
+            <div class="col-1 img-swip">
                 <!-- js faz a mudança de fotos funcionar //important! -->
                 <div class="btn-nav">
                     <i class="fas fa-chevron-up"></i>

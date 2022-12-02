@@ -5,7 +5,7 @@
     </div>
     <!-- </div> -->
     <section class="wrap">
-        <div class="col img-swip">
+        <div class="col-1 img-swip">
             <!-- js faz a mudança de fotos funcionar //important! -->
             <div class="btn-nav">
                 <i class="fas fa-chevron-up"></i>

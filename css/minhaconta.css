@@ -1,3 +1,6 @@
+body {
+  background: linear-gradient(140deg, var(--main-color), 40%, var(--secondary-color));
+}
 #minha-conta {
   display: flex;
   flex-direction: column;
@@ -15,7 +18,7 @@
 }
 
 #minha-conta .wrapper .account-header {
-  font-size: calc(1.4 * var(--1w));
+  font-size: calc(1.6 * var(--1w));
   font-weight: 600;
   background-color: gainsboro;
   padding: 4px 8px 0;
@@ -38,18 +41,18 @@
 }
 
 #minha-conta .section .account-subtitle {
-  font-size: calc(1.4 * var(--1w));
+  font-size: calc(1.5 * var(--1w));
   font-weight: 500;
   color: var(--font-color);
 }
 
 #minha-conta .section .account-subtitle.t2 {
-  font-size: calc(1.2 * var(--1w));
+  font-size: calc(1.4 * var(--1w));
   margin: 4px;
 }
 
 #minha-conta .section .row {
-  font-size: calc(1.2 * var(--1w));
+  font-size: calc(1.4 * var(--1w));
   padding-bottom: 10px;
   width: 320px;
 }
@@ -71,9 +74,10 @@
 #minha-conta .section .row.icon :is(i, svg) {
   position: absolute;
   float: left;
-  left: 0;
+  /* left: 0; */
+  left: 4%;
   top: 40%;
-  transform: translate(40%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 #minha-conta .section .row.icon .icontoggle {
@@ -81,10 +85,11 @@
   right: 0;
   cursor: pointer;
   margin-right: 16px;
+  color: var(--font-color);
 }
 
 #minha-conta .section .row .input-label {
-  font-size: calc(1.2 * var(--1w));
+  font-size: calc(1.4 * var(--1w));
   color: var(--font-color);
 }
 

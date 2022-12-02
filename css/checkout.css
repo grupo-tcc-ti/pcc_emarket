@@ -198,7 +198,8 @@
   margin: 8px auto;
 }
 .checkout .form .receipt-data .card-figure .bar {
-  margin: 32px auto 0;
+  /* margin: 32px auto 0; */
+  margin: 16px auto 0;
 }
 .checkout .form .receipt-data .card-figure .bar :is(i, svg) {
   font-size: 32px;

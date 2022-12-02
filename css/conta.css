@@ -1,6 +1,11 @@
-/* body {
-  background-color: var(--background-color);
-} */
+body {
+  background: linear-gradient(
+    140deg,
+    var(--main-color),
+    40%,
+    var(--secondary-color)
+  );
+}
 
 .login-register {
   max-height: 120vh;
@@ -8,7 +13,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--background-color);
 }
 
 .login-register .container {
@@ -90,13 +94,13 @@
   font-size: 16px;
   padding: 0 52px;
   border-top: 2px solid transparent;
-  border-radius: 0 20px;
+  /* border-radius: 0 20px; */
   border-bottom: var(--input-border) var(--input-color);
   /* background-color: var(--input-color); */
   transition: all 0.1s ease;
 }
 
-.form .row input:is(:focus) ~ .icon {
+.form .row input:is(:focus) ~ .icon :is(i, svg) {
   padding-bottom: 2px;
   border-bottom: 2px solid var(--main-color);
   border-radius: 2px;
@@ -111,18 +115,18 @@
   border-bottom: var(--input-border) var(--light-red);
 }
 
-.form .row :is(i, svg) {
+.form .row .icon {
+  left: 0;
+  margin-left: 16px;
+}
+
+.form .row .icon :is(i, svg) {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   color: dimgray;
   font-size: 18px;
   transition: all 0.2s ease;
-}
-
-.form .row .icon {
-  left: 0;
-  margin-left: 16px;
 }
 
 .form .row .icontoggle {

@@ -158,9 +158,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                     <span class="title">Emissão de nota</span>
                     <div class="card-figure">
                         <span>Dados para a sua Nota Fiscal</span>
-                        <div class="line">
-                            <hr />
-                        </div>
+                            <hr class="line"/>
                         <div class="di" style="display: flex;">
                             <p>XXXX&nbsp;&nbsp;&nbsp;</p>
                             <span>xxxx xxxx xxxx xxxx</span>

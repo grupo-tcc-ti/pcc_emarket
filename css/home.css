@@ -12,7 +12,7 @@ img#slider {
 .slider {
   position: relative;
   background: var(--black);
-  width: 100%;
+  /* width: 100%; */
   height: 280px;
   overflow: hidden;
   margin-top: calc(2.4 * var(--1w));
@@ -50,10 +50,10 @@ img#slider {
   opacity: 1;
 }
 
-.prev-btn,
-.next-btn {
-  width: calc(1.6 * var(--1w));
-  height: calc(1.6 * var(--1w));
+.prev-btn :is(i, svg),
+.next-btn :is(i, svg) {
+  position: sticky;
+  z-index: -1;
 }
 
 .prev-btn,
@@ -79,7 +79,8 @@ img#slider {
 /* ################## Vitrine ######################## */
 .list-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(26 * var(--1w)), 1fr));
+  --list-card-w: calc(26 * var(--1w));
+  grid-template-columns: repeat(auto-fill, minmax(var(--list-card-w), 1fr));
   gap: calc(1.5 * var(--1w));
   justify-content: center;
 }
@@ -198,7 +199,7 @@ img#slider {
   border-radius: calc(0.5 * var(--1w));
 }
 
-@media (min-width: 1220px) {
+@media (min-width: 1400px) {
   .list-cards .cards-items:hover {
     /* .list-cards .cards-items {  */
     /* debug */
@@ -210,25 +211,27 @@ img#slider {
   }
 }
 
-@media (max-width: 1220px) {
-  .list-cards {
-    gap: calc(0.1 * var(--1w));
-  }
-
-  .list-cards .cards-items {
-    margin: 0 calc(1 * var(--1w)) calc(4 * var(--1w));
+@media (max-width: 1400px) {
+  .list-cards  {
+    margin: 0 calc(8 * var(--1w)) calc(4 * var(--1w));
   }
 }
 
-@media (max-width: 600px) {
-  .slider {
-    width: 96%;
-    /* height: calc(19.4 * var(--1w)); */
-    /* margin: calc(1 * var(--1w)); */
+@media (max-width: 1200px) {
+  .list-cards {
+    margin: 0 calc(6 * var(--1w)) calc(3 * var(--1w));
   }
+}
 
-  .list-cards .cards-items {
+@media (max-width: 992px) {
+  .list-cards {
     margin: 0 calc(2 * var(--1w)) calc(4 * var(--1w));
     width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .list-cards {
+    margin: 0 auto calc(4 * var(--1w));
   }
 }
