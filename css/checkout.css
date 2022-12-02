@@ -200,7 +200,7 @@
 .checkout .form .receipt-data .card-figure .bar {
   margin: 32px auto 0;
 }
-.checkout .form .receipt-data .card-figure .bar svg {
+.checkout .form .receipt-data .card-figure .bar :is(i, svg) {
   font-size: 32px;
   font-weight: 600;
 }

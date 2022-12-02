@@ -44,7 +44,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
         </a>
         <p class="box">Carrinho vazio...
             &nbsp;&nbsp;&nbsp;
-            <svg class="fa-brands fa-opencart"></svg>
+            <i class="fa-brands fa-opencart"></i>
             <img src="../image/cart_empty.png" alt="">
         </p>
     </div>
@@ -56,7 +56,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
     <div class="checkout">
 
         <div class="back" id="prev-checkout">
-            <svg class="fas fa-arrow-left"></svg>
+            <i class="fas fa-arrow-left"></i>
         </div>
         <section class="container">
             <form action="" id="checkout_form" method="post" class="form" novalidate>
@@ -65,7 +65,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                     <span class="title">Método de Entrega</span>
                     <div class="subtitle"><span>Endereço de Entrega</span></div>
                     <div class="client-address">
-                        <svg class="icons fas fa-location-dot"></svg>
+                        <i class="icons fas fa-location-dot"></i>
                         <?php echo $fulladdress; ?>
                     </div>
                     <div class="subtitle"><span>Tipo de envio</span></div>
@@ -76,7 +76,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                             <label for="shipping-type-expresso">
                                 <span>Expresso</span>
                                 <span>R$&nbsp;120,00&nbsp;
-                                    <svg class="fas fa-angle-right"></svg>
+                                    <i class="fas fa-angle-right"></i>
                                 </span>
                             </label>
                         </div>
@@ -85,7 +85,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                         <div class="js">
                             <label for="shipping-type-normal">
                                 <span>Normal</span><span>R$&nbsp;60,00&nbsp;
-                                    <svg class="fas fa-angle-right"></svg>
+                                    <i class="fas fa-angle-right"></i>
                                 </span>
                             </label>
                         </div>
@@ -100,24 +100,24 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                             value="credito">
                         <div class="js">
                             <label for="payment-method-credito">
-                                <svg class="icons fas fa-credit-card"></svg>
-                                <span>Cartão de Crédito&nbsp;</span><svg class="fas fa-angle-right"></svg>
+                                <i class="icons fas fa-credit-card"></i>
+                                <span>Cartão de Crédito&nbsp;</span><i class="fas fa-angle-right"></i>
                             </label>
                         </div>
                         <input type="radio" name="tipoPagamento" id="payment-method-debito" class="payment-type"
                             value="debito">
                         <!-- <div class="js">
                             <label for="payment-method-debito">
-                                <svg class="icons fas fa-credit-card"></svg>
-                                <span>Cartão de Débito&nbsp;</span><svg class="fas fa-angle-right"></svg>
+                                <i class="icons fas fa-credit-card"></i>
+                                <span>Cartão de Débito&nbsp;</span><i class="fas fa-angle-right"></i>
                             </label>
                         </div> -->
                         <input type="radio" name="tipoPagamento" id="payment-method-boleto" class="payment-type"
                             value="boleto" required>
                         <div class="js">
                             <label for="payment-method-boleto">
-                                <svg class="icons fas fa-barcode"></svg>
-                                <span>Boleto&nbsp;</span><svg class="fas fa-angle-right"></svg>
+                                <i class="icons fas fa-barcode"></i>
+                                <span>Boleto&nbsp;</span><i class="fas fa-angle-right"></i>
                             </label>
                         </div>
                     </div>
@@ -133,7 +133,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                             <label for="row1">
                                 <span>
                                     1 x&nbsp;R$&nbsp;<?= number_format($cartTotal['price'], 2, ',', '.'); ?>
-                                </span><svg class="fas fa-angle-right"></svg>
+                                </span><i class="fas fa-angle-right"></i>
                             </label>
                         </div>
                         <?php for ($i = 2; $i < 13; $i++) {
@@ -146,7 +146,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                             <label for="row<?= $i; ?>">
                                 <span>
                                     <?= $i; ?> x&nbsp;R$&nbsp;<?= $itm; ?>
-                                </span><svg class="fas fa-angle-right"></svg>
+                                </span><i class="fas fa-angle-right"></i>
                             </label>
                         </div>
                         <?php } ?>
@@ -166,11 +166,11 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                             <span>xxxx xxxx xxxx xxxx</span>
                         </div>
                         <div class="bar">
-                            <svg class="fas fa-barcode"></svg>
-                            <svg class="fas fa-barcode"></svg>
-                            <svg class="fas fa-barcode"></svg>
-                            <svg class="fas fa-barcode"></svg>
-                            <svg class="fas fa-barcode"></svg>
+                            <i class="fas fa-barcode"></i>
+                            <i class="fas fa-barcode"></i>
+                            <i class="fas fa-barcode"></i>
+                            <i class="fas fa-barcode"></i>
+                            <i class="fas fa-barcode"></i>
                         </div>
                     </div>
                     <div class="data-select">
@@ -196,17 +196,17 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                     <div class="shipping-content">
                         <span class="subtitle">Detalhes do envio</span>
                         <div class="checkout-review location">
-                            <svg class="icons fas fa-location-dot"></svg>
+                            <i class="icons fas fa-location-dot"></i>
                             <?php echo $fulladdress; ?>
                         </div>
                         <div class="checkout-review shipping">
-                            <svg class="icons fas fa-van-shuttle"></svg>
+                            <i class="icons fas fa-van-shuttle"></i>
                             <p>Tipo de Entrega:&nbsp;<span>Normal</span></p>
                         </div>
                         <div class="payment-content">
                             <span class="subtitle">Detalhes do pagamento</span>
                             <div class="checkout-review shipping">
-                                <svg class="icons fas fa-credit-card"></svg>
+                                <i class="icons fas fa-credit-card"></i>
                                 <p>Tipo de Pagamento:&nbsp;<span>Cartão</span></p>
                             </div>
                         </div>
@@ -218,7 +218,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                 <!-- <div class="concat checkout-complete current"> -->
                 <div class="concat checkout-complete">
                     <span class="title">Compra Finalizada</span>
-                    <svg class="icons fas fa-circle-check"></svg>
+                    <i class="icons fas fa-circle-check"></i>
 
                 </div>
             </form>

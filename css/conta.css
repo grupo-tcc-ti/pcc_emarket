@@ -111,7 +111,7 @@
   border-bottom: var(--input-border) var(--light-red);
 }
 
-.form .row svg {
+.form .row :is(i, svg) {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

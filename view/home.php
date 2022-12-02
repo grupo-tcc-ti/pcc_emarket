@@ -40,8 +40,8 @@ require_once '../controller/navigationControl.php'; // important!
       </div>
 
       <div class="navigation">
-        <svg class="fas fa-chevron-left prev-btn"></svg>
-        <svg class="fas fa-chevron-right next-btn"></svg>
+        <i class="fas fa-chevron-left prev-btn"></i>
+        <i class="fas fa-chevron-right next-btn"></i>
       </div>
 
       <div class="navigation-visibility">
@@ -75,9 +75,9 @@ require_once '../controller/navigationControl.php'; // important!
           <div class="cards-items">
             <!-- <div class="wishlist_heart"> -->
               <!-- <span data-code="2I2-5019-322" data-device="desktop" data-department="depart" data-template="pdp" data-category="informatica" data-href="&amp;page="> -->
-              <!-- <svg class="fas fa-heart"></svg> -->
+              <!-- <i class="fas fa-heart"></i> -->
             <!-- </div> -->
-            <div id="peek-prod" onclick="peekProd(this);"><svg class="fas fa-eye"></svg>
+            <div id="peek-prod" onclick="peekProd(this);"><i class="fas fa-eye"></i>
             </div>
 
             <a title="<?php echo $prod['nome']; ?>" href="<?php echo "produto.php?id=$prod[codProduto]"; ?>">

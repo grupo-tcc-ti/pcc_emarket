@@ -33,11 +33,11 @@ if (isset($_GET['adminlogout'])) {
         <div class="icons">
             <!-- <div id="menu-btn" class="fas fa-bars"> -->
             <button type="button" id="menu-btn">
-                <svg class="fas fa-bars"></svg>
+                <i class="fas fa-bars"></i>
             </button>
             <!-- <div id="user-btn" class="fas fa-user"> -->
             <button type="button" id="user-btn">
-                <svg class="fas fa-user"></svg>
+                <i class="fas fa-user"></i>
             </button>
         </div>
 

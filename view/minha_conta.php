@@ -57,24 +57,24 @@ require_once '../controller/updateUserControl.php';
                 <label class="input-label" for="usuario">Usuário</label>
               </div>
               <div class="row icon">
-                <svg class="fas fa-user"></svg>
+                <i class="fas fa-user"></i>
                 <input type="text" name="usuario" class="input-field" value="<?php echo $usuario['nome'] ?>" />
               </div>
               <div class="row">
                 <label class="input-label" for="email">Email</label>
               </div>
               <div class="row icon">
-                <svg class="fas fa-envelope"></svg>
+                <i class="fas fa-envelope"></i>
                 <input type="email" name="email" class="input-field" value="<?php echo $usuario['email'] ?>" />
               </div>
               <div class="row">
                 <label class="input-label" for="senha_atual">Senha Atual</label>
               </div>
               <div class="row icon">
-                <svg class="fas fa-lock"></svg>
+                <i class="fas fa-lock"></i>
                 <input type="password" name="senha_atual" class="input-field pwd" />
                 <button type="button" class="toggleBtn">
-                <svg class="far fa-eye-slash icontoggle"></svg>
+                <i class="far fa-eye-slash icontoggle"></i>
               </button>
               </div>
               <div class="row">
@@ -83,7 +83,7 @@ require_once '../controller/updateUserControl.php';
               <div class="row icon">
                 <input type="password" name="senha_nova" class="input-field pwd" placeholder="&#8226;&#8226;&#8226;&#8226;"/>
                 <button type="button" class="toggleBtn">
-                <svg class="far fa-eye-slash icontoggle"></svg>
+                <i class="far fa-eye-slash icontoggle"></i>
               </button>
               </div>
               <div class="row">
@@ -92,7 +92,7 @@ require_once '../controller/updateUserControl.php';
               <div class="row icon">
                 <input type="password" name="senha_confirma" class="input-field pwd" placeholder="&#8226;&#8226;&#8226;&#8226;"/>
                 <button type="button" class="toggleBtn">
-                <svg class="far fa-eye-slash icontoggle"></svg>
+                <i class="far fa-eye-slash icontoggle"></i>
               </button>
               </div>
               <div class="row line">

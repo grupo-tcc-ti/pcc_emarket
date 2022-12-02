@@ -68,11 +68,10 @@
   color: var(--font-color);
 }
 
-#minha-conta .section .row.icon svg {
+#minha-conta .section .row.icon :is(i, svg) {
   position: absolute;
   float: left;
   left: 0;
-  /* top: 50%; */
   top: 40%;
   transform: translate(40%, -50%);
 }

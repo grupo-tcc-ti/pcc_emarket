@@ -1,4 +1,5 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,100;1,200;1,300;1,400;1,700&display=swap'); */
+@import url(../font/stylesheet.css);
 
 /* Automatic Color Scheme */
 :root,
@@ -89,7 +90,10 @@ section {
   max-width: 1200px;
   margin: calc(2 * var(--1w)) auto 0;
 }
-
+svg {
+  height: 30px;
+  /* width: 30px; */
+}
 /* ################# Estilização da User_Header ################# */
 #header .container {
   display: flex;
@@ -228,10 +232,10 @@ section {
   float: right;
 }
 
-header .icons {
+/* header .icons {
   width: calc(1.6 * var(--1w));
   height: calc(1.6 * var(--1w));
-}
+} */
 
 /* .nav-cart .cart-wrapper {
   display: flex;
@@ -252,7 +256,6 @@ header .icons {
   /* min-width: calc(36 * var(--1w)); */
   width: 20%;
 }
-
 
 #carrinho.dropdown-content.register {
   width: unset;
@@ -314,11 +317,11 @@ header .icons {
   background-color: transparent;
 }
 
-#carrinho .prod-wrapper .cart-del-btn button svg {
+#carrinho .prod-wrapper .cart-del-btn button :is(i, svg) {
   color: var(--background-color);
 }
 
-#carrinho .prod-wrapper .cart-del-btn button:hover svg {
+#carrinho .prod-wrapper .cart-del-btn button:hover :is(i, svg) {
   color: var(--light-red);
   cursor: pointer;
 }
@@ -427,7 +430,6 @@ header .icons {
   border-radius: 0px;
 }
 
-
 .dropdown .dropdown-content.active {
   display: block;
   transition: 0.8s;
@@ -486,7 +488,7 @@ header .icons {
   color: var(--font-color);
 }
 
-.mensagem svg {
+.mensagem :is(i, svg) {
   width: calc(2.6 * var(--1w));
   height: calc(2.6 * var(--1w));
   font-size: calc(2.5 * var(--1w));
@@ -494,7 +496,7 @@ header .icons {
   cursor: pointer;
 }
 
-.mensagem svg:hover {
+.mensagem :is(i, svg):hover {
   color: var(--main-color);
 }
 
@@ -514,10 +516,17 @@ header .icons {
   width: 40px;
   right: 2%;
   bottom: -6%;
-  background-color: var(--background-color);
-  filter: invert(100%);
+  background-color: var(--font-color);
+  color: var(--background-color);
+  font-size: calc(2 * var(--1w));
   z-index: 998;
   transition: bottom 0.8s ease;
+}
+
+.totop a {
+  position: fixed;
+  height: 40px;
+  width: 40px;
 }
 
 .totop.scrollup {
@@ -535,12 +544,6 @@ header .icons {
 .totop:hover {
   transition: all 0.2s ease-out;
   background-color: var(--main-color);
-  filter: invert(0%);
-}
-
-.totop svg {
-  font-size: calc(2 * var(--1w));
-  color: var(--font-color);
 }
 
 /* ########################## Rodapé ########################## */
@@ -581,7 +584,7 @@ header .icons {
   color: var(--white);
 }
 
-#footer .container .footer-wrap .row a svg {
+#footer .container .footer-wrap .row a :is(i, svg) {
   padding-right: calc(1 * var(--1w));
   transition: 0.2s linear;
   color: var(--main-color);
@@ -591,7 +594,7 @@ header .icons {
   color: var(--main-color);
 }
 
-#footer .container .footer-wrap .row a:hover svg {
+#footer .container .footer-wrap .row a:hover :is(i, svg) {
   padding-right: calc(2 * var(--1w));
 }
 
@@ -631,6 +634,9 @@ header .icons {
   .dropdown .dropdown-wrapper.cart {
     justify-content: flex-end;
   }
+  #carrinho.dropdown-content {
+    width: 30%;
+  }
 }
 
 @media (max-width: 1042px) {
@@ -650,6 +656,9 @@ header .icons {
   #header .container .searchbar {
     width: auto;
   }
+  #carrinho.dropdown-content {
+    width: 40%;
+  }
 }
 
 @media (max-width: 980px) {
@@ -663,6 +672,9 @@ header .icons {
     margin: calc(1 * var(--1w));
     transition: all 1s ease;
   }
+  #carrinho.dropdown-content {
+    width: 50%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -672,6 +684,9 @@ header .icons {
 
   #header .container {
     padding: 1px;
+  }
+  #carrinho.dropdown-content {
+    width: 80%;
   }
 }
 

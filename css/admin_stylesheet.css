@@ -60,7 +60,10 @@ section {
   max-width: 1200px;
   margin: 0 auto;
 }
-
+svg {
+  height: 30px;
+  /* width: 30px; */
+}
 /* ############################ De uso generico starts ############################ */
 .mensagem {
   background-color: var(--light-bg);
@@ -89,7 +92,7 @@ section {
   cursor: pointer;
 }
 
-.mensagem svg:hover {
+.mensagem :is(i, svg):hover {
   color: var(--black);
 }
 
@@ -103,8 +106,8 @@ section {
   cursor: pointer;
 }
 
-#user-btn svg,
-#menu-btn svg {
+#user-btn :is(i, svg),
+#menu-btn :is(i, svg) {
   position: sticky;
   z-index: -1;
 }
@@ -755,7 +758,9 @@ section {
   html {
     font-size: 50%;
   }
-
+  .header .container .flex .navbar {
+    width: calc(40 * var(--1w));
+  }
   .flex-btn {
     flex-flow: column;
     gap: 0;
