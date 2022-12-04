@@ -119,33 +119,48 @@ class UsuariosDAO
             $select_ = self::connect()->prepare($qry);
             $select_->bindParam(':nome', $usuario);
             $select_->execute();
+
+            $registerList = ArrayList::getAccountInfo($usuarioDTO);
+            $qry_insert = '';
             if ($select_->rowCount() > 0) {
                 Message::pop('Conta já existe!');
             } else if ($password != $rpassword) {
                 Message::pop('Nome de usuário ou senha incorreto!');
             } else {
-                $qry_insert = '';
                 if ($usertype == 'admin') {
                     $qry_insert =
                         "INSERT INTO `usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`)
-                        VALUES (:usuario, :email, :rpassword, :usertype, 0, FLOOR(5 + RAND()*(100-1)))"
-                        ;
+                        VALUES (:usuario, :email, :rpassword, :usertype, 0, FLOOR(1 + RAND()*(100 - 1 + 1)))"; //up to 100
                 } else if ($usertype == 'cliente') {
                     $qry_insert =
-                        "INSERT INTO `usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`)
-                        VALUES (:usuario, :email, :rpassword, :usertype, FLOOR(5 + RAND()*(100-1)), 0)"
-                        ;
+                        "INSERT INTO `usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`,
+                        `telefone`, `cpf`, `rg`, `cnpj`, `ie`, `cep`, `estado`, `cidade`, `endereco`, `numero`, `complemento`)
+                        VALUES (:usuario, :email, :rpassword, :usertype, FLOOR(5 + RAND()*(100-1)), 0,
+                        :telefone, :cpf, :rg, :cnpj, :ie, :cep, :estado, :cidade, :endereco, :numero, :complemento)";
+                } else {
+                    $qry_insert =
+                        "INSERT INTO `usuarios` (`nome`, `email`, `senha`, `user_type`, `codCliente`, `codAdmin`, `salario`, `admissao`
+                        `telefone`, `cep`, `estado`, `cidade`, `endereco`, `numero`, `complemento`, `salario`, `admissao`)
+                        VALUES (:usuario, :email, :rpassword, :usertype, 0, FLOOR(100 + RAND()*(200 - 100 + 1)), :salario, :admissao
+                        :telefone, :cep, :estado, :cidade, :endereco, :numero, :complemento, :salario, :admissao)"; //from 100 to 200
                 }
                 $insert_ = self::connect()->prepare($qry_insert);
                 $insert_->bindParam(':usuario', $usuario);
                 $insert_->bindParam(':email', $email);
                 $insert_->bindParam(':rpassword', $rpassword);
                 $insert_->bindValue(':usertype', $usertype);
-                Message::pop('Cadastro realizado com Sucesso!');
-                $insert_->execute();
+                if ($usertype != 'admin') {
+                    foreach ($registerList as $property => $val)
+                        if (!empty($val)) {
+                            $insert_->bindValue($property, preg_replace('/[.()\/-]/', '', $val));
+                        } else {
+                            $insert_->bindValue($property, 'NULL');
+                        }
+                }
+                return $insert_->execute();
             }
         } catch (PDOException $msg) {
-            echo "Erro ao conectar :: " . $msg->getMessage();
+            echo "(cadastrarUsuario) Erro :: " . $msg->getMessage();
             die();
         }
     }

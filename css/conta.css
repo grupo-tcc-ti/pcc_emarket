@@ -54,6 +54,8 @@ body {
 .container .signup {
   opacity: 0;
   transition: opacity 0.1s ease;
+  overflow-y: scroll;
+  max-height: 600px;
 }
 
 .container.active .signup {
@@ -84,7 +86,33 @@ body {
   position: relative;
   height: 54px;
   width: 100%;
-  margin-top: 32px;
+  /* margin-top: 32px; */
+  margin: 32px auto;
+}
+
+.container .form :is(.address-info, .user-info) {
+  color: var(--font-color);
+  font-size: calc(1.8 * var(--1w));
+}
+
+.container .form :is(.address-info, .user-info) .input-label {
+  transform: translateY(-50%);
+}
+
+.container .form :is(.address-info, .user-info) .input-field {
+  padding: 0 16px;
+}
+
+.container .form :is(.address-info, .user-info) select.input-field {
+  margin-top: -32px;
+}
+
+.container .form :is(.address-info, .user-info) .t1 {
+  font-size: calc(2 * var(--1w));
+}
+
+.container .form :is(.address-info, .user-info) .t2 {
+  font-size: calc(1.9 * var(--1w));
 }
 
 .form .row input {
@@ -201,6 +229,11 @@ body {
   background-color: var(--main-color);
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.login-register .container .form .button:hover input {
+  color: var(--white);
+  background-color: var(--secondary-color);
 }
 
 .login-register .container .form .login-signup {

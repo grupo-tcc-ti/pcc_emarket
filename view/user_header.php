@@ -30,13 +30,13 @@ require_once '../controller/cartControl.php'; // important!
           <div class="nav-wrapper">
             <form action="" method="get">
               <?php
-                // foreach ($categorias as $cat) {
-                foreach (ArrayList::$categorias as $cat) {
-                  // var_dump($cat); //debug
-                  echo '<button class="send" type="submit" name="category" value="' . strtolower(cleaner::removeSpecialChars($cat)) . '">' . $cat . '</button>';
-                }
-                echo '</form>';
-                ?>
+              // foreach ($categorias as $cat) {
+              foreach (ArrayList::$categorias as $cat) {
+                // var_dump($cat); //debug
+                echo '<button class="send" type="submit" name="category" value="' . strtolower(cleaner::removeSpecialChars($cat)) . '">' . $cat . '</button>';
+              }
+              echo '</form>';
+              ?>
           </div>
         </nav>
       </div>
@@ -63,25 +63,25 @@ require_once '../controller/cartControl.php'; // important!
       <div class="dropdown-wrapper">
         <nav id="dropconta" class="dropdown-content">
           <?php
-            if (isset($_SESSION['client_id'])) {
-            ?>
+          if (isset($_SESSION['client_id'])) {
+          ?>
           <a class="link" href="minha_conta.php">Minha conta</a>
           <a class="link" href="pedidos.php">Meus Pedidos</a>
           <a class="link" href="<?php echo '?logout'; ?>" onclick="return confirm('Você deseja sair?');">Logout</a>
           <?php
-            } else {
-            ?>
+          } else {
+          ?>
           <a class="link" href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php"; ?>">Login</a>
           <a class="link"
             href="<?php echo Redirect::directory($_SERVER['PHP_SELF']) . "/conta.php?register"; ?>">Registrar</a>
           <?php
-            }
-            if (isset($_SESSION["admin_id"])) {
-            ?>
+          }
+          if (isset($_SESSION["admin_id"])) {
+          ?>
           <a class="link" href="../admin/admin_login.php">Admin Panel</a>
           <?php
-            }
-            ?>
+          }
+          ?>
         </nav>
       </div>
     </div>
@@ -98,8 +98,8 @@ require_once '../controller/cartControl.php'; // important!
       <div class="dropdown-wrapper cart">
         <!-- +++++++++Switch_Carrinho+++++++++ -->
         <?php
-            if (isset($_SESSION['client_id']['id'])) {
-              ?>
+        if (isset($_SESSION['client_id']['id'])) {
+        ?>
         <nav id="carrinho" class="dropdown-content">
           <div class="cart-header">
             <div class="total-qty">
@@ -116,12 +116,12 @@ require_once '../controller/cartControl.php'; // important!
           </div>
           <!-- +++++++++Carrinho_starts+++++++++ -->
           <?php
-              //cartControl.php
-              if (count($fetchCart) > 0) {
-                foreach ($fetchCart as $prod) {
-                  $prodimg = explode(",", $prod['image']);
-                  // echo var_dump($prod['codProduto']) . '<br>'; //debug
-            ?>
+          //cartControl.php
+          if (count($fetchCart) > 0) {
+            foreach ($fetchCart as $prod) {
+              $prodimg = explode(",", $prod['image']);
+              // echo var_dump($prod['codProduto']) . '<br>'; //debug
+          ?>
           <form action="" method="post">
             <div class="prod-wrapper">
               <div class="cart-del-btn">
@@ -166,13 +166,13 @@ require_once '../controller/cartControl.php'; // important!
           </form>
           <!-- +++++++++Carrinho_ends+++++++++ -->
         </nav>
-          <?php
-              } else {
-                echo '<p class="vazio">Carrinho vazio!</p>';
-              }
-            ?>
-          <?php } else {
-            ?>
+        <?php
+          } else {
+            echo '<p class="vazio">Carrinho vazio!</p>';
+          }
+          ?>
+        <?php } else {
+          ?>
         <nav id="carrinho" class="dropdown-content register">
           <a class="link" href="conta.php?register">Crie sua conta!</a>
           <?php } ?>

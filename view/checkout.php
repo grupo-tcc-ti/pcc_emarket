@@ -101,7 +101,7 @@ $fulladdress = "$usuario[cidade], $usuario[endereco], Número: $usuario[numero],
                         <div class="js">
                             <label for="payment-method-credito">
                                 <i class="icons fas fa-credit-card"></i>
-                                <span>Cartão de Crédito&nbsp;</span><i class="fas fa-angle-right"></i>
+                                <span>Cartão de Crédito*&nbsp;</span><i class="fas fa-angle-right"></i>
                             </label>
                         </div>
                         <input type="radio" name="tipoPagamento" id="payment-method-debito" class="payment-type"

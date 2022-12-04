@@ -20,15 +20,8 @@ require_once '../controller/updateUserControl.php';
 <html lang="pt, en">
 
 <head>
-  <!-- <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="https://kit.fontawesome.com/5e9d92adc0.js" crossorigin="anonymous"></script> -->
-  <!-- <link rel="stylesheet" href="../css/myacc_style.css"> -->
-  <link rel="stylesheet" href="../css/minhaconta.css" />
   <?php require_once File_Path::head(); ?>
+  <link rel="stylesheet" href="../css/minhaconta.css" />
   <title>Minha Conta</title>
 </head>
 
@@ -74,26 +67,28 @@ require_once '../controller/updateUserControl.php';
                 <i class="fas fa-lock"></i>
                 <input type="password" name="senha_atual" class="input-field pwd" />
                 <button type="button" class="toggleBtn">
-                <i class="far fa-eye-slash icontoggle"></i>
-              </button>
+                  <i class="far fa-eye-slash icontoggle"></i>
+                </button>
               </div>
               <div class="row">
                 <label class="input-label" for="senha_nova">Nova Senha</label>
               </div>
               <div class="row icon">
-                <input type="password" name="senha_nova" class="input-field pwd" placeholder="&#8226;&#8226;&#8226;&#8226;"/>
+                <input type="password" name="senha_nova" class="input-field pwd"
+                  placeholder="&#8226;&#8226;&#8226;&#8226;" />
                 <button type="button" class="toggleBtn">
-                <i class="far fa-eye-slash icontoggle"></i>
-              </button>
+                  <i class="far fa-eye-slash icontoggle"></i>
+                </button>
               </div>
               <div class="row">
                 <label class="input-label" for="senha_confirma">Confime a Nova Senha</label>
               </div>
               <div class="row icon">
-                <input type="password" name="senha_confirma" class="input-field pwd" placeholder="&#8226;&#8226;&#8226;&#8226;"/>
+                <input type="password" name="senha_confirma" class="input-field pwd"
+                  placeholder="&#8226;&#8226;&#8226;&#8226;" />
                 <button type="button" class="toggleBtn">
-                <i class="far fa-eye-slash icontoggle"></i>
-              </button>
+                  <i class="far fa-eye-slash icontoggle"></i>
+                </button>
               </div>
               <div class="row line">
                 <hr class="" />
@@ -125,16 +120,34 @@ require_once '../controller/updateUserControl.php';
               <input type="number" name="telefone" class="input-field" value="<?php echo $usuario['telefone'] ?>" />
             </div>
 
+            <!-- tipo pessoa starts -->
+            <?php if (!empty($usuario['cnpj'])) {
+              preg_match('/^([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{4})([0-9]{2})$/', $usuario['cnpj'], $value);
+              $cnpj = $value[1] . '.' . $value[2] . '.' . $value[3] . '/' . $value[4] . '-' . $value[5];
+            ?>
+            <div class="row">
+              <label class="input-label" for="cnpj">CNPJ</label>
+              <input type="text" name="cpf" class="input-field" placeholder="<?php
+              // echo ($usuario['cnpj']) 
+              echo $cnpj;
+              ?>" />
+            </div>
+            <?php } else {
+              preg_match('/^([0-9]{3})([0-9]{3})([0-9]{3})([0-9]{2})$/', $usuario['cpf'], $value);
+              $cpf = $value[1] . '.' . $value[2] . '.' . $value[3] . '-' . $value[4];
+              preg_match('/^([0-9]{2})([0-9]{3})([0-9]{3})([0-9]{1})$/', $usuario['rg'], $value);
+              $rg = $value[1] . '.' . $value[2] . '.' . $value[3] . '-' . $value[4];
+            ?>
             <div class="row">
               <label class="input-label" for="cpf">CPF</label>
-
-              <input type="text" name="cpf" class="input-field" value="<?php echo $usuario['cpf'] ?>" />
+              <input type="text" name="cpf" class="input-field" placeholder="<?php echo $cpf; ?>" />
             </div>
             <div class="row">
               <label class="input-label" for="rg">RG</label>
-
-              <input type="text" name="rg" class="input-field" value="<?php echo $usuario['rg'] ?>" />
+              <input type="text" name="rg" class="input-field" placeholder="<?php echo $rg; ?>" />
             </div>
+            <?php } ?>
+            <!-- tipo pessoa ends -->
 
             <div class="row line">
               <hr class="" />

@@ -8,7 +8,7 @@ File_Path::requireFolder('../model/dto');
 
 if (isset($_GET['deletar'])) {
     UsuariosDAO::deletarCliente($_GET['deletar']);
-    Redirect::page('../admin/users_contas.php', 0);
+    Redirect::page('../admin/users_contas.php', 1);
 }
 ?>
 

@@ -222,11 +222,28 @@ if ('className' in nextBtn) {
 
 /* ###################### Login-Register script starts ######################*/
 const loginRegister = qryS('.login-register .container'),
+  credSelect = qryS('#pessoa_tipo'),
   btnSwitch = qrySA('.toggleBtn'),
   loginPwd = qrySA('.input-field.pwd'),
   signup = qryS('.signup-link'),
   login = qryS('.login-link');
 
+const pfTempWrapper = document.createElement('div');
+const pjTempWrapper = document.createElement('div');
+pjTempWrapper.innerHTML = '<div class="row"><label class="input-label" for="cnpj">CNPJ</label><input type="text" name="cnpj" class="input-field" placeholder="12.345.678/9101-11" value="12.345.678/9101-11"pattern="^[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}$" min="18" max="18" required /></div>';
+credSelect.addEventListener('change', function () {
+  let credPessoa = qryS('.user-info .cred-pessoa');
+
+  if (credSelect.value == 'pj') {
+    console.log('mudou');
+    pfTempWrapper.innerHTML = credPessoa.innerHTML;
+    credPessoa.innerHTML = '';
+    credPessoa.innerHTML = pjTempWrapper.innerHTML;
+  } else {
+    credPessoa.innerHTML = pfTempWrapper.innerHTML;
+  }
+
+});
 
 btnSwitch.forEach((toggleBtn) => {
   toggleBtn.addEventListener('click', () => {

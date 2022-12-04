@@ -80,7 +80,11 @@ if (isset($_POST['deletar_pedido'])) {
             <div class="itemfield">
                 <span class="title">Produtos</span>
                 <p class="box">
-                    <?php echo $pedido['totalProduto']; ?>
+                    <?php
+                $discProd = unserialize($pedido['totalProduto']);
+                foreach ($discProd as $key => $val) {
+                    echo "$val[nome] ($val[quantidade])\n\r<br/><br/>";
+                } ?>
                 </p>
             </div>
             <div class="itemfield">
