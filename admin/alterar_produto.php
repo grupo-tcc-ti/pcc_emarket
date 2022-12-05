@@ -1,10 +1,10 @@
 <?php
+session_start();
 require_once '../model/connect.php';
 // require_once '../model/dao/ProdutosDAO.php';
 //undo requirefolder if fails!
-// F-ile_Path::requireFolder('../model/dao');
-// F-ile_Path::requireFolder('../model/dto');
-session_start();
+File_Path::requireFolder('../model/dao');
+File_Path::requireFolder('../model/dto');
 
 //['admin_id'] no header
 if (!isset($_SESSION['admin_id'])) {
