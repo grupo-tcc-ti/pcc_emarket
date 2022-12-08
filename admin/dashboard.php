@@ -48,7 +48,7 @@ File_Path::requireFolder('../model/dto');
             ?>
             <h3>Total Pendente<span></span></h3>
             <p>
-                <?php echo '<span>R$ </span>' . $total_pendente . ' /-'; ?>
+                <?php echo '<span>R$ </span>' . $total_pendente; ?>
             </p>
             <a href="pedidos.php" class="btn">Ver Pedidos</a>
         </div>
@@ -62,7 +62,7 @@ File_Path::requireFolder('../model/dto');
             ?>
             <h3>Total a Pagar<span></span></h3>
             <p>
-                <?php echo '<span>R$ </span>' . $total_pago . ' /-'; ?>
+                <?php echo '<span>R$ </span>' . $total_pago; ?>
             </p>
             <a href="pedidos.php" class="btn">Ver Pagamentos</a>
         </div>
@@ -76,7 +76,7 @@ File_Path::requireFolder('../model/dto');
             ?>
             <h3>Total Cancelado<span></span></h3>
             <p>
-                <?php echo '<span>R$ </span>' . $total_cancelado . ' /-'; ?>
+                <?php echo '<span>R$ </span>' . $total_cancelado; ?>
             </p>
             <a href="pedidos.php" class="btn">Ver Cancelamentos</a>
         </div>
@@ -84,7 +84,7 @@ File_Path::requireFolder('../model/dto');
         <div class="box">
             <h3>Total de Produtos <span></span></h3>
             <p>
-                <?php echo ProdutosDAO::qtyProdutos() . ' /-'; ?>
+                <?php echo ProdutosDAO::qtyProdutos(); ?>
             </p>
             <a href="produtos.php" class="btn">Ver Produtos</a>
         </div>
@@ -92,7 +92,7 @@ File_Path::requireFolder('../model/dto');
         <div class="box">
             <h3>Total de Clientes <span></span></h3>
             <p>
-                <?php echo UsuariosDAO::qtyUsuarios('cliente') . ' /-'; ?>
+                <?php echo UsuariosDAO::qtyUsuarios('cliente'); ?>
             </p>
             <a href="users_contas.php" class="btn">Ver Clientes</a>
         </div>
@@ -100,22 +100,10 @@ File_Path::requireFolder('../model/dto');
         <div class="box">
             <h3>Total de Admin<span>'s</span></h3>
             <p>
-                <?php echo UsuariosDAO::qtyUsuarios('admin') . ' /-'; ?>
+                <?php echo UsuariosDAO::qtyUsuarios('admin'); ?>
             </p>
             <a href="admin_contas.php" class="btn">Ver Admin's</a>
         </div>
-
-        <!-- <div class="box">
-        <php
-        $qry = ("SELECT * FROM `mensagens`");
-        $select_mensagens = $pdo->prepare($qry);
-        $select_mensagens->execute();
-        $num_mensagens = $select_mensagens->rowCount();
-        ?>
-        <h3>Total de Mensagens<span></span></h3>
-        <p><?php echo $num_mensagens . ' /-'; ?></p>
-        <a href="mensagens.php" class="btn">Ver Mensagens</a>
-        </div> -->
     </section>
 
     <script src="../js/admin_script.js"></script>

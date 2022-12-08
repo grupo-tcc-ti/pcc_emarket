@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     (isset($_POST["complemento"])) ? $updateData->setComplemento($_POST["complemento"]) : '';
 
     if (!is_null(UsuariosDAO::alterarUsuario($usuarioDAO, $updateData))) {
-        Message::pop('alteracao_terminou!');
+        Message::pop('Alterado com sucesso!');
         if ($updateData->getUser_type() == 'admin') {
             Redirect::page('admin_contas.php', 2);
         } else {

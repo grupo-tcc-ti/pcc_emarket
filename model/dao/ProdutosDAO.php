@@ -220,8 +220,8 @@ class ProdutosDAO
                 $fetched_imgs = explode(",", $fetch_del_img['image']);
                 foreach ($fetched_imgs as $prod_img) {
                     if (file_exists($prod_img)) {
-                        echo ($prod_img . ':image_unlinked');
-                        // unlink($prod_img);
+                        // echo ($prod_img . ':image_unlinked');
+                        // unlink($prod_img); //apaga a imagem da pasta
                     } else {
                         echo ($prod_img . ':file_doesnt_exist; ');
                     }
